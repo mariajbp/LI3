@@ -18,30 +18,32 @@ char* openFile(char* path, int val){
 
 //função que valida um id de um produto
 int validaProduto(char * id, int i){
+	int r = 0;
 	if(strlen(id) == i){
 		if(!id[i] || (id[i] == ' '))													//segue se o id[i] é \0 ou NULL, ou se for um espaço
 			if((id[0]<='Z') && (id[1]<='Z') && (id[0] >= 'A') && (id[1] >= 'A'))  		//Se os dois primeiros carateres sao maiusculas 								
 				if(('1'<=id[2]) && (id[2]<='9'))										//Se a 3ª posição é entre 1 e 9
 					for(int n = 3; n < (i-1); n++){
-						if(isdigit(id[n])) return 1;
+						if(isdigit(id[n])) r = 1;
 						else return 0;
 					}			
 	}
-	else return 0;
+	return r;
 }
 
 //função que valida um id de um cliente
 int validaCliente(char * id, int i){
+	int r = 0;
 	if(strlen(id) == i){
 		if(!id[i] || (id[i] == ' '))													//segue se o id[i] é \0 ou NULL, ou se for um espaço
 			if((id[0] <= 'Z') && (id[0] >= 'A'))										//Se a primeiros carateres sao maiusculas 								
 				if(('1'<=id[1]) && (id[1]<='5'))										//Se a 2ª posição é entre 1 e 5
 					for(int n = 2; n < (i-1); n++){
-						if(isdigit(id[n])) return 1;
+						if(isdigit(id[n])) r = 1;
 						else return 0;
 					}			
 	}
-	else return 0;
+	return r;
 }
 
 /* função que valida um id de uma venda
