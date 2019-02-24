@@ -65,10 +65,9 @@ int* findSpace(char* string, int *r){
 //função que recebe uma string e devolve uma sub string de um inicio a um fim
 char* subString(const char* linha, char* sub, int inicio, int fim){
 	int tamanho = fim - inicio;
-	printf("TAMNHO == %d\n",tamanho );
-    for(int i = 0; i < tamanho; i++){
-        sub[i] = linha[inicio+i];
-    }
+    	for(int i = 0; i < tamanho; i++){
+        	sub[i] = linha[inicio+i];
+    	}
     return sub;
 }
 
