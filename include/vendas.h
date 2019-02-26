@@ -8,7 +8,7 @@
  * @returns uma Venda
  */
 
-Venda createVenda()
+VENDA createVenda()
 
 
 /**
@@ -16,21 +16,21 @@ Venda createVenda()
  * @param 
  * @returns o código do cliente
  */
-char* getPCode(Venda v);
+char* getPcode(VENDA v);
 
 /**
  * Retorna o preço de um produto
  * @param  
  * @returns o preço de um produto
  */
-double price(Venda v)
+double getPrice(VENDA v)
 
 /**
  * o que faz
  * @param  
  * @returns o nº de unidades vendidas
  */
-int units(Venda v)
+int getUnits(VENDA v)
 
 
 /**
@@ -38,7 +38,7 @@ int units(Venda v)
  * @param  
  * @returns o tipo de venda (Promoção ou Normal)
  */
-char np(Venda v)
+char getNP(VENDA  v)
 
 
  /**
@@ -46,7 +46,7 @@ char np(Venda v)
  * @param  
  * @returns o código do cliente
  */
-char* clcode(Venda v)
+char* getCLcode(VENDA v)
 
 
 /**
@@ -54,14 +54,14 @@ char* clcode(Venda v)
  * @param  
  * @returns o mês da venda
  */
-int month(Venda v)
+int getMonth(VENDA v)
 
 /**
  * o que faz
  * @param  
  * @returns o nº da filial onde foi efetuada a comprada
  */
-int filial(Venda v)
+int getFilial(VENDA v)
 
 
 
