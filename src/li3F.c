@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include <assert.h>
+#include <assert.h> //tirar no fim!!! 
 
 char* openFile(char* path, int val){
 
