@@ -21,9 +21,9 @@ char* openFile(char* path, int val){
 int validaProduto(char * id, int i){
 	int r = 0;
 	if(strlen(id) == i){
-		if(!id[i] || (id[i] == ' '))								//segue se o id[i] é \0 ou NULL, ou se for um espaço
+		if(!id[i] || (id[i] == ' '))													//segue se o id[i] é \0 ou NULL, ou se for um espaço
 			if((id[0]<='Z') && (id[1]<='Z') && (id[0] >= 'A') && (id[1] >= 'A'))  		//Se os dois primeiros carateres sao maiusculas 								
-				if(('1'<=id[2]) && (id[2]<='9'))					//Se a 3ª posição é entre 1 e 9
+				if(('1'<=id[2]) && (id[2]<='9'))										//Se a 3ª posição é entre 1 e 9
 					for(int n = 3; n < (i-1); n++){
 						if(isdigit(id[n])) r = 1;
 						else return 0;
@@ -50,26 +50,6 @@ int validaCliente(char * id, int i){
 	return r;
 }
 
-//função que encontra as posicoes em que ha espacos e guarda as num array
-int* findSpace(char* string, int *r){
-	int num = 0;
-	for(int i = 0; i < strlen(string); i++){
-		if(string[i] == ' '){
-			r[num] = i;
-			num++;
-		}
-	}
-	return r;
-}
-
-//função que recebe uma string e devolve uma sub string de um inicio a um fim
-char* subString(const char* linha, char* sub, int inicio, int fim){
-	int tamanho = fim - inicio;
-    	for(int i = 0; i < tamanho; i++){
-        	sub[i] = linha[inicio+i];
-    	}
-    return sub;
-}
 
 //função que so serve para testar
 int num(int* r){
@@ -81,22 +61,19 @@ int num(int* r){
 }
 
 //função que valida um id de uma venda
-int validaVendas(char * linha, int i){
-	int r = 0, a, b, s[10];
-	char produto[7], cliente[6];
-	findSpace(linha,s);
-	
-	if(!linha[i]){											//a posicao final do linha tem de ser \0 ou Null
-		a = 0; b = s[0];
-		memset(produto, 0, sizeof(produto));
-		subString(linha,produto,a,b);
+int validaVendas(char * linha, int i, char* produtos, char* clientes){						//Se i for > 31, descarta logo
+	int r = 0, s[10];
+	char* tok = NULL;
 
-		if( validaProduto(produto , 6) ){
-			a = b + 1; b = s[1];
-			if( 1 ){									//validaValor(subString(linha,sub,a,b))
-				a = b + 1; b = s[2];
-				if( 1 ){								//validaUnidade(subString(linha,sub,a,b))
-					if( linha[b + 1] == 'N' || linha[b + 1] == 'P' ){
+	if(i<=31){											//a posicao final do linha tem de ser \0 ou Null
+		tok = strtok(linha, " ");
+		if( searchProd(produtos , tok) ){				//DEFINIR searchProd()
+			tok = strtok(NULL, " ");
+			if( validaPreco(tok)){									//DEFINIR validaPreco(tok)
+				tok = strtok(NULL, " ");
+				if( validaUni(tok) ){
+					tok = strtok(NULL, " ");								//validaUnidade(tok)
+					if( tok == 'N' || tok == 'P' ){
 						a = s[3] + 1 ; b = s[4];
 						memset(cliente, 0, sizeof(cliente));
 						subString(linha,cliente,a,b);
