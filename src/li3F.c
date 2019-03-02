@@ -2,14 +2,13 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include <assert.h> //tirar no fim!!! 
 
 char* openFile(char* path, int val){
 
 	FILE *fileTR; // file to read
-	char* buff = malloc(sizeof(char)*31); 								// 31 é o valor max de uma compra, a estrutura maior
+	char* buff = malloc(sizeof(char)*31); 												// 31 é o valor max de uma compra, a estrutura maior
 	fileTR = fopen(path, "r");
-	while(1){											// not actual code, ainda ta a ser feito
+	while(1){																			// not actual code, ainda ta a ser feito
 		fgets(buff, val, fileTR);
 	}
 
@@ -18,7 +17,7 @@ char* openFile(char* path, int val){
 }
 
 //função que valida um id de um produto
-int validaProduto(char * id, int i){
+int validaProduto(const char * id, int i){
 	int r = 0;
 	if(strlen(id) == i){
 		if(!id[i] || (id[i] == ' '))													//segue se o id[i] é \0 ou NULL, ou se for um espaço
@@ -33,14 +32,14 @@ int validaProduto(char * id, int i){
 }
 
 //função que valida um id de um cliente
-int validaCliente(char * id, int i){
+int validaCliente(const char * id, int i){
 	int r = 0;
 	if(strlen(id) == i){
-		if(!id[i] || (id[i] == ' '))									//segue se o id[i] é \0 ou NULL, ou se for um espaço
+		if(!id[i] || (id[i] == ' '))											//segue se o id[i] é \0 ou NULL, ou se for um espaço
 			
-			if((id[0] <= 'Z') && (id[0] >= 'A'))							//Se a primeiros carateres sao maiusculas 								
+			if((id[0] <= 'Z') && (id[0] >= 'A'))										//Se a primeiros carateres sao maiusculas 								
 			
-				if(('1'<=id[1]) && (id[1]<='5'))						//Se a 2ª posição é entre 1 e 5
+				if(('1'<=id[1]) && (id[1]<='5'))										//Se a 2ª posição é entre 1 e 5
 			
 					for(int n = 2; n < (i-1); n++){
 						if(isdigit(id[n])) r = 1;
@@ -50,43 +49,33 @@ int validaCliente(char * id, int i){
 	return r;
 }
 
-
-//função que so serve para testar
-int num(int* r){
-	int n = 0;
-	for(int i = 0; i < (int) sizeof(r); i++){
-		if(r[i]) n++;
-	}
-	return n;
-}
-
 //função que valida um id de uma venda
-int validaVendas(char * linha, int i, char* produtos, char* clientes){						//Se i for > 31, descarta logo
-	int r = 0, s[10];
+int validaVendas(char* linha, int i, const char* produtos[], const char* clientes[]){						//Se i for > 31, descarta logo
+	int r = 0; // s[10];
 	char* tok = NULL;
 
 	if(i<=31){											//a posicao final do linha tem de ser \0 ou Null
 		tok = strtok(linha, " ");
-		if( searchProd(produtos , tok) ){				//DEFINIR searchProd()
+		if( searchID(produtos , tok) ){
 			tok = strtok(NULL, " ");
-			if( validaPreco(tok)){									//DEFINIR validaPreco(tok)
+
+			if( atof(tok) <= 999.99 && atof(tok) >= 0.0 ){		// atof(str) converte a str para float, pertence a string.h
 				tok = strtok(NULL, " ");
-				if( validaUni(tok) ){
-					tok = strtok(NULL, " ");								//validaUnidade(tok)
-					if( tok == 'N' || tok == 'P' ){
-						a = s[3] + 1 ; b = s[4];
-						memset(cliente, 0, sizeof(cliente));
-						subString(linha,cliente,a,b);
-						
-						if( validaCliente(cliente , 5) ){
-							if( 1 ) // nao sei validar o mes
-								if( 1 ) // validar a filial
-											return 1;
-						}
-					}
-				}
-			}
-		}
+
+				if( atoi(tok) <= 200 && atoi(tok) >= 1 ){		// atoi(str) converte a str para int, pertence a string.h
+					tok = strtok(NULL, " ");
+
+					if( strcmp(tok, "N") || strcmp(tok, "P") ){
+						tok = strtok(NULL, " ");
+
+						if( searchID(clientes , tok) ){
+							tok = strtok(NULL, " ");
+
+							if( atoi(tok) <= 12 && atoi(tok) >= 1 ){
+								tok = strtok(NULL, " ");
+
+								if( atoi(tok) <= 3 && atoi(tok) >= 1 ) // validar a filial
+											return 1;}}}}}}
 	}
 	return r;
 }
