@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <load.h>
+#include "load.h>"
+#include "valida.h"
 
 
 char **lProd()
@@ -13,7 +14,10 @@ char **lProd()
 	fp = fopen("Produtos.txt", 'r');
 	for(i=0; fgets(buff, 50, fp))
 	{
-		// if (validaP(buff))
+		if (isPvalid(buff)) 
+		{
+			codProd[i] = strdup(buff); //copia a linha do buffer para o array que vai ser passado para o novo ficheiro
+		}
 	}
 
 	fclose(fp);
@@ -29,9 +33,12 @@ char **lCliente()
 	int i;
 	FILE* fc;
 	fc = fopen("Clientes.txt", 'r');
-	for(i=0; fgets(buff, 50, fc))
+	for(i=0; fgets(buff, 50, fc); i++)
 	{
-		// if (validaP(buff)) {codCliente[i++] = strdup(buff);}
+		if (isCvalid(buff)) 
+		{
+			codCliente[i] = strdup(buff); //copia a linha do buffer para o array que vai ser passado para o novo ficheiro
+		}
 	}
 
 	fclose(fc);
@@ -51,7 +58,10 @@ char **lVendas()
 	fv = fopen("Vendas_1M.txt", 'r');
 	for(i=0; fgest(buff, 200, fv))
 	{
-		//if (ValidaV(buff))...
+		if (isVvalid(buff))
+		{
+			codVenda[i] = strdup(buff); //copia a linha do buffer para o array que vai ser passado para o novo ficheiro
+		}
 	}
 
 	fclose(fv);
