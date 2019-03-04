@@ -6,9 +6,9 @@
 //função que valida um id de um produto
 int validaProduto(char * id, int i){
 	int r = 0;
-		if(!id[i])																		//segue se o id[i] é \0 ou NULL, ou se for um espaço
+		if(!id[i])														//segue se o id[i] é \0 ou NULL
 			if(isupper(id[0]) && isupper(id[1]))										//Se os dois primeiros carateres sao maiusculas 								
-				if(('1'<=id[2]) && (id[2]<='9'))										//Se a 3ª posição é entre 1 e 9
+				if(('1'<=id[2]) && (id[2]<='9'))									//Se a 3ª posição é entre 1 e 9
 					for(int n = 3; n < (i-1); n++){
 						if(isdigit(id[n])) r = 1;
 						else return 0;
@@ -19,8 +19,8 @@ int validaProduto(char * id, int i){
 //função que valida um id de um cliente
 int validaCliente(char * id, int i){
 	int r = 0;
-		if(!id[i])														//segue se o id[i] é \0 ou NULL, ou se for um espaço
-			if(isupper(id[0]))											//Se a primeiros carateres sao maiusculas 		
+		if(!id[i])											//segue se o id[i] é \0 ou NULL
+			if(isupper(id[0]))									//Se a primeiros carateres sao maiusculas 		
 				if(('1'<=id[1]) && (id[1]<='5'))						//Se a 2ª posição é entre 1 e 5
 					for(int n = 2; n < (i-1); n++){
 						if(isdigit(id[n])) r = 1;
