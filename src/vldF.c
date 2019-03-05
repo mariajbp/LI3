@@ -63,7 +63,7 @@ int validaVendas(char* linha, const char* produtos[], const char* clientes[]){
 						if( searchID(clientes , tokens[4]) )
 							if( atoi(tokens[5]) <= 12 && atoi(tokens[5]) >= 1 )
 								if( atoi(tokens[6]) <= 3 && atoi(tokens[6]) >= 1 ) // validar a filial
-											r = 1;
+									r = 1;
 	return r;
 }
 
