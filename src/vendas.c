@@ -1,0 +1,115 @@
+#include <vendas.h>
+#include <stdlib.h>
+
+struct venda
+{
+	char* pcode;
+	double price;
+	int units;
+	char np;
+	char* clcode;
+	int month;
+	int filial;
+} *VENDA;
+
+
+int readVenda()
+{
+	FILE *fv =fopen("Vendas_1M.txt", "r");
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/*
+VENDA createVenda(char* pcode, double price, int units, char np, char* clcode, int month, int filial)
+{
+	VENDA v = (VENDA) malloc(sizeof (struct venda));
+	venda->pcode = pcode;
+	venda->price = price;
+	venda->units = units;
+	venda->np = np;
+	venda->clcode = clcode;
+	venda->month = month;
+	venda->filial = filial;
+	return v;
+}
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// DEPOIS DA VALIDAÇÃO APENAS 
+char* getPcode(VENDA v)
+{
+	return venda->pcode;
+}
+
+
+double getPrice(VENDA v)
+{
+	return venda->price;
+}
+
+
+int getUnits(VENDA v)
+{
+	return venda->units;
+
+}
+
+
+char getNP(VENDA v)
+{
+	return venda->np;
+}
+
+
+char* getCLcode(VENDA v)
+{
+	return venda->clcode;
+
+}
+
+
+int getMonth(VENDAv)
+{
+	return venda->month;
+
+}
+
+int getFilial(VENDA v)
+{
+	return venda->filial;
+}
+
+// CODIGO PARA DESTRUIR UMA VENDA
