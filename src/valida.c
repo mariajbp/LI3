@@ -45,7 +45,7 @@ int validaVenda(char* linha, const char* produtos[], const char* clientes[]){
 	int r = 0, id = 0;
 	char* tok = NULL;
 	tok = strtok(linha, " ");
-	char* tokens[6];
+	char* tokens[7];
 
     while(tok) {															// verificar a quantidade de sub strings na linha
     	if(id < 7){

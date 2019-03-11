@@ -1,5 +1,5 @@
-#ifndef __VALIDA_H__
-#define __VALIDA_H__
+#ifndef valida_h
+#define valida_h
 
 /**
  * Função que valida o codigo de um produto

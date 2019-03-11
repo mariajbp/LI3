@@ -1,6 +1,6 @@
 
-#ifndef __VENDAS_H__
-#define __VENDAS_H__
+#ifndef vendas_h
+#define vendas_h
 
 /**
  * o que faz 

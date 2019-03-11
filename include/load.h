@@ -1,13 +1,12 @@
 
-#ifndef __VENDAS_H__
-#define __VENDAS_H__
-
+#ifndef load_h
+#define load_h
 /**
  * Função que carrega produtos validos para um array
  * @param  
  * @returns array de produtos validos
  */
-char **lProd()
+
 
 /**
  * Função que carrega clientes validos para um array
@@ -15,7 +14,7 @@ char **lProd()
  * @returns array de produtos clientes
  */
 
-char **lCliente()
+
 
 
  /**
@@ -23,7 +22,6 @@ char **lCliente()
  * @param  
  * @returns array de vendas validas
  */
-char **lVendas()
 
 
 
