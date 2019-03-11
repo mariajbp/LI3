@@ -43,6 +43,22 @@ char** loadArray( char** array, char* path, const char id, int max, const char* 
 	return array;
 }
 
+char** lArray( char** array, char* path, const char id, int max, int (*valida) (char, ...) ){
+	char * linha = NULL;
+	int i = 0;
+	FILE* file;
+
+	file = fopen(path , "r");
+	while( fgets(linha, max, file) ){
+		if(valida){
+			array[i] = strdup(linha);
+			i++;
+		}
+	}
+	fclose(file);	
+
+	return array;
+}
 
 //max = função de profilling - fazer fora 
 int linecount(char* path)
