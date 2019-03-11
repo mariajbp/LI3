@@ -42,20 +42,20 @@ int searchID(const char * lista[], const char * id){
 
 //função que valida um id de uma venda
 int validaVenda(char* linha, const char* produtos[], const char* clientes[]){
-	int r = 0, id = 0;
+	int r = 0, i = 0;
 	char* tok = NULL;
 	tok = strtok(linha, " ");
 	char* tokens[7];
 
     while(tok) {															// verificar a quantidade de sub strings na linha
-    	if(id < 7){
-    		tokens[id] = strdup(tok);
+    	if(i < 7){
+    		tokens[i] = strdup(tok);
     	}
         tok = strtok(NULL," ");
-        id++;
+        i++;
     } 
 
-	if(id == 7)																// se tokens tiver 7 posicoes, estas devem ser testadas
+	if(i == 7)																// se tokens tiver 7 posicoes, estas devem ser testadas
 		if( searchID(produtos , tokens[0]) )
 			if( atof(tokens[1]) <= 999.99 && atof(tokens[1]) >= 0.0 )		// atof(str) converte a str para float, pertence a string.h
 				if( atoi(tokens[2]) <= 200 && atoi(tokens[2]) >= 1 )		// atoi(str) converte a str para int, pertence a string.h

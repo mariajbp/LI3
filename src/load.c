@@ -42,3 +42,19 @@ char** loadArray( char** array, char* path, const char id, int max, const char* 
 	}
 	return array;
 }
+
+
+//max = função de profilling - fazer fora 
+int linecount(char* path)
+{
+	int lines, ch;
+	FILE* fp = fopen(path, "r");
+	while(!feof(fp))
+	{
+  		ch = fgetc(fp);
+  		if(ch == '\n') lines++;
+	}
+
+	fclose(fp);
+	return lines;
+}
