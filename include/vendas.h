@@ -2,13 +2,16 @@
 #ifndef vendas_h
 #define vendas_h
 
+
+typedef struct venda * VENDA;
+
 /**
  * o que faz 
  * @param  
  * @returns uma Venda
  */
 
-VENDA createVenda()
+VENDA createVenda();
 
 
 /**

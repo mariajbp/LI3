@@ -13,7 +13,7 @@
  * @param  
  * @returns 
  */
-int validaC(char* buff)	
+
 
 
 

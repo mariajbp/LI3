@@ -55,7 +55,7 @@ int validaVenda(char* linha, const char* produtos[], const char* clientes[]){
         i++;
     } 
 
-	if(i == 7)																// se tokens tiver 7 posicoes, estas devem ser testadas
+	if(id == 7)																// se tokens tiver 7 posicoes, estas devem ser testadas
 		if( searchID(produtos , tokens[0]) )
 			if( atof(tokens[1]) <= 999.99 && atof(tokens[1]) >= 0.0 )		// atof(str) converte a str para float, pertence a string.h
 				if( atoi(tokens[2]) <= 200 && atoi(tokens[2]) >= 1 )		// atoi(str) converte a str para int, pertence a string.h
