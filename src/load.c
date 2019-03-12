@@ -1,12 +1,11 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "valida.h"
-
 #define _GNU_SOURCE
-#define _SVID_SOURCE //-->nao dar warning na compilaçao
+#include "valida.h"
+#include "load.h"
 
-char** lArray( char* path, int max, int (*valida) (char, ...) ){
+
+
+//Faz load de um ficheiro no array
+/*char** lArray( char* path, int max, int (*valida) (char, ...) ){
 	char** array = 
 	char * linha = NULL;
 	int i = 0;
@@ -22,7 +21,7 @@ char** lArray( char* path, int max, int (*valida) (char, ...) ){
 	fclose(file);	
 
 	return array;
-}
+}*/
 
 //max = função de profilling - fazer fora 
 int linecount(char* path)
