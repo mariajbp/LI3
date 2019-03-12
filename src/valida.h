@@ -1,6 +1,11 @@
 #ifndef __VALIDA_H__
 #define __VALIDA_H__
 
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <ctype.h>
+
 //função que valida um id de um produto
 int validaProduto(char * id, int i);
 

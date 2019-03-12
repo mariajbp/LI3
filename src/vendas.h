@@ -1,16 +1,10 @@
 #ifndef __VENDAS_H__
 #define __VENDAS_H__
 
-struct venda
- {
- 	char* pcode;
- 	double price;
- 	int units;
- 	char np;
- 	char* clcode;
- 	int month;
- 	int filial;
- };
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct venda* VENDA;
 
  
 VENDA createVenda(char* pcode, double price, int units, char np, char* clcode, int month, int filial);
@@ -37,7 +31,7 @@ int getMonth(VENDA v);
 int getFilial(VENDA v);
 
 
-void destroyVenda(VENDA V);
+void destroyVenda(VENDA v);
 
 
 

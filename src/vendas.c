@@ -1,80 +1,74 @@
 #include "vendas.h"
 #include <stdlib.h>
+#include <string.h>
 
-struct venda
- {
- 	char* pcode;
- 	double price;
- 	int units;
- 	char np;
- 	char* clcode;
- 	int month;
- 	int filial;
+struct venda{
+  char pcode[7];
+  double price;
+  int units;
+  char np;
+  char clcode[6];
+  int month;
+  int filial;
  };
-
  
-  VENDA createVenda(char* pcode, double price, int units, char np, char* clcode, int month, int filial)
- {
- 	VENDA v = (VENDA) malloc(sizeof (struct venda));
- 	venda->pcode = pcode;
- 	venda->price = price;
- 	venda->units = units;
- 	venda->np = np;
- 	venda->clcode = clcode;
- 	venda->month = month;
- 	venda->filial = filial;
+VENDA createVenda(char* pc, double price, int units, char np, char* clc, int month, int filial){
+ 	VENDA v = (VENDA) malloc(sizeof (VENDA) );
+ 	strcpy( (v->pcode), pc);
+ 	v->price = price;
+ 	v->units = units;
+ 	v->np = np;
+ 	strcpy( (v->clcode), clc);
+ 	v->month = month;
+ 	v->filial = filial;
  	return v;
- }
+}
 
  
 
-
+char* getPcode(VENDA v)
+ {
+ 	return v->pcode;
+}
 
  
-  char* getPcode(VENDA v)
+double getPrice(VENDA v)
  {
- 	return venda->pcode;
- }
+ 	return v->price;
+}
 
  
-  double getPrice(VENDA v)
+int getUnits(VENDA v)
  {
- 	return venda->price;
- }
+ 	return v->units;
+}
 
  
-  int getUnits(VENDA v)
+char getNP(VENDA v)
  {
- 	return venda->units;
-
-  }
+	return v->np;
+}
 
  
-  char getNP(VENDA v)
- {
- 	return venda->np;
- }
+char* getCLcode(VENDA v){
+
+ 	return v->clcode;
+
+}
 
  
-  char* getCLcode(VENDA v)
- {
- 	return venda->clcode;
+int getMonth(VENDA v){
 
-  }
+ 	return v->month;
 
- 
-  int getMonth(VENDA v)
- {
- 	return venda->month;
+}
 
-  }
+int getFilial(VENDA v){
 
-  int getFilial(VENDA v)
- {
- 	return venda->filial;
- }
+ 	return v->filial;
+}
 
-void destroyVenda(VENDA V)
+void destroyVenda(VENDA v)
 {
   free(v);
 }
