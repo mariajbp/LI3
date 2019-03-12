@@ -1,5 +1,5 @@
-objects = valida.o load.o vendas.o
-CFLAGS = -g -Wall
+objects = valida.o vendas.o load.o
+CFLAGS = -g -Wall -ansi -std=c99 -pedantic -O2
 CC = gcc
 
 .PHONY : clean
@@ -7,14 +7,15 @@ CC = gcc
 SVG : $(objects)
 	$(CC) $(CFLAGS) -o SVG $(objects) 
 
-valida.o : valida.c valida.h
-	$(CC) $(CFLAGS) valida.c
+vendas.o : vendas.c vendas.h
+	$(CC) $(CFLAGS) vendas.c 
 
 load.o : load.c load.h valida.h
-	$(CC) $(CFLAGS) load.c
+	$(CC) $(CFLAGS) load.c load.h valida.h
 
-vendas.o : vendas.c vendas.h
-	$(CC) $(CFLAGS) vendas.c
+valida.o : valida.c valida.h
+	$(CC) $(CFLAGS) valida.c valida.h
+
 
 clean : 
 	rm SVG $(objects)
