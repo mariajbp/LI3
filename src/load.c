@@ -43,7 +43,7 @@ char** loadArray( char** array, char* path, const char id, int max, const char* 
 	return array;
 }
 
-char** lArray( char** array, char* path, const char id, int max, int (*valida) (char, ...) ){
+char** lArray( char** array, char* path, int max, int (*valida) (char, ...) ){
 	char * linha = NULL;
 	int i = 0;
 	FILE* file;
@@ -74,3 +74,4 @@ int linecount(char* path)
 	fclose(fp);
 	return lines;
 }
+
