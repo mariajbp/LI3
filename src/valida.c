@@ -66,6 +66,7 @@ int validaVenda(char* linha, const char* produtos[], const char* clientes[]){
 	return r;
 }
 
+
 int main(){
 	char a[] = "F2916", b[] = "DV1294";
 	const char *pp[] = {"KR1583", "DV1294", "FF2916"};
