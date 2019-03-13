@@ -7,8 +7,10 @@
 
 
 
-char** lArray( char** array, char* path, int max, int (*valida) (char, ...) );
+char** loadArray( char** array, char* path, int max, int (*valida) (char, ...) );
 
+int proffiling();
 
 int linecount(char* path);
+
 #endif
