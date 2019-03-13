@@ -6,21 +6,22 @@ struct venda{
   char pcode[7];
   double price;
   int units;
-  char np;
+  char* np;
   char clcode[6];
   int month;
   int filial;
  };
- 
-VENDA createVenda(char* pc, double price, int units, char np, char* clc, int month, int filial){
+
+//dado o array com tokens, faz uma venda
+VENDA createVenda(char** tokens){
  	VENDA v = (VENDA) malloc(sizeof (VENDA) );
- 	strcpy( (v->pcode), pc);
- 	v->price = price;
- 	v->units = units;
- 	v->np = np;
- 	strcpy( (v->clcode), clc);
- 	v->month = month;
- 	v->filial = filial;
+ 	strcpy( (v->pcode), tokens[0]);
+ 	v->price = atof(tokens[1]);
+ 	v->units = atoi(tokens[2]);
+ 	strcpy( (v->np), tokens[3]);
+ 	strcpy( (v->clcode), tokens[4]);
+ 	v->month = atoi(tokens[5]);
+ 	v->filial = atoi(tokens[6]);
  	return v;
 }
 
@@ -44,7 +45,7 @@ int getUnits(VENDA v)
 }
 
  
-char getNP(VENDA v)
+char* getNP(VENDA v)
  {
 	return v->np;
 }

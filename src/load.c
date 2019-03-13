@@ -27,13 +27,6 @@ char** loadArray( char** array, char* path, int max, int (*valida) (char, ...) )
 	return array;
 }
 
-//max = função de profilling - fazer fora 
-int proffiling()
-{
-	return 0;	
-}
-
-
 
 //ADICIONAR AO FILE DAS QUERIES MAYBE
 int linecount(char* path){

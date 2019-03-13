@@ -38,13 +38,11 @@ int searchID(const char * lista[], const char * id){
 	}
 	return r;
 }
-
-//função que valida um id de uma venda
-int validaVenda(char* linha, const char* produtos[], const char* clientes[]){
-	int r = 0, i = 0;
+//Tokenize, devolve o i e preenche o array tokens
+int toktok(char * linha, char** tokens) {
 	char* tok = NULL;
 	tok = strtok(linha, " ");
-	char* tokens[7];
+	int i = 0;
 
     while(tok) {															// verificar a quantidade de sub strings na linha
     	if(i < 7){
@@ -53,6 +51,15 @@ int validaVenda(char* linha, const char* produtos[], const char* clientes[]){
         tok = strtok(NULL," ");
         i++;
     } 
+    return i;
+}
+
+//função que valida um id de uma venda
+int validaVenda(char* linha, const char* produtos[], const char* clientes[]){
+	int r = 0, i = 0;
+	char** tokens = (char**)malloc(7*sizeof(char*));
+
+	i = toktok(linha, tokens);
 
 	if(i == 7)																// se tokens tiver 7 posicoes, estas devem ser testadas
 		if( searchID(produtos , tokens[0]) )

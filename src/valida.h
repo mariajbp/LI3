@@ -18,5 +18,7 @@ int searchID(const char * lista[], const char * id);
 //função que valida um id de uma venda
 int validaVenda(char* linha, const char* produtos[], const char* clientes[]);
 
+//função que dado uma linha e um array, preenche o array com tokens da linha e devolve o número de campos
+int toktok(char * linha, char** tokens);
 
 #endif
