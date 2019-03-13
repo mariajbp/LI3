@@ -3,11 +3,9 @@
 #include <string.h>
 #include "valida.h"
 
-<<<<<<< HEAD
-=======
 #define _GNU_SOURCE
 #define _SVID_SOURCE //-->nao dar warning na compilaçao
->>>>>>> 0782ca14c2cd87178c1742a7256aefd45f84a46a
+
 
 char** lArray( char* path, int max, int (*valida) (char, ...) ){
 	char** array = 
@@ -30,13 +28,6 @@ char** lArray( char* path, int max, int (*valida) (char, ...) ){
 	fclose(file);	
 
 	return array;
-}
-
-//max = função de profilling - fazer fora 
-
-int proffiling()
-{
-	
 }
 
 
