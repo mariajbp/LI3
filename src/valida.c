@@ -1,7 +1,6 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <ctype.h>
+#define _GNU_SOURCE
+#include "valida.h"
+
 
 //função que valida um id de um produto
 int validaProduto(char * id, int i){
