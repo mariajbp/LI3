@@ -1,4 +1,4 @@
-objects = valida.o vendas.o load.o
+objects = exe.o valida.o vendas.o file.o
 CFLAGS = -g -Wall -ansi -std=c99 -pedantic -O2
 CC = gcc
 
@@ -7,10 +7,10 @@ CC = gcc
 SVG : $(objects)
 	$(CC) $(CFLAGS) -o SVG $(objects) 
 
-
+exe.o : valida.h vendas.h file.h
 valida.o :  valida.h
 vendas.o : vendas.h
-load.o : load.h valida.h
+file.o : file.h valida.h
 
 
 
