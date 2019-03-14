@@ -1,6 +1,6 @@
-#include "valida.h"
-#include "load.h"
-#include "vendas.h"
+#include "../include/valida.h"
+#include "../include/file.h"
+#include "../include/vendas.h"
 
 //Main do projeto
 

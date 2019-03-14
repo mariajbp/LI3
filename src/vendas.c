@@ -1,4 +1,4 @@
-#include "vendas.h"
+#include "../include/vendas.h"
 #include <stdlib.h>
 #include <string.h>
 

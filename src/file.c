@@ -1,6 +1,6 @@
 #define _GNU_SOURCE
-#include "valida.h"
-#include "load.h"
+#include "../include/valida.h"
+#include "../include/file.h"
 
 
 
