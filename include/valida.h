@@ -1,27 +1,24 @@
-#ifndef valida_h
-#define valida_h
+#ifndef __VALIDA_H__
+#define __VALIDA_H__
 
-/**
- * Função que valida o codigo de um produto
- * @param  
- * @returns 
- */
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <ctype.h>
 
+//função que valida um id de um produto
+int validaProduto(char * id, int i);
 
-/**
- * Função que valida o código de um cliente
- * @param  
- * @returns 
- */
+//função que valida um id de um cliente
+int validaCliente(char * id, int i);
 
+// função que valida se uma string está no array de strings
+int searchID(const char * lista[], const char * id);
 
+//função que valida um id de uma venda
+int validaVenda(char* linha, const char* produtos[], const char* clientes[]);
 
-
-
- /**
- * Função que valida o codigo de uma venda
- * @param  
- * @returns 
- */
+//função que dado uma linha e um array, preenche o array com tokens da linha e devolve o número de campos
+int toktok(char * linha, char** tokens);
 
 #endif

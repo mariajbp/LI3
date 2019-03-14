@@ -1,87 +1,37 @@
+#ifndef __VENDAS_H__
+#define __VENDAS_H__
 
-#ifndef vendas_h
-#define vendas_h
+#include <stdlib.h>
+#include <string.h>
 
+typedef struct venda* VENDA;
 
-typedef struct venda * VENDA;
+ 
+VENDA createVenda(char** tokens);
 
-/**
- * o que faz 
- * @param  
- * @returns uma Venda
- */
-
-VENDA createVenda();
-
-
-/**
- * Retorna o código do cliente
- * @param 
- * @returns o código do cliente
- */
+ 
 char* getPcode(VENDA v);
 
-/**
- * Retorna o preço de um produto
- * @param  
- * @returns o preço de um produto
- */
-double getPrice(VENDA v)
 
-/**
- * o que faz
- * @param  
- * @returns o nº de unidades vendidas
- */
-int getUnits(VENDA v)
+double getPrice(VENDA v);
 
 
-/**
- * o que faz
- * @param  
- * @returns o tipo de venda (Promoção ou Normal)
- */
-char getNP(VENDA  v)
+int getUnits(VENDA v);
 
 
- /**
- * o que faz
- * @param  
- * @returns o código do cliente
- */
-char* getCLcode(VENDA v)
+char* getNP(VENDA v);
 
 
-/**
- * o que faz
- * @param  
- * @returns o mês da venda
- */
-int getMonth(VENDA v)
-
-/**
- * o que faz
- * @param  
- * @returns o nº da filial onde foi efetuada a comprada
- */
-int getFilial(VENDA v)
+char* getCLcode(VENDA v);
 
 
-
-/**
- * o que faz
- * @param  
- * @returns 
- */
+int getMonth(VENDA v);
 
 
-/**
- * o que faz
- * @param  
- * @returns 
- */
+int getFilial(VENDA v);
 
 
+void destroyVenda(VENDA v);
 
 
 
