@@ -1,16 +1,17 @@
 objects = exe.o valida.o vendas.o file.o
-CFLAGS = -g -Wall -ansi -std=c99 -pedantic -O2
+CFLAGS = -g -Wall -ansi -std=c99 -pedantic -O2 
 CC = gcc
 
+INC = ../include/
 
 
 SVG : $(objects)
 	$(CC) $(CFLAGS) -o SVG $(objects) 
 
-exe.o : valida.h vendas.h file.h
-valida.o :  valida.h
-vendas.o : vendas.h
-file.o : file.h valida.h
+exe.o : $(INC)valida.h $(INC)vendas.h $(INC)file.h
+valida.o : $(INC)valida.h
+vendas.o : $(INC)vendas.h
+file.o : $(INC)file.h $(INC)valida.h
 
 
 
