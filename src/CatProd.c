@@ -1,7 +1,16 @@
-#include "../include/CatProd.h"
+#include "../include/catprod.h"
+#include "../include/produtos.h"
 
-struct Produto
+struct catprod
 {
-	char* code;
+	
 };
 
+//CAT_PROD creat_catprod()
+
+//GETS 
+
+void destroyCP(CAT_PROD cp)
+{
+	free(cp);
+}
