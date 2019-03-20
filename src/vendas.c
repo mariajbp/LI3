@@ -1,6 +1,5 @@
 #include "../include/vendas.h"
-#include <stdlib.h>
-#include <string.h>
+
 
 struct venda{
   char pcode[7];
