@@ -1,8 +1,11 @@
-objects = exe.o valida.o vendas.o file.o
+INC = ../include/
+OBJ = ../src/
+
+objects = $(OBJ)exe.o $(OBJ)valida.o $(OBJ)vendas.o $(OBJ)file.o
 CFLAGS = -g -Wall -ansi -std=c99 -pedantic -O2 
 CC = gcc
 
-INC = ../include/
+
 
 
 SVG : $(objects)
