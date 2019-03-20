@@ -11,7 +11,7 @@ struct venda{
   int filial;
  };
 
-//dado o array com tokens, faz uma venda
+//dado o array com tokens, constroi uma venda
 VENDA createVenda(char** tokens){
  	VENDA v = (VENDA) malloc(sizeof (VENDA) );
  	strcpy( (v->pcode), tokens[0]);
