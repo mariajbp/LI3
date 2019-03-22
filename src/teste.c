@@ -2,6 +2,9 @@
 #include <unistd.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdlib.h>
+
+#define SIZE_CL 5
 
 int maxLinha(char* path){
 	int max = -1;
@@ -49,20 +52,21 @@ int validaCliente(char * id, int i){
 }
 
 //Faz load de um ficheiro no array RETORNA QUANTO ESCREVEU NO ARRAY (para a função wrfile)
-int loadArray( char** array, char* path, int max, int (*valida) (char*, int) ){
-	char* linha = " ";
+int loadArrayCl( char** array, char* path, int max){
+	char linha[max];
 	int i = 0;
 	FILE* file = fopen(path , "r");
 	
 	if(file == NULL){
-      		printf("Error! You tried to read an empty file.");   
+      		printf("Error: <loadArrayCl>! You tried to read an empty file.");   
      		return 1;             
     	}
 
-	while( fgets(linha, max, file) ){
-		if(valida){
-			array[i] = strdup(linha);
+	while( fgets(linha, max, file) != NULL ){
+		if(validaCliente(linha, max)){
+			//array[i] = strdup(linha);
 			i++;
+			printf("array[%d]: %s\n", i, array[i] );
 		}
 	}
 	
@@ -73,21 +77,23 @@ int loadArray( char** array, char* path, int max, int (*valida) (char*, int) ){
 
 
 int makeCl (char * path){
-	char *prod [200000];
+	char** cl = (char**)malloc(200000);
 	int l = 0;
 	int v = 0;
 
 	printf("A validar Clientes...\n");
 	//Validar clientes e escrever em ficheiro
-	int max = maxLinha("../Clientes.txt");
-	int (*vCliente)(char*,int) = validaCliente;
-	char* linha; int C = 6;
-	l = loadArray(prod, "../Clientes.txt", max, vCliente(linha,C));
-	v = wrFileC(prod, l);
+	//int max = maxLinha("../Clientes.txt");
+			//printf("Max = %d\n", max);
+	l = loadArrayCl(cl, "../Clientes.txt", 6);
+			printf("loadArrayCl done\n");
+	v = wrFileC(cl, l);
 		if(v == -1) {
 			printf("Error! File not found.\n");
 		}
-		else printf("Done\n");
+		else printf("Done makeCl\n");
+
+		free(cl);
 	return v;
 }
 
