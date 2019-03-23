@@ -1,6 +1,6 @@
 #define _GNU_SOURCE
 #include "../include/valida.h"
-
+#include "../include/hash.h"
 
 //função que valida um id de um produto
 int validaProduto(char * id, int i){
