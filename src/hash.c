@@ -148,18 +148,22 @@ void insert_Produtos(hash** table[], char id[]){
 
 // Função que, aplicando a hash funtion, verifica se uma posição da hashtable existe
 int search_C(char id[], hash* table[]){
-	int r = 0, i = id[0], j = id[1];
-	int nID = num(id,1);
-	r = search_tree(table[i][j], nID);
+	int r = 0, nID = num(id,1);
+	int index[2]; index[0] = 0, index[1] = 0;
+	hF_Produtos(index,id);
+
+	r = search_tree(table[index[0]][index[1]], nID);
 	
 	return r;
 }
 
 // Função que, aplicando a hash funtion, verifica se uma posição da hashtable existe
 int search_P(char id[], hash** table[]){
-	int r = 0, i = id[0], j = id[1], z = id[2];
-	int nID = num(id,2);
-	r = search_tree(table[i][j][z], nID);
+	int r = 0, nID = num(id,2);
+	int index[3]; index[0] = 0, index[1] = 0, index[2] = 0;
+	hF_Produtos(index,id);
+
+	r = search_tree(table[index[0]][index[1]][index[2]], nID);
 
 	return r;
 }
