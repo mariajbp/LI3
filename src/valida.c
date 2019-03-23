@@ -28,26 +28,15 @@ int validaCliente(char * id, int i){
 	return r;
 }
 
-// função que valida se uma string está no array de strings
-int searchID(const char * lista[], const char * id){
-	int r = 0, tamanho = sizeof(*lista)/sizeof(lista[0]);
-
-	for(int i = 0; i <= tamanho; i++){
-		if(!strcmp(lista[i], id))
-			r = 1;
-	}
-	return r;
-}
 //Tokenize, devolve o i e preenche o array tokens
 int toktok(char * linha, char** tokens) {
 	char* tok = NULL;
 	tok = strtok(linha, " ");
 	int i = 0;
 
-    while(tok) {															// verificar a quantidade de sub strings na linha
-    	if(i < 7){
+    while(tok){															// verificar a quantidade de sub strings na linha
+    	if(i < 7)
     		tokens[i] = strdup(tok);
-    	}
         tok = strtok(NULL," ");
         i++;
     } 
@@ -55,18 +44,18 @@ int toktok(char * linha, char** tokens) {
 }
 
 //função que valida um id de uma venda
-int validaVenda(char* linha, const char* produtos[], const char* clientes[]){
+int validaVenda(char* linha, hash*** produtos, hash** clientes){
 	int r = 0, i = 0;
 	char** tokens = (char**)malloc(7*sizeof(char*));
 
 	i = toktok(linha, tokens);
 
 	if(i == 7)																// se tokens tiver 7 posicoes, estas devem ser testadas
-		if( searchID(produtos , tokens[0]) )
+		if( search_P(tokens[0], produtos) )
 			if( atof(tokens[1]) <= 999.99 && atof(tokens[1]) >= 0.0 )		// atof(str) converte a str para float, pertence a string.h
 				if( atoi(tokens[2]) <= 200 && atoi(tokens[2]) >= 1 )		// atoi(str) converte a str para int, pertence a string.h
 					if( strcmp(tokens[3], "N") || strcmp(tokens[3], "P") )
-						if( searchID(clientes , tokens[4]) )
+						if( search_C(tokens[4], clientes) )
 							if( atoi(tokens[5]) <= 12 && atoi(tokens[5]) >= 1 )
 								if( atoi(tokens[6]) <= 3 && atoi(tokens[6]) >= 1 ) // validar a filial
 									r = 1;
