@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../include/hash.h"
 
-typedef struct tree{
+
+struct tree{
 	int head;
 	struct tree *esq, *dir;
-}*hash;
+};
 
 // Função que insere um elemento numa arvore binaria
 hash insere_tree(hash arvore, int id){
@@ -108,7 +110,7 @@ void hF_Produtos(int index[], char value[]){
 	index[2] = c % 151;
 }
 
-// Função que elimina um index de uma hashtable
+// Função que elimina um index, de tipologia Cliente, da estrutura de dados
 void delete_Cliente(hash* table[], char id[]){
 	int index[2]; index[0] = 0; index[1] = 0;
 	hF_Clientes(index,id);
@@ -117,6 +119,7 @@ void delete_Cliente(hash* table[], char id[]){
 	delete_tree(table[index[0]][index[1]], nID);
 }
 
+// Função que elimina um index, de tipologia Produto, da estrutura de dados
 void delete_Produtos(hash** table[], char id[]){
 	int index[3]; index[0] = 0, index[1] = 0, index[2] = 0;
 	hF_Produtos(index,id);
@@ -125,7 +128,7 @@ void delete_Produtos(hash** table[], char id[]){
 	delete_tree(table[index[0]][index[1]][index[2]], nID);
 }
 
-// Função que insere uma string numa hash table
+// Função que insere um index, de tipologia Cliente, numa estrutura de dados
 void insert_Cliente(hash* table[], char id[]){
 	int index[2]; index[0] = 0, index[1] = 0;
 	int nID = num(id,1);
@@ -134,7 +137,7 @@ void insert_Cliente(hash* table[], char id[]){
 	insere_tree(table[index[0]][index[1]] , nID);
 }
 
-// Função que insere uma string numa hash table
+// Função que insere um index, de tipologia Produto, numa estrutura de dados
 void insert_Produtos(hash** table[], char id[]){
 	int index[3]; index[0] = 0, index[1] = 0, index[2] = 0;
 	int nID = num(id,2);
@@ -159,26 +162,6 @@ int search_P(char id[], hash** table[]){
 	r = search_tree(table[i][j][z], nID);
 
 	return r;
-}
-
-//
-void print_hC(char** table){
-	for(int letra = 0; letra <= 27; letra++){
-		for(int posHash = 0; posHash <= 307; posHash++){
-			printf("_%d.cl.%d_%d\n", letra, posHash, table[letra][posHash]);
-		} printf("\n\n\n");
-	} 
-}
-
-//
-void print_hP(char*** table){
-	for(int letra = 0; letra <= 27; letra++){
-		for(int letra2 = 0; letra2 < 27; letra2++){
-			for(int posHash = 0; posHash <= 151; posHash++){
-				printf("_%d.%d.%d.clc_%d\t", letra, letra2, posHash, table[letra][letra2][posHash]);
-			} printf("??_\n");
-		} printf("\n\n\n");
-	}
 }
 
 // 
