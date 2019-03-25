@@ -11,9 +11,9 @@ struct venda{
   int filial;
  };
 
-//dado o array com tokens, constroi uma venda
-VENDA createVenda(char** tokens){
- 	VENDA v = (VENDA) malloc(sizeof (VENDA) );
+//dado o array com tokens, constroi uma Venda
+Venda createVenda(char** tokens){
+ 	Venda v = (Venda) malloc(sizeof (Venda) );
  	strcpy( (v->pcode), tokens[0]);
  	v->price = atof(tokens[1]);
  	v->units = atoi(tokens[2]);
@@ -26,49 +26,49 @@ VENDA createVenda(char** tokens){
 
  
 
-char* getPcode(VENDA v)
+char* getPcode(Venda v)
  {
  	return v->pcode;
 }
 
  
-double getPrice(VENDA v)
+double getPrice(Venda v)
  {
  	return v->price;
 }
 
  
-int getUnits(VENDA v)
+int getUnits(Venda v)
  {
  	return v->units;
 }
 
  
-char* getNP(VENDA v)
+char* getNP(Venda v)
  {
 	return v->np;
 }
 
  
-char* getCLcode(VENDA v){
+char* getCLcode(Venda v){
 
  	return v->clcode;
 
 }
 
  
-int getMonth(VENDA v){
+int getMonth(Venda v){
 
  	return v->month;
 
 }
 
-int getFilial(VENDA v){
+int getFilial(Venda v){
 
  	return v->filial;
 }
 
-void destroyVenda(VENDA v)
+void destroyVenda(Venda v)
 {
   free(v);
 }

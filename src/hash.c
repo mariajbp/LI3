@@ -120,7 +120,7 @@ void delete_Cliente(hash* table[], char id[]){
 }
 
 // Função que elimina um index, de tipologia Produto, da estrutura de dados
-void delete_Produtos(hash** table[], char id[]){
+void delete_Produto(hash** table[], char id[]){
 	int index[3]; index[0] = 0, index[1] = 0, index[2] = 0;
 	hF_Produtos(index,id);
 	int nID = num(id,2);
@@ -138,7 +138,7 @@ void insert_Cliente(hash* table[], char id[]){
 }
 
 // Função que insere um index, de tipologia Produto, numa estrutura de dados
-void insert_Produtos(hash** table[], char id[]){
+void insert_Produto(hash** table[], char id[]){
 	int index[3]; index[0] = 0, index[1] = 0, index[2] = 0;
 	int nID = num(id,2);
 	hF_Produtos(index, id);
@@ -168,9 +168,22 @@ int search_P(char id[], hash** table[]){
 	return r;
 }
 
-// 
-int main(){
+//
+void print_hC(char** table){
+	for(int letra = 0; letra <= 27; letra++){
+		for(int posHash = 0; posHash <= 307; posHash++){
+			printf("_%d.cl.%d_%d\n", letra, posHash, table[letra][posHash]);
+		} printf("\n\n\n");
+	} 
+}
 
-
-	return 0;
+//
+void print_hP(char*** table){
+	for(int letra = 0; letra <= 27; letra++){
+		for(int letra2 = 0; letra2 < 27; letra2++){
+			for(int posHash = 0; posHash <= 151; posHash++){
+				printf("_%d.%d.%d.clc_%d\t", letra, letra2, posHash, table[letra][letra2][posHash]);
+			} printf("??_\n");
+		} printf("\n\n\n");
+	}
 }

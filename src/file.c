@@ -1,12 +1,12 @@
 #define _GNU_SOURCE
 #include "../include/valida.h"
 #include "../include/file.h"
-
-
+#include "../include/hash.h"
+#include "../include/vendas.h"
 
 //Faz load de um ficheiro no array RETORNA QUANTO ESCREVEU NO ARRAY (para a função wrfile)
-int loadArray( char** array, char* path, int max, int (*valida) (char, ...) ){
-	char * linha = " ";
+int loadHash_Clientes(hash** table, char* path, int max){
+	char* linha = " ";
 	int i = 0;
 	FILE* file = fopen(path , "r");
 	
@@ -16,8 +16,8 @@ int loadArray( char** array, char* path, int max, int (*valida) (char, ...) ){
     	}
 
 	while( fgets(linha, max, file) ){
-		if(valida){
-			array[i] = strdup(linha);
+		if(validaCliente(linha,5)){
+			insert_Cliente(table,linha);
 			i++;
 		}
 	}
@@ -27,15 +27,60 @@ int loadArray( char** array, char* path, int max, int (*valida) (char, ...) ){
 	return i;
 }
 
+int loadHash_Produtos( hash*** table, char* path, int max){
+	char* linha = " ";
+	int i = 0;
+	FILE* file = fopen(path , "r");
+	
+	if(file == NULL){
+      		printf("Error! You tried to read an empty file.");   
+     		exit(1);             
+    	}
+
+	while( fgets(linha, max, file) ){
+		if(validaProduto(linha,6)){
+			insert_Produto(table,linha);
+			i++;
+		}
+	}
+	
+	fclose(file);	
+
+	return i;
+}
+
+int loadstruct_Vendas( Venda* estrutura, char* path, int max, hash*** produtos, hash** clientes){
+	char* linha = " ";
+	int i = 0;
+	char** tokens = (char**)malloc(7*sizeof(char*));
+	toktok(linha,tokens);
+	FILE* file = fopen(path , "r");
+	
+	if(file == NULL){
+      		printf("Error! You tried to read an empty file.");   
+     		exit(1);             
+    	}
+
+	while( fgets(linha, max, file) ){
+		if(validaVenda(linha, produtos, clientes)){
+			createVenda(tokens);
+			i++;
+		}
+	}
+	
+	fclose(file);	
+
+	return i;
+}
 
 //ADICIONAR AO FILE DAS QUERIES MAYBE
-int linecount(char* path){
+int contaLinhas(char* path){
 	int lines = 0, ch;
 	FILE* fp = fopen(path, "r");
 	
 	if(fp == NULL){
       		printf("Error!");   
-      		exit(1);             
+      		exit(0);             
     	}
 	
 	while(!feof(fp)){
@@ -48,8 +93,24 @@ int linecount(char* path){
 	return lines;
 }
 
-//Função que dado o array com os dados válidos e o tamanho do array, os escreve no ficheiro
+// calcula o comprimento da maior linha de um ficheiro
+int maiorLinha(char* path){
+	int max = -1;
+	FILE *fp = fopen(path, "r");
+	if(fp == NULL){
+		printf("Error! Couldn't open the file\n");
+		return(0);
+	}
+	
+	while(fgetc(fp)){
+		for(int temp = 0; fgetc(fp) != '\n'; temp++)
+			if(max < temp) max = temp;
+	}
+	
+	return max;
+}
 
+//Função que dado o array com os dados válidos e o tamanho do array, os escreve no ficheiro
 int wrFileP (char** array, int n){
 	int r = 0;
 	int i = 0;
@@ -63,7 +124,6 @@ int wrFileP (char** array, int n){
 		n--;
 	}
 	return r;
-
 }
 
 int wrFileC (char** array, int n){
@@ -79,7 +139,6 @@ int wrFileC (char** array, int n){
 		n--;
 	}
 	return r;
-
 }
 
 int wrFileV (char** array, int n){
@@ -95,6 +154,5 @@ int wrFileV (char** array, int n){
 		n--;
 	}
 	return r;
-
 }
 
