@@ -18,7 +18,7 @@ void delete_Cliente(hash* table[], char id[]);
  * Função que elimina um index, de tipologia Produto, da estrutura de dados
  * @param estrutura onde se vai apagar o index, index a apagar
  */
-void delete_Produtos(hash** table[], char id[]);
+void delete_Produto(hash** table[], char id[]);
 
 /**
  * Função que insere um index, de tipologia Cliente, numa estrutura de dados
@@ -30,7 +30,7 @@ void insert_Cliente(hash* table[], char id[]);
  * Função que insere um index, de tipologia Produto, numa estrutura de dados
  * @param estrutura a inserir o index, index a inserir
  */
-void insert_Produtos(hash** table[], char id[]);
+void insert_Produto(hash** table[], char id[]);
 
 /**
  * Função que, aplicando a hash funtion, verifica se uma posição da hashtable existe

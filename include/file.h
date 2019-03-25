@@ -4,22 +4,42 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include "vendas.h"
 
 /**
  * O QUE FAZ
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-int loadArray( char** array, char* path, int max, int (*valida) (char, ...) );
+int loadHash_Clientes( hash** table, char* path, int max);
 
+/**
+ * O QUE FAZ
+ * @param O QUE RECEBE
+ * @param O QUE RETORNA
+ */
+int loadHash_Produtos( hash*** table, char* path, int max);
+
+/**
+ * O QUE FAZ
+ * @param O QUE RECEBE
+ * @param O QUE RETORNA
+ */
+int loadstruct_Vendas( Venda* estrutura, char* path, int max, hash*** produtos, hash** clientes);
 
 /**
  * Função que dado um ficheiro conta as linhas
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-int linecount(char* path);
+int contaLinhas(char* path);
+
+/**
+ * Função que dado um ficheiro conta as linhas
+ * @param O QUE RECEBE
+ * @param O QUE RETORNA
+ */
+int maiorLinha(char* path);
 
 /**
  * Função que escreve os dados válidos num ficheiro (Produtos)

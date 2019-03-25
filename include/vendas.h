@@ -5,70 +5,70 @@
 #include <string.h>
 
 
-typedef struct venda* VENDA;
+typedef struct venda* Venda;
 
 /**
  * O QUE FAZ
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-VENDA createVenda(char** tokens);
+Venda createVenda(char** tokens);
 
 /**
  * O QUE FAZ
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-char* getPcode(VENDA v);
+char* getPcode(Venda v);
 
 /**
  * O QUE FAZ
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-double getPrice(VENDA v);
+double getPrice(Venda v);
 
 /**
  * O QUE FAZ
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-int getUnits(VENDA v);
+int getUnits(Venda v);
 
 /**
  * O QUE FAZ
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-char* getNP(VENDA v);
+char* getNP(Venda v);
 
 /**
  * O QUE FAZ
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-char* getCLcode(VENDA v);
+char* getCLcode(Venda v);
 
 /**
  * O QUE FAZ
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-int getMonth(VENDA v);
+int getMonth(Venda v);
 
 /**
  * O QUE FAZ
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-int getFilial(VENDA v);
+int getFilial(Venda v);
 
 /**
  * O QUE FAZ
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-void destroyVenda(VENDA v);
+void destroyVenda(Venda v);
 
 
 
