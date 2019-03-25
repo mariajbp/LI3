@@ -63,3 +63,4 @@ int wrFileC (char** array, int n);
  */int wrFileV (char** array, int n);
 
 #endif
+

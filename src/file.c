@@ -156,3 +156,6 @@ int wrFileV (char** array, int n){
 	return r;
 }
 
+
+
+

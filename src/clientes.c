@@ -20,3 +20,4 @@ void free_cl(CLIENTE cl)
 {
 	free(cl);
 }
+

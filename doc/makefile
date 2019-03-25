@@ -25,3 +25,5 @@ hash.o : $(INC)hash.h
 clean : 
 	rm SVG $(objects)
 
+
+

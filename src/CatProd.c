@@ -17,7 +17,7 @@ CAT_PROD create_catprod()
       		printf("Error! You tried to read an empty file.");   
      		exit(1);             
     	}
-    //ADICIONAR LINHA A LINHA NUMA ARVORE
+    //ADICIONAR LINHA A LINHA NA ARVORE
 	
 	fclose(file);	
 

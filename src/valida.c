@@ -62,3 +62,4 @@ int validaVenda(char* linha, hash*** produtos, hash** clientes){
 	return r;
 }
 
+
