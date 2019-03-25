@@ -42,25 +42,24 @@ int contaLinhas(char* path);
 int maiorLinha(char* path);
 
 /**
- * Função que escreve os dados válidos num ficheiro (Produtos)
- * @param O QUE RECEBE
- * @param O QUE RETORNA
- */
-int wrFileP (char** array, int n);
-
-
-/**
  * Função que escreve os dados válidos num ficheiro (Clientes)
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-int wrFileC (char** array, int n);
+int wrFileC (hash** table, char* path);
+
+/**
+ * Função que escreve os dados válidos num ficheiro (Produtos)
+ * @param O QUE RECEBE
+ * @param O QUE RETORNA
+ */
+int wrFileP (hash*** table, char* path);
 
 /**
  * Função que escreve os dados válidos num ficheiro (Vendas)
  * @param O QUE RECEBE
  * @param O QUE RETORNA
- */int wrFileV (char** array, int n);
+ */
+int wrFileV (Venda* table, char* path);
 
 #endif
-
