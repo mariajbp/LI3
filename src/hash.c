@@ -168,24 +168,3 @@ int search_P(char id[], hash** table[]){
 	return r;
 }
 
-//
-void print_hC(char** table){
-	for(int letra = 0; letra <= 27; letra++){
-		for(int posHash = 0; posHash <= 307; posHash++){
-			printf("_%d.cl.%d_%d\n", letra, posHash, table[letra][posHash]);
-		} printf("\n\n\n");
-	} 
-}
-
-//
-void print_hP(char*** table){
-	for(int letra = 0; letra <= 27; letra++){
-		for(int letra2 = 0; letra2 < 27; letra2++){
-			for(int posHash = 0; posHash <= 151; posHash++){
-				printf("_%d.%d.%d.clc_%d\t", letra, letra2, posHash, table[letra][letra2][posHash]);
-			} printf("??_\n");
-		} printf("\n\n\n");
-	}
-}
-
-

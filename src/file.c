@@ -11,9 +11,9 @@ int loadHash_Clientes(hash** table, char* path, int max){
 	FILE* file = fopen(path , "r");
 	
 	if(file == NULL){
-      		printf("Error! You tried to read an empty file.");   
-     		exit(1);             
-    	}
+      	printf("Error! You tried to read an empty file.");   
+     	exit(1);             
+    }
 
 	while( fgets(linha, max, file) ){
 		if(validaCliente(linha,5)){
@@ -33,9 +33,9 @@ int loadHash_Produtos( hash*** table, char* path, int max){
 	FILE* file = fopen(path , "r");
 	
 	if(file == NULL){
-      		printf("Error! You tried to read an empty file.");   
-     		exit(1);             
-    	}
+    	printf("Error! You tried to read an empty file.");   
+    	exit(1);             
+    }
 
 	while( fgets(linha, max, file) ){
 		if(validaProduto(linha,6)){
@@ -57,9 +57,9 @@ int loadstruct_Vendas( Venda* estrutura, char* path, int max, hash*** produtos, 
 	FILE* file = fopen(path , "r");
 	
 	if(file == NULL){
-      		printf("Error! You tried to read an empty file.");   
-     		exit(1);             
-    	}
+      	printf("Error! You tried to read an empty file.");   
+     	exit(1);             
+    }
 
 	while( fgets(linha, max, file) ){
 		if(validaVenda(linha, produtos, clientes)){
@@ -79,9 +79,9 @@ int contaLinhas(char* path){
 	FILE* fp = fopen(path, "r");
 	
 	if(fp == NULL){
-      		printf("Error!");   
-      		exit(0);             
-    	}
+      	printf("Error!");   
+      	exit(0);             
+    }
 	
 	while(!feof(fp)){
   		ch = fgetc(fp);
@@ -97,6 +97,7 @@ int contaLinhas(char* path){
 int maiorLinha(char* path){
 	int max = -1;
 	FILE *fp = fopen(path, "r");
+	
 	if(fp == NULL){
 		printf("Error! Couldn't open the file\n");
 		return(0);
@@ -111,51 +112,61 @@ int maiorLinha(char* path){
 }
 
 //Função que dado o array com os dados válidos e o tamanho do array, os escreve no ficheiro
-int wrFileP (char** array, int n){
+int  wrFileC (hash** table, char* path){
 	int r = 0;
-	int i = 0;
-	FILE* fp = fopen("ProdutosValidos.txt", "w+");
+	FILE* fp = fopen(path, "w+");
+	
 	if(fp == NULL){
-		printf("Error!");
-		r = 1;
+		printf("Error! Couldn't find file point to write Clientes");
+		return 0;
 	}
-	while(i>0 && n > 0){
-		i = fprintf(fp,"%s\n", array[i]);
-		n--;
+	
+	for(int letra = 0; letra < 27; letra++){
+		for(int h = 0; h < 307; h++){
+			if(table[letra][h]){
+				fprintf(fp, "%s%d\n", letra+65, (table[letra][h])->head);
+				r++;
+			}
+		}
 	}
+
 	return r;
 }
 
-int wrFileC (char** array, int n){
+int wrFileP (hash*** table, char* path){
 	int r = 0;
-	int i = 0;
-	FILE* fp = fopen("ClientesValidos.txt", "w+");
+	FILE* fp = fopen(path, "w+");
+	
 	if(fp == NULL){
-		printf("Error!");
-		r = 1;
+		printf("Error! Couldn't find file point to write Produtos");
+		return 0;
 	}
-	while(i>0 && n > 0){
-		i = fprintf(fp,"%s\n", array[i]);
-		n--;
+
+	for(int l1 = 0; l1 < 27; l1++){
+		for(int l2 = 0; l2 < 27; l2++){
+			for(int h = 0; h < 151; h++){
+				if(table[l1][l2][h]){
+				fprintf(fp, "%s%s%d\n", l1+65, l2+65, table[l1][l2][h]->head);
+				r++;
+				} // formato l1.num.\n
+			}
+		}
 	}
+
 	return r;
 }
 
-int wrFileV (char** array, int n){
+int wrFileV (Venda* table, char* path){
 	int r = 0;
-	int i = 0;
-	FILE* fp = fopen("VendasValidas.txt", "w+");
+	FILE* fp = fopen(path, "w+");
+	
 	if(fp == NULL){
-		printf("Error!");
-		r = 1;
+		printf("Error! Couldn't find file point to write Vendas");
+		return 0;
 	}
-	while(i>0 && n > 0){
-		i = fprintf(fp,"%s\n", array[i]);
-		n--;
-	}
+
+	// print struct vendas
+
 	return r;
 }
-
-
-
 
