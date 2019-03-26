@@ -8,17 +8,26 @@
 
 int main(){
 
+//hash ** tClientes
+//hash ** tProd
+//Venda * sales
 
-// ler clientes e produtos
+	int m = maiorLinha("../Clientes.txt");
+	loadHash_Clientes(tClientes,"../Clientes.txt", m);
+	wrFileC(tClientes, "../ClientesVálidos.txt");
 
-	// guardar
-	// escrever num ficheiro novo
+	m = maiorLinha("../Produtos.txt");
+	loadHash_Produtos(tProd,"../Produtos.txt", m);
+	wrFileP(tProd, "../ProdutosVálidos.txt");
 
+	m = maiorLinha("../Vendas_1M.txt");	
+	loadstruct_Vendas(sales,"../Vendas_1M.txt", m, tProd, tClientes);
+	wrFileP(tProd, "../VendasVálidas.txt");
 
-// ler vendas
-
-	//guardar
-	//escrever num ficheiro novo
+	/*Na querie 1 será necessário dar free das hash tables
+	  e temos de ter em consideração que não podemos por
+	  isto assim na main, precisamos de uma função que 
+	  faça isto tudo logo (modularidade/encapsulamento).*/
 
 
 //contar dados validos
