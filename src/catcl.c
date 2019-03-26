@@ -13,10 +13,15 @@ struct catcl
 CAT_CL create_catcl()
 {
 	FILE* file = fopen("ClientesValidos.txt" , "r");
-	if(file == NULL){
-      		printf("Error! You tried to read an empty file.");   
-     		exit(1);             
-    	}
+	if(file == NULL)
+	{
+      	printf("Error! You tried to read an empty file.");   
+     	exit(1);             
+    }
+    while( //não der merda )
+    {
+    	insere_tree() //magia
+    }
 
 	//ADICIONAR LINHA A LINHA NA ARVORE
 	fclose(file);	
@@ -35,3 +40,6 @@ void destroyCCL(CAT_CL ccl)
 {
 	free(ccl);
 }
+
+//implementar nº total de prods que começam por uma letra  q3
+
