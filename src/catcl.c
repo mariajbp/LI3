@@ -1,5 +1,7 @@
 #include "../include/catcl.h"
 #include "../include/clientes.h"
+#include "../include/hash.h"
+
 
 struct catcl
 {
