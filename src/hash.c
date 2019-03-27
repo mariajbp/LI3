@@ -168,3 +168,40 @@ int search_P(char id[], hash** table[]){
 	return r;
 }
 
+//
+int fprint_hC(FILE* fp, int l1, hash** table, int num){
+	if(!table) return num;
+	else{
+		if(table->esq){
+			fprint_hC(fp,l1,table->esq,num);
+			fprintf(fp, "%s%d\n", l1+65, table->head, num);
+			num++;
+		}
+		else{
+			fprint_hC(fp,l1,table->dir,num);
+			fprintf(fp, "%s%d\n", l1+65, table->head, num);
+			num++;
+		}
+	}
+
+	return num;
+}
+
+//
+int fprint_hP(FILE* fp, int l1, int l2, hash*** table, int num){
+	if(!table) return num;
+	else{
+		if(table->esq){
+			fprint_hC(fp,l1,table->esq,num);
+			fprintf(fp, "%s%d\n", l1+65, l2+65, table->head, num);
+			num++;
+		}
+		else{
+			fprint_hC(fp,l1,table->dir,num);
+			fprintf(fp, "%s%d\n", l1+65, l2+65, table->head, num);
+			num++;
+		}
+	}
+
+	return num;
+}

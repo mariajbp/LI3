@@ -113,7 +113,8 @@ int maiorLinha(char* path){
 
 //Função que dado o array com os dados válidos e o tamanho do array, os escreve no ficheiro
 int  wrFileC (hash** table, char* path){
-	int r = 0;
+	int r = 0, i = 0;
+	char* clientes = " ";
 	FILE* fp = fopen(path, "w+");
 	
 	if(fp == NULL){
@@ -124,8 +125,8 @@ int  wrFileC (hash** table, char* path){
 	for(int letra = 0; letra < 27; letra++){
 		for(int h = 0; h < 307; h++){
 			if(table[letra][h]){
-				fprintf(fp, "%s%d\n", letra+65, (table[letra][h])->head);
-				r++;
+				fprint_hC(fp,letra,table[letra][h],i);
+				i+=r; r++;
 			}
 		}
 	}
@@ -134,7 +135,7 @@ int  wrFileC (hash** table, char* path){
 }
 
 int wrFileP (hash*** table, char* path){
-	int r = 0;
+	int r = 0, i = 0;
 	FILE* fp = fopen(path, "w+");
 	
 	if(fp == NULL){
@@ -146,9 +147,9 @@ int wrFileP (hash*** table, char* path){
 		for(int l2 = 0; l2 < 27; l2++){
 			for(int h = 0; h < 151; h++){
 				if(table[l1][l2][h]){
-				fprintf(fp, "%s%s%d\n", l1+65, l2+65, table[l1][l2][h]->head);
-				r++;
-				} // formato l1.num.\n
+				fprint_hP(fp,l1,l2,table[l1][l2][h],i);
+				i+=r; r++;
+				}
 			}
 		}
 	}

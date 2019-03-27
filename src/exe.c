@@ -12,7 +12,7 @@ int main(){
 //hash ** tProd
 //Venda * sales
 
-	int m = maiorLinha("../Clientes.txt");
+	/*int m = maiorLinha("../Clientes.txt");
 	loadHash_Clientes(tClientes,"../Clientes.txt", m);
 	wrFileC(tClientes, "../ClientesVálidos.txt");
 
