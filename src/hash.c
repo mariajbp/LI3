@@ -169,17 +169,19 @@ int search_P(char id[], hash** table[]){
 }
 
 //
-int fprint_hC(FILE* fp, int l1, hash** table, int num){
-	if(!table) return num;
+int fprint_hC(FILE* fp, int l1, int h, hash** table, int num){
+	char pL = l1+'A';
+
+	if(!table[l1][h]) return num;
 	else{
-		if(table->esq){
-			fprint_hC(fp,l1,table->esq,num);
-			fprintf(fp, "%s%d\n", l1+65, table->head, num);
+		if(table[l1][h]->esq){
+			fprint_hC(fp,l1,h,table[l1][h]->esq,num);
+			fprintf(fp, "%c%d\n", pL, table[l1][h]->head);
 			num++;
 		}
 		else{
-			fprint_hC(fp,l1,table->dir,num);
-			fprintf(fp, "%s%d\n", l1+65, table->head, num);
+			fprint_hC(fp,l1,h,table[l1][h]->dir,num);
+			fprintf(fp, "%c%d\n", pL, table[l1][h]->head);
 			num++;
 		}
 	}
@@ -188,17 +190,19 @@ int fprint_hC(FILE* fp, int l1, hash** table, int num){
 }
 
 //
-int fprint_hP(FILE* fp, int l1, int l2, hash*** table, int num){
-	if(!table) return num;
+int fprint_hP(FILE* fp, int l1, int l2, int h, hash*** table, int num){
+	char pL = l1+'A', sL = l1+'A'; 
+
+	if(!table[l1][l2][h]) return num;
 	else{
-		if(table->esq){
-			fprint_hC(fp,l1,table->esq,num);
-			fprintf(fp, "%s%d\n", l1+65, l2+65, table->head, num);
+		if(table[l1][l2][h]->esq){
+			fprint_hP(fp,l1,l2,h,table[l1][l2][h]->esq,num);
+			fprintf(fp, "%c%c%d\n", pL, sL, table[l1][l2][h]->head);
 			num++;
 		}
 		else{
-			fprint_hC(fp,l1,table->dir,num);
-			fprintf(fp, "%s%d\n", l1+65, l2+65, table->head, num);
+			fprint_hP(fp,l1,l2,h,table[l1][l2][h]->dir,num);
+			fprintf(fp, "%c%c%d\n", pL, sL, table[l1][l2][h]->head);
 			num++;
 		}
 	}
