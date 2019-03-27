@@ -1,5 +1,7 @@
 #include "../include/catprod.h"
 #include "../include/produtos.h"
+#include "../include/file.h"
+
 
 struct catprod
 {
@@ -10,17 +12,25 @@ struct catprod
 	
 
 
-CAT_PROD create_catprod()
+CAT_PROD create_catprod(hash** table, char* path)
 {
-	FILE* file = fopen("ProdutosValidos.txt" , "r");
-	if(file == NULL){
-      		printf("Error! You tried to read an empty file.");   
-     		exit(1);             
-    	}
-    //ADICIONAR LINHA A LINHA NA ARVORE
+	char* linha = " ";
+	int i = 0;
+	FILE* file = fopen(path , "r");
 	
-	fclose(file);	
+	if(file == NULL)
+	{
+      	printf("Error! You tried to read an empty file.");   
+     	exit(1);             
+    }
 
+	while(fgets(linha, 6, file))
+	{
+		insert_Produto(table,linha);
+	}
+
+	fclose(file);
+	return i;
 }
 
 

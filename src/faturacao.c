@@ -14,4 +14,4 @@ void destroyFac(FATURACAO f)
 	free(f);
 }
 
-//determinar se um prod é N ou P
+//determinar se um prod é N ou P 

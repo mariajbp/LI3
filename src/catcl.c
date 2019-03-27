@@ -12,26 +12,26 @@ struct catcl
 
 CAT_CL create_catcl()
 {
-	FILE* file = fopen("ClientesValidos.txt" , "r");
-	if(file == NULL)
-	{
+	char* linha = " ";
+	int i = 0;
+	FILE* file = fopen(path , "r");
+	
+	if(file == NULL){
       	printf("Error! You tried to read an empty file.");   
      	exit(1);             
     }
-    while( //não der merda )
-    {
-    	insere_tree() //magia
-    }
 
-	//ADICIONAR LINHA A LINHA NA ARVORE
+	while(fgets(linha, max, file))
+	{
+		insert_Cliente(hash* table[], char id[])
+	}
+	
 	fclose(file);	
+
+	return i;	
 
 }
 
- void insert(CAT_CL ccl, CLIENTE c)
- {
- 	CAT_CL 
- }
 
 
 //GETS 
