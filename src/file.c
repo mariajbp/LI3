@@ -5,7 +5,8 @@
 #include "../include/vendas.h"
 
 //Faz load de um ficheiro no array RETORNA QUANTO ESCREVEU NO ARRAY (para a função wrfile)
-int loadHash_Clientes(hash** table, char* path, int max){
+int loadHash_Clientes(hash** table, char* path, int max)
+{
 	char* linha = " ";
 	int i = 0;
 	FILE* file = fopen(path , "r");
@@ -27,7 +28,8 @@ int loadHash_Clientes(hash** table, char* path, int max){
 	return i;
 }
 
-int loadHash_Produtos( hash*** table, char* path, int max){
+int loadHash_Produtos( hash*** table, char* path, int max)
+{
 	char* linha = " ";
 	int i = 0;
 	FILE* file = fopen(path , "r");
@@ -49,7 +51,8 @@ int loadHash_Produtos( hash*** table, char* path, int max){
 	return i;
 }
 
-int loadstruct_Vendas( Venda* estrutura, char* path, int max, hash*** produtos, hash** clientes){
+int loadstruct_Vendas( Venda* estrutura, char* path, int max, hash*** produtos, hash** clientes)
+{
 	char* linha = " ";
 	int i = 0;
 	char** tokens = (char**)malloc(7*sizeof(char*));
@@ -74,7 +77,8 @@ int loadstruct_Vendas( Venda* estrutura, char* path, int max, hash*** produtos, 
 }
 
 //ADICIONAR AO FILE DAS QUERIES MAYBE
-int contaLinhas(char* path){
+int contaLinhas(char* path)
+{
 	int lines = 0, ch;
 	FILE* fp = fopen(path, "r");
 	
