@@ -47,18 +47,18 @@ int search_C(char id[], hash* table[]);
 int search_P(char id[], hash** table[]);
 
 /**
- * O QUE FAZ
- * @param O QUE RECEBE
- * @param O QUE RETORNA
+ * Função que imprime a arvore correspondente numa posição da tabela
+ * @param file pointer, primeira letra, segunda letra, index da tabela, a arvore e um numero que vai retornar
+ * @param o numero de elementos impressos no ficheiro
  */
-int fprint_hC(FILE* fp, int l1, hash** table, int num);
+int fprint_hC(FILE* fp, int l1, int h, hash** table, int num);
 
 /**
- * O QUE FAZ
- * @param O QUE RECEBE
- * @param O QUE RETORNA
+ * Função que imprime a arvore correspondente numa posição da tabela
+ * @param file pointer, primeira letra, segunda letra, index da tabela, a arvore e um numero que vai retornar
+ * @param o numero de elementos impressos no ficheiro
  */
- int fprint_hP(FILE* fp, int l1, int l2, hash*** table, int num);
+ int fprint_hP(FILE* fp, int l1, int l2, int h, hash*** table, int num);
 
 
 #endif
