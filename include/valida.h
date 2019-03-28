@@ -12,14 +12,14 @@
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-int validaProduto(char * id, int i);
+int validaProduto(char * id);
 
 /**
  * Função que valida um id de um cliente
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-int validaCliente(char * id, int i);
+int validaCliente(char * id);
 
 /**
  * Função que valida um id de uma venda

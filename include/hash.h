@@ -7,6 +7,9 @@
 
 typedef struct tree* hash;
 
+void init_hC(hash** tClientes);
+
+void init_hP(hash*** tProdutos);
 
 /**
  * Função que elimina um index, de tipologia Cliente, da estrutura de dados

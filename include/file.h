@@ -35,13 +35,6 @@ int loadstruct_Vendas( Venda* estrutura, char* path, int max, hash*** produtos, 
 int contaLinhas(char* path);
 
 /**
- * Função que dado um ficheiro conta as linhas
- * @param O QUE RECEBE
- * @param O QUE RETORNA
- */
-int maiorLinha(char* path);
-
-/**
  * Função que escreve os dados válidos num ficheiro (Clientes)
  * @param O QUE RECEBE
  * @param O QUE RETORNA
@@ -62,4 +55,10 @@ int wrFileP (hash*** table, char* path);
  */
 int wrFileV (Venda* table, char* path);
 
+/**
+ * Função que inicializa as estruturas
+ * @param O QUE RECEBE
+ * @param O QUE RETORNA
+ */
+void inicializar(int* num);
 #endif
