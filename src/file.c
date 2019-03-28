@@ -137,11 +137,13 @@ int  wrFileC (hash** table, char* path){
 	return r;
 }
 
-int wrFileP (hash*** table, char* path){
+int wrFileP (hash*** table, char* path)
+{
 	int r = 0;
 	FILE* fp = fopen(path, "w+");
 	
-	if(fp == NULL){
+	if(fp == NULL)
+	{
 		printf("Error! Couldn't find file point to write Produtos");
 		return 0;
 	}
@@ -160,7 +162,8 @@ int wrFileP (hash*** table, char* path){
 	return r;
 }
 
-int wrFileV (Venda* table, char* path){
+int wrFileV (Venda* table, char* path)
+{
 	int r = 0;
 	FILE* fp = fopen(path, "w+");
 	

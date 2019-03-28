@@ -16,14 +16,15 @@ CAT_CL create_catcl()
 	int i = 0;
 	FILE* file = fopen(path , "r");
 	
-	if(file == NULL){
+	if(file == NULL)
+	{
       	printf("Error! You tried to read an empty file.");   
      	exit(1);             
     }
 
 	while(fgets(linha, max, file))
 	{
-		insert_Cliente(hash* table[], char id[])
+		insert_Cliente(hash* table[], char id[]);
 	}
 	
 	fclose(file);	
