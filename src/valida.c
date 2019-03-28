@@ -3,12 +3,11 @@
 #include "../include/hash.h"
 
 //função que valida um id de um produto
-int validaProduto(char * id, int i){
+int validaProduto(char * id){
 	int r = 0;
-		if(!id[i])														//segue se o id[i] é \0 ou NULL
 			if(isupper(id[0]) && isupper(id[1]))						//Se os dois primeiros carateres sao maiusculas 								
 				if(('1'<=id[2]) && (id[2]<='9'))						//Se a 3ª posição é entre 1 e 9
-					for(int n = 3; n < (i-1); n++){
+					for(int n = 3; n < 5; n++){
 						if(isdigit(id[n])) r = 1;
 						else return 0;
 					}
@@ -16,12 +15,11 @@ int validaProduto(char * id, int i){
 }
 
 //função que valida um id de um cliente
-int validaCliente(char * id, int i){
+int validaCliente(char * id){
 	int r = 0;
-		if(!id[i])														//segue se o id[i] é \0 ou NULL
 			if(isupper(id[0]))											//Se a primeiros carateres sao maiusculas 		
 				if(('1'<=id[1]) && (id[1]<='5'))						//Se a 2ª posição é entre 1 e 5
-					for(int n = 2; n < (i-1); n++){
+					for(int n = 2; n < 4; n++){
 						if(isdigit(id[n])) r = 1;
 						else return 0;
 					}
@@ -29,7 +27,7 @@ int validaCliente(char * id, int i){
 }
 
 //Tokenize, devolve o i e preenche o array tokens
-int toktok(char * linha, char** tokens) {
+int toktok(char * linha, char** tokens){
 	char* tok = NULL;
 	tok = strtok(linha, " ");
 	int i = 0;

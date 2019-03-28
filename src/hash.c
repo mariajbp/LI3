@@ -12,7 +12,7 @@ struct tree{
 // Função que insere um elemento numa arvore binaria
 hash insere_tree(hash arvore, int id){
 	if(arvore == NULL){
-		arvore = malloc(sizeof(struct tree));
+		arvore = (struct tree*) malloc(sizeof(struct tree));
 		arvore->head = id;
 		arvore->esq = arvore->dir = NULL;
 	}
@@ -110,6 +110,19 @@ void hF_Produtos(int index[], char value[]){
 	index[2] = c % 151;
 }
 
+void init_hC(hash** tClientes){
+	for(int l1; l1 < 27; l1++)
+		for(int h; h < 301; h++)
+			tClientes[l1][h]->head = 0;
+}
+
+void init_hP(hash*** tProdutos){
+	for(int l1; l1 < 27; l1++)
+		for(int l2; l2 < 27; l2++)
+			for(int h; h < 301; h++)
+				tProdutos[l1][l2][h]->head = 0;
+}
+
 // Função que elimina um index, de tipologia Cliente, da estrutura de dados
 void delete_Cliente(hash* table[], char id[]){
 	int index[2]; index[0] = 0; index[1] = 0;
@@ -135,6 +148,7 @@ void insert_Cliente(hash* table[], char id[]){
 	hF_Clientes(index, id);
 
 	insere_tree(table[index[0]][index[1]] , nID);
+	printf("adeus\n");
 }
 
 // Função que insere um index, de tipologia Produto, numa estrutura de dados
