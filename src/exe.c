@@ -8,21 +8,8 @@
 
 int main(){
 
-//hash ** tClientes
-//hash ** tProd
-//Venda * sales
-
-	/*int m = maiorLinha("../Clientes.txt");
-	loadHash_Clientes(tClientes,"../Clientes.txt", m);
-	wrFileC(tClientes, "../ClientesVálidos.txt");
-
-	m = maiorLinha("../Produtos.txt");
-	loadHash_Produtos(tProd,"../Produtos.txt", m);
-	wrFileP(tProd, "../ProdutosVálidos.txt");
-
-	m = maiorLinha("../Vendas_1M.txt");	
-	loadstruct_Vendas(sales,"../Vendas_1M.txt", m, tProd, tClientes);
-	wrFileP(tProd, "../VendasVálidas.txt");
+	int num[6];
+	inicializar(num);
 
 	/*Na querie 1 será necessário dar free das hash tables
 	  e temos de ter em consideração que não podemos por

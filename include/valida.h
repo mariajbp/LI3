@@ -26,7 +26,7 @@ int validaCliente(char * id);
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-int validaVenda(char* linha, hash*** produtos, hash** clientes);
+int validaVenda(char* linha, Tree*** produtos, Tree** clientes);
 
 /**
  * Função que dado uma linha e um array, preenche o array com tokens da linha e devolve o número de campos

@@ -5,7 +5,7 @@
 #include "../include/vendas.h"
 
 //Faz load de um ficheiro no array RETORNA QUANTO ESCREVEU NO ARRAY (para a função wrfile)
-int loadHash_Clientes(hash** table, char* path, int max){
+int loadHash_Clientes(Tree** table, char* path, int max){
 	char linha[7];
 	int i = 0;
 	FILE* file = fopen(path , "r");
@@ -29,7 +29,7 @@ int loadHash_Clientes(hash** table, char* path, int max){
 	return i;
 }
 
-int loadHash_Produtos( hash*** table, char* path, int max){
+int loadHash_Produtos( Tree*** table, char* path, int max){
 	char linha[6];
 	int i = 0;
 	FILE* file = fopen(path , "r");
@@ -51,7 +51,7 @@ int loadHash_Produtos( hash*** table, char* path, int max){
 	return i;
 }
 
-int loadstruct_Vendas( Venda* estrutura, char* path, int max, hash*** produtos, hash** clientes){
+int loadstruct_Vendas( Venda* estrutura, char* path, int max, Tree*** produtos, Tree** clientes){
 	char linha[32];
 	int i = 0;
 	char** tokens = (char**)malloc(7*sizeof(char*));
@@ -96,7 +96,7 @@ int contaLinhas(char* path){
 }
 
 //Função que dado o array com os dados válidos e o tamanho do array, os escreve no ficheiro
-int  wrFileC (hash** table, char* path){
+int  wrFileC (Tree** table, char* path){
 	int r = 0, i = 0;
 	FILE* fp = fopen(path, "w+");
 	
@@ -117,7 +117,7 @@ int  wrFileC (hash** table, char* path){
 	return r;
 }
 
-int wrFileP (hash*** table, char* path){
+int wrFileP (Tree*** table, char* path){
 	int r = 0, i = 0;
 	FILE* fp = fopen(path, "w+");
 	
@@ -158,13 +158,12 @@ int wrFileV (Venda* table, char* path){
 void inicializar(int* num){
 	int max = 0;
 
-	// é preciso criar função: inicializa tP tC
-	hash** tClientes = (hash**) malloc(sizeof(hash)*27*301);
-	init_hC(tClientes);
+	Tree** tClientes = (Tree**) malloc(sizeof(struct tree*)*27*301);
+	create_hC(tClientes);
 	
-	hash*** tProdutos = (hash***) malloc(sizeof(hash)*27*27*151);
-	init_hP(tProdutos);
-	
+	Tree*** tProdutos = (Tree***) malloc(sizeof(struct tree*)*27*27*151);
+	create_hP(tProdutos);
+
 	Venda* sVendas = (Venda*) malloc(sizeof(Venda));
 	printf("ja nao tou a alocar espaco\n");
 

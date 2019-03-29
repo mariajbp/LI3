@@ -11,21 +11,21 @@
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-int loadHash_Clientes( hash** table, char* path, int max);
+int loadHash_Clientes( Tree** table, char* path, int max);
 
 /**
  * O QUE FAZ
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-int loadHash_Produtos( hash*** table, char* path, int max);
+int loadHash_Produtos( Tree*** table, char* path, int max);
 
 /**
  * O QUE FAZ
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-int loadstruct_Vendas( Venda* estrutura, char* path, int max, hash*** produtos, hash** clientes);
+int loadstruct_Vendas( Venda* estrutura, char* path, int max, Tree*** produtos, Tree** clientes);
 
 /**
  * Função que dado um ficheiro conta as linhas
@@ -39,14 +39,14 @@ int contaLinhas(char* path);
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-int wrFileC (hash** table, char* path);
+int wrFileC (Tree** table, char* path);
 
 /**
  * Função que escreve os dados válidos num ficheiro (Produtos)
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-int wrFileP (hash*** table, char* path);
+int wrFileP (Tree*** table, char* path);
 
 /**
  * Função que escreve os dados válidos num ficheiro (Vendas)

@@ -5,19 +5,24 @@
 
 
 struct tree{
-	int head;
+	int valor;
 	struct tree *esq, *dir;
 };
 
+Tree create_tree(int id){ 
+    Tree arvore =  (Tree) malloc(sizeof(struct tree));
+    arvore->valor = id; 
+    arvore->esq = arvore->dir = NULL;
+    return arvore;
+} 
+
 // Função que insere um elemento numa arvore binaria
-hash insere_tree(hash arvore, int id){
+Tree insere_tree(Tree arvore, int id){
 	if(arvore == NULL){
-		arvore = (struct tree*) malloc(sizeof(struct tree));
-		arvore->head = id;
-		arvore->esq = arvore->dir = NULL;
+		arvore = create_tree(id);
 	}
 	else{
-		if(id < arvore->head) arvore->esq = insere_tree(arvore->esq, id);
+		if(id < arvore->valor) arvore->esq = insere_tree(arvore->esq, id);
 		else arvore->dir = insere_tree(arvore->dir, id);
 	}
 	
@@ -25,13 +30,13 @@ hash insere_tree(hash arvore, int id){
 }
 
 // Função que procura um elemento numa arvore binaria
-int search_tree(hash arvore, int id){
+int search_tree(Tree arvore, int id){
 	int r;
 	if(arvore == NULL) r = 0;
 	else{
-		if(id == arvore->head) r = 1;
+		if(id == arvore->valor) r = 1;
 		else{
-			if(id < arvore->head) r = search_tree(arvore->esq, id);
+			if(id < arvore->valor) r = search_tree(arvore->esq, id);
 			else r = search_tree(arvore->dir, id);
 		}
 	}
@@ -40,37 +45,37 @@ int search_tree(hash arvore, int id){
 }
 
 //
-hash valorMinimo(hash h){
-	hash r = h;
+Tree valorMinimo(Tree h){
+	Tree r = h;
 	while(r->esq) r = r->esq;
 
 	return r;
 }
 
 // Função que apaga um elemento numa arvore binaria
-hash delete_tree(hash arvore, int id){ 
+Tree delete_tree(Tree arvore, int id){ 
     if (arvore == NULL) return arvore;
 
-    if (id < arvore->head) 
+    if (id < arvore->valor) 
     	arvore->esq = delete_tree(arvore->esq, id); 
     else
-    	if (id > arvore->head)
+    	if (id > arvore->valor)
         	arvore->dir = delete_tree(arvore->dir, id); 
     	else { 
         	if (arvore->esq == NULL){ 
-            	hash temp = arvore->dir; 
+            	Tree temp = arvore->dir; 
             	free(arvore); 
             	return temp; 
 			} 
         	else if (arvore->dir == NULL){ 
-            	hash temp = arvore->esq; 
+            	Tree temp = arvore->esq; 
             	free(arvore); 
             	return temp; 
         }
 
-        hash temp = valorMinimo(arvore->dir); 
-        arvore->head = temp->head; 
-        arvore->dir = delete_tree(arvore->dir, temp->head); 
+        Tree temp = valorMinimo(arvore->dir); 
+        arvore->valor = temp->valor; 
+        arvore->dir = delete_tree(arvore->dir, temp->valor); 
     }
 
     return arvore; 
@@ -85,6 +90,21 @@ int num(char string[], int index){
 	}
 
 	return r;
+}
+
+Tree** create_hC(Tree** tabela){
+	for(int i = 0; i < 27; i++)
+		for(int j = 0; j < 301; j++)
+			tabela[i][j] = NULL;
+	return tabela;
+}
+
+Tree*** create_hP(Tree*** cubo){
+	for (int i = 0; i < 27; i++)
+		for (int j = 0; j < 27; j++)
+			for(int k = 0; k < 151; k++)
+				cubo[i][j][k] = NULL;
+	return cubo;
 }
 
 // Função que dado uma string (valor), devolve uma posição (index, hash key)
@@ -110,21 +130,8 @@ void hF_Produtos(int index[], char value[]){
 	index[2] = c % 151;
 }
 
-void init_hC(hash** tClientes){
-	for(int l1; l1 < 27; l1++)
-		for(int h; h < 301; h++)
-			tClientes[l1][h]->head = 0;
-}
-
-void init_hP(hash*** tProdutos){
-	for(int l1; l1 < 27; l1++)
-		for(int l2; l2 < 27; l2++)
-			for(int h; h < 301; h++)
-				tProdutos[l1][l2][h]->head = 0;
-}
-
 // Função que elimina um index, de tipologia Cliente, da estrutura de dados
-void delete_Cliente(hash* table[], char id[]){
+void delete_Cliente(Tree* table[], char id[]){
 	int index[2]; index[0] = 0; index[1] = 0;
 	hF_Clientes(index,id);
 	int nID = num(id,1);
@@ -133,7 +140,7 @@ void delete_Cliente(hash* table[], char id[]){
 }
 
 // Função que elimina um index, de tipologia Produto, da estrutura de dados
-void delete_Produto(hash** table[], char id[]){
+void delete_Produto(Tree** table[], char id[]){
 	int index[3]; index[0] = 0, index[1] = 0, index[2] = 0;
 	hF_Produtos(index,id);
 	int nID = num(id,2);
@@ -142,7 +149,7 @@ void delete_Produto(hash** table[], char id[]){
 }
 
 // Função que insere um index, de tipologia Cliente, numa estrutura de dados
-void insert_Cliente(hash* table[], char id[]){
+void insert_Cliente(Tree* table[], char id[]){
 	int index[2]; index[0] = 0, index[1] = 0;
 	int nID = num(id,1);
 	hF_Clientes(index, id);
@@ -152,7 +159,7 @@ void insert_Cliente(hash* table[], char id[]){
 }
 
 // Função que insere um index, de tipologia Produto, numa estrutura de dados
-void insert_Produto(hash** table[], char id[]){
+void insert_Produto(Tree** table[], char id[]){
 	int index[3]; index[0] = 0, index[1] = 0, index[2] = 0;
 	int nID = num(id,2);
 	hF_Produtos(index, id);
@@ -160,8 +167,8 @@ void insert_Produto(hash** table[], char id[]){
 	insere_tree(table[index[0]][index[1]][index[2]] , nID);
 }
 
-// Função que, aplicando a hash funtion, verifica se uma posição da hashtable existe
-int search_C(char id[], hash* table[]){
+// Função que, aplicando a Tree funtion, verifica se uma posição da Treetable existe
+int search_C(char id[], Tree* table[]){
 	int r = 0, nID = num(id,1);
 	int index[2]; index[0] = 0, index[1] = 0;
 	hF_Produtos(index,id);
@@ -171,8 +178,8 @@ int search_C(char id[], hash* table[]){
 	return r;
 }
 
-// Função que, aplicando a hash funtion, verifica se uma posição da hashtable existe
-int search_P(char id[], hash** table[]){
+// Função que, aplicando a Tree funtion, verifica se uma posição da Treetable existe
+int search_P(char id[], Tree** table[]){
 	int r = 0, nID = num(id,2);
 	int index[3]; index[0] = 0, index[1] = 0, index[2] = 0;
 	hF_Produtos(index,id);
@@ -183,19 +190,19 @@ int search_P(char id[], hash** table[]){
 }
 
 //
-int fprint_hC(FILE* fp, int l1, hash table, int num){
+int fprint_hC(FILE* fp, int l1, Tree arvore, int num){
 	char pL = l1+'A';
 
-	if(!table) return num;
+	if(!arvore) return num;
 	else{
-		if(table->esq){
-			fprint_hC(fp,l1,table->esq,num);
-			fprintf(fp, "%c%d\n", pL, table->head);
+		if(arvore->esq){
+			fprint_hC(fp,l1,arvore->esq,num);
+			fprintf(fp, "%c%d\n", pL, arvore->valor);
 			num++;
 		}
 		else{
-			fprint_hC(fp,l1,table->dir,num);
-			fprintf(fp, "%c%d\n", pL, table->head);
+			fprint_hC(fp,l1,arvore->dir,num);
+			fprintf(fp, "%c%d\n", pL, arvore->valor);
 			num++;
 		}
 	}
@@ -204,19 +211,19 @@ int fprint_hC(FILE* fp, int l1, hash table, int num){
 }
 
 //
-int fprint_hP(FILE* fp, int l1, int l2, hash table, int num){
+int fprint_hP(FILE* fp, int l1, int l2, Tree arvore, int num){
 	char pL = l1+'A', sL = l1+'A'; 
 
-	if(!table) return num;
+	if(!arvore) return num;
 	else{
-		if(table->esq){
-			fprint_hP(fp,l1,l2,table->esq,num);
-			fprintf(fp, "%c%c%d\n", pL, sL, table->head);
+		if(arvore->esq){
+			fprint_hP(fp,l1,l2,arvore->esq,num);
+			fprintf(fp, "%c%c%d\n", pL, sL, arvore->valor);
 			num++;
 		}
-		else{
-			fprint_hP(fp,l1,l2,table->dir,num);
-			fprintf(fp, "%c%c%d\n", pL, sL, table->head);
+		else if(arvore->dir){
+			fprint_hP(fp,l1,l2,arvore->dir,num);
+			fprintf(fp, "%c%c%d\n", pL, sL, arvore->valor);
 			num++;
 		}
 	}

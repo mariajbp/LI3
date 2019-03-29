@@ -42,7 +42,7 @@ int toktok(char * linha, char** tokens){
 }
 
 //função que valida um id de uma venda
-int validaVenda(char* linha, hash*** produtos, hash** clientes){
+int validaVenda(char* linha, Tree*** produtos, Tree** clientes){
 	int r = 0, i = 0;
 	char** tokens = (char**)malloc(7*sizeof(char*));
 
