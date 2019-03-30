@@ -155,6 +155,7 @@ int wrFileV (Venda* table, char* path){
 
 // array num tem ints que as funcoes devolvem
 void inicializar(int* num){
+	int max = 0;
 	
 	Tree tClientes[27][307];
 	for (int i = 0; i < 27; i++)
