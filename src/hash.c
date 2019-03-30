@@ -163,7 +163,8 @@ void hF_Produtos(int index[], char value[]){
 	}
 
 	index[0] = value[0] - 65;
-	index[1] = value[0] - 65;	
+	index[1] = value[0] - 65;
+	printf("\tHASH__%c%c%d\n", value[0], value[1], c % 307);
 	index[2] = c % 151;
 }
 
