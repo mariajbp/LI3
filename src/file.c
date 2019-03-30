@@ -155,30 +155,27 @@ int wrFileV (Venda* table, char* path){
 
 // array num tem ints que as funcoes devolvem
 void inicializar(int* num){
-	int max = 0;
-
+	
 	Tree tClientes[27][307];
 	for (int i = 0; i < 27; i++)
 		for (int j = 0; j < 307; j++)
 			tClientes[i][j] = malloc(sizeof(Tree));
 
-
-	num[0] = loadHash_Clientes(tClientes,"../Clientes.txt", max);
-	num[1] = wrFileC(tClientes, "../ClientesVálidos.txt");
-
-	/*
-	Tree*** tProdutos = (Tree***) malloc(27*27*151*sizeof(Tree));
-	create_tP(tProdutos);
-
-	Venda* sVendas = (Venda*) malloc(sizeof(Venda));
-	printf("ja nao tou a alocar espaco\n");
-
+	Tree tProdutos[27][27][151];
+	for (int i = 0; i < 27; i++)
+		for (int j = 0; j < 27; j++)
+			for(int k = 0; k < 151; k++)
+				tProdutos[i][j][k] = malloc(sizeof(Tree));
 
 	num[0] = loadHash_Clientes(tClientes,"../Clientes.txt", max);
 	num[1] = wrFileC(tClientes, "../ClientesVálidos.txt");
 
 	num[2] = num[1] = loadHash_Produtos(tProdutos,"../Produtos.txt", max);
 	num[3] = wrFileP(tProdutos, "../ProdutosVálidos.txt");
+
+	/*
+	Venda* sVendas = (Venda*) malloc(sizeof(Venda));
+	printf("ja nao tou a alocar espaco\n");
 
 	num[4] = loadstruct_Vendas(sVendas,"../Vendas_1M.txt", max, tProdutos, tClientes);
 	num[5] = wrFileV(sVendas, "../VendasVálidas.txt");*/
