@@ -171,7 +171,7 @@ void insert_Produto(Tree** table[], char id[]){
 int search_C(char id[], Tree* table[]){
 	int r = 0, nID = num(id,1);
 	int index[2]; index[0] = 0, index[1] = 0;
-	hF_Produtos(index,id);
+	hF_Clientes(index,id);
 
 	r = search_tree(table[index[0]][index[1]], nID);
 	
