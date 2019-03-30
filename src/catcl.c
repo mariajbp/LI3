@@ -7,7 +7,7 @@ struct catcl
 {
 	struct CAT_CL* l;
  	struct CAT_CL* r;
- 	CLIENTE* c; //ELEMENTO A RECEBER
+ 	char* c; //ELEMENTO A RECEBER
 };
 
 CAT_CL create_catcl()
