@@ -5,7 +5,7 @@
 #include "../include/vendas.h"
 
 //Faz load de um ficheiro no array RETORNA QUANTO ESCREVEU NO ARRAY (para a função wrfile)
-int loadHash_Clientes(Tree** table, char* path, int max){
+int loadHash_Clientes(Tree* table[], char* path, int max){
 	char linha[7];
 	int i = 0;
 	FILE* file = fopen(path , "r");
@@ -18,7 +18,6 @@ int loadHash_Clientes(Tree** table, char* path, int max){
 	while( fgets(linha, 7, file) ){
 		printf("%s\n",linha );
 		if(validaCliente(linha)){
-			printf("7\n");
 			insert_Cliente(table,linha);
 			i++;
 		}
@@ -96,7 +95,7 @@ int contaLinhas(char* path){
 }
 
 //Função que dado o array com os dados válidos e o tamanho do array, os escreve no ficheiro
-int  wrFileC (Tree** table, char* path){
+int  wrFileC (Tree* table[], char* path){
 	int r = 0, i = 0;
 	FILE* fp = fopen(path, "w+");
 	
@@ -108,7 +107,7 @@ int  wrFileC (Tree** table, char* path){
 	for(int letra = 0; letra < 27; letra++){
 		for(int h = 0; h < 307; h++){
 			if(table[letra][h]){
-				fprint_hC(fp,letra,table[letra][h],i);
+				fprint_tC(fp,letra,table[letra][h]);
 				i+=r; r++;
 			}
 		}
@@ -130,7 +129,7 @@ int wrFileP (Tree*** table, char* path){
 		for(int l2 = 0; l2 < 27; l2++){
 			for(int h = 0; h < 151; h++){
 				if(table[l1][l2][h]){
-				fprint_hP(fp,l1,l2,table[l1][l2][h],i);
+				fprint_tP(fp,l1,l2,table[l1][l2][h]);
 				i+=r; r++;
 				}
 			}
@@ -158,11 +157,18 @@ int wrFileV (Venda* table, char* path){
 void inicializar(int* num){
 	int max = 0;
 
-	Tree** tClientes = (Tree**) malloc(sizeof(struct tree*)*27*301);
-	create_hC(tClientes);
-	
-	Tree*** tProdutos = (Tree***) malloc(sizeof(struct tree*)*27*27*151);
-	create_hP(tProdutos);
+	Tree tClientes[27][307];
+	for (int i = 0; i < 27; i++)
+		for (int j = 0; j < 307; j++)
+			tClientes[i][j] = malloc(sizeof(Tree));
+
+
+	num[0] = loadHash_Clientes(tClientes,"../Clientes.txt", max);
+	num[1] = wrFileC(tClientes, "../ClientesVálidos.txt");
+
+	/*
+	Tree*** tProdutos = (Tree***) malloc(27*27*151*sizeof(Tree));
+	create_tP(tProdutos);
 
 	Venda* sVendas = (Venda*) malloc(sizeof(Venda));
 	printf("ja nao tou a alocar espaco\n");
@@ -175,11 +181,6 @@ void inicializar(int* num){
 	num[3] = wrFileP(tProdutos, "../ProdutosVálidos.txt");
 
 	num[4] = loadstruct_Vendas(sVendas,"../Vendas_1M.txt", max, tProdutos, tClientes);
-	num[5] = wrFileV(sVendas, "../VendasVálidas.txt");
-
-	free(tProdutos);
-	free(tClientes);
-	free(sVendas);
-
+	num[5] = wrFileV(sVendas, "../VendasVálidas.txt");*/
 
 }
