@@ -24,7 +24,7 @@ CAT_PROD create_catprod(hash** table, char* path)
      	exit(1);             
     }
 
-	while(fgets(linha, 6, file))
+	while(fgets(linha, 7, file))
 	{
 		insert_Produto(table,linha);
 	}
@@ -33,8 +33,6 @@ CAT_PROD create_catprod(hash** table, char* path)
 	return i;
 }
 
-
-//GETS 
 
 void destroyCP(CAT_PROD cp)
 {

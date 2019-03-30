@@ -22,7 +22,7 @@ CAT_CL create_catcl()
      	exit(1);             
     }
 
-	while(fgets(linha, max, file))
+	while(fgets(linha, 6, file))
 	{
 		insert_Cliente(hash* table[], char id[]);
 	}
@@ -33,9 +33,6 @@ CAT_CL create_catcl()
 
 }
 
-
-
-//GETS 
 
 void destroyCCL(CAT_CL ccl)
 {
