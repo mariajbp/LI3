@@ -23,7 +23,7 @@ void hF_Clientes(int index[], char value[]){
 	c = abs(c % 307);
 
 	index[0] = value[0] - 65;
-	//printf("\tHASH__%c%d\n", value[0],c % 307);
+	printf("\tHASH__%c%d\n", value[0],c % 307);
 	index[1] = c;
 }
 
@@ -86,7 +86,7 @@ int loadHash_Clientes(Tree clientes[26][307], char* path, int max){
 
 //Função que escreve uma tabela de Trees num ficheiro
 int  wrFileC (Tree clientes[26][307], char* path){
-	int r = 0, i = 0;
+	int r = 0;
 	FILE* fp = fopen(path, "w+");
 	
 	if(fp == NULL){
@@ -95,10 +95,9 @@ int  wrFileC (Tree clientes[26][307], char* path){
 	}
 	
 	for(int letra = 0; letra < 26; letra++)
-		for(int h = 0; h < 307; h++){
-			i = fprint_clientes(fp,letra,clientes[letra][h]);
-			r+=i;
-		}
+		for(int h = 0; h < 307; h++)
+			r += fprint_clientes(fp,letra,clientes[letra][h]);
+
 
 	fclose(fp);	
 

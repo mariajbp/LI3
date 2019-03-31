@@ -23,7 +23,7 @@ void hF_Produtos(int index[], char value[]){
 	c = abs(c % 151);
 
 	index[0] = value[0] - 65;
-	index[1] = value[0] - 65;
+	index[1] = value[1] - 65;
 	//printf("\tHASH__%c%c%d\n", value[0], value[1], c % 307);
 	index[2] = c;
 }
@@ -86,7 +86,7 @@ int loadHash_Produtos(Tree	produtos[26][26][151], char* path, int max){
 
 //Função que escreve um cubo de Trees num ficheiro
 int wrFileP (Tree produtos[26][26][151], char* path){
-	int r = 0, i = 0;
+	int r = 0;
 	FILE* fp = fopen(path, "w+");
 	
 	if(fp == NULL){
@@ -96,10 +96,8 @@ int wrFileP (Tree produtos[26][26][151], char* path){
 
 	for(int l1 = 0; l1 < 26; l1++)
 		for(int l2 = 0; l2 < 26; l2++)
-			for(int h = 0; h < 151; h++){
-				i = fprint_produtos(fp,l1,l2,produtos[l1][l2][h]);
-				r+=i;
-			}
+			for(int h = 0; h < 151; h++)
+				r += fprint_produtos(fp,l1,l2,produtos[l1][l2][h]);
 
 	fclose(fp);
 
