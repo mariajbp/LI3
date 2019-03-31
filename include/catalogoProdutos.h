@@ -53,7 +53,7 @@ int wrFileP (Tree produtos[26][26][151], char* path);
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-int create_catprod(Tree cat_Produtos[26][26][151], char* path);
+int create_produtos(Tree cat_Produtos[26][26][151], char* path);
 
 /**
  * Função que inicializa as estruturas

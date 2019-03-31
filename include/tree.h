@@ -5,7 +5,12 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct node* Tree;
+typedef struct node{
+    int valor;
+    struct node *esq;
+    struct node *dir;
+    int altura;
+}*Tree;
 
 /**
  * Função que escreve os dados válidos num ficheiro (Clientes)

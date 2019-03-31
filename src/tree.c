@@ -4,13 +4,6 @@
 #include "../include/tree.h"
 
 
-struct node{
-    int valor;
-    struct node *esq;
-    struct node *dir;
-    int altura;
-};
-
 // Função que imprime uma arvore por ordem dos elementos
 int print_tree(Tree arvore){
 	int num = 0;

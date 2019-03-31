@@ -29,7 +29,7 @@ void hF_Produtos(int index[], char value[]){
 }
 
 // Função que insere um index, de tipologia Produto, numa estrutura de dados
-void insert_Produto(Tree produtos[27][27][151], char id[]){
+void insert_Produto(Tree produtos[26][26][151], char id[]){
 	int index[3]; index[0] = 0, index[1] = 0, index[2] = 0;
 	int nID = num(id,2);
 	hF_Produtos(index, id);
@@ -38,7 +38,7 @@ void insert_Produto(Tree produtos[27][27][151], char id[]){
 }
 
 // Função que, aplicando a Tree funtion, verifica se uma posição da Treetable existe
-int search_P(Tree produtos[27][27][151], char id[]){
+int search_P(Tree produtos[26][26][151], char id[]){
 	int r = 0, nID = num(id,2);
 	int index[3]; index[0] = 0, index[1] = 0, index[2] = 0;
 	hF_Produtos(index,id);
@@ -56,7 +56,7 @@ int fprint_produtos(FILE* fp, int l1, int l2, Tree arvore){
 	if(arvore){
 		num += fprint_produtos(fp,l1,l2,arvore->esq);
 		if(arvore->valor){
-			fprintf(fp,"%c%c%d\n", pL, sL, arvore->valor);
+			fprintf(fp,"%c%c%d\r\n", pL, sL, arvore->valor);
 			num++;
 		}
 		num += fprint_produtos(fp,l1,l2,arvore->dir);
@@ -72,17 +72,14 @@ int loadHash_Produtos(Tree	produtos[26][26][151], char* path, int max){
 	
 	if(file == NULL){
     	printf("Error! You tried to read an empty file.");   
-    	exit(1);             
+    	return 0;             
     }
 	while( fgets(linha, 6, file) ){
-		//printf("%s\n",linha );
 		if(validaProduto(linha)){
 			insert_Produto(produtos,linha);
 			i++;
 		}
 	}
-	
-	fclose(file);	
 
 	return i;
 }
@@ -99,31 +96,31 @@ int wrFileP (Tree produtos[26][26][151], char* path){
 
 	for(int l1 = 0; l1 < 26; l1++)
 		for(int l2 = 0; l2 < 26; l2++)
-			for(int h = 0; h < 151; h++)
-				if(produtos[l1][l2][h]){
+			for(int h = 0; h < 151; h++){
 				i = fprint_produtos(fp,l1,l2,produtos[l1][l2][h]);
 				r+=i;
-				}
+			}
+
+	fclose(fp);
 
 	return r;
 }
 
 
-int create_catprod(Tree cat_Produtos[26][26][151], char* path){
+int create_produtos(Tree cat_Produtos[26][26][151], char* path){
 	char linha[6];
 	int i = 0;
 	FILE* file = fopen(path , "r");
 	
 	if(file == NULL){
     	printf("Error! You tried to read an empty file.");   
-    	exit(1);             
+    	return 0;             
     }
 
 	while( fgets(linha, 6, file) ){
-			insert_Produto(cat_Produtos,linha);
-			i++;
-		}
-	fclose(file);	
+		insert_Produto(cat_Produtos,linha);
+		i++;
+	}
 
 	return i;
 }

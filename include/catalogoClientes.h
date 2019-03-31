@@ -53,7 +53,7 @@ int wrFileC (Tree clientes[26][307], char* path);
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-int create_catcl(Tree cat_Clientes[26][307], char* path);
+int create_clientes(Tree cat_Clientes[26][307], char* path);
 
 /**
  * Função que inicializa a estrutura
