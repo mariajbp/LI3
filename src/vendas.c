@@ -50,20 +50,22 @@ char* getNP(Venda v)
 }
 
  
-char* getCLcode(Venda v){
+char* getCLcode(Venda v)
+{
 
  	return v->clcode;
-
 }
 
  
-int getMonth(Venda v){
+int getMonth(Venda v)
+{
 
  	return v->month;
 
 }
 
-int getFilial(Venda v){
+int getFilial(Venda v)
+{
 
  	return v->filial;
 }
