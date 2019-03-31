@@ -42,18 +42,18 @@ int toktok(char * linha, char** tokens){
 }
 
 //função que valida um id de uma venda
-int validaVenda(char* linha, Tree*** produtos, Tree** clientes){
+int validaVenda(char* linha, Tree produtos[27][27][151], Tree clientes[27][307]){
 	int r = 0, i = 0;
 	char** tokens = (char**)malloc(7*sizeof(char*));
 
 	i = toktok(linha, tokens);
 
 	if(i == 7)																// se tokens tiver 7 posicoes, estas devem ser testadas
-		if( search_P(tokens[0], produtos) )
+		if( search_P(produtos, tokens[0]) )
 			if( atof(tokens[1]) <= 999.99 && atof(tokens[1]) >= 0.0 )		// atof(str) converte a str para float, pertence a string.h
 				if( atoi(tokens[2]) <= 200 && atoi(tokens[2]) >= 1 )		// atoi(str) converte a str para int, pertence a string.h
 					if( strcmp(tokens[3], "N") || strcmp(tokens[3], "P") )
-						if( search_C(tokens[4], clientes) )
+						if( search_C(clientes, tokens[4]) )
 							if( atoi(tokens[5]) <= 12 && atoi(tokens[5]) >= 1 )
 								if( atoi(tokens[6]) <= 3 && atoi(tokens[6]) >= 1 ) // validar a filial
 									r = 1;

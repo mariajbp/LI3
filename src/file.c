@@ -5,7 +5,7 @@
 #include "../include/vendas.h"
 
 //Faz load de um ficheiro no array RETORNA QUANTO ESCREVEU NO ARRAY (para a função wrfile)
-int loadHash_Clientes(Tree* table[], char* path, int max){
+int loadHash_Clientes(Tree clientes[27][307], char* path, int max){
 	char linha[7];
 	int i = 0;
 	FILE* file = fopen(path , "r");
@@ -14,11 +14,10 @@ int loadHash_Clientes(Tree* table[], char* path, int max){
       	printf("Error! You tried to read an empty file.");   
      	exit(1);             
     }
-	printf("tou a ler clientes\n");
 	while( fgets(linha, 7, file) ){
-		printf("%s\n",linha );
+		//printf("%s\n",linha );
 		if(validaCliente(linha)){
-			insert_Cliente(table,linha);
+			insert_Cliente(clientes,linha);
 			i++;
 		}
 	}
@@ -28,7 +27,7 @@ int loadHash_Clientes(Tree* table[], char* path, int max){
 	return i;
 }
 
-int loadHash_Produtos( Tree*** table, char* path, int max){
+int loadHash_Produtos(Tree	produtos[27][27][151], char* path, int max){
 	char linha[6];
 	int i = 0;
 	FILE* file = fopen(path , "r");
@@ -37,11 +36,10 @@ int loadHash_Produtos( Tree*** table, char* path, int max){
     	printf("Error! You tried to read an empty file.");   
     	exit(1);             
     }
-    printf("tou a ler produtos\n");
 	while( fgets(linha, 6, file) ){
-		printf("%s\n",linha );
+		//printf("%s\n",linha );
 		if(validaProduto(linha)){
-			insert_Produto(table,linha);
+			insert_Produto(produtos,linha);
 			i++;
 		}
 	}
@@ -51,7 +49,7 @@ int loadHash_Produtos( Tree*** table, char* path, int max){
 	return i;
 }
 
-int loadstruct_Vendas( Venda* estrutura, char* path, int max, Tree*** produtos, Tree** clientes){
+int loadstruct_Vendas( Venda* estrutura, char* path, int max, Tree produtos[27][27][151], Tree clientes[27][307]){
 	char linha[32];
 	int i = 0;
 	char** tokens = (char**)malloc(7*sizeof(char*));
@@ -96,7 +94,7 @@ int contaLinhas(char* path){
 }
 
 //Função que dado o array com os dados válidos e o tamanho do array, os escreve no ficheiro
-int  wrFileC (Tree* table[], char* path){
+int  wrFileC (Tree clientes[27][307], char* path){
 	int r = 0, i = 0;
 	FILE* fp = fopen(path, "w+");
 	
@@ -107,8 +105,8 @@ int  wrFileC (Tree* table[], char* path){
 	
 	for(int letra = 0; letra < 27; letra++){
 		for(int h = 0; h < 307; h++){
-			if(table[letra][h]){
-				fprint_tC(fp,letra,table[letra][h]);
+			if(clientes[letra][h]){
+				fprint_clientes(fp,letra,clientes[letra][h]);
 				i+=r; r++;
 			}
 		}
@@ -117,7 +115,7 @@ int  wrFileC (Tree* table[], char* path){
 	return r;
 }
 
-int wrFileP (Tree** table[], char* path){
+int wrFileP (Tree produtos[27][27][151], char* path){
 	int r = 0, i = 0;
 	FILE* fp = fopen(path, "w+");
 	
@@ -129,8 +127,8 @@ int wrFileP (Tree** table[], char* path){
 	for(int l1 = 0; l1 < 27; l1++){
 		for(int l2 = 0; l2 < 27; l2++){
 			for(int h = 0; h < 151; h++){
-				if(table[l1][l2][h]){
-				fprint_tP(fp,l1,l2,table[l1][l2][h]);
+				if(produtos[l1][l2][h]){
+				fprint_produtos(fp,l1,l2,produtos[l1][l2][h]);
 				i+=r; r++;
 				}
 			}
@@ -169,19 +167,14 @@ void inicializar(int* num){
 			for(int k = 0; k < 151; k++)
 				tProdutos[i][j][k] = malloc(sizeof(Tree));
 
-	num[2] = num[1] = loadHash_Produtos(tProdutos,"../Produtos.txt", max);
-	num[3] = wrFileP(tProdutos, "../ProdutosVálidos.txt");
-
 	num[0] = loadHash_Clientes(tClientes,"../Clientes.txt", max);
 	num[1] = wrFileC(tClientes, "../ClientesVálidos.txt");
 
+	num[2] = num[1] = loadHash_Produtos(tProdutos,"../Produtos.txt", max);
+	num[3] = wrFileP(tProdutos, "../ProdutosVálidos.txt");
 
 	/*Venda* sVendas = (Venda*) malloc(sizeof(Venda));
 	printf("ja nao tou a alocar espaco\n");
-
-
-	num[2] = num[1] = loadHash_Produtos(tProdutos,"../Produtos.txt", max);
-	num[3] = wrFileP(tProdutos, "../ProdutosVálidos.txt");
 
 	num[4] = loadstruct_Vendas(sVendas,"../Vendas_1M.txt", max, tProdutos, tClientes);
 	num[5] = wrFileV(sVendas, "../VendasVálidas.txt");*/

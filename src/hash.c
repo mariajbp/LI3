@@ -90,11 +90,9 @@ Tree valorMinimo(Tree h){
 Tree insert_tree(Tree nodo, int val){
 	int balance;
     if(nodo == NULL) {
-    	printf("\tnao houve colisao\n\tvalor_%d\n", val);
-    	printf("\ta criar nodo\n");
     	return(create_nodo(val));
     }
-    printf("\thouve colisao\n\tvalor_%d\n\n", val);
+    //printf("\thouve colisao\n\tvalor_%d\n\n", nodo->valor);
 
     if(val < nodo->valor) nodo->esq = insert_tree(nodo->esq, val);
     else
@@ -150,9 +148,11 @@ void hF_Clientes(int index[], char value[]){
 		s = value[i]; c+=s; c*=s;
 	}
 
+	c = abs(c % 307);
+
 	index[0] = value[0] - 65;
-	printf("\tHASH__%c%d\n", value[0],c % 307);
-	index[1] = c % 307;
+	//printf("\tHASH__%c%d\n", value[0],c % 307);
+	index[1] = c;
 }
 
 // Função que dado uma string (valor), devolve uma posição (index, hash key)
@@ -162,75 +162,77 @@ void hF_Produtos(int index[], char value[]){
 		s = value[i]; c+=s; c*=s;
 	}
 
+	c = abs(c % 151);
+
 	index[0] = value[0] - 65;
 	index[1] = value[0] - 65;
-	printf("\tHASH__%c%c%d\n", value[0], value[1], c % 307);
-	index[2] = c % 151;
+	//printf("\tHASH__%c%c%d\n", value[0], value[1], c % 307);
+	index[2] = c;
 }
 
 // Função que insere um index, de tipologia Cliente, numa estrutura de dados
-void insert_Cliente(Tree* table[], char id[]){
+void insert_Cliente(Tree clientes[27][307], char id[]){
 	int index[2]; index[0] = 0, index[1] = 0;
 	int nID = num(id,1);
 	hF_Clientes(index, id);
 
-	insert_tree(table[index[0]][index[1]] , nID);
+	insert_tree(clientes[index[0]][index[1]] , nID);
 }
 
 // Função que insere um index, de tipologia Produto, numa estrutura de dados
-void insert_Produto(Tree** table[], char id[]){
+void insert_Produto(Tree produtos[27][27][151], char id[]){
 	int index[3]; index[0] = 0, index[1] = 0, index[2] = 0;
 	int nID = num(id,2);
 	hF_Produtos(index, id);
 
-	insert_tree(table[index[0]][index[1]][index[2]] , nID);
+	insert_tree(produtos[index[0]][index[1]][index[2]] , nID);
 }
 
 // Função que, aplicando a Tree funtion, verifica se uma posição da Treetable existe
-int search_C(char id[], Tree* table[]){
+int search_C(Tree clientes[27][307], char id[]){
 	int r = 0, nID = num(id,1);
 	int index[2]; index[0] = 0, index[1] = 0;
 	hF_Clientes(index,id);
 
-	r = search_tree(table[index[0]][index[1]], nID);
+	r = search_tree(clientes[index[0]][index[1]], nID);
 	
 	return r;
 }
 
 // Função que, aplicando a Tree funtion, verifica se uma posição da Treetable existe
-int search_P(char id[], Tree** table[]){
+int search_P(Tree produtos[27][27][151], char id[]){
 	int r = 0, nID = num(id,2);
 	int index[3]; index[0] = 0, index[1] = 0, index[2] = 0;
 	hF_Produtos(index,id);
 
-	r = search_tree(table[index[0]][index[1]][index[2]], nID);
+	r = search_tree(produtos[index[0]][index[1]][index[2]], nID);
 
 	return r;
 }
 
 // Função que imprime uma arvore por ordem dos elementos
-int fprint_tC(FILE* fp, int l1, Tree arvore){
+int fprint_clientes(FILE* fp, int l1, Tree arvore){
 	char pL = l1+'A';
 	int num = 0;
 
 	if(arvore){
-		num += fprint_tC(fp,l1,arvore->esq);
+		num += fprint_clientes(fp,l1,arvore->esq);
 		fprintf(fp,"%c%d\n", pL, arvore->valor); num++;
-		num += fprint_tC(fp,l1,arvore->dir);
+		num += fprint_clientes(fp,l1,arvore->dir);
 	}
 
 	return num;
 }
 
 // Função que imprime uma arvore por ordem dos elementos
-int fprint_tP(FILE* fp, int l1, int l2, Tree arvore){
+int fprint_produtos(FILE* fp, int l1, int l2, Tree arvore){
 	char pL = l1+'A', sL = l1+'A'; 
 	int num = 0;
 
 	if(arvore){
-		num += fprint_tP(fp,l1,l2,arvore->esq);
+		num += fprint_produtos(fp,l1,l2,arvore->esq);
 		fprintf(fp,"%c%c%d\n", pL, sL, arvore->valor); num++;
-		num += fprint_tP(fp,l1,l2,arvore->dir);
+		num += fprint_produtos(fp,l1,l2,arvore->dir);
 	}
 
 	return num;

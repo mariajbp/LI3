@@ -7,7 +7,7 @@ struct catcl
 {
 	struct CAT_CL* l;
  	struct CAT_CL* r;
- 	char* c; //ELEMENTO A RECEBER
+ 	CLIENTE* c; //ELEMENTO A RECEBER
 };
 
 CAT_CL create_catcl()
@@ -22,7 +22,7 @@ CAT_CL create_catcl()
      	exit(1);             
     }
 
-	while(fgets(linha, 6, file))
+	while(fgets(linha, max, file))
 	{
 		insert_Cliente(hash* table[], char id[]);
 	}
@@ -33,6 +33,9 @@ CAT_CL create_catcl()
 
 }
 
+
+
+//GETS 
 
 void destroyCCL(CAT_CL ccl)
 {
