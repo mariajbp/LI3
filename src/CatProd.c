@@ -7,7 +7,7 @@ struct catprod
 {
 	struct CAT_PROD* l;
  	struct CAT_PROD* r;
- 	PRODUTOS* p; //ELEMENTO A RECEBER
+ 	char* p; //ELEMENTO A RECEBER
 };
 	
 
