@@ -217,7 +217,10 @@ int fprint_clientes(FILE* fp, int l1, Tree arvore){
 
 	if(arvore){
 		num += fprint_clientes(fp,l1,arvore->esq);
-		fprintf(fp,"%c%d\n", pL, arvore->valor); num++;
+		if(arvore->valor){
+			fprintf(fp,"%c%d\n", pL, arvore->valor);
+			num++;
+		}
 		num += fprint_clientes(fp,l1,arvore->dir);
 	}
 
@@ -231,7 +234,10 @@ int fprint_produtos(FILE* fp, int l1, int l2, Tree arvore){
 
 	if(arvore){
 		num += fprint_produtos(fp,l1,l2,arvore->esq);
-		fprintf(fp,"%c%c%d\n", pL, sL, arvore->valor); num++;
+		if(arvore->valor){
+			fprintf(fp,"%c%c%d\n", pL, sL, arvore->valor);
+			num++;
+		}
 		num += fprint_produtos(fp,l1,l2,arvore->dir);
 	}
 
