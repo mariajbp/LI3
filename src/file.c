@@ -170,7 +170,7 @@ void inicializar(int* num){
 	num[0] = loadHash_Clientes(tClientes,"../Clientes.txt", max);
 	num[1] = wrFileC(tClientes, "../ClientesVálidos.txt");
 
-	num[2] = num[1] = loadHash_Produtos(tProdutos,"../Produtos.txt", max);
+	num[2] = loadHash_Produtos(tProdutos,"../Produtos.txt", max);
 	num[3] = wrFileP(tProdutos, "../ProdutosVálidos.txt");
 
 	/*Venda* sVendas = (Venda*) malloc(sizeof(Venda));
