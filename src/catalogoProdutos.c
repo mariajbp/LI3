@@ -123,8 +123,6 @@ int create_catprod(Tree cat_Produtos[26][26][151], char* path){
 			insert_Produto(cat_Produtos,linha);
 			i++;
 		}
-	}
-	
 	fclose(file);	
 
 	return i;
