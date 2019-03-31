@@ -1,21 +1,18 @@
 INC = ../include/
 OBJ = ../src/
 
-objects = $(OBJ)exe.o $(OBJ)valida.o $(OBJ)vendas.o $(OBJ)file.o $(OBJ)hash.o
+objects = $(OBJ)exe.o $(OBJ)catalogoClientes.o $(OBJ)catalogoProdutos.o $(OBJ)tree.o
 CFLAGS = -g -Wall -ansi -std=c99 -pedantic -O2 
 CC = gcc
-
-
 
 
 SVG : $(objects)
 	$(CC) $(CFLAGS) -o SVG $(objects) 
 
-exe.o : $(INC)valida.h $(INC)vendas.h $(INC)file.h
-valida.o : $(INC)valida.h $(INC)hash.h
-vendas.o : $(INC)vendas.h
-file.o : $(INC)file.h $(INC)valida.h
-hash.o : $(INC)hash.h
+exe.o : $(INC)catalogoProdutos.h $(INC)catalogoClientes.h
+catalogoClientes.o : $(INC)catalogoClientes.h $(INC)tree.h 
+catalogoProdutos.o : $(INC)catalogoProdutos.h $(INC)tree.h 
+tree.o : $(INC)tree.h
 
 
 
