@@ -46,29 +46,43 @@ void destroyFac(Faturacao f)
 	free(f);
 }
 
-//determinar se um prod é N ou P 
-char* typeNPNULL(char* code, Faturacao f)
+//determinar tipo de produto N ou P ou NULL
+int typeNPNULL(char* code, Faturacao f)
 {
 
 }
 
-//determinar nº de vendas de N total
+//determinar nº total de vendas tipo N por mes
 int totalN()
 {
 
 }
 
-//determinar nº de vendas de P total
+//determinar a faturacao de vendas tipo N mes
+int faturacaoN()
+{
+
+}
+
+//dado um mes apresentar o nº de prods vendidos q4
 int totalP()
 {
 
 }
 
-//determinar nº de vendas de NULL total
+//determinar a faturacao de vendas tipo P por mes 
+int faturacaoP()
+{
+
+}
+
+
+//determinar nº de vendas de NULL total por mes (query4)
 int totalNULL()
 {
 
 }
+
 
 
 
