@@ -30,10 +30,10 @@ int validaCliente(char * id){
 int toktok(char * linha, char** tokens){
 	char* tok = NULL;
 	tok = strtok(linha, " ");
-	int i = 0;
+	int i = 1;
 
     while(tok){															// verificar a quantidade de sub strings na linha
-    	if(i < 7)
+    	if(i <= 7)
     		tokens[i] = strdup(tok);
         tok = strtok(NULL," ");
         i++;

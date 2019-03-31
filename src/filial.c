@@ -1,7 +1,6 @@
 #include "../include/filial.h"
 
-struct filial
-{
+struct filial{
 	
 };
 
@@ -9,7 +8,7 @@ struct filial
 
 //GETS 
 
-void destroyFilial(FILIAL f)
+void destroyFilial(Filial f)
 {
 	free(f);
 }
@@ -18,3 +17,4 @@ void destroyFilial(FILIAL f)
 //total faturado de um certo produto q4
 //determinar prods que ninguem comrpou q4 e q6
 //determinar clientes que não compraram nada q6
+

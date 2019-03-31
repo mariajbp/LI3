@@ -9,7 +9,7 @@
 query2(char letra, CAT_PROD produto)
 {
 	//letra é maiuscula 
-	//apresewntar lista e navegar pag a pag
+	//apresentar lista e navegar pag a pag
 }
 
 //query 3
@@ -75,7 +75,7 @@ query11(FATURACAO faturacao, FILIAL filial)
 }
 //query 12
 
-QUERY12(char* code)
+QUERY12(CHAR* code)
 {
 
 }

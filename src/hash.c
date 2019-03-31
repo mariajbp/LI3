@@ -1,4 +1,4 @@
-#include <stdio.h>
+ // retorna o num de elementos que printou#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "../include/hash.h"
@@ -221,7 +221,7 @@ int fprint_clientes(FILE* fp, int l1, Tree arvore){
 		num += fprint_clientes(fp,l1,arvore->dir);
 	}
 
-	return num;
+	return num;  // retorna o num de elementos que printou
 }
 
 // Função que imprime uma arvore por ordem dos elementos
@@ -235,5 +235,14 @@ int fprint_produtos(FILE* fp, int l1, int l2, Tree arvore){
 		num += fprint_produtos(fp,l1,l2,arvore->dir);
 	}
 
-	return num;
+	return num; // retorna o num de elementos que printou
 }
+
+
+/* The constructed AVL Tree would be 
+		30 
+	   /  \ 
+	 20   40 
+    /  \     \ 
+   10  25    50 
+*/

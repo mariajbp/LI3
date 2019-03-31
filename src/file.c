@@ -62,7 +62,7 @@ int loadstruct_Vendas( Venda* estrutura, char* path, int max, Tree produtos[27][
     }
 
 	while( fgets(linha, 32, file) ){
-		if(validaVenda(linha, produtos, clientes)){
+		if(validaVenda(linha, produtos, clientes)){printf("entrou\n");
 			createVenda(tokens);
 			i++;
 		}
@@ -103,14 +103,12 @@ int  wrFileC (Tree clientes[27][307], char* path){
 		return 0;
 	}
 	
-	for(int letra = 0; letra < 27; letra++){
-		for(int h = 0; h < 307; h++){
+	for(int letra = 0; letra < 27; letra++)
+		for(int h = 0; h < 307; h++)
 			if(clientes[letra][h]){
-				fprint_clientes(fp,letra,clientes[letra][h]);
-				i+=r; r++;
+				i = fprint_clientes(fp,letra,clientes[letra][h]);
+				r+=i;
 			}
-		}
-	}
 
 	return r;
 }
@@ -124,16 +122,13 @@ int wrFileP (Tree produtos[27][27][151], char* path){
 		return 0;
 	}
 
-	for(int l1 = 0; l1 < 27; l1++){
-		for(int l2 = 0; l2 < 27; l2++){
-			for(int h = 0; h < 151; h++){
+	for(int l1 = 0; l1 < 27; l1++)
+		for(int l2 = 0; l2 < 27; l2++)
+			for(int h = 0; h < 151; h++)
 				if(produtos[l1][l2][h]){
-				fprint_produtos(fp,l1,l2,produtos[l1][l2][h]);
-				i+=r; r++;
+				i = fprint_produtos(fp,l1,l2,produtos[l1][l2][h]);
+				r+=i;
 				}
-			}
-		}
-	}
 
 	return r;
 }
@@ -172,9 +167,8 @@ void inicializar(int* num){
 
 	num[2] = loadHash_Produtos(tProdutos,"../Produtos.txt", max);
 	num[3] = wrFileP(tProdutos, "../ProdutosVálidos.txt");
-
+	
 	/*Venda* sVendas = (Venda*) malloc(sizeof(Venda));
-	printf("ja nao tou a alocar espaco\n");
 
 	num[4] = loadstruct_Vendas(sVendas,"../Vendas_1M.txt", max, tProdutos, tClientes);
 	num[5] = wrFileV(sVendas, "../VendasVálidas.txt");*/
