@@ -122,7 +122,6 @@ int create_catcl(Tree cat_Clientes[26][307], char* path){
 			insert_Cliente(cat_Clientes,linha);
 			i++;
 		}
-	}
 	
 	fclose(file);	
 
