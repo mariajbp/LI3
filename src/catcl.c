@@ -28,14 +28,11 @@ CAT_CL create_catcl()
 	}
 	
 	fclose(file);	
-
 	return i;	
 
 }
 
 
-
-//GETS 
 
 void destroyCCL(CAT_CL ccl)
 {

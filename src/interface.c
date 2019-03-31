@@ -75,7 +75,7 @@ query11(FATURACAO faturacao, FILIAL filial)
 }
 //query 12
 
-QUERY12(CHAR* code)
+QUERY12(char* code)
 {
 
 }

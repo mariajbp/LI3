@@ -34,8 +34,6 @@ CAT_PROD create_catprod(hash** table, char* path)
 }
 
 
-//GETS 
-
 void destroyCP(CAT_PROD cp)
 {
 	free(cp);
