@@ -2,34 +2,6 @@
 #include "../include/catalogoClientes.h"
 #include "../include/vendas.h"
 
-//adds colors to terminal apparently
-#define RED     "\033[31m"      /* Red */
-#define GREEN   "\033[32m"      /* Green */
-#define YELLOW  "\033[33m"      /* Yellow */
-#define BLUE    "\033[34m"      /* Blue */
-#define MAGENTA "\033[35m"      /* Magenta */
-#define CYAN    "\033[36m"      /* Cyan */
-
-//Main do projeto
-int main(){
-	int num[6];
-	
-	Tree tProdutos[26][26][151], tClientes[26][307];
-
-	print_menu();
-
-	if(escolhe_Tarefa(num,tProdutos,tClientes) == -1)
-		return 0;
-
-	/*Na querie 1 será necessário dar free das hash tables
-	  e temos de ter em consideração que não podemos por
-	  isto assim na main, precisamos de uma função que 
-	  faça isto tudo logo (modularidade/encapsulamento).*/
-	  
-	return 0;
-}
-
-
 void print_menu(){
 	printf("\nO sistema de vendas realiza as seguintes tarefas:\n");
 	printf("\n\t-> Tarefa_1:  Ler ficheiros (a lista de ficheiros disponivel é \'Produtos.txt\', \'Clientes.txt\', \'Vendas_1M.txt\').\n");
@@ -49,7 +21,7 @@ void print_menu(){
 int qual_ficheiro(){
 	int r;
 
-	printf("\n\tQual o ficheiro que pretende ler? [Clientes.txt(1), Produtos.txt (2), Vendas_1M.txt (3)]\n");
+	printf("\n\tQue ficheiro quer ler? [Clientes.txt(1), Produtos.txt (2), Vendas_1M.txt (3)]\n");
 	scanf("%d", &r);
 	
 
@@ -129,5 +101,36 @@ int escolhe_Tarefa(int* num, Tree tProdutos[26][26][151], Tree tClientes[26][307
 
 	return r;
 }
+#include <time.h>
 
 
+
+//Main do projeto
+int main(){
+	//int num[6];
+	
+	Tree tProdutos[26][26][151], tClientes[26][307];
+	char p[] = "AA134", c[] = "A3255";
+	char linha[] = "KR1583 77.72 128 P L4891 2 1";
+	char linha2[] = "AA134 77.72 128 N A3255 2 1";
+
+	insert_Produto(tProdutos, p);
+	insert_Cliente(tClientes, c);
+
+	int a = validaVenda(linha,tProdutos,tClientes);
+	int b = validaVenda(linha2,tProdutos,tClientes);
+
+	printf("%d = 0, %d = 1\n",a,b );
+
+	//print_menu();
+
+	//if(escolhe_Tarefa(num,tProdutos,tClientes) == -1)
+	//	return 0;
+
+	/*Na querie 1 será necessário dar free das hash tables
+	  e temos de ter em consideração que não podemos por
+	  isto assim na main, precisamos de uma função que 
+	  faça isto tudo logo (modularidade/encapsulamento).*/
+	  
+	return 0;
+}

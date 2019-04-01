@@ -1,4 +1,5 @@
 #include "../include/vendas.h"
+#include <assert.h>
 
 
 struct venda{
@@ -32,16 +33,24 @@ int validaVenda(char* linha, Tree produtos[26][26][151], Tree clientes[26][307])
 	char** tokens = (char**)malloc(7*sizeof(char*));
 
 	i = toktok(linha, tokens);
-
-	if(i == 7)																// se tokens tiver 7 posicoes, estas devem ser testadas
-		if( search_P(produtos, tokens[0]) )
-			if( atof(tokens[1]) <= 999.99 && atof(tokens[1]) >= 0.0 )		// atof(str) converte a str para float, pertence a string.h
-				if( atoi(tokens[2]) <= 200 && atoi(tokens[2]) >= 1 )		// atoi(str) converte a str para int, pertence a string.h
-					if( strcmp(tokens[3], "N") || strcmp(tokens[3], "P") )
-						if( search_C(clientes, tokens[4]) )
-							if( atoi(tokens[5]) <= 12 && atoi(tokens[5]) >= 1 )
-								if( atoi(tokens[6]) <= 3 && atoi(tokens[6]) >= 1 ) // validar a filial
+	assert(i == 8);
+	if(i == 8){														// se tokens tiver 7 posicoes, estas devem ser testadas
+		if( search_P(produtos, tokens[0]) ){	
+			if( atof(tokens[1]) <= 999.99 && atof(tokens[1]) >= 0.0 ){			// atof(str) converte a str para float, pertence a string.h
+				if( atoi(tokens[2]) <= 200 && atoi(tokens[2]) >= 1 ){			// atoi(str) converte a str para int, pertence a string.h
+					if( strcmp(tokens[3], "N") || strcmp(tokens[3], "P") ){	
+						if( search_C(clientes, tokens[4]) ){	
+							if( atoi(tokens[5]) <= 12 && atoi(tokens[5]) >= 1 ){	
+								if( atoi(tokens[6]) <= 3 && atoi(tokens[6]) >= 1 ){	 // validar a filial
 									r = 1;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 	return r;
 }
 

@@ -1,25 +1,6 @@
 #include "../include/catalogoProdutos.h"
 
 
-int create_produtos(Tree cat_Produtos[26][26][151], char* path){
-	char linha[6];
-	int i = 0;
-	FILE* file = fopen(path , "r");
-	
-	if(file == NULL){
-    	printf("Error! You tried to read an empty file.");   
-    	return 0;             
-    }
-
-	while( fgets(linha, 6, file) ){
-		insert_Produto(cat_Produtos,linha);
-		i++;
-	}
-
-	return i;
-}
-
-
 //função que valida um id de um produto
 int validaProduto(char * id){
 	int r = 0;
@@ -123,6 +104,24 @@ int wrFileP (Tree produtos[26][26][151], char* path){
 	return r;
 }
 
+
+int create_produtos(Tree cat_Produtos[26][26][151], char* path){
+	char linha[6];
+	int i = 0;
+	FILE* file = fopen(path , "r");
+	
+	if(file == NULL){
+    	printf("Error! You tried to read an empty file.");   
+    	return 0;             
+    }
+
+	while( fgets(linha, 6, file) ){
+		insert_Produto(cat_Produtos,linha);
+		i++;
+	}
+
+	return i;
+}
 
 
 void destroyCP(Tree cat_Produtos[26][26][151]){
