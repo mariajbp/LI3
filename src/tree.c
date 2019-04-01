@@ -1,7 +1,7 @@
 #include "../include/tree.h"
 
 struct node{
-    int valor;
+    int valor[2];  //valor[0] = valor, valor[1] = número de vendas (para FATURAÇÃO)
     struct node *esq;
     struct node *dir;
     int altura;
@@ -12,7 +12,7 @@ int print_tree(Tree arvore){
 	int num = 0;
 	if(arvore){
 		num += print_tree(arvore->esq);
-		printf("%d\n", arvore->valor); num++;
+		printf("%d\n", arvore->valor[0]); num++;
 		num += print_tree(arvore->dir);
 	}
 
@@ -31,7 +31,7 @@ Tree dir(Tree t){
 
 //Função que devolve o valor de uma arvore
 int valor(Tree t){
-    return t->valor;
+    return t->valor[0];
 }
 
 // Função que indica o maior de dois números
@@ -48,7 +48,8 @@ int altura(Tree a){
 Tree create_nodo(int valor){
     Tree nodo = (Tree) malloc(sizeof(struct node));
 
-    nodo->valor = valor;
+    nodo->valor[0] = valor;
+    nodo -> valor[1] = 0;
     nodo->esq = NULL;
     nodo->dir = NULL;
     nodo->altura = 1;
@@ -105,26 +106,26 @@ Tree insert_tree(Tree nodo, int val){
     }
     //printf("\thouve colisao\n\tvalor_%d\n\n", nodo->valor);
 
-    if(val < nodo->valor) nodo->esq = insert_tree(nodo->esq, val);
+    if(val < nodo->valor[0]) nodo->esq = insert_tree(nodo->esq, val);
     else
-    	if(val > nodo->valor) nodo->dir = insert_tree(nodo->dir, val);
+    	if(val > nodo->valor[0]) nodo->dir = insert_tree(nodo->dir, val);
     	else return nodo;
         
     nodo->altura = 1 + max(altura(nodo->esq),altura(nodo->dir));
     balance = difBalance(nodo);
 
-    if(balance > 1 && val < nodo->esq->valor)
+    if(balance > 1 && val < nodo->esq->valor[0])
         return rotate_dir(nodo);
 
-    if(balance < -1 && val > nodo->dir->valor)
+    if(balance < -1 && val > nodo->dir->valor[0])
         return rotate_esq(nodo);
 
-    if(balance > 1 && val > nodo->esq->valor){ 
+    if(balance > 1 && val > nodo->esq->valor[0]){ 
         nodo->esq = rotate_esq(nodo->esq);
         return rotate_dir(nodo);
     }
 
-    if(balance < -1 && val < nodo->dir->valor){
+    if(balance < -1 && val < nodo->dir->valor[0]){
         nodo->dir = rotate_dir(nodo->dir);
         return rotate_esq(nodo);
     }
@@ -137,9 +138,9 @@ int search_tree(Tree arvore, int id){
 	int r;
 	if(arvore == NULL) r = 0;
 	else{
-		if(id == arvore->valor) r = 1;
+		if(id == arvore->valor[0]) r = 1;
 		else{
-			if(id < arvore->valor) r = search_tree(arvore->esq, id);
+			if(id < arvore->valor[0]) r = search_tree(arvore->esq, id);
 			else r = search_tree(arvore->dir, id);
 		}
 	}

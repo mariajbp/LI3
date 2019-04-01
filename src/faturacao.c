@@ -1,61 +1,64 @@
-include "../include/faturacao.h"
+#include "../include/faturacao.h"
+#include "../include/tree.h"
 
-struct faturacao
-{
-	
+struct faturacao{
+
 	Tree tipo[12][3]; // 0 - N, 1 - P, 2 - NULL
-	int sizeN, sizeP, sizeNull;
-	int sizeMes[12]; // quantas ha por mes
+	int sizeN, sizeP, sizeNull; // número total de N, P ou NULL vendidos
+	int sizeMes[12]; // quantos produtos foram vendidos por mes
 
 };
 
-void creat_faturacao()
-{
-	
+//Função que dado um código do tipo N e um mês, o insere na árvore correspondente
+int insereN(char* code, int mes, Facturacao f){
+	int r = 0;
+	if(mes < 12 || mes > 1){
+		insert_tree(faturacao->tipo[mes][0], num(code,1));
+		f->sizeMes[mes]++;
+		f->sizeN++;
+		f->tipo[mes][0]->valor[1]++;
+	}else r = 1;
+
+	return r;
 }
 
-int insere_N(char* code, int mes, Facturacao f)
-{
+//Função que dado um código do tipo P e um mês, o insere na árvore correspondente
+int insereP(char* code, int mes, Facturacao f){
 	int r = 0;
-	insert_tree(faturacao->tipo[mes][0], num(code,1))
+	if(mes < 12 || mes > 1){
+		insert_tree(faturacao->tipo[mes][1], num(code,1));
+		f->sizeMes[mes]++;
+		f->sizeP++;
+	}else r = 1;
 
 
 	return r;
 }
 
-int insere_P(char* code, int mes, Facturacao f)
-{
+//Função que dado um código não vendido (NULL) e um mês, o insere na árvore correspondente
+int insereNull(char* code, int mes, Facturacao f){
 	int r = 0;
-	insert_tree(faturacao->tipo[mes][1], num(code,1))
-
+	if(mes < 12 || mes > 1){
+		insert_tree(faturacao->tipo[mes][2], num(code,1));
+		f->sizeMes[mes]++;
+		f->sizeNull++;
+	}else r = 1;
 
 	return r;
 }
 
-int insere_Null(char* code, int mes, Facturacao f)
-{
-	int r = 0;
-	insert_tree(faturacao->tipo[mes][2], num(code,1))
-
-	return r;
-}
-
-
-void destroyFac(Faturacao f)
-{
-	free(f);
-}
 
 //determinar tipo de produto N ou P ou NULL
-int typeNPNULL(char* code, Faturacao f)
-{
+int typeNPNULL(char* code, Faturacao f){
+
+
 
 }
 
 //determinar nº total de vendas tipo N por mes
-int totalN()
-{
-
+int totalN(int mes, Faturacao f){
+	int v = f->sizeMes[mes];
+	return v;
 }
 
 //determinar a faturacao de vendas tipo N mes
@@ -83,7 +86,16 @@ int totalNULL()
 
 }
 
+void create_faturacao()
+{
+	
+}
 
+//Função que destrói uma estrutura do tipo Faturacao
+void destroyFac(Faturacao f){
+
+	free(f);
+}
 
 
 /*

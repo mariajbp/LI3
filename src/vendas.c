@@ -31,8 +31,9 @@ int toktok(char * linha, char** tokens){
 int validaVenda(char* linha, Tree produtos[26][26][151], Tree clientes[26][307]){
 	int r = 0, i = 0;
 	char** tokens = (char**)malloc(7*sizeof(char*));
-
+			printf("\tEntrei na validaVenda\n");
 	i = toktok(linha, tokens);
+			printf("Começar a validar\n");
 	assert(i == 8);
 	if(i == 8){														// se tokens tiver 7 posicoes, estas devem ser testadas
 		if( search_P(produtos, tokens[0]) ){	
@@ -58,8 +59,8 @@ int validaVenda(char* linha, Tree produtos[26][26][151], Tree clientes[26][307])
 int loadstruct_Vendas( Venda* estrutura, char* path, Tree produtos[26][26][151], Tree clientes[26][307]){
 	char linha[32];
 	int i = 0;
-	char** tokens = (char**)malloc(7*sizeof(char*));
-	toktok(linha,tokens);
+	//char** tokens = (char**)malloc(7*sizeof(char*));
+	//toktok(linha,tokens);
 	FILE* file = fopen(path , "r");
 	
 	if(file == NULL){
@@ -69,7 +70,7 @@ int loadstruct_Vendas( Venda* estrutura, char* path, Tree produtos[26][26][151],
 
 	while( fgets(linha, 32, file) ){
 		if(validaVenda(linha, produtos, clientes)){printf("entrou\n");
-			createVenda(tokens);
+			//createVenda(tokens);
 			i++;
 		}
 	}
