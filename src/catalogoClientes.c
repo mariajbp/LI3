@@ -128,13 +128,12 @@ void destroyCCL(Tree cat_Clientes[26][307]){
 }
 
 //Função que inicializa as estruturas, escreve na posição 0 e 1 do array
-void init_Clientes(int* num){
-	Tree tClientes[26][307];
+void init_Clientes(int* num, Tree clientes[26][307]){
 
 	for (int i = 0; i < 26; i++)
 		for (int j = 0; j < 307; j++)
-			tClientes[i][j] = malloc(sizeof(Tree));
+			clientes[i][j] = malloc(sizeof(Tree));
 
-	num[0] = loadHash_Clientes(tClientes,"../Clientes.txt");
-	num[1] = wrFileC(tClientes, "../ClientesVálidos.txt");
+	num[0] = loadHash_Clientes(clientes,"../Clientes.txt");
+	num[1] = wrFileC(clientes, "../ClientesVálidos.txt");
 }

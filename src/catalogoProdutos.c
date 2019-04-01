@@ -129,14 +129,13 @@ void destroyCP(Tree cat_Produtos[26][26][151]){
 }
 
 //Função que inicializa as estruturas, escreve na posição 2 e 3 do array
-void init_Produtos(int* num){
-	Tree tProdutos[26][26][151];
+void init_Produtos(int* num, Tree produtos[26][26][151]){
 
 	for (int i = 0; i < 26; i++)
 		for (int j = 0; j < 26; j++)
 			for(int k = 0; k < 151; k++)
-				tProdutos[i][j][k] = malloc(sizeof(Tree));
+				produtos[i][j][k] = malloc(sizeof(Tree));
 	
-	num[2] = loadHash_Produtos(tProdutos,"../Produtos.txt");
-	num[3] = wrFileP(tProdutos, "../ProdutosVálidos.txt");
+	num[2] = loadHash_Produtos(produtos,"../Produtos.txt");
+	num[3] = wrFileP(produtos, "../ProdutosVálidos.txt");
 }
