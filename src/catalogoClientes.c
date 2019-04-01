@@ -33,7 +33,7 @@ void insert_Cliente(Tree clientes[26][307], char id[]){
 	int nID = num(id,1);
 	hF_Clientes(index, id);
 
-	insert_tree(clientes[index[0]][index[1]] , nID);
+	insert_tree(clientes[index[0]][index[1]] , nID, NULL);
 }
 
 // Função que, aplicando a Tree funtion, verifica se uma posição da Treetable existe

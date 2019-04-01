@@ -29,11 +29,18 @@ Tree dir(Tree t);
 int valor(Tree t);
 
 /**
+ * Função que devolve a string de uma arvore
+ * @param O QUE RECEBE
+ * @param O QUE RETORNA
+ */
+char* code(Tree t);
+
+/**
  * Função que escreve os dados válidos num ficheiro (Clientes)
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-Tree insert_tree(Tree nodo, int val);
+Tree insert_tree(Tree nodo, int val, char* codigo);
 
 /**
  * Função que escreve os dados válidos num ficheiro (Clientes)
@@ -41,6 +48,13 @@ Tree insert_tree(Tree nodo, int val);
  * @param O QUE RETORNA
  */
 int search_tree(Tree arvore, int id);
+
+/**
+ * Função que procura um elemento numa arvore binaria 
+ * @param O QUE RECEBE
+ * @param O QUE RETORNA
+ */
+int search_treeCode(Tree arvore, char* id);
 
 /**
  * Função que transforma uma substring num numero

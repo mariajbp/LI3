@@ -34,7 +34,7 @@ void insert_Produto(Tree produtos[26][26][151], char id[]){
 	int nID = num(id,2);
 	hF_Produtos(index, id);
 
-	insert_tree(produtos[index[0]][index[1]][index[2]] , nID);
+	insert_tree(produtos[index[0]][index[1]][index[2]] , nID, NULL);
 }
 
 // Função que, aplicando a Tree funtion, verifica se uma posição da Treetable existe
