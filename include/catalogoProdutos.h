@@ -60,6 +60,6 @@ int create_produtos(Tree cat_Produtos[26][26][151], char* path);
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-void init_Produtos(int* num);
+void init_Produtos(int* num, Tree produtos[26][26][151]);
 
 #endif

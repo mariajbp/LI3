@@ -60,6 +60,6 @@ int create_clientes(Tree cat_Clientes[26][307], char* path);
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-void init_Clientes(int* num);
+void init_Clientes(int* num, Tree clientes[26][307]);
 
 #endif

@@ -3,7 +3,9 @@
 
 #include <stdlib.h>
 #include <string.h>
-
+#include "CatalogoProdutos.h"
+#include "CatalogoClientes.h"
+#include "tree.h"
 
 typedef struct venda* Venda;
 
@@ -19,14 +21,14 @@ int toktok(char * linha, char** tokens);
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-int validaVenda(char* linha, Tree produtos[27][27][151], Tree clientes[27][307]);
+int validaVenda(char* linha, Tree produtos[26][26][151], Tree clientes[26][307]);
 
 /**
  * O QUE FAZ
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-int loadstruct_Vendas( Venda* estrutura, char* path, Tree produtos[27][27][151], Tree clientes[27][307]);
+int loadstruct_Vendas( Venda* estrutura, char* path, Tree produtos[26][26][151], Tree clientes[26][307]);
 
 /**
  * O QUE FAZ
@@ -40,7 +42,7 @@ int wrFileV (Venda* table, char* path);
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-void init_Vendas(int* num);
+void init_Vendas(int* num, Tree tProdutos[26][26][151], Tree tClientes[26][307]);
 
 /**
  * O QUE FAZ
