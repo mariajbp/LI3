@@ -2,8 +2,7 @@
 
 struct node{
     int valor[2];  //valor[0] = valor, valor[1] = número de vendas (para FATURAÇÃO)
-    struct node *esq;
-    struct node *dir;
+    struct node *esq, *dir;
     int altura;
 };
 

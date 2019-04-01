@@ -23,7 +23,7 @@ void hF_Clientes(int index[], char value[]){
 	c = abs(c % 307);
 
 	index[0] = value[0] - 65;
-	//printf("\tHASH__%c%d\n", value[0],c % 307);
+	//printf("\tHASH__%c%d\n", value[0],c );
 	index[1] = c;
 }
 
@@ -43,7 +43,6 @@ int search_C(Tree clientes[26][307], char id[]){
 	hF_Clientes(index,id);
 
 	r = search_tree(clientes[index[0]][index[1]], nID);
-	
 	return r;
 }
 
@@ -55,7 +54,7 @@ int fprint_clientes(FILE* fp, int l1, Tree arvore){
 	if(arvore){
 		num += fprint_clientes(fp,l1,esq(arvore));
 		if(valor(arvore)){
-			fprintf(fp,"%c%d\r\n", pL, valor(arvore));
+			fprintf(fp,"%c%d\r\n", pL,valor(arvore));
 			num++;
 		}
 		num += fprint_clientes(fp,l1,dir(arvore));

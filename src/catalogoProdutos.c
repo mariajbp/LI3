@@ -24,7 +24,7 @@ void hF_Produtos(int index[], char value[]){
 
 	index[0] = value[0] - 65;
 	index[1] = value[1] - 65;
-	//printf("\tHASH__%c%c%d\n", value[0], value[1], c % 151);
+	//printf("\tHASH__%c%c%d\n", value[0], value[1], c );
 	index[2] = c;
 }
 
@@ -56,7 +56,7 @@ int fprint_produtos(FILE* fp, int l1, int l2, Tree arvore){
 	if(arvore){
 		num += fprint_produtos(fp,l1,l2,esq(arvore));
 		if(valor(arvore)){
-			fprintf(fp,"%c%c%d\r\n", pL, sL, valor(arvore));
+			fprintf(fp,"%c%c%d\r\n", pL, sL,valor(arvore));
 			num++;
 		}
 		num += fprint_produtos(fp,l1,l2,dir(arvore));
@@ -66,7 +66,7 @@ int fprint_produtos(FILE* fp, int l1, int l2, Tree arvore){
 }
 
 int loadHash_Produtos(Tree	produtos[26][26][151], char* path){
-	char linha[6];
+	char linha[7];
 	int i = 0;
 	FILE* file = fopen(path , "r");
 	
@@ -74,7 +74,7 @@ int loadHash_Produtos(Tree	produtos[26][26][151], char* path){
     	printf("Error! You tried to read an empty file.");   
     	return 0;             
     }
-	while( fgets(linha, 6, file) ){
+	while( fgets(linha, 7, file) ){
 		if(validaProduto(linha)){
 			insert_Produto(produtos,linha);
 			i++;

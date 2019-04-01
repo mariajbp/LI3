@@ -7,7 +7,7 @@
 #include "CatalogoClientes.h"
 #include "tree.h"
 
-typedef struct venda* Venda;
+typedef struct tree_vendas* Tree_Vendas;
 
 /**
  * Tokenize, devolve o i e preenche o array tokens
@@ -28,85 +28,84 @@ int validaVenda(char* linha, Tree produtos[26][26][151], Tree clientes[26][307])
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-int loadstruct_Vendas( Venda* estrutura, char* path, Tree produtos[26][26][151], Tree clientes[26][307]);
+int loadstruct_Vendas(Tree_Vendas estrutura, char* path, Tree produtos[26][26][151], Tree clientes[26][307]);
 
 /**
  * O QUE FAZ
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-int wrFileV (Venda* table, char* path);
+int wrFileV (Tree_Vendas table, char* path);
 
 /**
  * O QUE FAZ
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-void init_Vendas(int* num, Tree tProdutos[26][26][151], Tree tClientes[26][307]);
+void init_Vendas(Tree_Vendas vendas, int* num, Tree tProdutos[26][26][151], Tree tClientes[26][307]);
 
 /**
  * O QUE FAZ
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-Venda createVenda(char** tokens);
+Tree_Vendas createVenda(char** tokens);
 
 /**
  * O QUE FAZ
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-char* getPcode(Venda v);
+char* getPcode(Tree_Vendas v);
 
 /**
  * O QUE FAZ
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-double getPrice(Venda v);
+double getPrice(Tree_Vendas v);
 
 /**
  * O QUE FAZ
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-int getUnits(Venda v);
+int getUnits(Tree_Vendas v);
 
 /**
  * O QUE FAZ
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-char* getNP(Venda v);
+char* getNP(Tree_Vendas v);
 
 /**
  * O QUE FAZ
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-char* getCLcode(Venda v);
+char* getCLcode(Tree_Vendas v);
 
 /**
  * O QUE FAZ
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-int getMonth(Venda v);
+int getMonth(Tree_Vendas v);
 
 /**
  * O QUE FAZ
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-int getFilial(Venda v);
+int getFilial(Tree_Vendas v);
 
 /**
  * O QUE FAZ
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-void destroyVenda(Venda v);
-
+void destroyVenda(Tree_Vendas v);
 
 
 #endif
