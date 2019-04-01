@@ -1,4 +1,4 @@
-#include "../include/catalogoClientes.h"
+#include "../include/catalogo_clientes.h"
 
 
 //função que valida um id de um cliente
@@ -28,7 +28,7 @@ void hF_Clientes(int index[], char value[]){
 }
 
 // Função que insere um index, de tipologia Cliente, numa estrutura de dados
-void insert_Cliente(Tree clientes[26][307], char id[]){
+void insert_Cliente(Tree clientes[27][307], char id[]){
 	int index[2]; index[0] = 0, index[1] = 0;
 	int nID = num(id,1);
 	hF_Clientes(index, id);
@@ -37,7 +37,7 @@ void insert_Cliente(Tree clientes[26][307], char id[]){
 }
 
 // Função que, aplicando a Tree funtion, verifica se uma posição da Treetable existe
-int search_C(Tree clientes[26][307], char id[]){
+int search_C(Tree clientes[27][307], char id[]){
 	int r = 0, nID = num(id,1);
 	int index[2]; index[0] = 0, index[1] = 0;
 	hF_Clientes(index,id);
@@ -55,7 +55,7 @@ int fprint_clientes(FILE* fp, int l1, Tree arvore){
 	if(arvore){
 		num += fprint_clientes(fp,l1,arvore->esq);
 		if(arvore->valor){
-			fprintf(fp,"%c%d\r\n", pL, arvore->valor);
+			fprintf(fp,"%c%d\n", pL, arvore->valor);
 			num++;
 		}
 		num += fprint_clientes(fp,l1,arvore->dir);
@@ -72,14 +72,17 @@ int loadHash_Clientes(Tree clientes[26][307], char* path, int max){
 	
 	if(file == NULL){
       	printf("Error! You tried to read an empty file.");   
-     	return 0;             
+     	exit(1);             
     }
 	while( fgets(linha, 6, file) ){
+		//printf("%s\n",linha );
 		if(validaCliente(linha)){
 			insert_Cliente(clientes,linha);
 			i++;
 		}
 	}
+	
+	fclose(file);	
 
 	return i;
 }
@@ -95,38 +98,44 @@ int  wrFileC (Tree clientes[26][307], char* path){
 	}
 	
 	for(int letra = 0; letra < 26; letra++)
-		for(int h = 0; h < 307; h++){
-			i = fprint_clientes(fp,letra,clientes[letra][h]);
-			r+=i;
-		}
-
-	fclose(fp);	
+		for(int h = 0; h < 307; h++)
+			if(clientes[letra][h]){
+				i = fprint_clientes(fp,letra,clientes[letra][h]);
+				r+=i;
+			}
 
 	return r;
 }
 
 
-int create_clientes(Tree cat_Clientes[26][307], char* path){
+int create_catcl(Tree cat_Clientes[26][307], char* path){
 	char linha[6];
 	int i = 0;
 	FILE* file = fopen(path , "r");
 	
 	if(file == NULL){
     	printf("Error! You tried to read an empty file.");   
-    	return 0;             
+    	exit(1);             
     }
 
 	while( fgets(linha, 6, file) ){
-		insert_Cliente(cat_Clientes,linha);
-		i++;
-	}
+			insert_Cliente(cat_Clientes,linha);
+			i++;
+		}
+	
+	fclose(file);	
 
 	return i;
 }
 
+
+
+//GETS 
+
 void destroyCCL(Tree cat_Clientes[26][307]){
 	free(cat_Clientes);
 }
+
 
 //Função que inicializa as estruturas, escreve na posição 0 e 1 do array
 void init_Clientes(int* num){

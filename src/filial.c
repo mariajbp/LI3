@@ -13,8 +13,29 @@ void destroyFilial(Filial f)
 	free(f);
 }
 
-//dado um mes apresentar o nº de prods vendidos q4
-//total faturado de um certo produto q4
-//determinar prods que ninguem comrpou q4 e q6
-//determinar clientes que não compraram nada q6
+
+//dado um produto saber quais os clientes que o compraram
+char* compradoPor(char* code, Filial f)
+{
+
+}
+
+//dado um cliente saber quantos units comprou de um produto 
+int unitsCompradasCL(char* cliente, char* produto, filial f)
+{
+
+}
+
+//dado um cliente procurar todos os prods que comprou 
+char* darnomeaestafunçao(char* code, Filial f)
+{
+
+}
+
+//query 5: lista de clientes que compraram em todas as filiais comparar not sure how to do it
+
+//query 6: nº de clientes que não fizeram compras
+
+
+
 
