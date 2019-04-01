@@ -18,14 +18,48 @@ void print_menu(){
 	printf("\n\t-> Tarefa_12: Dado um cliente, determinar quais os 3 produtos em que gastou mais dinheiro durante o ano.\n\n");
 }
 
-int escolhe_Tarefa(){
+int qual_ficheiro(){
+	int r;
+
+	printf("\n\tQue ficheiro quer ler? [Clientes.txt(1), Produtos.txt (2), Vendas_1M.txt (3)]\n");
+	scanf("%d", &r);
+	
+
+	if(r > 3 || r < 1) printf("\n\tO programa falhou a ler um inteiro de [1...3]\n");
+	
+
+	return r;
+}
+
+void Tarefa_1(int* num, Tree tProdutos[26][26][151], Tree tClientes[26][307]){
+	int r = qual_ficheiro();
+
+	if(r == 1){
+		init_Clientes(num,tClientes);
+		printf("\n\tClientes lidos__%d\n\tClientes escritos__%d\n", num[0],num[1]);
+	}
+	
+	if(r == 2){
+		init_Produtos(num,tProdutos);
+		printf("\n\tProdutos lidos__%d\n\tProdutos escritos__%d\n", num[2],num[3]);
+	}
+
+	if (r == 3){
+		init_Clientes(num,tClientes);
+		init_Produtos(num,tProdutos);
+		init_Vendas(num,tProdutos,tClientes);
+		printf("\n\tVendas lidas__%d\n\tVendas escritas__%d\n", num[4],num[5]);
+	}
+}
+
+int escolhe_Tarefa(int* num, Tree tProdutos[26][26][151], Tree tClientes[26][307]){
 	int tarefa = 0, r = 0;
 	printf("Escolha a tarefa pretendida a realizar [1...12] (para terminar o programa digite 0):   ");
 	if(scanf("%d", &tarefa)){
 
 		if(tarefa > 12 || tarefa < 0){
 			printf("\n\n\tPara executar uma tarefa é necessário inserir um numero de [1...12]\n\n\tPara terminar o programa digite 0.\n\n");
-			escolhe_Tarefa();
+			escolhe_Tarefa(num, tProdutos, tClientes);
 		}
 
 		if(!tarefa){
@@ -35,7 +69,7 @@ int escolhe_Tarefa(){
 
 		switch(tarefa){
 			case 1:
-				break;
+				Tarefa_1(num,tProdutos,tClientes); break;
 			case 2:
 				break;
 			case 3:
@@ -62,7 +96,7 @@ int escolhe_Tarefa(){
 	}
 	else{
 		printf("O programa falhou a ler um inteiro e vai agora terminar.\n");
-		return -1;
+		escolhe_Tarefa(num, tProdutos, tClientes);
 	}
 
 	return r;
@@ -70,29 +104,14 @@ int escolhe_Tarefa(){
 
 //Main do projeto
 int main(){
-	//int num[6];
-	//Tree tProdutos[26][26][151], tClientes[26][307];
-
-	//init_Clientes(num,tClientes);
-	//init_Produtos(num,tProdutos);
-	//init_Vendas(num,tProdutos,tClientes);
+	int num[6];
+	
+	Tree tProdutos[26][26][151], tClientes[26][307];
 
 	print_menu();
 
-	if(escolhe_Tarefa() == -1)
+	if(escolhe_Tarefa(num,tProdutos,tClientes) == -1)
 		return 0;
-
-	
-	//printf("\n\tClientes lidos__%d\n\tClientes escritos__%d\n", num[0],num[1]);
-
-	//printf("\n\tProdutos lidos__%d\n\tProdutos escritos__%d\n", num[2],num[3]);
-
-	//printf("\n\tVendas lidas__%d\n\tVendas escritas__%d\n", num[4],num[5]);
-
-
-
-
-	//char venda1[] = {"ZXD1419 362.44 157 P D2212 4 3"};
 
 	/*Na querie 1 será necessário dar free das hash tables
 	  e temos de ter em consideração que não podemos por
