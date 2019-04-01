@@ -39,7 +39,7 @@ int fprint_clientes(FILE* fp, int l1, Tree arvore);
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-int loadHash_Clientes(Tree clientes[26][307], char* path, int max);
+int loadHash_Clientes(Tree clientes[26][307], char* path);
 
 /**
  * Função que escreve os dados válidos num ficheiro (Clientes)

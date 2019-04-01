@@ -5,12 +5,28 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct node{
-    int valor;
-    struct node *esq;
-    struct node *dir;
-    int altura;
-}*Tree;
+typedef struct node* Tree;
+
+/**
+ * Função que devolve o lado esquerdo de uma arvore
+ * @param O QUE RECEBE
+ * @param O QUE RETORNA
+ */
+Tree esq(Tree t);
+
+/**
+ * Função que devolve o lado direito de uma arvore
+ * @param O QUE RECEBE
+ * @param O QUE RETORNA
+ */
+Tree dir(Tree t);
+
+/**
+ * Função que devolve o valor de uma arvore
+ * @param O QUE RECEBE
+ * @param O QUE RETORNA
+ */
+int valor(Tree t);
 
 /**
  * Função que escreve os dados válidos num ficheiro (Clientes)

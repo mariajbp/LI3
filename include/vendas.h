@@ -8,6 +8,41 @@
 typedef struct venda* Venda;
 
 /**
+ * Tokenize, devolve o i e preenche o array tokens
+ * @param O QUE RECEBE
+ * @param O QUE RETORNA
+ */
+int toktok(char * linha, char** tokens);
+
+/**
+ * Função que valida um id de uma venda
+ * @param O QUE RECEBE
+ * @param O QUE RETORNA
+ */
+int validaVenda(char* linha, Tree produtos[27][27][151], Tree clientes[27][307]);
+
+/**
+ * O QUE FAZ
+ * @param O QUE RECEBE
+ * @param O QUE RETORNA
+ */
+int loadstruct_Vendas( Venda* estrutura, char* path, Tree produtos[27][27][151], Tree clientes[27][307]);
+
+/**
+ * O QUE FAZ
+ * @param O QUE RECEBE
+ * @param O QUE RETORNA
+ */
+int wrFileV (Venda* table, char* path);
+
+/**
+ * O QUE FAZ
+ * @param O QUE RECEBE
+ * @param O QUE RETORNA
+ */
+void init_Vendas(int* num);
+
+/**
  * O QUE FAZ
  * @param O QUE RECEBE
  * @param O QUE RETORNA

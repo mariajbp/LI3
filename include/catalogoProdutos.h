@@ -39,7 +39,7 @@ int fprint_produtos(FILE* fp, int l1, int l2, Tree arvore);
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-int loadHash_Produtos(Tree produtos[26][26][151], char* path, int max);
+int loadHash_Produtos(Tree produtos[26][26][151], char* path);
 
 /**
  * Função que escreve os dados válidos num ficheiro (Clientes)
