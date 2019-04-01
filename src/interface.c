@@ -6,8 +6,9 @@
 
 //query 2
 
-query2(char letra, CAT_PROD produto)
+query2(char* letra, Tree cat_prod)
 {
+	
 	//letra é maiuscula 
 	//apresentar lista e navegar pag a pag
 }
