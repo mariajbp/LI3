@@ -23,7 +23,7 @@ void hF_Clientes(int index[], char value[]){
 	c = abs(c % 307);
 
 	index[0] = value[0] - 65;
-	printf("\tHASH__%c%d\n", value[0],c % 307);
+	//printf("\tHASH__%c%d\n", value[0],c % 307);
 	index[1] = c;
 }
 
