@@ -2,8 +2,7 @@
 
 struct node{
     int valor;
-    struct node *esq;
-    struct node *dir;
+    struct node *esq, *dir;
     int altura;
 };
 

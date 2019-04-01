@@ -31,7 +31,7 @@ int qual_ficheiro(){
 	return r;
 }
 
-void Tarefa_1(int* num, Tree tProdutos[26][26][151], Tree tClientes[26][307]){
+void Tarefa_1(Tree_Vendas vendas,int* num, Tree tProdutos[26][26][151], Tree tClientes[26][307]){
 	int r = qual_ficheiro();
 
 	if(r == 1){
@@ -47,19 +47,19 @@ void Tarefa_1(int* num, Tree tProdutos[26][26][151], Tree tClientes[26][307]){
 	if (r == 3){
 		init_Clientes(num,tClientes);
 		init_Produtos(num,tProdutos);
-		init_Vendas(num,tProdutos,tClientes);
+		init_Vendas(vendas,num,tProdutos,tClientes);
 		printf("\n\tVendas lidas__%d\n\tVendas escritas__%d\n", num[4],num[5]);
 	}
 }
 
-int escolhe_Tarefa(int* num, Tree tProdutos[26][26][151], Tree tClientes[26][307]){
+int escolhe_Tarefa(int* num, Tree_Vendas vendas, Tree tProdutos[26][26][151], Tree tClientes[26][307]){
 	int tarefa = 0, r = 0;
 	printf("Escolha a tarefa pretendida a realizar [1...12] (para terminar o programa digite 0):   ");
 	if(scanf("%d", &tarefa)){
 
 		if(tarefa > 12 || tarefa < 0){
 			printf("\n\n\tPara executar uma tarefa é necessário inserir um numero de [1...12]\n\n\tPara terminar o programa digite 0.\n\n");
-			escolhe_Tarefa(num, tProdutos, tClientes);
+			escolhe_Tarefa(num, vendas, tProdutos, tClientes);
 		}
 
 		if(!tarefa){
@@ -69,7 +69,7 @@ int escolhe_Tarefa(int* num, Tree tProdutos[26][26][151], Tree tClientes[26][307
 
 		switch(tarefa){
 			case 1:
-				Tarefa_1(num,tProdutos,tClientes); break;
+				Tarefa_1(vendas,num,tProdutos,tClientes); break;
 			case 2:
 				break;
 			case 3:
@@ -96,7 +96,7 @@ int escolhe_Tarefa(int* num, Tree tProdutos[26][26][151], Tree tClientes[26][307
 	}
 	else{
 		printf("O programa falhou a ler um inteiro e vai agora terminar.\n");
-		escolhe_Tarefa(num, tProdutos, tClientes);
+		escolhe_Tarefa(num, vendas, tProdutos, tClientes);
 	}
 
 	return r;
@@ -107,24 +107,22 @@ int escolhe_Tarefa(int* num, Tree tProdutos[26][26][151], Tree tClientes[26][307
 
 //Main do projeto
 int main(){
-	//int num[6];
-	
+	int num[6];
+	Tree_Vendas vendas;
 	Tree tProdutos[26][26][151], tClientes[26][307];
-	char p[] = "AA134", c[] = "A3255";
-	char linha[] = "KR1583 77.72 128 P L4891 2 1";
-	char linha2[] = "AA134 77.72 128 N A3255 2 1";
 
-	insert_Produto(tProdutos, p);
-	insert_Cliente(tClientes, c);
+	init_Produtos(num,tProdutos);
+	init_Clientes(num,tClientes);
 
-	int a = validaVenda(linha,tProdutos,tClientes);
-	int b = validaVenda(linha2,tProdutos,tClientes);
+	printf("\n\tProdutos lidos__%d\n\tProdutos escritos__%d\n", num[2],num[3]);
+	printf("\n\tClientes lidos__%d\n\tClientes escritos__%d\n", num[0],num[1]);
 
-	printf("%d = 0, %d = 1\n",a,b );
-
+	init_Vendas(vendas, num,tProdutos,tClientes);
+	printf("\n\tVendas lidas__%d\n\tVendas escritas__%d\n", num[4],num[5]);
+	
 	//print_menu();
 
-	//if(escolhe_Tarefa(num,tProdutos,tClientes) == -1)
+	//if(escolhe_Tarefa(num, vendas, tProdutos,tClientes) == -1)
 	//	return 0;
 
 	/*Na querie 1 será necessário dar free das hash tables
