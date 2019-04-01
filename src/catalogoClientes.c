@@ -23,7 +23,7 @@ void hF_Clientes(int index[], char value[]){
 	c = abs(c % 307);
 
 	index[0] = value[0] - 65;
-	printf("\tHASH__%c%d\n", value[0],c % 307);
+	//printf("\tHASH__%c%d\n", value[0],c % 307);
 	index[1] = c;
 }
 
@@ -53,19 +53,19 @@ int fprint_clientes(FILE* fp, int l1, Tree arvore){
 	int num = 0;
 
 	if(arvore){
-		num += fprint_clientes(fp,l1,arvore->esq);
-		if(arvore->valor){
-			fprintf(fp,"%c%d\r\n", pL, arvore->valor);
+		num += fprint_clientes(fp,l1,esq(arvore));
+		if(valor(arvore)){
+			fprintf(fp,"%c%d\r\n", pL, valor(arvore));
 			num++;
 		}
-		num += fprint_clientes(fp,l1,arvore->dir);
+		num += fprint_clientes(fp,l1,dir(arvore));
 	}
 
 	return num;  // retorna o num de elementos que printou
 }
 
 //Faz load de um ficheiro no array RETORNA QUANTO ESCREVEU NO ARRAY (para a função wrfile)
-int loadHash_Clientes(Tree clientes[26][307], char* path, int max){
+int loadHash_Clientes(Tree clientes[26][307], char* path){
 	char linha[7];
 	int i = 0;
 	FILE* file = fopen(path , "r");
@@ -129,13 +129,12 @@ void destroyCCL(Tree cat_Clientes[26][307]){
 
 //Função que inicializa as estruturas, escreve na posição 0 e 1 do array
 void init_Clientes(int* num){
-	int max = 0;
-
 	Tree tClientes[26][307];
+
 	for (int i = 0; i < 26; i++)
 		for (int j = 0; j < 307; j++)
 			tClientes[i][j] = malloc(sizeof(Tree));
 
-	num[0] = loadHash_Clientes(tClientes,"../Clientes.txt", max);
+	num[0] = loadHash_Clientes(tClientes,"../Clientes.txt");
 	num[1] = wrFileC(tClientes, "../ClientesVálidos.txt");
 }

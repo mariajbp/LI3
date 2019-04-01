@@ -1,5 +1,6 @@
 #include "../include/catalogoProdutos.h"
 #include "../include/catalogoClientes.h"
+#include "../include/vendas.h"
 
 //Main do projeto
 int main(){

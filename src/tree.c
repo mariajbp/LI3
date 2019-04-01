@@ -1,8 +1,11 @@
- // retorna o num de elementos que printou#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "../include/tree.h"
 
+struct node{
+    int valor;
+    struct node *esq;
+    struct node *dir;
+    int altura;
+};
 
 // Função que imprime uma arvore por ordem dos elementos
 int print_tree(Tree arvore){
@@ -14,6 +17,21 @@ int print_tree(Tree arvore){
 	}
 
 	return num;
+}
+
+//Função que devolve o lado esquerdo de uma arvore
+Tree esq(Tree t){
+    return t->esq;
+}
+
+//Função que devolve o lado direito de uma arvore
+Tree dir(Tree t){
+    return t->dir;
+}
+
+//Função que devolve o valor de uma arvore
+int valor(Tree t){
+    return t->valor;
 }
 
 // Função que indica o maior de dois números
@@ -91,7 +109,7 @@ Tree insert_tree(Tree nodo, int val){
     else
     	if(val > nodo->valor) nodo->dir = insert_tree(nodo->dir, val);
     	else return nodo;
-
+        
     nodo->altura = 1 + max(altura(nodo->esq),altura(nodo->dir));
     balance = difBalance(nodo);
 

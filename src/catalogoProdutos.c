@@ -24,7 +24,7 @@ void hF_Produtos(int index[], char value[]){
 
 	index[0] = value[0] - 65;
 	index[1] = value[1] - 65;
-	//printf("\tHASH__%c%c%d\n", value[0], value[1], c % 307);
+	//printf("\tHASH__%c%c%d\n", value[0], value[1], c % 151);
 	index[2] = c;
 }
 
@@ -50,22 +50,22 @@ int search_P(Tree produtos[26][26][151], char id[]){
 
 // Função que imprime uma arvore por ordem dos elementos
 int fprint_produtos(FILE* fp, int l1, int l2, Tree arvore){
-	char pL = l1+'A', sL = l1+'A'; 
+	char pL = l1+'A', sL = l2+'A'; 
 	int num = 0;
 
 	if(arvore){
-		num += fprint_produtos(fp,l1,l2,arvore->esq);
-		if(arvore->valor){
-			fprintf(fp,"%c%c%d\r\n", pL, sL, arvore->valor);
+		num += fprint_produtos(fp,l1,l2,esq(arvore));
+		if(valor(arvore)){
+			fprintf(fp,"%c%c%d\r\n", pL, sL, valor(arvore));
 			num++;
 		}
-		num += fprint_produtos(fp,l1,l2,arvore->dir);
+		num += fprint_produtos(fp,l1,l2,dir(arvore));
 	}
 
 	return num; // retorna o num de elementos que printou
 }
 
-int loadHash_Produtos(Tree	produtos[26][26][151], char* path, int max){
+int loadHash_Produtos(Tree	produtos[26][26][151], char* path){
 	char linha[6];
 	int i = 0;
 	FILE* file = fopen(path , "r");
@@ -130,14 +130,13 @@ void destroyCP(Tree cat_Produtos[26][26][151]){
 
 //Função que inicializa as estruturas, escreve na posição 2 e 3 do array
 void init_Produtos(int* num){
-	int max = 0;
-
 	Tree tProdutos[26][26][151];
+
 	for (int i = 0; i < 26; i++)
 		for (int j = 0; j < 26; j++)
 			for(int k = 0; k < 151; k++)
 				tProdutos[i][j][k] = malloc(sizeof(Tree));
 	
-	num[2] = loadHash_Produtos(tProdutos,"../Produtos.txt", max);
+	num[2] = loadHash_Produtos(tProdutos,"../Produtos.txt");
 	num[3] = wrFileP(tProdutos, "../ProdutosVálidos.txt");
 }

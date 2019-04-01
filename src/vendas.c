@@ -11,6 +11,88 @@ struct venda{
   int filial;
  };
 
+//Tokenize, devolve o i e preenche o array tokens
+int toktok(char * linha, char** tokens){
+	char* tok = NULL;
+	tok = strtok(linha, " ");
+	int i = 1;
+
+    while(tok){															// verificar a quantidade de sub strings na linha
+    	if(i <= 7)
+    		tokens[i] = strdup(tok);
+        tok = strtok(NULL," ");
+        i++;
+    } 
+    return i;
+}
+
+//função que valida um id de uma venda
+int validaVenda(char* linha, Tree produtos[27][27][151], Tree clientes[27][307]){
+	int r = 0, i = 0;
+	char** tokens = (char**)malloc(7*sizeof(char*));
+
+	i = toktok(linha, tokens);
+
+	if(i == 7)																// se tokens tiver 7 posicoes, estas devem ser testadas
+		if( search_P(produtos, tokens[0]) )
+			if( atof(tokens[1]) <= 999.99 && atof(tokens[1]) >= 0.0 )		// atof(str) converte a str para float, pertence a string.h
+				if( atoi(tokens[2]) <= 200 && atoi(tokens[2]) >= 1 )		// atoi(str) converte a str para int, pertence a string.h
+					if( strcmp(tokens[3], "N") || strcmp(tokens[3], "P") )
+						if( search_C(clientes, tokens[4]) )
+							if( atoi(tokens[5]) <= 12 && atoi(tokens[5]) >= 1 )
+								if( atoi(tokens[6]) <= 3 && atoi(tokens[6]) >= 1 ) // validar a filial
+									r = 1;
+	return r;
+}
+
+//
+int loadstruct_Vendas( Venda* estrutura, char* path, Tree produtos[27][27][151], Tree clientes[27][307]){
+	char linha[32];
+	int i = 0;
+	char** tokens = (char**)malloc(7*sizeof(char*));
+	toktok(linha,tokens);
+	FILE* file = fopen(path , "r");
+	
+	if(file == NULL){
+      	printf("Error! You tried to read an empty file.");   
+     	exit(1);             
+    }
+
+	while( fgets(linha, 32, file) ){
+		if(validaVenda(linha, produtos, clientes)){printf("entrou\n");
+			createVenda(tokens);
+			i++;
+		}
+	}
+	
+	fclose(file);	
+
+	return i;
+}
+
+//
+int wrFileV (Venda* table, char* path){
+	int r = 0;
+	FILE* fp = fopen(path, "w+");
+	
+	if(fp == NULL){
+		printf("Error! Couldn't find file point to write Vendas");
+		return 0;
+	}
+
+	// print struct vendas
+
+	return r;
+}
+
+//
+void init_Vendas(int* num){
+	Venda* sVendas = (Venda*) malloc(sizeof(Venda));
+
+	num[4] = loadstruct_Vendas(sVendas,"../Vendas_1M.txt", tProdutos, tClientes);
+	num[5] = wrFileV(sVendas, "../VendasVálidas.txt");
+}
+
 //dado o array com tokens, constroi uma Venda
 Venda createVenda(char** tokens){
  	Venda v = (Venda) malloc(sizeof (Venda) );
