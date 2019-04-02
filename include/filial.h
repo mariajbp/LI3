@@ -4,6 +4,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct filial* FILIAL;
+typedef struct nodeF* NodeF;
+
+typedef struct treeF* Treef;
+
+typedef struct filial* Filial;
 
 #endif
