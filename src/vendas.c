@@ -34,7 +34,7 @@ int toktok(char * linha, char** tokens){
 }
 
 //função que valida um id de uma venda
-int validaVenda(char* linha, Tree produtos[26][26][151], Tree clientes[26][307]){
+int validaVenda(char* linha, Tree produtos[26][26][151], Tree clientes[26][599]){
 	int r = 0, i = 0;
 	char* tokens[7];
 	
@@ -55,7 +55,7 @@ int validaVenda(char* linha, Tree produtos[26][26][151], Tree clientes[26][307])
 }
 
 //
-int loadstruct_Vendas( Tree_Vendas vendas, char* path, Tree produtos[26][26][151], Tree clientes[26][307]){
+int loadstruct_Vendas( Tree_Vendas vendas, char* path, Tree produtos[26][26][151], Tree clientes[26][599]){
 	char linha[32];
 	int i = 0;
 	char* tokens[7];
@@ -99,7 +99,7 @@ int wrFileV (Tree_Vendas vendas, char* path){
 }
 
 //
-void init_Vendas(Tree_Vendas vendas, int* num, Tree tProdutos[26][26][151], Tree tClientes[26][307]){
+void init_Vendas(Tree_Vendas vendas, int* num, Tree tProdutos[26][26][151], Tree tClientes[26][599]){
 	vendas = malloc(sizeof(Tree_Vendas));
 	
 	num[4] = loadstruct_Vendas(vendas,"../Vendas_1M.txt", tProdutos, tClientes);

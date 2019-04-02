@@ -4,7 +4,6 @@ struct node{
     int valor; 
     struct node *esq, *dir;
     int altura;
-    char* code;             //para a faturacao
 };
 
 // Função que imprime uma arvore por ordem dos elementos
@@ -14,7 +13,6 @@ int print_tree(Tree arvore){
 		num += print_tree(arvore->esq);
 		printf("%d\n", arvore->valor); num++;
 		num += print_tree(arvore->dir);
-        if(arvore->code) printf("%s\n", arvore->code);  //apenas se houver codigo
 	}
 
 	return num;
@@ -35,11 +33,6 @@ int valor(Tree t){
     return t->valor;
 }
 
-//Função que devolve a string de uma arvore
-char* code(Tree t){
-    return t->code;
-}
-
 // Função que indica o maior de dois números
 int max(int a, int b){ 
     return (a > b)? a : b;
@@ -51,14 +44,13 @@ int altura(Tree a){
 }
 
 // Função que cria um Nodo novo da arvore, ou até mesmo uma arvore nova, com um dado valor
-Tree create_nodo(int valor, char* codigo){
+Tree create_nodo(int valor){
     Tree nodo = (Tree) malloc(sizeof(struct node));
 
     nodo->valor = valor;
     nodo->esq = NULL;
     nodo->dir = NULL;
     nodo->altura = 1;
-    nodo->code = codigo;
     
     return nodo;
 }
@@ -105,17 +97,19 @@ Tree valorMinimo(Tree h){
 }
 
 // Função que recursivamente insere um valor numa AVL
-Tree insert_tree(Tree nodo, int val, char* codigo){
+Tree insert_tree(Tree nodo, int val){
 	int balance;
-    if(nodo == NULL) {
-    	return(create_nodo(val, codigo));
-    }
-    //printf("\thouve colisao\n\tvalor_%d\n\n", nodo->valor);
+    if(nodo == NULL)
+    	return(create_nodo(val));
 
-    if(val < nodo->valor) nodo->esq = insert_tree(nodo->esq, val, codigo);
-    else
-    	if(val > nodo->valor) nodo->dir = insert_tree(nodo->dir, val, codigo);
-    	else return nodo;
+    if(nodo->valor == 1){
+        nodo->valor = val;
+        return nodo;
+    }
+
+    if(val < nodo->valor) nodo->esq = insert_tree(nodo->esq, val);
+    else if(val > nodo->valor) nodo->dir = insert_tree(nodo->dir, val);
+    else return nodo;
         
     nodo->altura = 1 + max(altura(nodo->esq),altura(nodo->dir));
     balance = difBalance(nodo);
@@ -152,21 +146,6 @@ int search_tree(Tree arvore, int id){
 	}
 
 	return r;
-}
-
-// Função que procura um elemento numa arvore binaria
-int search_treeCode(Tree arvore, char* id){
-    int r;
-    if(arvore == NULL) r = 0;
-    else{
-        if(!(strcmp(id, arvore->code))) r = 1;
-        else{
-            if(id < arvore->code) r = search_treeCode(arvore->esq, id);
-            else r = search_treeCode(arvore->dir, id);
-        }
-    }
-
-    return r;
 }
 
 // Função que transforma uma substring num numero

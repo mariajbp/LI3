@@ -20,7 +20,7 @@ void hF_Clientes(int index[], char value[]){
 		s = value[i]; c+=s; c*=s;
 	}
 
-	c = abs(c % 307);
+	c = abs(c % 599);
 
 	index[0] = value[0] - 65;
 	//printf("\tHASH__%c%d\n", value[0],c );
@@ -28,16 +28,16 @@ void hF_Clientes(int index[], char value[]){
 }
 
 // Função que insere um index, de tipologia Cliente, numa estrutura de dados
-void insert_Cliente(Tree clientes[26][307], char id[]){
+void insert_Cliente(Tree clientes[26][599], char id[]){
 	int index[2]; index[0] = 0, index[1] = 0;
 	int nID = num(id,1);
 	hF_Clientes(index, id);
 
-	insert_tree(clientes[index[0]][index[1]] , nID, NULL);
+	insert_tree(clientes[index[0]][index[1]] , nID);
 }
 
-// Função que, aplicando a Tree funtion, verifica se uma posição da Treetable existe
-int search_C(Tree clientes[26][307], char id[]){
+// Função que, aplicando a Hash Funtion, verifica se uma posição da Treetable existe
+int search_C(Tree clientes[26][599], char id[]){
 	int r = 0, nID = num(id,1);
 	int index[2]; index[0] = 0, index[1] = 0;
 	hF_Clientes(index,id);
@@ -53,7 +53,7 @@ int fprint_clientes(FILE* fp, int l1, Tree arvore){
 
 	if(arvore){
 		num += fprint_clientes(fp,l1,esq(arvore));
-		if(valor(arvore)){
+		if(valor(arvore) > 1){
 			fprintf(fp,"%c%d\r\n", pL,valor(arvore));
 			num++;
 		}
@@ -64,7 +64,7 @@ int fprint_clientes(FILE* fp, int l1, Tree arvore){
 }
 
 //Faz load de um ficheiro no array RETORNA QUANTO ESCREVEU NO ARRAY (para a função wrfile)
-int loadHash_Clientes(Tree clientes[26][307], char* path){
+int loadHash_Clientes(Tree clientes[26][599], char* path){
 	char linha[7];
 	int i = 0;
 	FILE* file = fopen(path , "r");
@@ -84,7 +84,7 @@ int loadHash_Clientes(Tree clientes[26][307], char* path){
 }
 
 //Função que escreve uma tabela de Trees num ficheiro
-int  wrFileC (Tree clientes[26][307], char* path){
+int  wrFileC (Tree clientes[26][599], char* path){
 	int r = 0;
 	FILE* fp = fopen(path, "w+");
 	
@@ -94,9 +94,8 @@ int  wrFileC (Tree clientes[26][307], char* path){
 	}
 	
 	for(int letra = 0; letra < 26; letra++)
-		for(int h = 0; h < 307; h++)
+		for(int h = 0; h < 599; h++)
 			r += fprint_clientes(fp,letra,clientes[letra][h]);
-
 
 	fclose(fp);	
 
@@ -104,7 +103,7 @@ int  wrFileC (Tree clientes[26][307], char* path){
 }
 
 
-int create_clientes(Tree cat_Clientes[26][307], char* path){
+int create_clientes(Tree clientes[26][599], char* path){
 	char linha[6];
 	int i = 0;
 	FILE* file = fopen(path , "r");
@@ -115,23 +114,23 @@ int create_clientes(Tree cat_Clientes[26][307], char* path){
     }
 
 	while( fgets(linha, 6, file) ){
-		insert_Cliente(cat_Clientes,linha);
+		insert_Cliente(clientes,linha);
 		i++;
 	}
 
 	return i;
 }
 
-void destroyCCL(Tree cat_Clientes[26][307]){
+void destroyCCL(Tree cat_Clientes[26][599]){
 	free(cat_Clientes);
 }
 
 //Função que inicializa as estruturas, escreve na posição 0 e 1 do array
-void init_Clientes(int* num, Tree clientes[26][307]){
+void init_Clientes(int* num, Tree clientes[26][599]){
 
 	for (int i = 0; i < 26; i++)
-		for (int j = 0; j < 307; j++)
-			clientes[i][j] = malloc(sizeof(Tree));
+		for (int j = 0; j < 599; j++)
+			clientes[i][j] = create_nodo(1);
 
 	num[0] = loadHash_Clientes(clientes,"../Clientes.txt");
 	num[1] = wrFileC(clientes, "../ClientesVálidos.txt");

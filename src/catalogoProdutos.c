@@ -34,10 +34,10 @@ void insert_Produto(Tree produtos[26][26][151], char id[]){
 	int nID = num(id,2);
 	hF_Produtos(index, id);
 
-	insert_tree(produtos[index[0]][index[1]][index[2]] , nID, NULL);
+	insert_tree(produtos[index[0]][index[1]][index[2]] , nID);
 }
 
-// Função que, aplicando a Tree funtion, verifica se uma posição da Treetable existe
+// Função que, aplicando a Hash Funtion, verifica se uma posição da Treetable existe
 int search_P(Tree produtos[26][26][151], char id[]){
 	int r = 0, nID = num(id,2);
 	int index[3]; index[0] = 0, index[1] = 0, index[2] = 0;
@@ -55,7 +55,7 @@ int fprint_produtos(FILE* fp, int l1, int l2, Tree arvore){
 
 	if(arvore){
 		num += fprint_produtos(fp,l1,l2,esq(arvore));
-		if(valor(arvore)){
+		if(valor(arvore) > 1){
 			fprintf(fp,"%c%c%d\r\n", pL, sL,valor(arvore));
 			num++;
 		}
@@ -105,7 +105,7 @@ int wrFileP (Tree produtos[26][26][151], char* path){
 }
 
 
-int create_produtos(Tree cat_Produtos[26][26][151], char* path){
+int create_produtos(Tree produtos[26][26][151], char* path){
 	char linha[6];
 	int i = 0;
 	FILE* file = fopen(path , "r");
@@ -116,7 +116,7 @@ int create_produtos(Tree cat_Produtos[26][26][151], char* path){
     }
 
 	while( fgets(linha, 6, file) ){
-		insert_Produto(cat_Produtos,linha);
+		insert_Produto(produtos,linha);
 		i++;
 	}
 
@@ -134,7 +134,7 @@ void init_Produtos(int* num, Tree produtos[26][26][151]){
 	for (int i = 0; i < 26; i++)
 		for (int j = 0; j < 26; j++)
 			for(int k = 0; k < 151; k++)
-				produtos[i][j][k] = malloc(sizeof(Tree));
+				produtos[i][j][k] = create_nodo(1);
 	
 	num[2] = loadHash_Produtos(produtos,"../Produtos.txt");
 	num[3] = wrFileP(produtos, "../ProdutosVálidos.txt");

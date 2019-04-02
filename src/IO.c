@@ -16,7 +16,7 @@ void print_menu(){
 	printf("\n\t-> Tarefa_12: Dado um cliente, determinar quais os 3 produtos em que gastou mais dinheiro durante o ano.\n\n");
 }
 
-int escolhe_Tarefa(int* num, Tree_Vendas vendas, Tree tProdutos[26][26][151], Tree tClientes[26][307]){
+int escolhe_Tarefa(int* num, Tree_Vendas vendas, Tree tProdutos[26][26][151], Tree tClientes[26][599]){
 	int tarefa = 0, r = 0;
 	printf("Escolha a tarefa pretendida a realizar [1...12] (para terminar o programa digite 0):   ");
 	if(scanf("%d", &tarefa)){
@@ -78,7 +78,7 @@ int qual_ficheiro(){
 	return r;
 }
 
-void Tarefa_1(Tree_Vendas vendas,int* num, Tree tProdutos[26][26][151], Tree tClientes[26][307]){
+void Tarefa_1(Tree_Vendas vendas,int* num, Tree tProdutos[26][26][151], Tree tClientes[26][599]){
 	int r = qual_ficheiro();
 
 	if(r == 1){
