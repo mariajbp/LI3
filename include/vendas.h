@@ -21,14 +21,14 @@ int toktok(char * linha, char** tokens);
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-int validaVenda(char* linha, Tree produtos[26][26][151], Tree clientes[26][307]);
+int validaVenda(char* linha, Tree produtos[26][26][151], Tree clientes[26][599]);
 
 /**
  * O QUE FAZ
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-int loadstruct_Vendas(Tree_Vendas estrutura, char* path, Tree produtos[26][26][151], Tree clientes[26][307]);
+int loadstruct_Vendas(Tree_Vendas estrutura, char* path, Tree produtos[26][26][151], Tree clientes[26][599]);
 
 /**
  * O QUE FAZ
@@ -42,7 +42,7 @@ int wrFileV (Tree_Vendas table, char* path);
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-void init_Vendas(Tree_Vendas vendas, int* num, Tree tProdutos[26][26][151], Tree tClientes[26][307]);
+void init_Vendas(Tree_Vendas vendas, int* num, Tree tProdutos[26][26][151], Tree tClientes[26][599]);
 
 /**
  * O QUE FAZ

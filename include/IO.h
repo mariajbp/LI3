@@ -20,14 +20,14 @@ void print_menu();
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-int escolhe_Tarefa(int* num, Tree_Vendas vendas, Tree tProdutos[26][26][151], Tree tClientes[26][307]);
+int escolhe_Tarefa(int* num, Tree_Vendas vendas, Tree tProdutos[26][26][151], Tree tClientes[26][599]);
 
 /**
  * O QUE FAZ
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-void Tarefa_1(Tree_Vendas vendas,int* num, Tree tProdutos[26][26][151], Tree tClientes[26][307]);
+void Tarefa_1(Tree_Vendas vendas,int* num, Tree tProdutos[26][26][151], Tree tClientes[26][599]);
 
 
 #endif
