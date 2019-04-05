@@ -1,8 +1,5 @@
 #include "../include/vendas.h"
-
 #include "../include/arrayd.h"
-#include "../include/catalogo_clientes.h"
-#include "../include/catalogo_produtos.h"
 
 struct vendas_mes{
 	Strings vendas_inMes[12];
@@ -97,8 +94,8 @@ Vendas init_Vendas(int* num, Produtos p, Clientes c){
 	
 	Strings s = malloc(sizeof(Strings));
 
-	num[4] = loadstruct_Vendas(s,"Vendas_1M.txt", p, c);
-	num[5] = wrFileV(s, "VendasVálidas.txt");
+	num[4] = loadstruct_Vendas(s,"../Vendas_1M.txt", p, c);
+	num[5] = wrFileV(s, "../VendasVálidas.txt");
 	
 	Vendas estrutura = malloc(sizeof(Vendas));
 	estrutura->vendas = s;

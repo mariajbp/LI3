@@ -1,19 +1,17 @@
 #include "../include/catalogo_clientes.h"
-
 #include "../include/arrayd.h"
-
 
 struct clientes{
 	Array tabela_clientes[26];
 };
 
 // Função que lê as primeiras letras de uma string e as transforma num numero
-int letra(char string[], int nLetras){
+int letra_cliente(char string[]){
 	return string[0] - 65;
 }
 
 // Função que transforma uma substring num numero
-int num(char string[], int index){
+int num_cliente(char string[], int index){
 	return atoi(string+index);
 }
 
@@ -32,14 +30,14 @@ int validaCliente(char * id){
 // Função que insere um index, de tipologia Cliente, numa estrutura de dados
 void insert_Cliente(Array clientes[26], char id[]){
 
-	int n = num(id,1), l = letra(id,1);
+	int n = num_cliente(id,1), l = letra_cliente(id);
 	insert_valor(clientes[l], n);
 }
 
 // Função que verifica se um id existe na estrutura
 int search_C(Clientes clientes, char id[]){
 	
-	int n = num(id,1), l = letra(id,1);
+	int n = num_cliente(id,1), l = letra_cliente(id);
 	return procura_binaria(clientes->tabela_clientes[l], 0, clientes->tabela_clientes[l]->inUse, n) + 1; // 0 quando nao existe, indice + 1 quando existe
 }
 
@@ -102,8 +100,8 @@ Clientes init_Clientes(int* num){
 	for (int i = 0; i < 26; i++)
 		clientes[i] = malloc(sizeof(Array));
 
-	num[0] = loadArray_Clientes(clientes,"Clientes.txt");
-	num[1] = wrFileC(clientes, "Clientes_SortedArrayD.txt");
+	num[0] = loadArray_Clientes(clientes,"../Clientes.txt");
+	num[1] = wrFileC(clientes, "../ClientesVálidos.txt");
 
 	Clientes estrutura = malloc(sizeof(Clientes));
 	for (int k = 0; k < 26; k++)

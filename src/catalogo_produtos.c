@@ -1,5 +1,4 @@
 #include "../include/catalogo_produtos.h"
-
 #include "../include/arrayd.h"
 
 
@@ -31,12 +30,12 @@ char** arrayLetra(Produtos p, char letra){
 } */
 
 // Função que lê as primeiras letras de uma string e as transforma num numero
-int letra(char string[], int nLetras){
+int letra_produto(char string[]){
 	return ((string[0] - 65) * 26) + (string[1] - 65);
 }
 
 // Função que transforma uma substring num numero
-int num(char string[], int index){
+int num_produto(char string[], int index){
 	return atoi(string+index);
 }
 
@@ -55,14 +54,14 @@ int validaProduto(char * id){
 // Função que insere um index, de tipologia Cliente, numa estrutura de dados
 void insert_Produto(Array produtos[676], char id[]){
 
-	int n = num(id,2), l = letra(id,1);
+	int n = num_produto(id,2), l = letra_produto(id);
 	insert_valor(produtos[l], n);
 }
 
 // Função que verifica se um id existe na estrutura
 int search_P(Produtos produtos, char id[]){
 	
-	int n = num(id,2), l = letra(id,1);
+	int n = num_produto(id,2), l = letra_produto(id);
 	return procura_binaria(produtos->tabela_produtos[l], 0, produtos->tabela_produtos[l]->inUse, n) + 1; // 0 quando nao existe, indice + 1 quando existe
 }
 
@@ -120,14 +119,14 @@ int  wrFileP (Array produtos[676], char* path){
 }
 
 // Função que inicializa as estruturas, escreve na posição 2 e 3 do array
-Produtos init_produtos(int* num){
+Produtos init_Produtos(int* num){
 
 	Array produtos[676];
 	for (int i = 0; i < 676; i++)
 		produtos[i] = malloc(sizeof(Array));
 
-	num[2] = loadArray_produtos(produtos,"Produtos.txt");
-	num[3] = wrFileP(produtos, "Produtos_SortedArrayD.txt");
+	num[2] = loadArray_produtos(produtos,"../Produtos.txt");
+	num[3] = wrFileP(produtos, "../ProdutosVálidos.txt");
 
 	Produtos estrutura = malloc(sizeof(produtos));
 	for (int j = 0; j < 676; j++)

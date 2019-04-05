@@ -1,19 +1,5 @@
 #include "../include/arrayd.h"
 
-//Estrutura Array Dinamico
-struct array{
-	int inUse;			//O que está a ser usado
-	int freeSpace;		//O que está livre
-	int* valor;			// Array de produtos neste caso
-};
-
-//Estrutura Array Dinamico
-struct array_strings{
-	int inUse;			//O que está a ser usado
-	int freeSpace;		//O que está livre
-	char** string;		// Array de strings
-};
-
 
 //Função que verifica se o Array está cheio, aloca memória se estiver
 void isFull(Array a){
@@ -25,11 +11,11 @@ void isFull(Array a){
 }
 
 //Função que verifica se o Array está cheio, aloca memória se estiver
-void isFullV(Strings s){
+void isFull_S(Strings s){
 
 	if(s->inUse >= s->freeSpace){
 		s->freeSpace += 100000;
-		s->venda = realloc(s->string, sizeof(char*) * s->freeSpace);
+		s->string = realloc(s->string, sizeof(char*) * s->freeSpace);
 	}
 }
 
