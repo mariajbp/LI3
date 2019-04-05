@@ -14,7 +14,7 @@ typedef struct array{
 } *Array;
 
 //Estrutura Array Dinamico
-typedef struct array_strings{
+typedef struct strings{
 	int inUse;			//O que está a ser usado
 	int freeSpace;		//O que está livre
 	char** string;		// Array de strings

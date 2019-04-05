@@ -13,6 +13,6 @@ typedef struct produtos *Produtos;
 int search_P(Produtos p, char id[]);
 
 //Função que inicia uma estrutura produtos
-Produtos init_produtos(int* num);
+Produtos init_Produtos(int* num);
 
 #endif
