@@ -3,10 +3,10 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include "CatalogoProdutos.h"
-#include "CatalogoClientes.h"
+#include "Catalogo_produtos.h"
+#include "Catalogo_clientes.h"
 #include "vendas.h"
-#include "tree.h"
+#include "arrayd.h"
 
 /**
  * O QUE FAZ
@@ -20,14 +20,20 @@ void print_menu();
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-int escolhe_Tarefa(int* num, Tree_Vendas vendas, Tree tProdutos[26][26][151], Tree tClientes[26][599]);
+int escolhe_Tarefa();
 
 /**
  * O QUE FAZ
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-void Tarefa_1(Tree_Vendas vendas,int* num, Tree tProdutos[26][26][151], Tree tClientes[26][599]);
+void query_1(int num[6]);
 
+/**
+ * O QUE FAZ
+ * @param O QUE RECEBE
+ * @param O QUE RETORNA
+ */
+void query_2();
 
 #endif
