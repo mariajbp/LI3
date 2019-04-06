@@ -253,10 +253,17 @@ void query_6(Catalogo_Clientes cl, Catalogo_Produtos cp, Filial f)
 	//lista de produtos que não foram comprados
 }
 
-void query_7(Filial f, char* code)
-{
+**/
 
+void query_7(	)
+{
+	char* code;
+	printf("Insira o código do cliente\n");
+	scanf("%s", &code);
+	//nUnidadesCompradas(code, Strings m, num[12][3])
 }
+
+/**
 
 void query_8(Faturacao f)
 {
@@ -328,5 +335,33 @@ void toprintornottoprint()
 	if(r[0] == 'n'){
 		printf("Escolha a opção que pretende inicar [1...12]\n");
 		escolhe_Query();
+	}
+}
+
+
+void divisao(int num, int i)
+{
+	int f;
+	char* tokens[7];
+	if (num == 1)
+	{
+		f = atoi(tokens[6]);
+		if(f == 1) printf("%s", tokens[i]);
+	}
+	if (num == 2)
+	{
+		f = atoi(tokens[6]);
+		if(f == 2) printf("%s", tokens[i]);
+		
+	}
+	if (num == 3)
+	{
+		f = atoi(tokens[6]);
+		if(f == 3) printf("%s", tokens[i]);
+		
+	}
+	if (num == 4)
+	{
+		
 	}
 }
