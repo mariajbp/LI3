@@ -1,4 +1,4 @@
-#ifndef __CATALOGO_CLIENTES_H_
+#ifndef __CATALOGO_CLIENTES_H__
 #define __CATALOGO_CLIENTES_H__
 
 

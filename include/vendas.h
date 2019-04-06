@@ -1,10 +1,12 @@
-#ifndef __ARRAY_H_
-#define __ARRAY_H__
+#ifndef __VENDAS_H__
+#define __VENDAS_H__
 
-#include "Catalogo_produtos.h"
-#include "Catalogo_clientes.h"
+#include "catalogo_produtos.h"
+#include "catalogo_clientes.h"
 
 typedef struct vendas_mes* Vendas_inMes;
+
+typedef struct vendas_filial* Vendas_Filial;
 
 typedef struct vendas* Vendas;
 

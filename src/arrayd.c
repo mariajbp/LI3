@@ -24,6 +24,8 @@ void string_append(Strings s, char* c){
 
 	isFull_S(s);
 	s->string[s->inUse++] = sdup(c);
+
+	s->inUse++;
 }
 
 //Função strdup criada para evitar warnings

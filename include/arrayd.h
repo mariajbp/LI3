@@ -1,5 +1,5 @@
-#ifndef __ARRAY_H_
-#define __ARRAY_H__
+#ifndef __ARRAYD_H__
+#define __ARRAYD_H__
 
 
 #include <stdio.h>
@@ -7,14 +7,16 @@
 #include <string.h>
 #include <ctype.h>
 
-typedef struct array{
+typedef struct array
+{
 	int inUse;			//O que está a ser usado
 	int freeSpace;		//O que está livre
 	int* valor;			// Array de produtos neste caso
 } *Array;
 
 //Estrutura Array Dinamico
-typedef struct strings{
+typedef struct strings
+{
 	int inUse;			//O que está a ser usado
 	int freeSpace;		//O que está livre
 	char** string;		// Array de strings

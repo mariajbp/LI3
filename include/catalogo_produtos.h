@@ -1,4 +1,4 @@
-#ifndef __CATALOGO_PRODUTOS_H_
+#ifndef __CATALOGO_PRODUTOS_H__
 #define __CATALOGO_PRODUTOS_H__
 
 

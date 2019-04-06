@@ -20,7 +20,7 @@ int escolhe_Query(){
 	int tarefa;
 	int r = 0;
 	int num[6];
-	printf("Escolha o numero da query que pretende executar [1...12] \n Terminar o programa: [0]):   ");
+	printf("Escolha o numero da query que pretende executar [1...12] \n Terminar o programa: [0]   ");
 	if(scanf("%d", &tarefa)){
 
 		if(tarefa > 12 || tarefa < 0){
@@ -31,10 +31,10 @@ int escolhe_Query(){
 		switch(tarefa)
 		{
 			case 1:
-				query_1(num); 
+				query_1(int num[6]); 
 				break;
 			case 2:
-				query_2();
+				query_2(int num[6]); 
 				break;
 			/*case 3:
 				/query_3(int mes, char* code, faturacao f);
@@ -75,7 +75,7 @@ int escolhe_Query(){
 }
 
 
-int qual_ficheiro(){
+int escolhe_file(){
 	int r;
 
 	printf("\n\tQue ficheiro pretende ler? Clientes.txt [1], Produtos.txt [2], Vendas_1M.txt [3], todos [4]\n\t->  ");
@@ -122,13 +122,76 @@ void query_2(int num[6]){
 	char* letra;
 	int r;
 	Produtos p = init_Produtos(num);
+	Strings array_imprimir;
 
 	printf("Qual a letra inicial (maiúscula) do código que pretende procurar? [A..Z]\n");
 	scanf("%s", letra);
-	r = letra  - 65;
-	//arrayLetra(p, r); //função que devolva o array de letras 
-	// navegador do array letra
+
+	array_imprimir = meteletra(Produtos p, char letra[0]);
+	navegador(array_imprimir);
 }
+
+int navPag(Strings s)
+{
+	char* tecla;
+	int p;
+	printf("Que página pretende imprimir?\n");
+	printf("\t Caso pretenda sair use a tecla espaço\n", );
+	scanf("%s", tecla);
+	while(tecla!=32)
+	{
+		p = atoi(tecla);
+		for(int i = p; i < p+10; i++)
+		{
+			printf("\t%s\n",s->string[i]);
+		}
+		p+=10;
+	}
+	return p;
+}
+
+int navSetas(Strings s) //left was 75, right was 77 
+{
+	int p;
+	char pag;
+	char tecla;
+
+	printf("Caso queira imprimir a página anterior/seguinte utilize as setas para navegar?\n");
+	while(tecla!=32)
+	{	
+		if(p<=0) p=0;
+		scanf("%s", &tecla);
+		if(tecla == 77)
+		{
+			for(int i = p; i < p+10; i++)
+			{
+				printf("\t%s\n",s->string[i]);
+			}
+			p+=10;
+		}
+		if(tecla == 75)
+		{
+			for(int i = p - 10 ; i < p; i++)
+			{
+				printf("\t%s\n",s->string[i]);
+			}
+		}
+	}
+	return p;
+}
+
+void navegador(Strings s)
+{
+	int op;
+	printf("Pretende escolher a página ou navegar com as setas? \n Escolher página: [1] Navegar com as setas: [2]\n");
+	scanf("%d", &op);
+	while(p!=32) //spacebar to end program
+	{
+		if (p==1) navPag(Strings s);
+		if (p==2) navSetas(Strings s);
+	}
+}
+
 /**
 void query_3(int mes, char* code, faturacao f)
 {
@@ -153,6 +216,8 @@ void query_3(int mes, char* code, faturacao f)
 	printf("Faturação total dos produtos em desconto: \n");
 	
 }
+*/
+
 
 void query_4(Faturacao f)
 {
@@ -170,9 +235,12 @@ void query_4(Faturacao f)
 		case 4: 
 			break;
 	}
+
 	//dar print à lista
 
 } 
+
+/**
 
 void query_5(Filial f)
 {

@@ -12,7 +12,7 @@ int main(){
 	
 	print_menu();
 
-	if(escolhe_Tarefa() == -1)
+	if(escolhe_Query() == -1)
 		return 0;
 
 	/*Na querie 1 será necessário dar free das hash tables

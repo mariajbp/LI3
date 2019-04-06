@@ -2,7 +2,11 @@
 #include "../include/arrayd.h"
 
 struct vendas_mes{
-	Strings vendas_inMes[12];
+	Strings noMes[12];
+};
+
+struct vendas_filial{
+	Strings filial[3];
 };
 
 struct vendas{
@@ -48,13 +52,7 @@ int validaVenda(char* linha, Produtos p, Clientes c){
 int loadstruct_Vendas( Strings s, char* path, Produtos p, Clientes c){
 	char linha[32];
 	int i = 0;
-	char* tokens[7];
 	FILE* file = fopen(path , "r");
-	
-	for(i=0; i<7; i++)
-		tokens[i] = malloc(sizeof(char*));
-
-	toktok(linha,tokens);
 
 	if(file == NULL){
       	printf("Error! You tried to read an empty file.");   
