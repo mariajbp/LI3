@@ -23,7 +23,7 @@ int escolhe_Query(){
 	printf("Escolha o numero da query que pretende executar [1...12] \n Terminar o programa: [0]):   ");
 	if(scanf("%d", &tarefa)){
 
-		if(tarefa > '12' || tarefa < '0'){
+		if(tarefa > 12 || tarefa < 0){
 			printf("\n\n\tPara executar uma tarefa é necessário inserir um numero de [1...12]\n\n\tPara terminar o programa insira o número 0.\n\n");
 			escolhe_Query();
 		}
@@ -31,13 +31,13 @@ int escolhe_Query(){
 		switch(tarefa)
 		{
 			case 1:
-				query_1(num[6]); 
+				query_1(num); 
 				break;
 			case 2:
 				query_2();
 				break;
-			case 3:
-				query_3(int mes, char* code, faturacao f);
+			/*case 3:
+				/query_3(int mes, char* code, faturacao f);
 				break;
 			case 4:
 				query_4(Faturacao f)
@@ -63,7 +63,7 @@ int escolhe_Query(){
 				break;	
 			case 12:
 				query_12();
-				break;
+				break; */
 		}
 	}
 	else{
@@ -119,17 +119,17 @@ void query_1(int num[6]){
 }
 
 void query_2(int num[6]){
-	char letra = 0;
+	char* letra;
 	int r;
 	Produtos p = init_Produtos(num);
 
 	printf("Qual a letra inicial (maiúscula) do código que pretende procurar? [A..Z]\n");
-	scanf("%c", letra);
+	scanf("%s", letra);
 	r = letra  - 65;
 	//arrayLetra(p, r); //função que devolva o array de letras 
 	// navegador do array letra
 }
-
+/**
 void query_3(int mes, char* code, faturacao f)
 {
 	//numero de vendas deste prod
@@ -246,6 +246,8 @@ void query_12()
 
 }
 
+*/
+
 void toprintornottoprint()
 {
 	char* r = 0;
@@ -257,6 +259,6 @@ void toprintornottoprint()
 
 	if(r[0] == 'n'){
 		printf("Escolha a opção que pretende inicar [1...12]\n");
-		escolhe_Tarefa();
+		escolhe_Query();
 	}
 }
