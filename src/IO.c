@@ -32,7 +32,7 @@ int escolhe_Query(){
 	int tarefa;
 	int r = 0;
 	int num[6];
-	printf("Escolha o numero da query que pretende executar [1...12] \n Terminar o programa: [0]  ", KCYN);
+	printf("Escolha o numero da query que pretende executar [1...12] \n Terminar o programa: [0]  ");
 	if(scanf("%d", &tarefa)){
 
 		if(tarefa > 12 || tarefa < 0){
