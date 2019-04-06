@@ -1,7 +1,17 @@
 #include "../include/IO.h"
+#include <time.h>
+
+#define KNRM  "\x1B[0m"
+#define KRED  "\x1B[31m"
+#define KGRN  "\x1B[32m"
+#define KYEL  "\x1B[33m"
+#define KBLU  "\x1B[34m"
+#define KMAG  "\x1B[35m"
+#define KCYN  "\x1B[36m"
+#define KWHT  "\x1B[37m"
 
 void print_menu(){
-	printf("\nO sistema de vendas realiza as seguintes tarefas:\n");
+	printf("\n************************************************** Sistema de Gestão de Vendas ************************************************** \n", KCYN);
 	printf("\n\t-> Query 1:  Ler ficheiros (os ficheiros disponiveis para leitura são: \'Produtos.txt\', \'Clientes.txt\', \'Vendas_1M.txt\').\n");
 	printf("\n\t-> Query 2:  Determinar a lista de produtos começados por uma Letra à escolha (A...Z).\n");
 	printf("\n\t-> Query 3:  Dado um mês e um produto, determinar e apresentar o nº total de registos\n\t   de venda e o total facturado com esse produto nesse mês, tendo em conta a distinção N/P,\n\t   há possibilidade de escolher a apresentação dos resultados dividida por filial.\n");
@@ -14,13 +24,14 @@ void print_menu(){
 	printf("\n\t-> Query 10: Dado um cliente e um mês, determinar a lista de\n\t   produtos que esse cliente mais comprou, por ordem decrescente.\n");
 	printf("\n\t-> Query 11: Criar uma lista dos N produtos mais vendidos em todo o ano,\n\t   indicando o nº total de clientes e o nº total de unidades vendidas, filial a filial.\n");
 	printf("\n\t-> Query12: Dado um cliente, determinar os 3 produtos em que gastou mais dinheiro durante o ano.\n\n");
+	printf("\n********************************************************************************************************************************* \n", KCYN);
 }
 
 int escolhe_Query(){
 	int tarefa;
 	int r = 0;
 	int num[6];
-	printf("Escolha o numero da query que pretende executar [1...12] \n Terminar o programa: [0]   ");
+	printf("Escolha o numero da query que pretende executar [1...12] \n Terminar o programa: [0]  ", KCYN);
 	if(scanf("%d", &tarefa)){
 
 		if(tarefa > 12 || tarefa < 0){
