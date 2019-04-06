@@ -16,24 +16,25 @@ void print_menu(){
 	printf("\n\t-> Query12: Dado um cliente, determinar os 3 produtos em que gastou mais dinheiro durante o ano.\n\n");
 }
 
-int escolhe_Tarefa(int* num, Tree_Vendas vendas, Tree tProdutos[26][26][151], Tree tClientes[26][599]){
-	char* tarefa;
+int escolhe_Query(){
+	int tarefa;
 	int r = 0;
+	int num[6];
 	printf("Escolha o numero da query que pretende executar [1...12] \n Terminar o programa: [0]):   ");
-	if(scanf("%s", &tarefa)){
+	if(scanf("%d", &tarefa)){
 
 		if(tarefa > '12' || tarefa < '0'){
 			printf("\n\n\tPara executar uma tarefa é necessário inserir um numero de [1...12]\n\n\tPara terminar o programa insira o número 0.\n\n");
-			escolhe_Tarefa(num, vendas, tProdutos, tClientes);
+			escolhe_Query();
 		}
 
 		switch(tarefa)
 		{
 			case 1:
-				query_1(vendas,num,tProdutos,tClientes); 
+				query_1(num[6]); 
 				break;
 			case 2:
-				query_2(Produtos p);
+				query_2();
 				break;
 			case 3:
 				query_3(int mes, char* code, faturacao f);
@@ -67,7 +68,7 @@ int escolhe_Tarefa(int* num, Tree_Vendas vendas, Tree tProdutos[26][26][151], Tr
 	}
 	else{
 		printf("O programa falhou na leitura de um número.\n");
-		escolhe_Tarefa(num, vendas, tProdutos, tClientes);
+		escolhe_Query();
 	}
 
 	return r;
@@ -85,44 +86,47 @@ int qual_ficheiro(){
 	return r;
 }
 
-void query_1(Tree_Vendas vendas,int* num, Tree tProdutos[26][26][151], Tree tClientes[26][599]){
+void query_1(int num[6]){
 	int r = qual_ficheiro();
+	Produtos tProdutos;
+	Clientes tClientes;
 
 	if(r == 1){
-		init_Clientes(num,tClientes);
+		init_Clientes(num);
 		printf("\n\tFicheiro lido: Clientes.txt\n\tClientes lidos__%d\n\tClientes escritos__%d\n", num[0],num[1]);
 	}
 	
 	if(r == 2){
-		init_Produtos(num,tProdutos);
+		init_Produtos(num);
 		printf("\n\tFicheiro lido: Produtos.txt\n\tProdutos lidos__%d\n\tProdutos escritos__%d\n", num[2],num[3]);
 	}
 
 	if (r == 3){
-		init_Clientes(num,tClientes);
-		init_Produtos(num,tProdutos);
-		init_Vendas(vendas,num,tProdutos,tClientes);
+		Clientes clientes = init_Clientes(num);
+		Produtos produtos = init_Produtos(num);
+		init_Vendas(num,produtos,clientes);
 		printf("\n\tFicheiro lido: Vendas_1M.txt\n\tVendas lidas__%d\n\tVendas escritas__%d\n", num[4],num[5]);
 	}
 
 	if(r == 4){
-		init_Clientes(num,tClientes);
-		init_Produtos(num,tProdutos);
-		init_Vendas(vendas,num,tProdutos,tClientes);
+		tClientes = init_Clientes(num);
+		tProdutos = init_Produtos(num);
+		init_Vendas(num,tProdutos,tClientes);
 		printf("\n\tFicheiro lido: Clientes.txt\n\tClientes lidos__%d\n\tClientes escritos__%d\n", num[0],num[1]);
 		printf("\n\tFicheiro lido: Produtos.txt\n\tProdutos lidos__%d\n\tProdutos escritos__%d\n", num[2],num[3]);
 		printf("\n\tFicheiro lido: Vendas_1M.txt\n\tVendas lidas__%d\n\tVendas escritas__%d\n", num[4],num[5]);
 	}
 }
 
-void query_2(Produtos p)
-{
-	char* letra;
+void query_2(int num[6]){
+	char letra = 0;
 	int r;
+	Produtos p = init_Produtos(num);
+
 	printf("Qual a letra inicial (maiúscula) do código que pretende procurar? [A..Z]\n");
-	scanf("%s", &letra);
+	scanf("%c", letra);
 	r = letra  - 65;
-	arrayLetra(p, letra); //função que devolva o array de letras 
+	//arrayLetra(p, r); //função que devolva o array de letras 
 	// navegador do array letra
 }
 
@@ -244,16 +248,15 @@ void query_12()
 
 void toprintornottoprint()
 {
-	char* r;
-	printf("Pretende dar print ao menu? \n -> Sim: [s] Não: [n]\n");
-	scanf("%c", &r);
+	char* r = 0;
+	printf("Pretende dar print ao menu? Yes: [y] No: [n]\n");
+	scanf("%c", r);
 
-	if(r == 'y')
+	if(r[0] == 'y')
 		print_menu();
 
-	if(r == 'n')
-	{
-		printf("Escolha a opção que pretende inicar [1...12]: \n");
+	if(r[0] == 'n'){
+		printf("Escolha a opção que pretende inicar [1...12]\n");
 		escolhe_Tarefa();
 	}
 }

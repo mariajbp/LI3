@@ -20,7 +20,7 @@ void print_menu();
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-int escolhe_Tarefa();
+int escolhe_Query();
 
 /**
  * O QUE FAZ
