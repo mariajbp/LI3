@@ -226,41 +226,59 @@ void query_2(int num[6]){
 //// 				query_3					////
 ///////////////////////////////////////////////
 
-/*
-void query_3(int mes, char* code, faturacao f)
+
+void query_3(num[6])
 {
-	//numero de vendas deste prod
 	int r;
+	int mes;
+	char* code;
+	Vendas v = init_Vendas(num, code, )//cliente)
+	Vendas nv;
+	Printf("Indique o mês a determinar: \n")
+	scanf("%d", &mes);
+	printf("Indique o codigo do produto: \n", );
+	scanf("%d", &code);
+
 	printf("%sQual o resultado que pretende obter?%s \n Filial 1: [1] Filial 2: [2] Filial 3: [3] Global:[4] \n", KMAG, RESET);
 	scanf("%d", &r);
 	switch (r)
 	{
 		case 1:
+			nv = divFilial1(v,1)
 			break;
 		case 2: 
+			nv = divFilial2(v,1)
 			break;
 		case 3: 
+			nv = divFilial3(v,1)
 			break;
 		case 4: 
+			nv = global()
 			break;
 	}
-	printf("O produto %s foi vendido .... vezes.\n", code);
-	printf("A faturação total deste produto no mês %d foi: %f \n", mes, );
-	printf("Faturação total dos produtos com o preço normal: \n");
-	printf("Faturação total dos produtos em desconto: \n");
+
+	double totalF = totalFaturado(nv);
+	double totalN = totalFaturadoNP(nv, num[1]);
+	double totalP = totalFaturadoNP(nv, num[2]);
+	double totalV = totalVendasProd(nv, code);
+
+	printf("O produto %s foi vendido %f vezes.\n", code, );
+	printf("A faturação total deste produto no mês %d foi: %f \n", mes, totalF);
+	printf("Faturação total dos produtos com o preço normal: %f \n", totalN);
+	printf("Faturação total dos produtos em desconto: %f \n", totalP);
 	
 }
-*/
+
 
 /////////////////////////////////////////////////
 //// 				query_4					////
 ///////////////////////////////////////////////
 
 /*
-void query_4(Faturacao f)
+void query_4()
 {
 	int r;
-	printf("%sQual o resultado que deseja obter?%s \n Filial 1: [1] Filial 2: [2] Filial 3: [3] Global:[4] \n", KBLU,RESET);
+	printf("%sQual o resultado que pretende obter?%s \n Filial 1: [1] Filial 2: [2] Filial 3: [3] Global:[4] \n", KBLU,RESET);
 	scanf("%d", &r);
 	switch (r)
 	{
@@ -275,30 +293,36 @@ void query_4(Faturacao f)
 	}
 
 	//dar print à lista
-} 
+
+	printf("Houve %d produtos que não foram comprados", );
+} */
 
 /////////////////////////////////////////////////
 //// 				query_5					////
 ///////////////////////////////////////////////
 
 /*
-void query_5(Filial f)
+void query_5()
 {
 	//lista de codigo de clientes que compraram em todas as filiais
 }
+*/
 
 /////////////////////////////////////////////////
 //// 				query_6					////
 ///////////////////////////////////////////////
 
 /*
-void query_6(Catalogo_Clientes cl, Catalogo_Produtos cp, Filial f)
+void query_6()
 {
+	printf("%sOs seguintes clientes não realizaram qualquer compra: %s\n", KBLU, RESET);
 	//lista de clientes que não fizeram compras
+	
+	printf("%sOs seguintes produtos nunca foram comprados: %s\n", KBLU, RESET);
 	//lista de produtos que não foram comprados
 }
-
 */
+
 
 /////////////////////////////////////////////////
 //// 				query_7					////
@@ -391,7 +415,74 @@ void query_12()
 	printf("%sIndique o código do cliente: %s\n", KBLU, RESET);
 	scanf("%s", &code);
 	//codigo dos 3 produtos em que mais gastou
+	printf("Os 3 produtos em que mais gastou dinheiro foram: \n\t %s\t%s\t%s\t ")
 
 }
 
 */
+
+
+
+void divFilial1(Strings v, int i)
+{
+	int f;
+	char* tokens[7];
+	for(int i=0; i<7; i++)
+		tokens[i] = malloc(sizeof(char*));
+
+	for (int j = 0; j < v->inUse; j++)
+		{
+			toktok(tokens,v->string[j]);
+			f = atoi(tokens[6]);
+			if (f == 1)
+				printf(tokens[i]);
+		}
+}
+
+
+void divFilial2(Strings v, int i)
+{
+	int f;
+	char* tokens[7];
+	for(int i=0; i<7; i++)
+		tokens[i] = malloc(sizeof(char*));
+	
+	for (int j = 0; j < v->inUse; j++)
+		{
+			toktok(tokens,v->string[j]);
+			f = atoi(tokens[6]);
+			if (f == 2)
+				printf(tokens[i]);
+		}
+}
+
+
+void divFilial3(Strings v, int i)
+{
+	int f;
+	char* tokens[7];
+	for(int i=0; i<7; i++)
+		tokens[i] = malloc(sizeof(char*));
+	
+	for (int j = 0; j < v->inUse; j++)
+		{
+			toktok(tokens,v->string[j]);
+			f = atoi(tokens[6]);
+			if (f == 3)
+				printf(tokens[i]);
+		}
+}
+
+void global(Strings v, int i)
+{
+	char* tokens[7];
+	for(int i=0; i<7; i++)
+		tokens[i] = malloc(sizeof(char*));
+	for (int j = 0; j < v->inUse; j++)
+		{
+			toktok(tokens,v->string[j]);
+			printf(tokens[i]);
+		}
+
+}
+

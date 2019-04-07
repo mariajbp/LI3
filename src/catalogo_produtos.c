@@ -21,6 +21,24 @@ Strings meteletra(Produtos p, char l1){
 	return tudo;
 }
 
+//query 3
+int totalVendasProd(Strings v, char* p)
+{
+	int vendas = 0;
+	char* tokens[7];
+	for(int i=0; i<7; i++)
+		tokens[i] = malloc(sizeof(char*));
+	
+	for (int j = 0; j < v->inUse; j++)
+	{
+		toktok(tokens,v->string[j]);
+		if(token[1] == p)
+			vendas = vendas + tokens[2];
+	}
+
+	return vendas;
+}
+
 // Função que lê as primeiras letras de uma string e as transforma num numero
 int letra_produto(char string[]){
 	return ((string[0] - 65) * 26) + (string[1] - 65);
