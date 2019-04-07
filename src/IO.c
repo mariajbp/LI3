@@ -12,7 +12,7 @@
 
 void toprintornottoprint(){
 	char* r = 0;
-	printf("Pretende dar print ao menu? Yes: [y] No: [n]\n");
+	printf("Pretende apresentar o menu? Yes: [y] No: [n]\n");
 	scanf("%c", r);
 
 	if(r[0] == 'y')

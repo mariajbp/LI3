@@ -90,10 +90,7 @@ int* totalFaturadoNP(Strings v, int num[2])
 	return num;
 }
 
-void DivideFilial()
-{
 
-}
 /**struct faturacao{
 
 	Tree tipo[12][2]; // 0 - N, 1 - P
