@@ -62,10 +62,10 @@ int escolhe_Query(){
 				query_2(num); 
 				break;
 			/*case 3:
-				/query_3();
+				query_3(num);
 				break;
 			case 4:
-				query_4()
+				query_4(num)
 				break;
 			case 5:
 				break;	
@@ -178,40 +178,52 @@ int escolhe_file(){
 }
 
 void query_1(int num[6]){
+	clock_t start,finish;
 	int r = escolhe_file();
 	Produtos tProdutos;
 	Clientes tClientes;
 	Vendas v;
 
 	if(r == 1){
+		start = clock();
 		init_Clientes(num);
 		printf("%s\n\tFicheiro lido: %sClientes.txt\n\t%sClientes lidos__%s%d\n\t%sClientes escritos__%s%d\n",KBLU,RESET,KBLU,RESET,num[0],KBLU,RESET,num[1]);
+		finish = clock();
+		printf("demorou %ld segundos\n", (finish - start));
 		free(tClientes);
 	}
 	
 	if(r == 2){
+		start = clock();
 		init_Produtos(num);
 		printf("%s\n\tFicheiro lido: %sProdutos.txt\n\t%sProdutos lidos__%s%d\n\t%sProdutos escritos__%s%d\n",KBLU,RESET,KBLU,RESET,num[2],KBLU,RESET,num[3]);
+		
 		free(tProdutos);
 	}
 
 	if (r == 3){
+		start = clock();
 		tClientes = init_Clientes(num);
 		tProdutos = init_Produtos(num);
 		v = init_Vendas(num,tProdutos,tClientes);
 		printf("%s\n\tFicheiro lido: %sVendas_1M.txt\n\t%sVendas lidas__%s%d\n\t%sVendas escritas__%s%d\n",KBLU,RESET,KBLU,RESET,num[4],KBLU,RESET,num[5]);
+		finish = clock();
+		printf("demorou %ld segundos\n", (finish - start));
 		free(tClientes);
 		free(tProdutos);
 		free(v);
 	}
 
 	if(r == 4){
+		start = clock();
 		tClientes = init_Clientes(num);
 		tProdutos = init_Produtos(num);
 		v = init_Vendas(num,tProdutos,tClientes);
 		printf("%s\n\tFicheiro lido: %sClientes.txt\n\t%sClientes lidos__%s%d\n\t%sClientes escritos__%s%d\n",KBLU,RESET,KBLU,RESET,num[0],KBLU,RESET,num[1]);
 		printf("%s\n\tFicheiro lido: %sProdutos.txt\n\t%sProdutos lidos__%s%d\n\t%sProdutos escritos__%s%d\n",KBLU,RESET,KBLU,RESET,num[2],KBLU,RESET,num[3]);
 		printf("%s\n\tFicheiro lido: %sVendas_1M.txt\n\t%sVendas lidas__%s%d\n\t%sVendas escritas__%s%d\n",KBLU,RESET,KBLU,RESET,num[4],KBLU,RESET,num[5]);
+		finish = clock();
+		printf("demorou %ld segundos\n", (finish - start));
 		free(tClientes);
 		free(tProdutos);
 		free(v);
@@ -281,6 +293,10 @@ void query_2(int num[6]){
 	printf("%sQual a letra inicial (maiúscula) do código que pretende procurar? [A..Z]%s\n", KMAG, RESET);
 	scanf("%s", letra);
 
+	start = clock();
+	finish = clock();
+	printf("demorou %ld segundos\n", (finish - start));
+
 	//array_imprimir = meteletra(p, letra[0]);
 	//navegador(array_imprimir);
 	//dar free
@@ -326,6 +342,8 @@ void query_3(num[6])
 			break;
 	}
 
+	start = clock();
+
 	double totalF = totalFaturado(nv);
 	double totalN = totalFaturadoNP(nv, num[1]);
 	double totalP = totalFaturadoNP(nv, num[2]);
@@ -335,7 +353,10 @@ void query_3(num[6])
 	printf("A faturação total deste produto no mês %d foi: %f \n", mes, totalF);
 	printf("Faturação total dos produtos com o preço normal: %f \n", totalN);
 	printf("Faturação total dos produtos em desconto: %f \n", totalP);
-	
+
+	finish = clock();
+	printf("demorou %ld segundos\n", (finish - start));
+
 	free(nv);
 }
 
@@ -376,6 +397,9 @@ void query_4(num[6])
 
 	//chamar notSold fichaeiro vendas e printar
 
+	start = clock();
+	finish = clock();
+	printf("demorou %ld segundos\n", (finish - start));
 	free(nv);
 } 
 
@@ -386,6 +410,9 @@ void query_4(num[6])
 /*
 void query_5()
 {
+	start = clock();
+	finish = clock();
+	printf("demorou %ld segundos\n", (finish - start));
 	//lista de codigo de clientes que compraram em todas as filiais
 }
 */
@@ -399,6 +426,9 @@ void query_6()
 {
 	printf("%sOs seguintes clientes não realizaram qualquer compra: %s\n", KBLU, RESET);
 	//lista de clientes que não fizeram compras
+	start = clock();
+	finish = clock();
+	printf("demorou %ld segundos\n", (finish - start));
 	
 	printf("%sOs seguintes produtos nunca foram comprados: %s\n", KBLU, RESET);
 	//lista de produtos que não foram comprados
@@ -417,6 +447,9 @@ void query_7(	)
 	printf("%sInsira o código do cliente: %s\n", KMAG, RESET);
 	scanf("%s", &code);
 	//nUnidadesCompradas(code, Strings m, num[12][3])
+	start = clock();
+	finish = clock();
+	printf("demorou %ld segundos\n", (finish - start));
 }
 
 /////////////////////////////////////////////////
@@ -431,6 +464,9 @@ void query_8(Faturacao f)
 	scanf("%d", &i);
 	printf("%sIndique o ultimo número do intervalo que procura: %s\n",KCYN, RESET);
 	scanf("%d", &f);
+	start = clock();
+	finish = clock();
+	printf("demorou %ld segundos\n", (finish - start));
 }
 
 /////////////////////////////////////////////////
@@ -449,6 +485,9 @@ void query_9()
 	//printar os numeros dos clientes que o compraram
 	printf("%s\tNúmmero total de clientes que compraram o produto com o preço normal: %s%d \n", KCYN, RESET);
 	printf("%s\tNúmmero total de clientes que compraram o produto em promoção: %s %d \n", KMAG, RESET);
+	start = clock();
+	finish = clock();
+	printf("demorou %ld segundos\n", (finish - start));
 }
 
 /////////////////////////////////////////////////
@@ -465,6 +504,9 @@ void query_10()
 	printf("%sIndique a o número do mês: %s\n", KMAG, RESET);
 	scanf("%d", &m);
 	//lista de codigos  dos produtos + comprados por quantidade -> ordem descendente
+	start = clock();
+	finish = clock();
+	printf("demorou %ld segundos\n", (finish - start));
  
 }
 
@@ -484,6 +526,9 @@ void query_11()
 	//numero de units vendidas
 	printf("Foram vendidas %d unidades \n", ,n);
 	//filial a filial 
+	start = clock();
+	finish = clock();
+	printf("demorou %ld segundos\n", (finish - start));
 }
 
 /////////////////////////////////////////////////
@@ -498,7 +543,9 @@ void query_12()
 	scanf("%s", &code);
 	//codigo dos 3 produtos em que mais gastou
 	printf("Os 3 produtos em que mais gastou dinheiro foram: \n\t %s\t%s\t%s\t ")
-
+	start = clock();
+	finish = clock();
+	printf("demorou %ld segundos\n", (finish - start));
 }
 
 */
