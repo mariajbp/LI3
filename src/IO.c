@@ -62,20 +62,20 @@ int escolhe_Query(){
 				query_2(num); 
 				break;
 			/*case 3:
-				/query_3(int mes, char* code, faturacao f);
+				/query_3();
 				break;
 			case 4:
-				query_4(Faturacao f)
+				query_4()
 				break;
 			case 5:
 				break;	
 			case 6:
 				break;
 			case 7:
-				query_7(Filial f, char* code);
+				query_7();
 				break;
 			case 8:
-				query_8(Faturacao f);
+				query_8();
 				break;	
 			case 9:
 				query_9();
@@ -222,6 +222,7 @@ void query_2(int num[6]){
 	//navegador(array_imprimir);
 }
 
+
 /////////////////////////////////////////////////
 //// 				query_3					////
 ///////////////////////////////////////////////
@@ -262,7 +263,7 @@ void query_3(num[6])
 	double totalP = totalFaturadoNP(nv, num[2]);
 	double totalV = totalVendasProd(nv, code);
 
-	printf("O produto %s foi vendido %f vezes.\n", code, );
+	printf("O produto %s foi vendido %f vezes.\n", code, totalV);
 	printf("A faturação total deste produto no mês %d foi: %f \n", mes, totalF);
 	printf("Faturação total dos produtos com o preço normal: %f \n", totalN);
 	printf("Faturação total dos produtos em desconto: %f \n", totalP);
@@ -485,4 +486,3 @@ void global(Strings v, int i)
 		}
 
 }
-

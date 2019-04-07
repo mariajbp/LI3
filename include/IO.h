@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "catalogo_produtos.h"
-#include "Catalogo_clientes.h"
+#include "catalogo_clientes.h"
 #include "vendas.h"
 #include "arrayd.h"
 
