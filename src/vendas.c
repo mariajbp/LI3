@@ -24,6 +24,7 @@ int toktok(char * linha, char** tokens){
     		tokens[i] = sdup(tok);
         tok = strtok(NULL," ");
     }
+
     return i;
 }
 
@@ -48,55 +49,59 @@ int validaVenda(char* linha, Produtos p, Clientes c){
 	return r;
 }
 
-//Faz load de uma venda no array
+//Faz load das vendas no array
 int loadstruct_Vendas( Strings s, char* path, Produtos p, Clientes c){
-	char linha[32];
+	char linha[32], *original = malloc(sizeof(char)*32);
 	int i = 0;
 	FILE* file = fopen(path , "r");
 
 	if(file == NULL){
-      	printf("Error! You tried to read an empty file.");   
-     	exit(1);             
-    }
+		printf("Error! You tried to read an empty file.");
+		fclose(file);
+		exit(1);
+	}
 
 	while( fgets(linha, 31, file) ){
+		strcpy(original, linha);
+
 		if(validaVenda(linha, p, c)){
-			string_append(s, linha);
+			string_append(s, original);
 			i++;
 		}
 	}
 	
+	free(original);
 	fclose(file);	
 
 	return i;
 }
 
 // Função que escreve as vendas num ficheiro
-int wrFileV (Strings s, char* path){
-	int r = 0;
+int wrFileV(Strings s, char* path){
 	FILE* fp = fopen(path, "w+");
 	int i;
 
 	if(fp == NULL){
 		printf("Error! Couldn't find file point to write Vendas");
+		fclose(fp);
 		return 0;
 	}
-	for(i = 0; i < s->inUse; i++ )
-		fprintf(fp, "%s\n", s->string[i]);
+	for(i = 0; i < s->inUse; i++ ){
+		fprintf(fp, "%s\n", get_String(s, i));
+	}
 
-	return r;
+    fclose(fp);
+	return i;
 }
 
 // Função que inicializa as estruturas, escreve na posição 4 e 5 do array
 Vendas init_Vendas(int* num, Produtos p, Clientes c){
 	
-	Strings s = malloc(sizeof(Strings));
+	Vendas v = malloc(sizeof(Vendas));
+	v->vendas = create_Strings();
 
-	num[4] = loadstruct_Vendas(s,"../Vendas_1M.txt", p, c);
-	num[5] = wrFileV(s, "../VendasVálidas.txt");
-	
-	Vendas estrutura = malloc(sizeof(Vendas));
-	estrutura->vendas = s;
+	num[4] = loadstruct_Vendas(v->vendas,"../Vendas_1M.txt", p, c);
+	num[5] = wrFileV(v->vendas, "../VendasValidas.txt");
 
-	return estrutura;
+	return v;
 }

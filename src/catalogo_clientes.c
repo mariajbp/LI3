@@ -18,12 +18,12 @@ int num_cliente(char string[], int index){
 //função que valida um id de um cliente
 int validaCliente(char * id){
 	int r = 0;
-			if(isupper(id[0]))	
-				if(('1'<=id[1]) && (id[1]<='5'))
-					for(int n = 2; n < 4; n++){
-						if(isdigit(id[n])) r = 1;
-						else return 0;
-					}
+	if(isupper(id[0]))	
+		if(('1'<=id[1]) && (id[1]<='5'))
+			for(int n = 2; n < 4; n++){
+				if(isdigit(id[n])) r = 1;
+				else return 0;
+			}
 	return r;
 }
 
@@ -94,18 +94,16 @@ int  wrFileC (Array clientes[26], char* path){
 }
 
 // Função que inicializa as estruturas, escreve na posição 0 e 1 do array
-Clientes init_Clientes(int* num){
+Clientes init_Clientes(int num[6]){
 
-	Array clientes[26];
-	for (int i = 0; i < 26; i++)
-		clientes[i] = malloc(sizeof(Array));
+	Clientes cl = malloc(sizeof(Clientes));
+	for(int i = 0; i < 26; i++)
+		cl->tabela_clientes[i] = malloc(sizeof(Array));
+	for(int j = 0; j < 26; j++)
+		cl->tabela_clientes[j] = create_Array();
 
-	num[0] = loadArray_Clientes(clientes,"../Clientes.txt");
-	num[1] = wrFileC(clientes, "../ClientesVálidos.txt");
+	num[0] = loadArray_Clientes(cl->tabela_clientes,"../Clientes.txt");
+	num[1] = wrFileC(cl->tabela_clientes, "../ClientesValidos.txt");
 
-	Clientes estrutura = malloc(sizeof(Clientes));
-	for (int k = 0; k < 26; k++)
-		estrutura->tabela_clientes[k] = clientes[k];
-
-	return estrutura;
+	return cl;
 }

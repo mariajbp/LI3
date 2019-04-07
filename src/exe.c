@@ -8,17 +8,11 @@
 
 //Main do projeto
 int main(){
-	int num[6];
 	
 	print_menu();
 
 	if(escolhe_Query() == -1)
 		return 0;
-
-	/*Na querie 1 será necessário dar free das hash tables
-	  e temos de ter em consideração que não podemos por
-	  isto assim na main, precisamos de uma função que 
-	  faça isto tudo logo (modularidade/encapsulamento).*/
 	  
 	return 0;
 }

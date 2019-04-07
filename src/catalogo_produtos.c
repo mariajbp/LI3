@@ -1,37 +1,25 @@
 #include "../include/catalogo_produtos.h"
 #include "../include/arrayd.h"
 
-
 struct produtos{
 	Array tabela_produtos[676];
 };
 
-
 Strings meteletra(Produtos p, char l1){
 	int a = l1 - 65;
 	int index = a*26;
+	char prod[7];
 	Strings tudo = malloc(sizeof(Strings));
 
-	for(int i = index; index < (index+26); index++)
+	for(int i = index; i < (index+26); i++)
 		for(char l2 = 'A'; l2 <= 'Z'; l2++)
-			for(int i = 0; i < p->tabela_produtos->inUse; i++)
-				tudo->string[i] = sdup(strcat(l1,strcat(l2,itoa(p->tabela_produtos[index]->valor))));
+			for(int j = 0; j < p->tabela_produtos[i]->inUse; j++){
+				sprintf(prod,"%c%c%d",l1,l2,p->tabela_produtos[i]->valor[j]);
+				tudo->string[i] = sdup(prod);
+			}
 
 	return tudo;
 }
-
-/*
-Strings arrayLetra(Produtos p, char letra){
-	int l1 = letra - 65;
-	int index = l1*26;
-	Array new_array; // tipo char
-	for(int i = index; index < (index+26); index++){
-		new_array += meteletra(letra, p->tabela_produtos[index]); // appends
-	}
-
-	return new_array;
-} 
-*/
 
 // Função que lê as primeiras letras de uma string e as transforma num numero
 int letra_produto(char string[]){
@@ -46,12 +34,12 @@ int num_produto(char string[], int index){
 //função que valida um id de um produto
 int validaProduto(char * id){
 	int r = 0;
-			if(isupper(id[0]) && isupper(id[1]))							
-				if(('1'<=id[2]) && (id[2]<='9'))
-					for(int n = 3; n < 5; n++){
-						if(isdigit(id[n])) r = 1;
-						else return 0;
-					}
+	if(isupper(id[0]) && isupper(id[1]))							
+		if(('1'<=id[2]) && (id[2]<='9'))
+			for(int n = 3; n < 5; n++){
+				if(isdigit(id[n])) r = 1;
+				else return 0;
+			}
 	return r;
 }
 
@@ -66,7 +54,7 @@ void insert_Produto(Array produtos[676], char id[]){
 int search_P(Produtos produtos, char id[]){
 	
 	int n = num_produto(id,2), l = letra_produto(id);
-	return procura_binaria(produtos->tabela_produtos[l], 0, produtos->tabela_produtos[l]->inUse, n) + 1; // 0 quando nao existe, indice + 1 quando existe
+	return (procura_binaria(produtos->tabela_produtos[l], 0, produtos->tabela_produtos[l]->inUse, n) + 1); // 0 quando nao existe, indice + 1 quando existe
 }
 
 // Função que imprime num ficheiro por ordem dos elementos
@@ -123,18 +111,16 @@ int  wrFileP (Array produtos[676], char* path){
 }
 
 // Função que inicializa as estruturas, escreve na posição 2 e 3 do array
-Produtos init_Produtos(int* num){
+Produtos init_Produtos(int num[6]){
 
-	Array produtos[676];
+	Produtos p = malloc(sizeof(Produtos));
 	for (int i = 0; i < 676; i++)
-		produtos[i] = malloc(sizeof(Array));
-
-	num[2] = loadArray_produtos(produtos,"../Produtos.txt");
-	num[3] = wrFileP(produtos, "../ProdutosVálidos.txt");
-
-	Produtos estrutura = malloc(sizeof(produtos));
+		p->tabela_produtos[i] = malloc(sizeof(Array));
 	for (int j = 0; j < 676; j++)
-		estrutura->tabela_produtos[j] = produtos[j];
+		p->tabela_produtos[j] = create_Array();
 
-	return estrutura;
+	num[2] = loadArray_produtos(p->tabela_produtos,"../Produtos.txt");
+	num[3] = wrFileP(p->tabela_produtos, "../ProdutosValidos.txt");
+
+	return p;
 }

@@ -24,17 +24,39 @@ void string_append(Strings s, char* c){
 
 	isFull_S(s);
 	s->string[s->inUse++] = sdup(c);
+}
 
-	s->inUse++;
+//Função que devolve uma string numa dada posição, de uma estrutura do tipo Strings.
+char* get_String(Strings s, int i){
+	return s->string[i];
+}
+
+//Função que inicia uma estrutura Array
+Array create_Array(){
+	Array a = malloc(sizeof(Array));
+	a->inUse = 0;
+	a->freeSpace = 0;
+	a->valor = NULL;
+
+	return a;
+}
+
+//Função que inicia uma estrutura Array
+Strings create_Strings(){
+	Strings s = malloc(sizeof(Strings));
+	s->inUse = 0;
+	s->freeSpace = 0;
+	s->string = NULL;
+	return s;
 }
 
 //Função strdup criada para evitar warnings
-char * sdup(const char *s){
-	size_t len = strlen (s) + 1;
-	void *new = malloc (len);
-	if (new == NULL)
+char* sdup(const char *s){
+	size_t tamanho = strlen (s) + 1;
+	void *novo = malloc(tamanho);
+	if(novo == NULL)
 		return NULL;
-	return (char *) memcpy (new, s, len);
+	return (char *) memcpy (novo, s, tamanho);
 }
 
 //Função que liberta o Array
@@ -43,36 +65,36 @@ void free_Array(Array a){
 }
 
 // Função que realiza procura binaria num Array
-int procura_binaria(Array array, int menor_posicao, int maior_posicao, int valor){
+int procura_binaria(Array a, int menor_posicao, int maior_posicao, int v){
 	if (maior_posicao < menor_posicao)
 		return -1;
 
 	int meio = (menor_posicao + maior_posicao)/2;
-	if (valor == array->valor[meio])
+	if (v == a->valor[meio])
 		return meio;
-	if (valor > array->valor[meio])
-		return procura_binaria(array, (meio + 1), maior_posicao, valor);
+	if (v > a->valor[meio])
+		return procura_binaria(a, (meio + 1), maior_posicao, v);
 
-	return procura_binaria(array, menor_posicao, (meio - 1), valor);
+	return procura_binaria(a, menor_posicao, (meio - 1), v);
 }
 
 // Função que realiza a inserção ordenada num Array
-void insert_valor(Array array, int valor){
+void insert_valor(Array a, int valor){
 	int i;
 
-	isFull(array);
+	isFull(a);
 
-	for (i = array->inUse - 1; ( i >= 0  && array->valor[i] > valor); i--)
-		array->valor[i+1] = array->valor[i];
+	for (i = a->inUse - 1; ( i >= 0  && a->valor[i] > valor); i--)
+		a->valor[i+1] = a->valor[i];
 
-	array->valor[i+1] = valor;
+	a->valor[i+1] = valor;
 
-	array->inUse++;
+	a->inUse++;
 }
 
 // Função que apaga um valor de um Array
-void delete_valor(Array array, int n, int valor){
-	int pos = procura_binaria(array, 0, n-1, valor); 
+void delete_valor(Array a, int n, int valor){
+	int pos = procura_binaria(a, 0, n-1, valor); 
 	
 	if(pos == -1){ 
 		printf("Element not found");
@@ -81,7 +103,7 @@ void delete_valor(Array array, int n, int valor){
 
 	int i;
 	for(i = pos; i < n; i++)
-		array->valor[i] = array->valor[i+1];
+		a->valor[i] = a->valor[i+1];
 
-	array->inUse--;
+	a->inUse--;
 }

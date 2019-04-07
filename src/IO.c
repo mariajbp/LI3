@@ -12,7 +12,7 @@
 
 void toprintornottoprint(){
 	char* r = 0;
-	printf("Pretende apresentar o menu? Yes: [y] No: [n]\n");
+	printf("Pretende dar print ao menu? Yes: [y] No: [n]\n");
 	scanf("%c", r);
 
 	if(r[0] == 'y')
@@ -24,7 +24,7 @@ void toprintornottoprint(){
 	}
 }
 
-int main(){
+void print_menu(){
 	printf("%s\n************************************************** Sistema de Gestão de Vendas ************************************************** %s\n", KCYN, RESET);
 	printf("%s\n\t->%s Query 1:  Ler ficheiros (os ficheiros disponiveis para leitura são: \'Produtos.txt\', \'Clientes.txt\', \'Vendas_1M.txt\').\n", KCYN, RESET);
 	printf("%s\n\t->%s Query 2:  Determinar a lista de produtos começados por uma Letra à escolha (A...Z).\n" , KCYN, RESET);
@@ -39,14 +39,13 @@ int main(){
 	printf("%s\n\t->%s Query 11: Criar uma lista dos N produtos mais vendidos em todo o ano,\n\t   indicando o nº total de clientes e o nº total de unidades vendidas, filial a filial.\n", KCYN, RESET);
 	printf("%s\n\t->%s Query12: Dado um cliente, determinar os 3 produtos em que gastou mais dinheiro durante o ano.\n\n", KCYN, RESET);
 	printf("%s********************************************************************************************************************************* %s\n", KCYN, RESET);
-	return 0;
 }
 
 int escolhe_Query(){
 	int tarefa;
 	int r = 0;
 	int num[6];
-	printf("Escolha o numero da query que pretende executar [1...12] \n Terminar o programa: [0]   ");
+	printf("Escolha o numero da query que pretende executar [1...12]\n\tTerminar o programa: [0]   ");
 	if(scanf("%d", &tarefa)){
 
 		if(tarefa > 12 || tarefa < 0){
@@ -57,10 +56,10 @@ int escolhe_Query(){
 		switch(tarefa)
 		{
 			case 1:
-				query_1(num[6]); 
+				query_1(num); 
 				break;
 			case 2:
-				query_2(num[6]); 
+				query_2(num); 
 				break;
 			/*case 3:
 				/query_3(int mes, char* code, faturacao f);
@@ -93,7 +92,7 @@ int escolhe_Query(){
 		}
 	}
 	else{
-		printf("O programa falhou na leitura de um número.\n");
+		printf("\n\tO programa falhou na leitura de um número.\n");
 		escolhe_Query();
 	}
 
@@ -110,56 +109,49 @@ int escolhe_file(){
 	printf("\n\tQue ficheiro pretende ler? Clientes.txt [1], Produtos.txt [2], Vendas_1M.txt [3], todos [4]\n\t->  ");
 	scanf("%d", &r);
 	
-	if(r > 4 || r < 1) printf("\n\t O programa falhou na leitura de um número. [1...3]\n");
+	if(r > 4 || r < 1) printf("\n\tO programa falhou na leitura de um número. [1...3]\n");
 
 	return r;
 }
 
-void query_1(int* num){
-	int r = qual_ficheiro();
+void query_1(int num[6]){
+	int r = escolhe_file();
 	Produtos tProdutos;
 	Clientes tClientes;
+	Vendas v;
 
 	if(r == 1){
-		tClientes = create_Clientes();
-		init_Clientes(num, tClientes);
+		init_Clientes(num);
 		printf("%s\n\tFicheiro lido: %sClientes.txt\n\t%sClientes lidos__%s%d\n\t%sClientes escritos__%s%d\n",KBLU,RESET,KBLU,RESET,num[0],KBLU,RESET,num[1]);
 		free(tClientes);
 	}
 	
 	if(r == 2){
-		tProdutos = create_Produtos();
-		init_Produtos(num, tProdutos);
+		init_Produtos(num);
 		printf("%s\n\tFicheiro lido: %sProdutos.txt\n\t%sProdutos lidos__%s%d\n\t%sProdutos escritos__%s%d\n",KBLU,RESET,KBLU,RESET,num[2],KBLU,RESET,num[3]);
 		free(tProdutos);
 	}
 
-	if (r == 3)
-	{
-		tClientes = create_Clientes();
-		init_Clientes(num, tClientes);
-		tProdutos = create_Produtos();
-		init_Produtos(num, tProdutos);
-		Vendas v = create_Vendas();
-		printf("%s\n\tFicheiro lido: %sVendas_1M.txt\n\t%sVendas lidas__%s%d\n\t%sVendas escritas__%s%d\n",KBLU,RESET,KBLU,RESET num[4],KBLU,RESET,num[5]);
+	if (r == 3){
+		tClientes = init_Clientes(num);
+		tProdutos = init_Produtos(num);
+		v = init_Vendas(num,tProdutos,tClientes);
+		printf("%s\n\tFicheiro lido: %sVendas_1M.txt\n\t%sVendas lidas__%s%d\n\t%sVendas escritas__%s%d\n",KBLU,RESET,KBLU,RESET,num[4],KBLU,RESET,num[5]);
 		free(tClientes);
 		free(tProdutos);
 		free(v);
-	}	
+	}
 
-	if(r == 4)
-	{
-		tClientes = create_Clientes();
-		init_Clientes(num, tClientes);
-		tProdutos = create_Produtos();
-		init_Produtos(num, tProdutos);
-		Vendas v = create_Vendas();
-		init_Vendas(num,tProdutos, tClientes, v);		printf("%s\n\tFicheiro lido: %sClientes.txt\n\t%sClientes lidos__%s%d\n\t%sClientes escritos__%s%d\n",KBLU,RESET,KBLU,RESET,num[0],KBLU,RESET,num[1]);
+	if(r == 4){
+		tClientes = init_Clientes(num);
+		tProdutos = init_Produtos(num);
+		v = init_Vendas(num,tProdutos,tClientes);
+		printf("%s\n\tFicheiro lido: %sClientes.txt\n\t%sClientes lidos__%s%d\n\t%sClientes escritos__%s%d\n",KBLU,RESET,KBLU,RESET,num[0],KBLU,RESET,num[1]);
 		printf("%s\n\tFicheiro lido: %sProdutos.txt\n\t%sProdutos lidos__%s%d\n\t%sProdutos escritos__%s%d\n",KBLU,RESET,KBLU,RESET,num[2],KBLU,RESET,num[3]);
-		printf("%s\n\tFicheiro lido: %sVendas_1M.txt\n\t%sVendas lidas__%s%d\n\t%sVendas escritas__%s%d\n",KBLU,RESET,KBLU,RESET num[4],KBLU,RESET,num[5]);
+		printf("%s\n\tFicheiro lido: %sVendas_1M.txt\n\t%sVendas lidas__%s%d\n\t%sVendas escritas__%s%d\n",KBLU,RESET,KBLU,RESET,num[4],KBLU,RESET,num[5]);
 		free(tClientes);
 		free(tProdutos);
-		free(v);	
+		free(v);
 	}
 }
 
@@ -168,13 +160,13 @@ void query_1(int* num){
 ///////////////////////////////////////////////
 
 int navPag(Strings s){
-	char* tecla;
+	char tecla;
 	int p;
 	printf("%sQue página pretende imprimir?%s\n", KCYN, RESET);
 	printf("\t%sCaso pretenda sair use a tecla espaço%s\n",KBLU,RESET);
-	scanf("%s", tecla);
+	scanf("%s", &tecla);
 	while(tecla!=32){
-		p = atoi(tecla);
+		p = tecla - 48;
 		for(int i = p; i < p+10; i++){
 			printf("\t%s\n",s->string[i]);
 		}
@@ -220,15 +212,14 @@ void navegador(Strings s){
 
 void query_2(int num[6]){
 	char* letra;
-	int r;
 	Produtos p = init_Produtos(num);
 	Strings array_imprimir;
 
 	printf("%sQual a letra inicial (maiúscula) do código que pretende procurar? [A..Z]%s\n", KMAG, RESET);
 	scanf("%s", letra);
 
-	array_imprimir = meteletra(p, letra[0]);
-	navegador(array_imprimir);
+	//array_imprimir = meteletra(p, letra[0]);
+	//navegador(array_imprimir);
 }
 
 /////////////////////////////////////////////////
@@ -404,30 +395,3 @@ void query_12()
 }
 
 */
-
-void divisao(int num, int i)
-{
-	int f;
-	char* tokens[7];
-	if (num == 1)
-	{
-		f = atoi(tokens[6]);
-		if(f == 1) printf("%s", tokens[i]);
-	}
-	if (num == 2)
-	{
-		f = atoi(tokens[6]);
-		if(f == 2) printf("%s", tokens[i]);
-		
-	}
-	if (num == 3)
-	{
-		f = atoi(tokens[6]);
-		if(f == 3) printf("%s", tokens[i]);
-		
-	}
-	if (num == 4)
-	{
-		
-	}
-}
