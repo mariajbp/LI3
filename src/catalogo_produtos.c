@@ -32,8 +32,8 @@ int totalVendasProd(Strings v, char* p)
 	for (int j = 0; j < v->inUse; j++)
 	{
 		toktok(tokens,v->string[j]);
-		if(token[1] == p)
-			vendas = vendas + tokens[2];
+		if(tokens[1] == p)
+			vendas = vendas + atoi(tokens[2]);
 	}
 
 	return vendas;

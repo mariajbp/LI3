@@ -111,7 +111,7 @@ void divFilial1(Strings v, int i)
 			toktok(tokens,v->string[j]);
 			f = atoi(tokens[6]);
 			if (f == 1)
-				printf(tokens[i]);
+				printf("%s \n",tokens[i]);
 		}
 }
 
@@ -128,7 +128,7 @@ void divFilial2(Strings v, int i)
 			toktok(tokens,v->string[j]);
 			f = atoi(tokens[6]);
 			if (f == 2)
-				printf(tokens[i]);
+				printf("%s \n",tokens[i]);
 		}
 }
 
@@ -145,7 +145,7 @@ void divFilial3(Strings v, int i)
 			toktok(tokens,v->string[j]);
 			f = atoi(tokens[6]);
 			if (f == 3)
-				printf(tokens[i]);
+				printf("%s \n", tokens[i]);
 		}
 }
 
@@ -157,10 +157,11 @@ void global(Strings v, int i)
 	for (int j = 0; j < v->inUse; j++)
 		{
 			toktok(tokens,v->string[j]);
-			printf(tokens[i]);
+			printf("%s \n", tokens[i]);
 		}
 
 }
+
 
 /////////////////////////////////////////////////
 //// 				query_1					////
@@ -189,7 +190,7 @@ void query_1(int num[6]){
 		init_Clientes(num);
 		printf("%s\n\tFicheiro lido: %sClientes.txt\n\t%sClientes lidos__%s%d\n\t%sClientes escritos__%s%d\n",KBLU,RESET,KBLU,RESET,num[0],KBLU,RESET,num[1]);
 		finish = clock();
-		printf("demorou %ld segundos\n", (finish - start));
+		printf("demorou %lu segundos\n", (finish - start));
 		free(tClientes);
 	}
 	
@@ -208,7 +209,7 @@ void query_1(int num[6]){
 		v = init_Vendas(num,tProdutos,tClientes);
 		printf("%s\n\tFicheiro lido: %sVendas_1M.txt\n\t%sVendas lidas__%s%d\n\t%sVendas escritas__%s%d\n",KBLU,RESET,KBLU,RESET,num[4],KBLU,RESET,num[5]);
 		finish = clock();
-		printf("demorou %ld segundos\n", (finish - start));
+		printf("demorou %lu segundos\n", (finish - start));
 		free(tClientes);
 		free(tProdutos);
 		free(v);
@@ -223,7 +224,7 @@ void query_1(int num[6]){
 		printf("%s\n\tFicheiro lido: %sProdutos.txt\n\t%sProdutos lidos__%s%d\n\t%sProdutos escritos__%s%d\n",KBLU,RESET,KBLU,RESET,num[2],KBLU,RESET,num[3]);
 		printf("%s\n\tFicheiro lido: %sVendas_1M.txt\n\t%sVendas lidas__%s%d\n\t%sVendas escritas__%s%d\n",KBLU,RESET,KBLU,RESET,num[4],KBLU,RESET,num[5]);
 		finish = clock();
-		printf("demorou %ld segundos\n", (finish - start));
+		printf("demorou %lu segundos\n", (finish - start));
 		free(tClientes);
 		free(tProdutos);
 		free(v);
@@ -286,34 +287,35 @@ void navegador(Strings s){
 }
 
 void query_2(int num[6]){
+	clock_t finish, start;
 	char* letra;
 	Produtos p = init_Produtos(num);
-	Strings array_imprimir;
+	Strings a_imprimir;
 
 	printf("%sQual a letra inicial (maiúscula) do código que pretende procurar? [A..Z]%s\n", KMAG, RESET);
 	scanf("%s", letra);
 
 	start = clock();
+	a_imprimir = meteletra(p, letra[0]);
+	navegador(a_imprimir);
 	finish = clock();
-	printf("demorou %ld segundos\n", (finish - start));
+	printf("demorou %lu segundos\n", (finish - start));
 
-	//array_imprimir = meteletra(p, letra[0]);
-	//navegador(array_imprimir);
 	//dar free
+	
 }
 
 
 /////////////////////////////////////////////////
 //// 				query_3					////
 ///////////////////////////////////////////////
-
-
+/*
 void query_3(num[6])
 {
 	int r;
+	clock_t finish, start;
 	int mes;
 	char* code;
-	Vendas v = init_Vendas(num, code, )//cliente)
 	Vendas nv;
 	Printf("Indique o mês a determinar: \n")
 	scanf("%d", &mes);
@@ -355,21 +357,21 @@ void query_3(num[6])
 	printf("Faturação total dos produtos em desconto: %f \n", totalP);
 
 	finish = clock();
-	printf("demorou %ld segundos\n", (finish - start));
+	printf("demorou %lu segundos\n", (finish - start));
 
 	free(nv);
 }
 
-
+*/
 /////////////////////////////////////////////////
 //// 				query_4					////
 ///////////////////////////////////////////////
-
+/**
 
 void query_4(num[6])
 {
 	int r;
-
+	clock_t finish, start;
 	Produtos p = init_Produtos(num);
 	Vendas v = init_Vendas(fucking argumentos);
 	Vendas nv;
@@ -399,9 +401,10 @@ void query_4(num[6])
 
 	start = clock();
 	finish = clock();
-	printf("demorou %ld segundos\n", (finish - start));
+	printf("demorou %lu segundos\n", (finish - start));
 	free(nv);
 } 
+*/
 
 /////////////////////////////////////////////////
 //// 				query_5					////
@@ -410,9 +413,10 @@ void query_4(num[6])
 /*
 void query_5()
 {
+	clock_t finish, start;
 	start = clock();
 	finish = clock();
-	printf("demorou %ld segundos\n", (finish - start));
+	printf("demorou %lu segundos\n", (finish - start));
 	//lista de codigo de clientes que compraram em todas as filiais
 }
 */
@@ -424,11 +428,12 @@ void query_5()
 /*
 void query_6()
 {
+	clock_t finish, start;
 	printf("%sOs seguintes clientes não realizaram qualquer compra: %s\n", KBLU, RESET);
 	//lista de clientes que não fizeram compras
 	start = clock();
 	finish = clock();
-	printf("demorou %ld segundos\n", (finish - start));
+	printf("demorou %lu segundos\n", (finish - start));
 	
 	printf("%sOs seguintes produtos nunca foram comprados: %s\n", KBLU, RESET);
 	//lista de produtos que não foram comprados
@@ -449,7 +454,7 @@ void query_7(	)
 	//nUnidadesCompradas(code, Strings m, num[12][3])
 	start = clock();
 	finish = clock();
-	printf("demorou %ld segundos\n", (finish - start));
+	printf("demorou %lu segundos\n", (finish - start));
 }
 
 /////////////////////////////////////////////////
@@ -466,7 +471,7 @@ void query_8(Faturacao f)
 	scanf("%d", &f);
 	start = clock();
 	finish = clock();
-	printf("demorou %ld segundos\n", (finish - start));
+	printf("demorou %lu segundos\n", (finish - start));
 }
 
 /////////////////////////////////////////////////
@@ -487,7 +492,7 @@ void query_9()
 	printf("%s\tNúmmero total de clientes que compraram o produto em promoção: %s %d \n", KMAG, RESET);
 	start = clock();
 	finish = clock();
-	printf("demorou %ld segundos\n", (finish - start));
+	printf("demorou %lu segundos\n", (finish - start));
 }
 
 /////////////////////////////////////////////////
@@ -506,7 +511,7 @@ void query_10()
 	//lista de codigos  dos produtos + comprados por quantidade -> ordem descendente
 	start = clock();
 	finish = clock();
-	printf("demorou %ld segundos\n", (finish - start));
+	printf("demorou %lu segundos\n", (finish - start));
  
 }
 
@@ -528,89 +533,32 @@ void query_11()
 	//filial a filial 
 	start = clock();
 	finish = clock();
-	printf("demorou %ld segundos\n", (finish - start));
+	printf("demorou %lu segundos\n", (finish - start));
 }
 
 /////////////////////////////////////////////////
 //// 				query_12				////
 ///////////////////////////////////////////////
-
-/*
-void query_12()
-{
-	char* code;
-	printf("%sIndique o código do cliente: %s\n", KBLU, RESET);
-	scanf("%s", &code);
-	//codigo dos 3 produtos em que mais gastou
-	printf("Os 3 produtos em que mais gastou dinheiro foram: \n\t %s\t%s\t%s\t ")
-	start = clock();
-	finish = clock();
-	printf("demorou %ld segundos\n", (finish - start));
-}
-
 */
 
-
-
-void divFilial1(Strings v, int i)
+void query_12()
 {
-	int f;
-	char* tokens[7];
-	for(int i=0; i<7; i++)
-		tokens[i] = malloc(sizeof(char*));
-
-	for (int j = 0; j < v->inUse; j++)
-		{
-			toktok(tokens,v->string[j]);
-			f = atoi(tokens[6]);
-			if (f == 1)
-				printf(tokens[i]);
-		}
-}
-
-
-void divFilial2(Strings v, int i)
-{
-	int f;
-	char* tokens[7];
-	for(int i=0; i<7; i++)
-		tokens[i] = malloc(sizeof(char*));
+	clock_t start, finish;
+	char* code;
+	char* maisComprados[3];
+	printf("%sIndique o código do cliente: %s\n", KBLU, RESET);
+	scanf("%s", &code);
+	start = clock();
 	
-	for (int j = 0; j < v->inUse; j++)
-		{
-			toktok(tokens,v->string[j]);
-			f = atoi(tokens[6]);
-			if (f == 2)
-				printf(tokens[i]);
-		}
+
+	//codigo que realmente importa
+
+
+	printf("Os 3 produtos em que mais gastou dinheiro foram: \n\t %s\t%s\t%s\t ", maisComprados[1], maisComprados[2], maisComprados[3]);
+	finish = clock();
+	printf("demorou %lu segundos\n", (finish - start));
 }
 
 
-void divFilial3(Strings v, int i)
-{
-	int f;
-	char* tokens[7];
-	for(int i=0; i<7; i++)
-		tokens[i] = malloc(sizeof(char*));
-	
-	for (int j = 0; j < v->inUse; j++)
-		{
-			toktok(tokens,v->string[j]);
-			f = atoi(tokens[6]);
-			if (f == 3)
-				printf(tokens[i]);
-		}
-}
 
-void global(Strings v, int i)
-{
-	char* tokens[7];
-	for(int i=0; i<7; i++)
-		tokens[i] = malloc(sizeof(char*));
-	for (int j = 0; j < v->inUse; j++)
-		{
-			toktok(tokens,v->string[j]);
-			printf(tokens[i]);
-		}
 
-}

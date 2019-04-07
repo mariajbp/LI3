@@ -24,7 +24,10 @@ Strings notSold(char* code, Vendas V)
 	for (int j = 0; j < v->inUse; j++)
 	{
 		toktok(tokens,v->string[j]);
-		faturado+=tokens[1]*tokens[2];
+		if(strcmp(code,tokens[1]))
+		{
+			res = v->string;			
+		}
 	}
 
 	return res;
