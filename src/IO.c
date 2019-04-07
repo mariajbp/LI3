@@ -1,5 +1,4 @@
 #include "../include/IO.h"
- #include <time.h>
 
 #define RESET  "\x1B[0m"
 #define KRED  "\x1B[31m"
@@ -9,6 +8,21 @@
 #define KMAG  "\x1B[35m"
 #define KCYN  "\x1B[36m"
 #define KWHT  "\x1B[37m"
+
+
+void toprintornottoprint(){
+	char* r = 0;
+	printf("Pretende dar print ao menu? Yes: [y] No: [n]\n");
+	scanf("%c", r);
+
+	if(r[0] == 'y')
+		print_menu();
+
+	if(r[0] == 'n'){
+		printf("Escolha a opção que pretende inicar [1...12]\n");
+		escolhe_Query();
+	}
+}
 
 int main(){
 	printf("%s\n************************************************** Sistema de Gestão de Vendas ************************************************** %s\n", KCYN, RESET);
@@ -32,7 +46,7 @@ int escolhe_Query(){
 	int tarefa;
 	int r = 0;
 	int num[6];
-	printf("Escolha o numero da query que pretende executar [1...12] \n Terminar o programa: [0]  ");
+	printf("Escolha o numero da query que pretende executar [1...12] \n Terminar o programa: [0]   ");
 	if(scanf("%d", &tarefa)){
 
 		if(tarefa > 12 || tarefa < 0){
@@ -43,10 +57,10 @@ int escolhe_Query(){
 		switch(tarefa)
 		{
 			case 1:
-				query_1(int num[6]); 
+				query_1(num[6]); 
 				break;
 			case 2:
-				query_2(int num[6]); 
+				query_2(num[6]); 
 				break;
 			/*case 3:
 				/query_3(int mes, char* code, faturacao f);
@@ -86,11 +100,14 @@ int escolhe_Query(){
 	return r;
 }
 
+/////////////////////////////////////////////////
+//// 				query_1					////
+///////////////////////////////////////////////
 
 int escolhe_file(){
 	int r;
 
-	printf("\n\tQue ficheiro pretende ler? Clientes.txt [1], Produtos.txt [2], Vendas_1M.txt [3], Todos [4]\n\t->  ");
+	printf("\n\tQue ficheiro pretende ler? Clientes.txt [1], Produtos.txt [2], Vendas_1M.txt [3], todos [4]\n\t->  ");
 	scanf("%d", &r);
 	
 	if(r > 4 || r < 1) printf("\n\t O programa falhou na leitura de um número. [1...3]\n");
@@ -127,6 +144,61 @@ void query_1(int num[6]){
 		printf("%s\n\tFicheiro lido: %sClientes.txt\n\t%sClientes lidos__%s%d\n\t%sClientes escritos__%s%d\n",KBLU,RESET,KBLU,RESET,num[0],KBLU,RESET,num[1]);
 		printf("%s\n\tFicheiro lido: %sProdutos.txt\n\t%sProdutos lidos__%s%d\n\t%sProdutos escritos__%s%d\n",KBLU,RESET,KBLU,RESET,num[2],KBLU,RESET,num[3]);
 		printf("%s\n\tFicheiro lido: %sVendas_1M.txt\n\t%sVendas lidas__%s%d\n\t%sVendas escritas__%s%d\n",KBLU,RESET,KBLU,RESET num[4],KBLU,RESET,num[5]);
+}
+}
+
+/////////////////////////////////////////////////
+//// 				query_2					////
+///////////////////////////////////////////////
+
+int navPag(Strings s){
+	char* tecla;
+	int p;
+	printf("%sQue página pretende imprimir?%s\n", KCYN, RESET);
+	printf("\t%sCaso pretenda sair use a tecla espaço%s\n",KBLU,RESET);
+	scanf("%s", tecla);
+	while(tecla!=32){
+		p = atoi(tecla);
+		for(int i = p; i < p+10; i++){
+			printf("\t%s\n",s->string[i]);
+		}
+		p+=10;
+	}
+
+	return p;
+}
+
+int navSetas(Strings s){
+	int p;
+	char tecla;
+
+	printf("Caso queira imprimir a página anterior/seguinte utilize as setas para navegar?\n");
+	while(tecla!=32){
+		if(p<=0) p=0;
+		scanf("%s", &tecla); //left was 75, right was 77 
+		if(tecla == 77){
+			for(int i = p; i < p+10; i++){
+				printf("\t%s\n",s->string[i]);
+			}
+			p+=10;
+		}
+		if(tecla == 75){
+			for(int i = p - 10 ; i < p; i++){
+				printf("\t%s\n",s->string[i]);
+			}
+		}
+	}
+
+	return p;
+}
+
+void navegador(Strings s){
+	int op;
+	printf("Pretende %sescolher a página%s ou %snavegar com as setas%s? \n Escolher página: %s[1]%s Navegar com as setas: %s[2]%s\n", KBLU,RESET,KCYN,RESET,KBLU,RESET,KCYN,RESET);
+	scanf("%d", &op); //spacebar to end program
+	while(op!=32){
+		if (op==1) navPag(s);
+		if (op==2) navSetas(s);
 	}
 }
 
@@ -139,72 +211,15 @@ void query_2(int num[6]){
 	printf("%sQual a letra inicial (maiúscula) do código que pretende procurar? [A..Z]%s\n", KMAG, RESET);
 	scanf("%s", letra);
 
-	array_imprimir = meteletra(Produtos p, char letra[0]);
+	array_imprimir = meteletra(p, letra[0]);
 	navegador(array_imprimir);
 }
 
-int navPag(Strings s)
-{
-	char* tecla;
-	int p;
-	printf("%sQue página pretende imprimir?%s\n", KCYN, RESET);
-	printf("\t %sCaso pretenda sair use a tecla espaço%s\n",KBLU,RESET);
-	scanf("%s", tecla);
-	while(tecla!=32)
-	{
-		p = atoi(tecla);
-		for(int i = p; i < p+10; i++)
-		{
-			printf("\t%s\n",s->string[i]);
-		}
-		p+=10;
-	}
-	return p;
-}
+/////////////////////////////////////////////////
+//// 				query_3					////
+///////////////////////////////////////////////
 
-int navSetas(Strings s) //left was 75, right was 77 
-{
-	int p;
-	char pag;
-	char tecla;
-
-	printf("Caso queira imprimir a página anterior/seguinte utilize as setas para navegar?\n");
-	while(tecla!=32)
-	{	
-		if(p<=0) p=0;
-		scanf("%s", &tecla);
-		if(tecla == 77)
-		{
-			for(int i = p; i < p+10; i++)
-			{
-				printf("\t%s\n",s->string[i]);
-			}
-			p+=10;
-		}
-		if(tecla == 75)
-		{
-			for(int i = p - 10 ; i < p; i++)
-			{
-				printf("\t%s\n",s->string[i]);
-			}
-		}
-	}
-	return p;
-}
-
-void navegador(Strings s)
-{
-	int op;
-	printf("Pretende %sescolher a página%s ou %snavegar com as setas%s? \n Escolher página: %s[1]%s Navegar com as setas: %s[2]%s\n", KBLU,RESET,KCYN,RESET,KBLU,RESET,KCYN,RESET);
-	scanf("%d", &op);
-	while(p!=32) //spacebar to end program
-	{
-		if (p==1) navPag(Strings s);
-		if (p==2) navSetas(Strings s);
-	}
-}
-
-
+/*
 void query_3(int mes, char* code, faturacao f)
 {
 	//numero de vendas deste prod
@@ -228,9 +243,13 @@ void query_3(int mes, char* code, faturacao f)
 	printf("Faturação total dos produtos em desconto: \n");
 	
 }
+*/
 
+/////////////////////////////////////////////////
+//// 				query_4					////
+///////////////////////////////////////////////
 
-
+/*
 void query_4(Faturacao f)
 {
 	int r;
@@ -249,23 +268,36 @@ void query_4(Faturacao f)
 	}
 
 	//dar print à lista
-
 } 
 
+/////////////////////////////////////////////////
+//// 				query_5					////
+///////////////////////////////////////////////
 
-
+/*
 void query_5(Filial f)
 {
 	//lista de codigo de clientes que compraram em todas as filiais
 }
 
+/////////////////////////////////////////////////
+//// 				query_6					////
+///////////////////////////////////////////////
+
+/*
 void query_6(Catalogo_Clientes cl, Catalogo_Produtos cp, Filial f)
 {
 	//lista de clientes que não fizeram compras
 	//lista de produtos que não foram comprados
 }
 
+*/
 
+/////////////////////////////////////////////////
+//// 				query_7					////
+///////////////////////////////////////////////
+
+/*
 void query_7(	)
 {
 	char* code;
@@ -274,8 +306,11 @@ void query_7(	)
 	//nUnidadesCompradas(code, Strings m, num[12][3])
 }
 
+/////////////////////////////////////////////////
+//// 				query_8					////
+///////////////////////////////////////////////
 
-
+/*
 void query_8(Faturacao f)
 {
 	int i, f;
@@ -285,6 +320,11 @@ void query_8(Faturacao f)
 	scanf("%d", &f);
 }
 
+/////////////////////////////////////////////////
+//// 				query_9					////
+///////////////////////////////////////////////
+
+/*
 void query_9()
 {
 	char* code;
@@ -298,6 +338,11 @@ void query_9()
 	printf("%s\tNúmmero total de clientes que compraram o produto em promoção: %s %d \n", KMAG, RESET);
 }
 
+/////////////////////////////////////////////////
+//// 				query_10				////
+///////////////////////////////////////////////
+
+/*
 void query_10()
 {
 	char* code;
@@ -310,6 +355,11 @@ void query_10()
  
 }
 
+/////////////////////////////////////////////////
+//// 				query_11				////
+///////////////////////////////////////////////
+
+/*
 void query_11()
 {
 	int n;
@@ -317,12 +367,17 @@ void query_11()
 	scanf("%d", &n);
 	//lista de codigos de prods + comprados
 	//numero de clientes que compraram
-	printf("\t%d clientes adquiriram os %d produtos\n", ,n);
+	printf("%d clientes adquiriram os %d produtos\n", ,n);
 	//numero de units vendidas
-	printf("\tForam vendidas %d unidades \n", ,n);
+	printf("Foram vendidas %d unidades \n", ,n);
 	//filial a filial 
 }
 
+/////////////////////////////////////////////////
+//// 				query_12				////
+///////////////////////////////////////////////
+
+/*
 void query_12()
 {
 	char* code;
@@ -332,23 +387,7 @@ void query_12()
 
 }
 
-
-
-void toprintornottoprint()
-{
-	char* r = 0;
-	printf("Pretende apresentar o menu? Yes: [y] No: [n]\n");
-	scanf("%c", r);
-
-	if(r[0] == 'y')
-		print_menu();
-
-	if(r[0] == 'n'){
-		printf("Escolha a opção a inicar [1...12]\n");
-		escolhe_Query();
-	}
-}
-
+*/
 
 void divisao(int num, int i)
 {
@@ -376,4 +415,3 @@ void divisao(int num, int i)
 		
 	}
 }
-
