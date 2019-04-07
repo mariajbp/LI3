@@ -7,6 +7,7 @@
 #include "catalogo_clientes.h"
 #include "vendas.h"
 #include "arrayd.h"
+#include <time.h>
 
 /**
  * O QUE FAZ

@@ -99,6 +99,69 @@ int escolhe_Query(){
 	return r;
 }
 
+void divFilial1(Strings v, int i)
+{
+	int f;
+	char* tokens[7];
+	for(int i=0; i<7; i++)
+		tokens[i] = malloc(sizeof(char*));
+
+	for (int j = 0; j < v->inUse; j++)
+		{
+			toktok(tokens,v->string[j]);
+			f = atoi(tokens[6]);
+			if (f == 1)
+				printf(tokens[i]);
+		}
+}
+
+
+void divFilial2(Strings v, int i)
+{
+	int f;
+	char* tokens[7];
+	for(int i=0; i<7; i++)
+		tokens[i] = malloc(sizeof(char*));
+	
+	for (int j = 0; j < v->inUse; j++)
+		{
+			toktok(tokens,v->string[j]);
+			f = atoi(tokens[6]);
+			if (f == 2)
+				printf(tokens[i]);
+		}
+}
+
+
+void divFilial3(Strings v, int i)
+{
+	int f;
+	char* tokens[7];
+	for(int i=0; i<7; i++)
+		tokens[i] = malloc(sizeof(char*));
+	
+	for (int j = 0; j < v->inUse; j++)
+		{
+			toktok(tokens,v->string[j]);
+			f = atoi(tokens[6]);
+			if (f == 3)
+				printf(tokens[i]);
+		}
+}
+
+void global(Strings v, int i)
+{
+	char* tokens[7];
+	for(int i=0; i<7; i++)
+		tokens[i] = malloc(sizeof(char*));
+	for (int j = 0; j < v->inUse; j++)
+		{
+			toktok(tokens,v->string[j]);
+			printf(tokens[i]);
+		}
+
+}
+
 /////////////////////////////////////////////////
 //// 				query_1					////
 ///////////////////////////////////////////////
@@ -220,6 +283,7 @@ void query_2(int num[6]){
 
 	//array_imprimir = meteletra(p, letra[0]);
 	//navegador(array_imprimir);
+	//dar free
 }
 
 
@@ -238,23 +302,27 @@ void query_3(num[6])
 	Printf("Indique o mês a determinar: \n")
 	scanf("%d", &mes);
 	printf("Indique o codigo do produto: \n", );
-	scanf("%d", &code);
+	scanf("%s", &code);
 
 	printf("%sQual o resultado que pretende obter?%s \n Filial 1: [1] Filial 2: [2] Filial 3: [3] Global:[4] \n", KMAG, RESET);
 	scanf("%d", &r);
 	switch (r)
 	{
 		case 1:
-			nv = divFilial1(v,1)
+			nv = divFilial1(v,1);
+			free(v);
 			break;
 		case 2: 
-			nv = divFilial2(v,1)
+			nv = divFilial2(v,1);
+			free(v);
 			break;
 		case 3: 
-			nv = divFilial3(v,1)
+			nv = divFilial3(v,1);
+			free(v);
 			break;
 		case 4: 
-			nv = global()
+			nv = global();
+			free(v);
 			break;
 	}
 
@@ -268,6 +336,7 @@ void query_3(num[6])
 	printf("Faturação total dos produtos com o preço normal: %f \n", totalN);
 	printf("Faturação total dos produtos em desconto: %f \n", totalP);
 	
+	free(nv);
 }
 
 
@@ -275,28 +344,40 @@ void query_3(num[6])
 //// 				query_4					////
 ///////////////////////////////////////////////
 
-/*
-void query_4()
+
+void query_4(num[6])
 {
 	int r;
+
+	Produtos p = init_Produtos(num);
+	Vendas v = init_Vendas(fucking argumentos);
+	Vendas nv;
 	printf("%sQual o resultado que pretende obter?%s \n Filial 1: [1] Filial 2: [2] Filial 3: [3] Global:[4] \n", KBLU,RESET);
 	scanf("%d", &r);
 	switch (r)
 	{
 		case 1:
+			nv = divFilial1(v,1);
+			free(v);
 			break;
 		case 2: 
+			nv = divFilial2(v,1);
+			free(v);
 			break;
 		case 3: 
+			nv = divFilial3(v,1);
+			free(v);
 			break;
 		case 4: 
+			nv = global();
+			free(v);
 			break;
 	}
 
-	//dar print à lista
+	//chamar notSold fichaeiro vendas e printar
 
-	printf("Houve %d produtos que não foram comprados", );
-} */
+	free(nv);
+} 
 
 /////////////////////////////////////////////////
 //// 				query_5					////
