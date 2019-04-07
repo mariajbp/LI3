@@ -7,12 +7,28 @@
 #include <string.h>
 #include <ctype.h>
 
-typedef struct produtos *Produtos;
+typedef struct produtos* Produtos;
 
-// Função que verifica se um id existe na estrutura
+
+/**
+ * O QUE FAZ
+ * @param O QUE RECEBE
+ * @param O QUE RETORNA
+ */
+//Strings meteletra(Produtos p, char l1);
+
+/**
+ * Função que verifica se um id existe na estrutura
+ * @param O QUE RECEBE
+ * @param O QUE RETORNA
+ */
 int search_P(Produtos p, char id[]);
 
-//Função que inicia uma estrutura produtos
-Produtos init_Produtos(int* num);
+/**
+ * Função que inicia uma estrutura produtos
+ * @param O QUE RECEBE
+ * @param O QUE RETORNA
+ */
+Produtos init_Produtos(int num[6]);
 
 #endif

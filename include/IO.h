@@ -34,6 +34,6 @@ void query_1(int num[6]);
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-void query_2();
+void query_2(int num[6]);
 
 #endif

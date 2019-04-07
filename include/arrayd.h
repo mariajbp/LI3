@@ -7,20 +7,18 @@
 #include <string.h>
 #include <ctype.h>
 
-typedef struct array
-{
+typedef struct array{
 	int inUse;			//O que está a ser usado
 	int freeSpace;		//O que está livre
 	int* valor;			// Array de produtos neste caso
-} *Array;
+}*Array;
 
 //Estrutura Array Dinamico
-typedef struct strings
-{
+typedef struct strings{
 	int inUse;			//O que está a ser usado
 	int freeSpace;		//O que está livre
 	char** string;		// Array de strings
-} *Strings;
+}*Strings;
 
 /**
  * Função que verifica se o Array está cheio, aloca memória se estiver.
@@ -39,6 +37,15 @@ void isFull_S(Strings s);
  * @param Strings
  */
 void string_append(Strings s, char* c);
+
+//Função que inicia uma estrutura Array
+Array create_Array();
+
+//Função que inicia uma estrutura Array
+Strings create_Strings();
+
+//Função que devolve uma string numa dada posição, de uma estrutura do tipo Strings.
+char* get_String(Strings s, int i);
 
 /**
  * Função strdup criada para evitar warnings
