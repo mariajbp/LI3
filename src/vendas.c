@@ -13,26 +13,6 @@ struct vendas{
 	Strings vendas;
 };
 
-//query 4
-Strings notSold(char* code, Vendas V)
-{
-	Strings res;
-	char* tokens[7];
-	for(int i=0; i<7; i++)
-		tokens[i] = malloc(sizeof(char*));
-	
-	for (int j = 0; j < v->inUse; j++)
-	{
-		toktok(tokens,v->string[j]);
-		if(strcmp(code,tokens[1]))
-		{
-			res = v->string;			
-		}
-	}
-
-	return res;
-
-}
 
 //Tokenize, devolve o i e preenche o array tokens
 int toktok(char * linha, char** tokens){

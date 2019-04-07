@@ -56,16 +56,16 @@ int escolhe_Query(){
 		switch(tarefa)
 		{
 			case 1:
-				query_1(num); 
+				query_1(); 
 				break;
 			case 2:
-				query_2(num); 
+				query_2(); 
 				break;
 			/*case 3:
-				query_3(num);
+				query_3();
 				break;
 			case 4:
-				query_4(num)
+				query_4()
 				break;
 			case 5:
 				break;	
@@ -397,14 +397,16 @@ void query_4(num[6])
 			break;
 	}
 
-	//chamar notSold fichaeiro vendas e printar
-
 	start = clock();
+	Strings res = naoComprados(nv, "Produtos.txt"); ??
+	
+
 	finish = clock();
 	printf("demorou %lu segundos\n", (finish - start));
 	free(nv);
 } 
 */
+
 
 /////////////////////////////////////////////////
 //// 				query_5					////
@@ -514,32 +516,57 @@ void query_10()
 	printf("demorou %lu segundos\n", (finish - start));
  
 }
+*/
 
 /////////////////////////////////////////////////
 //// 				query_11				////
 ///////////////////////////////////////////////
-
 /*
 void query_11()
 {
 	int n;
+	clock_t start, finish;
 	printf("%sIndique o número de produtos que pretende obter: %s\n", KCYN, RESET);
 	scanf("%d", &n);
-	//lista de codigos de prods + comprados
-	//numero de clientes que compraram
-	printf("%d clientes adquiriram os %d produtos\n", ,n);
-	//numero de units vendidas
-	printf("Foram vendidas %d unidades \n", ,n);
-	//filial a filial 
+
+	printf("%sQual o resultado que pretende obter?%s \n Filial 1: [1] Filial 2: [2] Filial 3: [3] Global:[4] \n", KMAG, RESET);
+	scanf("%d", &r);
+	switch (r)
+	{
+		case 1:
+			nv = divFilial1(v,1);
+			free(v);
+			break;
+		case 2: 
+			nv = divFilial2(v,1);
+			free(v);
+			break;
+		case 3: 
+			nv = divFilial3(v,1);
+			free(v);
+			break;
+		case 4: 
+			nv = global();
+			free(v);
+			break;
+	}
 	start = clock();
+
+	//lista de codigos de prods + comprados
+	printf("%d clientes adquiriram os %d produtos\n", ,n);
+	printf("Foram vendidas %d unidades \n", ,n);
+
+
 	finish = clock();
 	printf("demorou %lu segundos\n", (finish - start));
 }
+*/
 
 /////////////////////////////////////////////////
 //// 				query_12				////
 ///////////////////////////////////////////////
-*/
+
+
 
 void query_12()
 {
@@ -558,7 +585,5 @@ void query_12()
 	finish = clock();
 	printf("demorou %lu segundos\n", (finish - start));
 }
-
-
 
 

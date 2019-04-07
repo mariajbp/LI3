@@ -9,10 +9,5 @@
 //Main do projeto
 int main(){
 	
-	print_menu();
-
-	if(escolhe_Query() == -1)
-		return 0;
-	  
-	return 0;
+	query_1(2);
 }

@@ -39,6 +39,7 @@ int naoHaProd(char* prod, Strings s){
 	return r;
 }
 
+
 Strings* naoComprados(Vendas_filial v, char* path)
 {
 	Strings produtos = malloc(sizeof(Strings));
@@ -63,6 +64,7 @@ Strings* naoComprados(Vendas_filial v, char* path)
 
 	return pNC; // return produtos nao comprados
 }
+
 
 
 
@@ -99,6 +101,7 @@ Strings compraramTodas(Vendas_filial v, char* path)
 
 	return cCT; // return clientes que compraram tudo
 }
+
 
 void nUnidadesCompradas(char* cliente, Strings m, int num[12][3]){
 		
