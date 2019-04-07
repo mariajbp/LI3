@@ -115,36 +115,52 @@ int escolhe_file(){
 	return r;
 }
 
-void query_1(int num[6]){
+void query_1(int* num){
 	int r = qual_ficheiro();
 	Produtos tProdutos;
 	Clientes tClientes;
 
 	if(r == 1){
-		init_Clientes(num);
+		tClientes = create_Clientes();
+		init_Clientes(num, tClientes);
 		printf("%s\n\tFicheiro lido: %sClientes.txt\n\t%sClientes lidos__%s%d\n\t%sClientes escritos__%s%d\n",KBLU,RESET,KBLU,RESET,num[0],KBLU,RESET,num[1]);
+		free(tClientes);
 	}
 	
 	if(r == 2){
-		init_Produtos(num);
+		tProdutos = create_Produtos();
+		init_Produtos(num, tProdutos);
 		printf("%s\n\tFicheiro lido: %sProdutos.txt\n\t%sProdutos lidos__%s%d\n\t%sProdutos escritos__%s%d\n",KBLU,RESET,KBLU,RESET,num[2],KBLU,RESET,num[3]);
+		free(tProdutos);
 	}
 
-	if (r == 3){
-		Clientes clientes = init_Clientes(num);
-		Produtos produtos = init_Produtos(num);
-		init_Vendas(num,produtos,clientes);
+	if (r == 3)
+	{
+		tClientes = create_Clientes();
+		init_Clientes(num, tClientes);
+		tProdutos = create_Produtos();
+		init_Produtos(num, tProdutos);
+		Vendas v = create_Vendas();
 		printf("%s\n\tFicheiro lido: %sVendas_1M.txt\n\t%sVendas lidas__%s%d\n\t%sVendas escritas__%s%d\n",KBLU,RESET,KBLU,RESET num[4],KBLU,RESET,num[5]);
-	}
+		free(tClientes);
+		free(tProdutos);
+		free(v);
+	}	
 
-	if(r == 4){
-		tClientes = init_Clientes(num);
-		tProdutos = init_Produtos(num);
-		init_Vendas(num,tProdutos,tClientes);
-		printf("%s\n\tFicheiro lido: %sClientes.txt\n\t%sClientes lidos__%s%d\n\t%sClientes escritos__%s%d\n",KBLU,RESET,KBLU,RESET,num[0],KBLU,RESET,num[1]);
+	if(r == 4)
+	{
+		tClientes = create_Clientes();
+		init_Clientes(num, tClientes);
+		tProdutos = create_Produtos();
+		init_Produtos(num, tProdutos);
+		Vendas v = create_Vendas();
+		init_Vendas(num,tProdutos, tClientes, v);		printf("%s\n\tFicheiro lido: %sClientes.txt\n\t%sClientes lidos__%s%d\n\t%sClientes escritos__%s%d\n",KBLU,RESET,KBLU,RESET,num[0],KBLU,RESET,num[1]);
 		printf("%s\n\tFicheiro lido: %sProdutos.txt\n\t%sProdutos lidos__%s%d\n\t%sProdutos escritos__%s%d\n",KBLU,RESET,KBLU,RESET,num[2],KBLU,RESET,num[3]);
 		printf("%s\n\tFicheiro lido: %sVendas_1M.txt\n\t%sVendas lidas__%s%d\n\t%sVendas escritas__%s%d\n",KBLU,RESET,KBLU,RESET num[4],KBLU,RESET,num[5]);
-}
+		free(tClientes);
+		free(tProdutos);
+		free(v);	
+	}
 }
 
 /////////////////////////////////////////////////
