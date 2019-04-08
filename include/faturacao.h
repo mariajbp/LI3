@@ -18,4 +18,16 @@ int insereNull(char* code, FATURACAO f);
 //Função que devolve o número total de vendas num dado mês (N+P)
 int totalMes(int mes, FATURACAO  f);
 
+int search_prodV(char* pcode, char* venda);
+
+Strings searchProdMes(char* code, Vendas_inMes vm, int mes);
+
+
+int totalFaturado(Strings v);
+
+
+int* totalFaturadoNP(Strings v, int num[2]);
+
+
+
 #endif

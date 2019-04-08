@@ -10,4 +10,14 @@ typedef struct treeF* Treef;
 
 typedef struct filial* Filial;
 
+int naoHaProd(char* prod, Strings s);
+
+Strings* naoComprados(Vendas_filial v, char* path);
+
+int haCliente(char* ccode, Strings s);
+
+Strings compraramTodas(Vendas_filial v, char* path);
+
+void nUnidadesCompradas(char* cliente, Strings m, int num[12][3])
+
 #endif

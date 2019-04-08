@@ -2,7 +2,7 @@
 #include "../include/arrayd.h"
 
 struct produtos{
-	Array tabela_produtos[676];
+	TAD_Array tabela_produtos[676];
 };
 
 Strings meteletra(Produtos p, char l1){
@@ -62,7 +62,7 @@ int validaProduto(char * id){
 }
 
 // Função que insere um index, de tipologia Cliente, numa estrutura de dados
-void insert_Produto(Array produtos[676], char id[]){
+void insert_Produto(TAD_Array produtos[676], char id[]){
 
 	int n = num_produto(id,2), l = letra_produto(id);
 	insert_valor(produtos[l], n);
@@ -76,7 +76,7 @@ int search_P(Produtos produtos, char id[]){
 }
 
 // Função que imprime num ficheiro por ordem dos elementos
-int fprint_produtos(FILE* fp, int i, Array produtos){
+int fprint_produtos(FILE* fp, int i, TAD_Array produtos){
 	char l1 = ((i - (i%26))/26) + 65, l2 = (i % 26) + 65 ;
 
 	int num = 0;

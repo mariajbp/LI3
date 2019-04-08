@@ -2,7 +2,7 @@
 
 
 //Função que verifica se o Array está cheio, aloca memória se estiver
-void isFull(Array a){
+void isFull(TAD_Array a){
 
 	if(a->inUse >= a->freeSpace){
 		a->freeSpace += 1000;
@@ -32,8 +32,8 @@ char* get_String(Strings s, int i){
 }
 
 //Função que inicia uma estrutura Array
-Array create_Array(){
-	Array a = malloc(sizeof(Array));
+Array create_TAD_Array(){
+	TAD_Array a = malloc(sizeof(TAD_Array));
 	a->inUse = 0;
 	a->freeSpace = 0;
 	a->valor = NULL;
@@ -60,12 +60,12 @@ char* sdup(const char *s){
 }
 
 //Função que liberta o Array
-void free_Array(Array a){
+void free_Array(TAD_Array a){
 	free(a);
 }
 
 // Função que realiza procura binaria num Array
-int procura_binaria(Array a, int menor_posicao, int maior_posicao, int v){
+int procura_binaria(TAD_Array a, int menor_posicao, int maior_posicao, int v){
 	if (maior_posicao < menor_posicao)
 		return -1;
 
@@ -79,7 +79,7 @@ int procura_binaria(Array a, int menor_posicao, int maior_posicao, int v){
 }
 
 // Função que realiza a inserção ordenada num Array
-void insert_valor(Array a, int valor){
+void insert_valor(TAD_Array a, int valor){
 	int i;
 
 	isFull(a);
@@ -93,7 +93,7 @@ void insert_valor(Array a, int valor){
 }
 
 // Função que apaga um valor de um Array
-void delete_valor(Array a, int n, int valor){
+void delete_valor(TAD_Array a, int n, int valor){
 	int pos = procura_binaria(a, 0, n-1, valor); 
 	
 	if(pos == -1){ 

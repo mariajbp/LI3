@@ -2,7 +2,7 @@
 #include "../include/arrayd.h"
 
 struct clientes{
-	Array tabela_clientes[26];
+	TAD_Array tabela_clientes[26];
 };
 
 // Função que lê as primeiras letras de uma string e as transforma num numero
@@ -28,7 +28,7 @@ int validaCliente(char * id){
 }
 
 // Função que insere um index, de tipologia Cliente, numa estrutura de dados
-void insert_Cliente(Array clientes[26], char id[]){
+void insert_Cliente(TAD_Array clientes[26], char id[]){
 
 	int n = num_cliente(id,1), l = letra_cliente(id);
 	insert_valor(clientes[l], n);
@@ -42,7 +42,7 @@ int search_C(Clientes clientes, char id[]){
 }
 
 // Função que imprime num ficheiro por ordem dos elementos
-int fprint_clientes(FILE* fp, int l1, Array clientes){
+int fprint_clientes(FILE* fp, int l1, TAD_Array clientes){
 	char letra = l1 + 65;
 	int num = 0;
 	for(int i = 0; i < clientes->inUse; i++){
@@ -54,7 +54,7 @@ int fprint_clientes(FILE* fp, int l1, Array clientes){
 }
 
 // Faz load de um ficheiro no array RETORNA QUANTO ESCREVEU NO ARRAY (para a função wrfile)
-int loadArray_Clientes(Array clientes[26], char* path){
+int loadArray_Clientes(TAD_Array clientes[26], char* path){
 	char linha[7];
 	int i = 0;
 	FILE* file = fopen(path , "r");
@@ -75,7 +75,7 @@ int loadArray_Clientes(Array clientes[26], char* path){
 }
 
 // Função que escreve as tabelas num ficheiro
-int  wrFileC (Array clientes[26], char* path){
+int  wrFileC (TAD_Array clientes[26], char* path){
 	int num = 0;
 	FILE* fp = fopen(path, "w+");
 
@@ -98,7 +98,7 @@ Clientes init_Clientes(int num[6]){
 
 	Clientes cl = malloc(sizeof(Clientes));
 	for(int i = 0; i < 26; i++)
-		cl->tabela_clientes[i] = malloc(sizeof(Array));
+		cl->tabela_clientes[i] = malloc(sizeof(TAD_Array));
 	for(int j = 0; j < 26; j++)
 		cl->tabela_clientes[j] = create_Array();
 
