@@ -6,17 +6,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "arrayd.h"
 
 typedef struct produtos* Produtos;
 
+int getUse(Produtos p, int i);
 
-/**
- * O QUE FAZ
- * @param O QUE RECEBE
- * @param O QUE RETORNA
- */
-//Strings meteletra(Produtos p, char l1);
+int getValor(Produtos p, int i, int j);
 
 /**
  * Função que verifica se um id existe na estrutura
@@ -31,22 +26,5 @@ int search_P(Produtos p, char id[]);
  * @param O QUE RETORNA
  */
 Produtos init_Produtos(int num[6]);
-
-Strings meteletra(Produtos p, char l1);
-
-int totalVendasProd(Strings v, char* p);
-
-int letra_produto(char string[]);
-
-int num_produto(char string[], int index);
-
-int validaProduto(char * id);
-
-void insert_Produto(TAD_Array produtos[676], char id[]);
-
-int fprint_produtos(FILE* fp, int i, TAD_Array produtos);
-
-
-
 
 #endif

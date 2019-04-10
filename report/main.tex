@@ -2,7 +2,7 @@
 \usepackage[utf8]{inputenc} %encoding do ficheiro
 \usepackage[portuges]{babel} % para língua portuguesa
 \usepackage{graphicx} % para importar imagens
-\usepackage{listings} % adicionar código em Java 
+\usepackage{listings} % adicionar código 
 \usepackage{color} %cor para o código
 \usepackage[demo]{graphicx} %para as fotos
 \usepackage{babel,blindtext} %para as fotos
@@ -11,17 +11,17 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%     define as cores do código   %%%%%%%%%%%%%%%%%%%
 
-\definecolor{codegreen}{rgb}{0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
- 
-\lstdefinestyle{mystyle}{
-    backgroundcolor=\color{backcolour},   
-    commentstyle=\color{codegreen},
-    keywordstyle=\color{magenta},
-    numberstyle=\tiny\color{codegray},
-    stringstyle=\color{codepurple},
+\definecolor{mGreen}{rgb}{0,0.6,0}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.82}
+\definecolor{backgroundColour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{CStyle}{
+    backgroundcolor=\color{backgroundColour},   
+    commentstyle=\color{mGreen},
+    keywordstyle=\color{mPurple},
+    numberstyle=\tiny\color{mGray},
+    stringstyle=\color{magenta},
     basicstyle=\footnotesize,
     breakatwhitespace=false,         
     breaklines=true,                 
@@ -32,10 +32,9 @@
     showspaces=false,                
     showstringspaces=false,
     showtabs=false,                  
-    tabsize=2
+    tabsize=2,
+    language=C
 }
-
-\lstset{style=mystyle}
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -51,7 +50,7 @@
     \textsc{\huge{Sistema de Gestão de Vendas}}\\[0.5cm]
     \vspace{0.5cm}
     \textsc{Laboratórios de Informática 3}\\[0.5cm]
-    \textsc{(2º Ano, 2º Semestre, 2018/20189}\\[0.5cm]
+    \textsc{2º Ano, 2º Semestre, 2018/2019}\\[0.5cm]
     \vspace{0.5cm}
     
 
@@ -72,64 +71,274 @@
 
 \begin{figure}[!htb]
 \minipage{0.32\textwidth}
-  \includegraphics[width=\linewidth]{3.png}
-  \textit{numero - nome}
+  \includegraphics[width=\linewidth]{Pics/84668.jpg}
+  \textit{84668 - FranciscoPeixoto}
 \endminipage\hfill
 \minipage{0.32\textwidth}
   \includegraphics[width=\linewidth]{Pics/86268.jpg}
-  \textit{86268 - Maria José Borgpes Pires}
+  \textit{86268 - Maria Pires}
 \endminipage\hfill
 \minipage{0.32\textwidth}%
-  \includegraphics[width=\linewidth]{2.png}
-  \textit{numero - nome}
+  \includegraphics[width=\linewidth]{Pics/85242.jpg}
+  \textit{85242 - Maria Regueiras}
 \endminipage
 \end{figure}
 
 \vspace{2.0cm}
-\text{6 de abril de 2019}
+\text{8 de abril de 2019}
 
 \end{center}
 \end{titlepage}
 
-\maketitle
-
 \tableofcontents
 
-\listoffigures
 
 
 %% Introdução
 \chapter{Introdução}
 
-Este trabalho foi desenvolvido no âmbito da unidade curricular laboratórios de informática 3 e tem como objetivo o processamento de dados contidos em 3 ficheiros de texto de modo a responder a queries de forma eficiente, aplicando conhecimentos de algoritmia e programação imperativa.
-%% ADICONAR CENAS SOBRE MODULARIDADE
-  
+Este relatório aborda a resolução do projeto prático em C de LI3. O projeto consiste, resumidamente, em construir um sistema de gestão de vendas, respondendo a queries de forma eficiente, aplicando conhecimentos de algoritmia e programação imperativa.
+\par Ao logo deste relatório são abordadas as decisões tomadas na implementação do projeto, nomeadamente as estruturas utilizadas para criar cada um dos módulos, a razão das escolhas tomadas e as suas APIs.
+\par Inicialmente, foi necessário fazer a validação dos ficheiros e foram criados diferentes módulos. Estes módulos são: a validação e criação dos novos ficheiros, as estruturas de cada tipo de dados e o código auxiliar para executar corretamente as queries fornecidas pelos professores, e finalmente, a interface do sistema.
+\par Depois dos ficheiros serem carregados, somos capazes de executar uma lista de queries disponibilizadas pela equipa docente. Para responder às diferentes queries são utilizadas as funções definidas nas API dos diferentes módulos anteriormente referidos.
 
 
 %Resolução inicial do problema
-\chapter{Resolução inicial do problema}
+\chapter{Validação e geração de ficheiros}
 
 
+\section{Validação}
+\par O projeto foi inicializado com a validação dos ficheiros de texto fornecidos de modo a garantir que não existiam clientes ou produtos com o código errado, ou vendas com informação errada. A validação dos produtos e dos clientes foi feita de modo semelhantes uma vez que só diferiam de um carácter. Analisando e separando os caracteres dos números para facilitar a organização por ordem alfabética.
 
+\par Para a validação das vendas recorremos à função \emph{tokens()} de modo a separar a informação de uma venda pelos campos necessários à resolução do trabalho.
+
+\section{Geração de ficheiros validos}
+Posteriormente, a informação valida foi transferida para novos ficheiros de texto por ordem alfabética, conforme indicado no enunciado, para simplificar a resolução dos seguintes problemas.
 
 
 %% Descrição da Solução Desenvolvida
-\chapter{Estruturas de dados}
+\chapter{Estruturas Base}
 
-\chapter{Modularização Funcional e Resolução de queries}
+\par Fazendo uma análise às queries, o grupo optou por criar as suas próprias estruturas que servem de base para todo o trabalho.
+
+\par
+\begin{lstlisting}[style=CStyle]
+typedef struct array
+{
+	int inUse;			
+	int freeSpace;	
+	int* valor;			
+}*Array;
+\end{lstlisting}
+
+\begin{lstlisting}[style=CStyle]
+typedef struct strings
+{
+	int inUse;			
+	int freeSpace;	
+	char** string;	
+}*Strings;
+\end{lstlisting}
+
+\begin{lstlisting}[style=CStyle]
+typedef struct strings_u
+{
+	int inUse;			
+	int freeSpace;		
+	char** string;		
+	int* unidades;
+}*Strings_Unidades;
+\end{lstlisting}
+
+\par As estruturas são arrays dinâmicos, diferem apenas no tipo. Sendo o primeiro um array dinâmico do tipo int e os restantes de strings.Todas têm um campo "inUse" que indica quantas posições estão a ser usadas no array e um campo "freeSpace" que indica quantas posições estão livres. A terceira tem ainda um campo adicional "unidades" que se tornou importante no módulo vendas por registar as unidades vendidas de um certo produto. As estruturas tornaram a leitura dos ficheiros para a memória e posterior procura de elementos mais rápida e simples de visualizar.
+
+\newpage
+
+\section{Catálogo de Produtos}
+
+\subsection{Estruturas Aplicadas}
+
+\begin{lstlisting}[style=CStyle]
+struct produtos{
+	Array tabela_produtos[676];
+};
+
+typedef struct produtos* Produtos;
+
+\end{lstlisting}
+
+\par Neste módulo criamos uma tabela de Produtos com 676 linhas, onde cada linha corresponde a uma combinção de letras, por exemplo, "AA". Escolhemos fazer desta forma pois facilitava tanto a inserção como a procura de um Produto na tabela. Definimos "Produtos" como um apontador para a estrutura em si.
+\par
+
+\subsection{Funções}
+
+No .h deste módulo incluímos as seguintes funções:
+
+\begin{lstlisting}[style=CStyle]
+int search_P(Produtos p, char id[]);
+\end{lstlisting}
+Nesta função passamos uma estrutura Produto p e um id que queremos procurar em p, através de uma procura binária no array dinâmico (devolvendo se encontrou ou não).
+
+\begin{lstlisting}[style=CStyle]
+Produtos init_Produtos(int num[6]);
+\end{lstlisting}
+Passando uma lista de ints de 6 posições, a função inicia a estrutura Produtos lendo o ficheiro de Produtos, validando, e escrevendo um novo ficheiro todos os Produtos validados. Escreve nas posições correspondentes no array o número de clientes na estrutura e o número de Clientes escritos no ficheiro.
+
+\section{Catálogo de Clientes}
+
+\subsection{Estruturas Aplicadas}
+\begin{lstlisting}[style=CStyle]
+struct clientes{
+	Array tabela_clientes[26];
+};
+
+typedef struct clientes* Clientes;
+\end{lstlisting}
+
+Tal como no módulo anterior, implementou-se uma tabela de clientes com 26 posições onde cada linha corresponde a uma letra do abecedário, de forma a facilitar tanto a inserção como a procura de clientes. Definimos também "Clientes" como o apontador para a estrutura em si.
+\par
+\subsection{Funções}
+
+\begin{lstlisting}[style=CStyle]
+int search_C(Clientes c, char id[]);
+\end{lstlisting}
+Em semelhança às funções do módulo dos Produtos, esta função procura um id numa estrutura Clientes, através de uma procura binária, devolvendo se encontrou ou não.
+
+\begin{lstlisting}[style=CStyle]
+Clientes init_Clientes(int num[6]);
+\end{lstlisting}
+A função inicia a estrutura Clientes lendo o ficheiro de Clientes, validando, e escrevendo um novo ficheiro todos os Clientes validados. Escreve no array "num" os Clientes que estão na estrutura e o número de Clientes escritos no ficheiro. 
+
+\section{Vendas}
+
+\par No módulo vendas, é definida a estrutura Vendas, recorre ao modulo Arrayd para a construção de uma venda, através da leitura e escrita de dados deste tipo. Definimos "Clientes" como um apontador para a estrutura em si.
 
 
+\subsection{Estruturas Aplicadas}
+\begin{lstlisting}[style=CStyle]
+struct vendas
+{
+	Strings vendas;
+};
+
+// Funcao que inicializa as estruturas
+Vendas init_Vendas(int* num, Produtos p, Clientes c);
+\end{lstlisting}
+\par
+\subsection{Funções}
+\par A função da API inicializa a estrutura recorrendo à validação do ficheiro Vendas.txt, através da analise de  cada segmento da linha, permite separar os campos da informação, escrevendo-a depois no novo ficheiro de vendas válido.
 
 
+\section{Faturação}
+
+\subsection{Estruturas Aplicadas e funções}
+\begin{lstlisting}[style=CStyle]
+
+//Adiciona a letra correspondente ao produto
+Strings meteletra(Produtos p, char l1);
+
+//Devolve o total faturado tanto N como P
+double totalFaturado(Strings v);
+
+//Devolve o total faturado de N e P separados
+void totalFaturadoNP(Strings v, double* num);
+
+//Determinar as vendas de um produto numa filial + mes
+Strings getVendasProdFM(char* path, char* code, int mes, int f);
+
+//Determina todas as vendas
+Strings getvendas_PinM(char* path, char* code, int mes);
+
+//Calcula o total de vendas (num[0]) e o faturado (num[1])
+void totalV_F(char* path, int inicio, int fim, double n[2]);
+
+\end{lstlisting}
+
+\par
+\par O modulo faturação contém as funções responsáveis pela resolução das queries que envolvem os produtos, e as receitas geradas com as suas vendas. 
+\par Na resolução da query 2 foi usada a primeira função que adiciona a letra correspondente ao produto.
+\par As funções seguintes são utilizadas pela query 3 para calcular o total faturado global e dividido por tipos (Normal e promoção).
+\par A ultima função é utilizada na query 8 para obter o número total de vendas num intervalo fornecido pelo utilizador e o total faturado.
+\par 
+
+\section{Filial}
+\par
+\subsection{Estruturas Aplicadas}
+\begin{lstlisting}[style=CStyle]
+
+//Preenche a estrutura strings com os produtos numa determinada filial
+Strings comprados_Filial(char* path, int f);
+
+//Determina os produtos que não foram comprados
+Strings naoComprado(char* path, Strings comprados);
+
+//Funcao que realiza procura por filial numa Strings
+int procura_cliente(Strings s[3], char* cl);
+
+//Função que realiza insercao por filial numa Strings
+void insert_stringF(Strings s[3], char* c, int f);
+
+//Funcao que lê os clientes para um array
+int le_Clientes(char* path, Strings s);
+
+//Separa  os clientes válidos por filial
+int le_Vendas(char* path, Strings s[3]);
+
+//Funcao que filtra os clientes que fizeram compras nas 3 filiais
+void filter_CF(Strings f[3], Strings clientes, Strings f1);
 
 
+//Determinar as vendas de um produto numa filial
+Strings getVendasProdFilial(char* path, char* code, int f);
 
+//Funcao que recolhe as vendas de um cliente num determinado mes
+Strings_Unidades CinM_comprou(char* path, char* code, int mes);
+
+//Cria a lista de produtos comprados por um cliente num mes
+void cria_listaProdutos(char* path, char* ccode, int mes);
+
+
+\end{lstlisting}
+
+\par 
+
+
+\par O modulo filial contém as funções responsáveis pela resolução das queries que envolvem os clientes, a sua relação com os produtos e as compras em cada uma. 
+\par A query 4 utiliza as duas primeiras funções para preencher uma estrutura que possui todos os produtos vendidos e posteriormente filtra aquelas que não foram compradas no ficheiros de produtos validos.
+\par A query 5 utiliza da função 3 à função 7 para determinar a lista ordenada de códigos de clientes que realizaram compras em todas as filiais. 
+\par A query 9 utiliza a função getVendasProdFilial para determinar as vendas de um produto numa filial.
+\par A query 10 utiliza a função CinM e a função crialistaProdutos que determina as compras de um cliente num determinado mês.
+
+\chapter{Resolução de Queries}
+Para a resolução das queries e acesso aos dados foi definida uma API
+    simples que permite:
+    \begin{enumerate}
+        \item Query 1: Inicialização das estruturas Clientes, Produtos e Vendas, bem como a validação das mesmas.
+        Grau de complexidade de inserção: O(n*log(n))
+        Grau de complexidade de procura: Olog(n)
+        \item Query 2: Determinação dos produtos cujo código se inicia por uma determinada letra;
+        Grau de complexidade da leitura: O(1)
+        \item Query 3: Determinação do número de vendas, total faturado com estas, e distinção do resultado por meses e por filial;
+        Grau de complexidade da leitura: O(1)
+        Grau de complexidade da inserção: O(1)
+         \item Query 4: Distinção do tipo de produtos (Promoção ou Normal);
+         Grau de complexidade: indeterminado
+        \item Query 5: Determinação de códigos de produtos não comprados e de clientes registados que não efetuaram compras;
+        Grau de complexidade: indeterminado
+        \item Query 8: Verificação do registo de vendas num determinado intervalo de tempo;
+        Grau de complexidade da leitura: O(1)
+        \item Query 9: Determinação de um código de Clientes que comprou um Produto distinguido por N e P;
+        Grau de complexidade de leitura: O(1)
+        \item Query 10: Determinar a lista de Produtos que um Cliente comprou num determindado mês, por quantidade e por ordem decrescente.
+        Grau de complexidade da leitura: O(1)
+        Grau de complexidade da escrita: O(1)
+    \end{enumerate}
 
 
 
 
 \chapter{Conclusão}
-
+Em suma, o grupo considera que o projeto teve algum sucesso, apesar de não ter sido concluído. Através da validação dos ficheiros conseguimos extrair a informação relevante para o projeto, de uma maneira otimizada, passando-a para estruturas de dados pensadas e feitas por nós na totalidade. 
 
 
 

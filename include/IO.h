@@ -7,7 +7,17 @@
 #include "catalogo_clientes.h"
 #include "vendas.h"
 #include "arrayd.h"
+#include "faturacao.h"
+#include "filial.h"
 #include <time.h>
+
+
+/**
+ * O QUE FAZ
+ * @param O QUE RECEBE
+ * @param O QUE RETORNA
+ */
+void toprintornottoprint();
 
 /**
  * O QUE FAZ
@@ -28,13 +38,22 @@ int escolhe_Query();
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-void query_1(int num[6]);
+void query_1();
 
 /**
  * O QUE FAZ
  * @param O QUE RECEBE
  * @param O QUE RETORNA
  */
-void query_2(int num[6]);
+void query_2();
+
+/**
+ * O QUE FAZ
+ * @param O QUE RECEBE
+ * @param O QUE RETORNA
+ */
+void query_3();
+
+
 
 #endif

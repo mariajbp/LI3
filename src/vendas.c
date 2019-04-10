@@ -14,28 +14,10 @@ struct vendas{
 };
 
 
-//Tokenize, devolve o i e preenche o array tokens
-int toktok(char * linha, char** tokens){
-	char* tok = NULL;
-	tok = strtok(linha, " ");
-	int i = 0;
-
-    for(i = 0; tok; i++){
-    	if(i < 7)
-    		tokens[i] = sdup(tok);
-        tok = strtok(NULL," ");
-    }
-
-    return i;
-}
-
 //função que valida um id de uma venda
 int validaVenda(char* linha, Produtos p, Clientes c){
 	int r = 0, i = 0;
 	char* tokens[7];
-	
-	for(i=0; i<7; i++)
-		tokens[i] = malloc(sizeof(char*));
 
 	i = toktok(linha, tokens);
 	if(i == 7)													// se tokens tiver 7 posicoes, estas devem ser testadas
@@ -52,7 +34,7 @@ int validaVenda(char* linha, Produtos p, Clientes c){
 
 //Faz load das vendas no array
 int loadstruct_Vendas( Strings s, char* path, Produtos p, Clientes c){
-	char linha[32], *original = malloc(sizeof(char)*32);
+	char linha[33], *original = malloc(sizeof(char)*33);
 	int i = 0;
 	FILE* file = fopen(path , "r");
 
@@ -62,7 +44,7 @@ int loadstruct_Vendas( Strings s, char* path, Produtos p, Clientes c){
 		exit(1);
 	}
 
-	while( fgets(linha, 31, file) ){
+	while( fgets(linha, 32, file) ){
 		strcpy(original, linha);
 
 		if(validaVenda(linha, p, c)){

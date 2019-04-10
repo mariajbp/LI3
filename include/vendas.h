@@ -17,26 +17,4 @@ typedef struct vendas* Vendas;
  */
 Vendas init_Vendas(int* num, Produtos p, Clientes c);
 
-
-/**
- * O QUE FAZ
- * @param O QUE RECEBE
- * @param O QUE RETORNA
- */
-int toktok(char * linha, char** tokens);
-
-/**
- * O QUE FAZ
- * @param O QUE RECEBE
- * @param O QUE RETORNA
- */
-int validaVenda(char* linha, Produtos p, Clientes c);
-
-/**
- * O QUE FAZ
- * @param O QUE RECEBE
- * @param O QUE RETORNA
- */
-int loadstruct_Vendas( Strings s, char* path, Produtos p, Clientes c);
-
 #endif

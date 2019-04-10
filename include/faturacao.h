@@ -4,30 +4,49 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct faturacao* FATURACAO;
+#include "arrayd.h"
+#include "catalogo_produtos.h"
 
-//Função que dado um código do tipo N, a quantidade vendida , a filial e um mês, o insere na árvore correspondente
-int insereN(char* code, int n, int fl, int mes, FATURACAO  f);
+/**
+ * O QUE FAZ
+ * @param O QUE RECEBE
+ * @param O QUE RETORNA
+ */
+Strings meteletra(Produtos p, char l1);
 
-//Função que dado um código do tipo P , a quantidade vendida, a filial e um mês, o insere na árvore correspondente
-int insereP(char* code, int n, int fl, int mes, FATURACAO  f);
+/**
+ * Devolve o total faturado tanto N como P
+ * @param O QUE RECEBE
+ * @param O QUE RETORNA
+ */
+double totalFaturado(Strings v);
 
-//Função que dado um código não vendido (NULL) e um mês, o insere na árvore correspondente
-int insereNull(char* code, FATURACAO f);
+/**
+ * Devolve o total faturado de N e P separados
+ * @param O QUE RECEBE
+ * @param O QUE RETORNA
+ */
+void totalFaturadoNP(Strings v, double* num);
 
-//Função que devolve o número total de vendas num dado mês (N+P)
-int totalMes(int mes, FATURACAO  f);
+/**
+ * determinar as vendas de um produto numa filial + mes
+ * @param O QUE RECEBE
+ * @param O QUE RETORNA
+ */
+Strings getVendasProdFM(char* path, char* code, int mes, int f);
 
-int search_prodV(char* pcode, char* venda);
+/**
+ * Determina todas as vendas
+ * @param O QUE RECEBE
+ * @param O QUE RETORNA
+ */
+Strings getvendas_PinM(char* path, char* code, int mes);
 
-Strings searchProdMes(char* code, Vendas_inMes vm, int mes);
-
-
-int totalFaturado(Strings v);
-
-
-int* totalFaturadoNP(Strings v, int num[2]);
-
-
+/**
+ * calcula o total de vendas (num[0]) e o faturado (num[1])
+ * @param O QUE RECEBE
+ * @param O QUE RETORNA
+ */
+void totalV_F(char* path, int inicio, int fim, double n[2]);
 
 #endif

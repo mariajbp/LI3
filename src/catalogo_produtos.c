@@ -2,41 +2,15 @@
 #include "../include/arrayd.h"
 
 struct produtos{
-	TAD_Array tabela_produtos[676];
+	Array tabela_produtos[676];
 };
 
-Strings meteletra(Produtos p, char l1){
-	int a = l1 - 65;
-	int index = a*26;
-	char prod[7];
-	Strings tudo = malloc(sizeof(Strings));
-
-	for(int i = index; i < (index+26); i++)
-		for(char l2 = 'A'; l2 <= 'Z'; l2++)
-			for(int j = 0; j < p->tabela_produtos[i]->inUse; j++){
-				sprintf(prod,"%c%c%d",l1,l2,p->tabela_produtos[i]->valor[j]);
-				tudo->string[i] = sdup(prod);
-			}
-
-	return tudo;
+int getUse(Produtos p, int i){
+	return p->tabela_produtos[i]->inUse;
 }
 
-//query 3
-int totalVendasProd(Strings v, char* p)
-{
-	int vendas = 0;
-	char* tokens[7];
-	for(int i=0; i<7; i++)
-		tokens[i] = malloc(sizeof(char*));
-	
-	for (int j = 0; j < v->inUse; j++)
-	{
-		toktok(tokens,v->string[j]);
-		if(tokens[1] == p)
-			vendas = vendas + atoi(tokens[2]);
-	}
-
-	return vendas;
+int getValor(Produtos p, int i, int j){
+	return p->tabela_produtos[i]->valor[j];
 }
 
 // Função que lê as primeiras letras de uma string e as transforma num numero
@@ -62,7 +36,7 @@ int validaProduto(char * id){
 }
 
 // Função que insere um index, de tipologia Cliente, numa estrutura de dados
-void insert_Produto(TAD_Array produtos[676], char id[]){
+void insert_Produto(Array produtos[676], char id[]){
 
 	int n = num_produto(id,2), l = letra_produto(id);
 	insert_valor(produtos[l], n);
@@ -76,7 +50,7 @@ int search_P(Produtos produtos, char id[]){
 }
 
 // Função que imprime num ficheiro por ordem dos elementos
-int fprint_produtos(FILE* fp, int i, TAD_Array produtos){
+int fprint_produtos(FILE* fp, int i, Array produtos){
 	char l1 = ((i - (i%26))/26) + 65, l2 = (i % 26) + 65 ;
 
 	int num = 0;
