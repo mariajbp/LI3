@@ -1,33 +1,54 @@
+import java.io.*; 
+import java.util.TreeSet; 
+import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.util.Iterator;
+import java.util.Arrays;
+import java.util.List; 
 
-/**
- * Escreva a descrição da classe TestCl aqui.
- * 
- * @author (seu nome) 
- * @version (número de versão ou data)
- */
 public class TestCl
 {
-    // variáveis de instância - substitua o exemplo abaixo pelo seu próprio
-    private int x;
+    private TreeSet<String> cod;
+    private File file;
+    private BufferedReader br;
+    
+  public static void main(String[] args)throws IOException
+  { 
+      long startTime = System.currentTimeMillis();
+      TestCl test = new TestCl("../Dados/Clientes.txt");
+     
+      long total = 0;
+      for (int i = 0; i < 10000000; i++) {
+         total += i;
+      }
 
-    /**
-     * COnstrutor para objetos da classe TestCl
-     */
-    public TestCl()
-    {
-        // inicializa variáveis de instância
-        x = 0;
-    }
+      long stopTime = System.currentTimeMillis();
+      long elapsedTime = stopTime - startTime;
+      System.out.println(elapsedTime);
+   }
+  
 
-    /**
-     * Exemplo de método - substitua este comentário pelo seu próprio
-     * 
-     * @param  y   exemplo de um parâmetro de método
-     * @return     a soma de x com y 
-     */
-    public int sampleMethod(int y)
-    {
-        // ponha seu código aqui
-        return x + y;
-    }
-}
+  public TestCl(String fileName) throws IOException 
+  {
+    this.cod = new TreeSet<>();
+    readFile("../Dados/Clientes.txt");
+  }
+    
+  private void readFile(String fileName) throws IOException 
+  {
+      try 
+      {
+           br = new BufferedReader(new FileReader(fileName));
+           String line = null;
+           while ((line = br.readLine()) != null) 
+           {
+               cod.add(line);
+               System.out.println(line);
+           }
+      }
+       catch (IOException e) {e.printStackTrace();} finally {br.close();} 
+  }
+  }
+    
+  

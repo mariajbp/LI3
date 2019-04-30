@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.Arrays;
 import java.util.List; 
 
-public class TestProd
+public class TestVendas
 {
     private TreeSet<String> cod;
     private File file;
@@ -15,17 +15,8 @@ public class TestProd
     
   public static void main(String[] args)throws IOException
   { 
-      long startTime = System.currentTimeMillis();
       TestProd test = new TestProd("../Dados/Vendas_1M.txt");
-      
-      long total = 0;
-      for (int i = 0; i < 10000000; i++) {
-         total += i;
-      }
 
-      long stopTime = System.currentTimeMillis();
-      long elapsedTime = stopTime - startTime;
-      System.out.println(elapsedTime);
   } 
 
   public TestProd(String fileName) throws IOException 
@@ -49,20 +40,10 @@ public class TestProd
                     System.out.println(a);
                 }
            }
-      } catch (IOException e) {e.printStackTrace();
-      } finally {br.close();}
+      } catch (IOException e) {e.printStackTrace();} finally {br.close();}
   }
     
   
-  /**
-   * Iterator it = cod.iterator();
-                    while(it.hasNext())
-                    {
-                        System.out.println("-" + it.next());
-                    }
-   * **/
-   
-  
-
 }
 
+**/
