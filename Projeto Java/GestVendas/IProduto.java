@@ -1,0 +1,8 @@
+
+/**
+* 
+**/
+public interface IProduto
+{
+    
+}

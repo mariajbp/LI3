@@ -5,7 +5,7 @@
 
 public interface GestVendas
 {
-    void load(String dumpPath);
+    void load(String path);
 
     // Query 1
     
