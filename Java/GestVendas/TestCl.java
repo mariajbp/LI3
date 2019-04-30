@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.Arrays;
 import java.util.List; 
 
+/**
 public class TestCl
 {
     private TreeSet<String> cod;
@@ -25,7 +26,7 @@ public class TestCl
 
       long stopTime = System.currentTimeMillis();
       long elapsedTime = stopTime - startTime;
-      System.out.println(elapsedTime);
+      System.out.println("Demorei: " + elapsedTime);
    }
   
 
@@ -51,4 +52,4 @@ public class TestCl
   }
   }
     
-  
+  **/
