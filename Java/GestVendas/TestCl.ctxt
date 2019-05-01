@@ -1,9 +1,0 @@
-#BlueJ class context
-comment0.target=TestCl
-comment1.params=args
-comment1.target=void\ main(java.lang.String[])
-comment2.params=fileName
-comment2.target=TestCl(java.lang.String)
-comment3.params=fileName
-comment3.target=void\ readFile(java.lang.String)
-numComments=4

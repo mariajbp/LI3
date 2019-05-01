@@ -1,4 +1,11 @@
 #BlueJ class context
 comment0.target=CatalogoClientes
 comment0.text=\n\ \n
-numComments=1
+comment1.params=
+comment1.target=void\ istovaoparamain()
+comment1.text=Leitura\ do\ ficheiro\ para\ o\ treeset\ **
+comment2.params=fileName
+comment2.target=CatalogoClientes(java.lang.String)
+comment3.params=fileName
+comment3.target=void\ readFile(java.lang.String)
+numComments=4
