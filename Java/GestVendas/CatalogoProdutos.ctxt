@@ -1,4 +1,22 @@
 #BlueJ class context
 comment0.target=CatalogoProdutos
 comment0.text=\n\ \n
-numComments=1
+comment1.params=
+comment1.target=CatalogoProdutos()
+comment1.text=Main\ da\ coisa\ que\ \u00E9\ para\ sair\ no\ fim\n\ \ \ public\ static\ void\ main(String[]\ args)throws\ IOException\n\ \ \ {\ \n\ \ \ \ \ \ long\ startTime\ \=\ System.currentTimeMillis();\n\ \ \ \ \ \ CatalogoProdutos\ test\ \=\ new\ CatalogoProdutos("../Dados/Produtos.txt");\n\ \ \ \ \ \ long\ total\ \=\ 0;\n\ \ \ \ \ \ for\ (int\ i\ \=\ 0;\ i\ <\ 10000000;\ i++)\ \n\ \ \ \ \ \ {\n\ \ \ \ \ \ \ \ \ total\ +\=\ i;\n\ \ \ \ \ \ }\n\ \ \ \ \ \ long\ stopTime\ \=\ System.currentTimeMillis();\n\ \ \ \ \ \ long\ elapsedTime\ \=\ stopTime\ -\ startTime;\n\ \ \ \ \ \ System.out.println("Demorei\:\ "\ +\ elapsedTime\ +\ "\ ms");\n\ \ \ }\n
+comment2.params=cprod
+comment2.target=CatalogoProdutos(java.util.TreeSet)
+comment3.params=
+comment3.target=java.util.TreeSet\ getCProd()
+comment4.params=fileName
+comment4.target=CatalogoProdutos(java.lang.String)
+comment5.params=fileName
+comment5.target=void\ readFile(java.lang.String)
+comment5.text=\ \n\ \ Faz\ load\ do\ ficheiro\ no\ TreeSet\ \n\ \ Retorna\ o\ n\u00FAmero\ de\ codigos\ v\u00E1lidos\n
+comment6.params=c
+comment6.target=boolean\ validateP(java.lang.String)
+comment6.text=Valida\u00E7\u00E3o\ do\ Codigo\ *
+comment7.params=line
+comment7.target=void\ fillT(java.lang.String)
+comment7.text=Adiciona\ um\ c\u00F3digo\ ao\ TreeSet\ *
+numComments=8
