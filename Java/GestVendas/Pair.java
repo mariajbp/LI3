@@ -1,17 +1,16 @@
 import java.util.Objects;
-import java.io.Serializable;
 
-public class Pair<X,Y> implements Serializable
+public class Pair<X,Y> 
 {
     private X fst;
     private Y snd;
-    
+
     public Pair(X fst, Y snd)
     {
         this.fst = fst;
         this.snd = snd;
     }
-    
+
     public int hashCode()
     {
         int hashFst = fst != null ? fst.hashCode() : 0;
@@ -27,16 +26,13 @@ public class Pair<X,Y> implements Serializable
             return Objects.equals(this.fst, p.fst) && Objects.equals(snd, p.snd);
         }
         return false;
-    }  
+    }
+
+    public String toString(){return "(" + fst + ", " + snd + ")";}
 
     public X getFst(){return fst;}
     public void setFst(X fst){this.fst = fst;}
 
     public Y getSnd(){return snd;}
     public void setSecond(Y snd){this.snd = snd;}
-    
-    public String toString()
-    {
-        return "(" + fst + ", " + snd + ")";
-    }
 }
