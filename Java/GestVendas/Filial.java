@@ -67,30 +67,34 @@ public class Filial implements IFilial
     
     /**
     * Método que devolve uma mapa com um par que contém o número total de vendas e clientes, por mês da filial em questão
-    * @return Mapa com um que contém o número total de vendas e clientes
+    * @returns Mapa com um que contém o número total de vendas e clientes
     **/
     public Map<Integer, Pair> getF1(){return new HashMap<Integer, Pair>(this.f1);}
     
     /**
     * Método que devolve uma mapa com um par que contém o número total de vendas e clientes, por mês da filial em questão
-    * @return Mapa com um que contém o número total de vendas e clientes
+    * @returns Mapa com um que contém o número total de vendas e clientes
     **/
     public Map<Integer, Pair> getF2(){return new HashMap<Integer, Pair>(this.f2);}
     
     /**
     * Método que devolve uma mapa com um par que contém o número total de vendas e clientes, por mês da filial em questão
-    * @return Mapa com um que contém o número total de vendas e clientes
+    * @returns Mapa com um que contém o número total de vendas e clientes
     **/
     public Map<Integer, Pair> getF3(){return new HashMap<Integer, Pair>(this.f3);}
     
     /**
     * Método que devolve uma mapa com um triplo que contém o número de clientes, vendas e total faturado de determinado produto, organizado por mês
-    * @return Mapa com um que contém o número de clientes, vendas e total faturado de determinado produto, organizado por mês
+    * @returns Mapa com um que contém o número de clientes, vendas e total faturado de determinado produto, organizado por mês
     **/
     public Map<Produto, TripleList> getProdutos(){return new HashMap<Produto, TripleList>(this.produtos);}
     
-    
+    /**
+    * Método que devolve uma mapa com um triplo que contém o número de produtos, compras e o total gasto por um determinadocliente, organizado por mês
+    * @returns Mapa com um que contém o número de clientes, vendas e total faturado de determinado produto, organizado por mês
+    **/
     public Map<Cliente, TripleList> getClientes(){return new HashMap<Cliente, TripleList>(this.clientes);}
+    
     public Map<Cliente, Map<Produto, Integer>> getClProds(){return new HashMap<Cliente, Map<Produto, Integer>>(this.clProds);}
     
     //Setters
@@ -99,26 +103,31 @@ public class Filial implements IFilial
         this.f1.clear();
         this.f1 = new HashMap<Integer, Pair>(f1);
     }
+    
     public void setF2(Map<Integer, Pair> f2)
     {
         this.f2.clear();
         this.f2 = new HashMap<Integer, Pair>(f2);
     }
+    
     public void setF3(Map<Integer, Pair> f3)
     {
         this.f3.clear();
         this.f3 = new HashMap<Integer, Pair>(f3);
     }
+    
     public void setProdutos(Map<Produto, TripleList> p)
     {
         this.produtos.clear();
         this.produtos = new HashMap<Produto, TripleList>(p);
     }
+    
     public void setClientes(Map<Cliente, TripleList> c)
     {
         this.clientes.clear();
         this.clientes = new HashMap<Cliente, TripleList>(c);
     }
+    
     public void setClProds(Map<Cliente, Map<Produto, Integer>> cp)
     {
         this.clProds.clear();
@@ -133,7 +142,7 @@ public class Filial implements IFilial
     /** 
     * Método que testa se um objeto é igual a uma determinada identificação
     * @param      Objeto a ser testado
-    * @return     True se o objeto for igual à identificação, false se o objeto passado não for igual à identificação
+    * @returns     True se o objeto for igual à identificação, false se o objeto passado não for igual à identificação
     **/
     public boolean equals(Object o){
        if(o == this)

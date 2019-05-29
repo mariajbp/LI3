@@ -24,14 +24,14 @@ public class Cliente implements Serializable
     
     /**
     * Método que devolve o código de um cliente
-    * @return Código de um cliente
+    * @returns Código de um cliente
     **/
     public String getCodigo(){ return this.codigo_cl;}
     
     /** 
     * Método que testa se um objeto é igual a uma determinada identificação
     * @param      Objeto a ser testado
-    * @return     True se o objeto for igual à identificação, false se o objeto passado não for igual à identificação
+    * @returns     True se o objeto for igual à identificação, false se o objeto passado não for igual à identificação
     **/
     public boolean equals(Object o)
     { 
@@ -51,7 +51,7 @@ public class Cliente implements Serializable
     
     /**
     * Método que converte uma identificação numa string
-    * @return 
+    * @returns 
     * */
     public String toString()
     {

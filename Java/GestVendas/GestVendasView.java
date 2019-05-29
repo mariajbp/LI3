@@ -6,13 +6,13 @@ import java.util.InputMismatchException;
 import static java.lang.System.out;
 
 /**
-* Classe que implementa um menu em modo texto.
+* Classe que 
 **/
 
 public class GestVendasView implements Serializable, IGestVendasView
 {
   private List<String> options;
-  private int op;
+  private int op; 
   private int chosenMenu;
   
   public GestVendasView(String[] options)
