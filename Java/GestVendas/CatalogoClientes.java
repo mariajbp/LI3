@@ -1,4 +1,5 @@
-import java.util.TreeSet; //ou hash later
+import java.util.TreeSet; 
+import java.util.Set;
 import java.io.Serializable;
 import java.io.*; 
 import java.io.File;
@@ -13,43 +14,85 @@ import static java.lang.System.out;
 **/
 public class CatalogoClientes implements ICatClientes, Serializable
 {
-   public TreeSet<String> cclient; //ou hash
-   private File file;
-   private BufferedReader br;
-    
-   /**Main da coisa que é para sair no fim
-   public static void main(String[] args)throws IOException
-   { 
-      long startTime = System.currentTimeMillis();
-      CatalogoClientes test = new CatalogoClientes("../Dados/Clientes.txt");
-      long total = 0;
-      for (int i = 0; i < 10000000; i++) 
-      {
-         total += i;
-      }
-      long stopTime = System.currentTimeMillis();
-      long elapsedTime = stopTime - startTime;
-      out.println("Demorei: " + elapsedTime + " ms");
-   }
+   private Set<Cliente> catalogo; 
+   
+   /** 
+   * Construtor vazio que cria uma instância CatalogoClientes
    **/
-   
-   
    public CatalogoClientes()
+   {
+        this.catalogo = new TreeSet<Cliente>();
+   }
+   
+   /** 
+   * Construtor de cópia que cria uma nova instância CatalogoClientes a partir de uma CatalogoClientes passado como parâmetro 
+   **/
+   public CatalogoClientes(Set<Cliente> catalogo)
+   {
+       this.catalogo = catalogo; 
+   }
+   
+   /** 
+   * Construtor que cria uma nova instância CatalogoCliente a partir de uma CatalogoCliente passado como parâmetro 
+   **/
+   public CatalogoClientes(CatalogoClientes c)
+   {
+       this.catalogo = c.getCatalogo(); 
+   } 
+   
+   /**
+   * Método que devolve o catalogo de Clientes
+   * @return Catalogo de produtos válidos
+   **/
+   public Set<Cliente> getCatalogo()
+   {
+     Set<Cliente> cl = new TreeSet<Cliente>();
+     for(Cliente c: this.catalogo){cl.add(c.clone());}
+     return cl;
+   }
+   
+   /**
+   * Método que define o catalogo de Clientes
+   * @param Catalogo de clientes válidos
+   **/
+   public void setCatalogo(Set<Cliente> cl)
+   {
+      this.catalogo.clear();
+      for(Cliente c: cl){this.catalogo.add(c.clone());}
+   }
+   
+   /** 
+   * Método que cria uma cópia de uma identificação de um Cliente
+   **/
+   public CatalogoClientes clone(){return new CatalogoClientes(this);}
+   
+   /** 
+   * Método que testa se um objeto é igual a uma determinada identificação
+   * @param      Objeto a ser testado
+   * @return     True se o objeto for igual à identificação, false se o objeto passado não for igual à identificação
+   **/
+   public boolean equals(Object o)
+   {
+      if(this == o) return true;
+      if(o == null && this.getClass() != o.getClass()) return false;
+      CatalogoClientes c  = (CatalogoClientes) o;     
+      return this.catalogo.equals(c.getCatalogo());
+   }
+   
+   /**
+   * Método que converte uma identificação numa string
+   * @return  
+   **/
+    public String toString()
     {
-        this.cclient = new TreeSet<String>();
+       StringBuilder sb = new StringBuilder();
+       sb.append("Catalogo de Clientes: \n").append(catalogo).append("\n");
+       return sb.toString();
     }
    
-   public CatalogoClientes(TreeSet<String> cprod)
-   {
-       this.cclient = cprod; 
-   }
-    
-   public TreeSet<String> getCclientes() throws NoClientesException //needed???
-   {
-        if(this.cclient.isEmpty()) throw new NoClientesException("Não existem códigos disponiveis");
-        else return this.cclient;
-   }
    
+   
+   /**
    public CatalogoClientes(String fileName) throws IOException  
    {
         this.cclient = new TreeSet<>();
@@ -59,7 +102,7 @@ public class CatalogoClientes implements ICatClientes, Serializable
    /** 
    **  Faz load do ficheiro no TreeSet 
    **  Retorna o número de codigos válidos
-   **/
+  
    private void readFile(String fileName) throws IOException 
    {
       int v = 0;
@@ -79,7 +122,7 @@ public class CatalogoClientes implements ICatClientes, Serializable
       out.println(v + " Clientes Validos");
    }
    
-   /**Validação do Codigo **/
+   /**Validação do Codigo 
    public boolean validateClient(String c)
    {
        boolean v = true;
@@ -91,13 +134,13 @@ public class CatalogoClientes implements ICatClientes, Serializable
        return v;      
    }
    
-   /** Adiciona um código ao TreeSet **/
+   /** Adiciona um código ao TreeSet 
    private void fillT(String line) 
    {
       cclient.add(line); 
    }
         
-   /** Procurar um Cliente **/
+   /** Procurar um Cliente 
    private boolean isItThereC(String c)
    {
        Iterator<String> it = this.cclient.iterator();
@@ -113,5 +156,5 @@ public class CatalogoClientes implements ICatClientes, Serializable
          else v = false;
        }
        return v;
-   }  
+   } **/ 
 }

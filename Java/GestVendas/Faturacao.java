@@ -11,9 +11,12 @@ public class Faturacao implements Serializable
 {
     private double ftrTotal;
     private double[] ftrMensal;
-    Map<Cliente, List<Integer>> clMes;
-    Map<Produto, List<Integer>> prodMes;
+    private Map<Cliente, List<Integer>> clMes;
+    private Map<Produto, List<Integer>> prodMes;
     
+    /** 
+    * Construtor vazio que cria uma instância Faturacao
+    **/
     public Faturacao()
     {
         this.ftrTotal = 0.0;
@@ -22,11 +25,20 @@ public class Faturacao implements Serializable
         this.prodMes = new HashMap<>();
     }
     
-    public Faturacao(double ftr, double ftmes, HashMap<Cliente, List<Integer>> cl, HashMap<Produto, List<Integer>> prod)
+    /** 
+    * Construtor de cópia que cria uma nova instância Faturacao a partir de uma Faturacao passado como parâmetro 
+    **/
+    public Faturacao(double ftr, double[] ftrmes, HashMap<Cliente, List<Integer>> cl, HashMap<Produto, List<Integer>> prod)
     {
-        
+        this.ftrTotal = ftr;
+        this.ftrMensal = ftrmes;
+        this.clMes = cl;
+        this.prodMes = prod;
     }
     
+    /** 
+    * Construtor que cria uma nova instância Faturacao a partir de uma Faturacao passado como parâmetro 
+    **/
     public Faturacao(Faturacao f) 
     {
        this.ftrTotal = f.getFtrTotal();
@@ -35,22 +47,87 @@ public class Faturacao implements Serializable
        this.prodMes = f.getProdMes();
     }
     
+    /**
+    * Método que devolve a fatuação total global
+    * @return Fatuação total global
+    **/
     public double getFtrTotal(){ return this.ftrTotal;}
+    
+    /**
+    * Método que devolve a fatuação total mnsal
+    * @return Fatuação total mensal
+    **/
     public double[] getFtrMensal(){ return this.ftrMensal;}
     
+    /**
+    * Método que devolve o total gasto por um cliente por mês
+    * @returns   HashMap dos clientes e o seu total gasto por um cliente por mês
+    **/
     public Map<Cliente, List<Integer>> getClMes()
     {
-       Map<Cliente, List<Integer>> c = new HashMap<Cliente, List<Integer>>();
-       for(Map.Entry<> e : this.clMes.entrySet()) 
-       {   
-           Cliente cl = e.getValue().clone();
-           c.put(e.getKey(), cl);
-       }
-       return c;
+       HashMap<Cliente,List<Integer>> aux = new HashMap<>();
+       List l = new ArrayList<Integer>();
+       for(Map.Entry<Cliente, List<Integer>> c : this.clMes.entrySet()) {aux.put(c.getKey(), c.getValue().clone(l));}
+       return aux;
     }
     
+    /**
+    * Método que devolve o preço total de todos os items de um determinado produto por mes
+    * @returns   HashMap do preço total de todos os items de um determinado produto por mes
+    **/
     public Map<Produto, List<Integer>> getProdMes()
     {
     }
     
+    
+    
+    /**
+    * Método que define um hashMap a partir de um hashMap passado como parâmetro
+    * * @param    HashMap do valor total gasto por um cliente por mês
+    **/ 
+    public void setClMes(Map<Cliente, List<Integer>> cl)
+    {
+       this.clMes.clear();
+       for(Map.Entry<Cliente, List<Integer>> c : cl.entrySet()) {this.clMes.put(c.getKey(), c.getValue().clone());}
+    }
+    
+    /**
+    * Método que define um hashMap a partir de um hashMap passado como parâmetro
+    * * @param    HashMap do valor total gasto por um cliente por mês
+    **/ 
+    public void setProdMes(Map<Produto, List<Integer>> prd)
+    {
+       this.clMes.clear();
+       for(Map.Entry<Produto, List<Integer>> c : prd.entrySet()) {this.prodMes.put(c.getKey(), c.getValue().clone());}
+    }
+    
+    /** 
+    * Método que cria uma cópia de uma identificação de uma Faturação
+    **/
+    public Faturacao clone(){return new Faturacao(this);}
+    
+    /** 
+    * Método que testa se um objeto é igual a uma determinada identificação
+    * @param      Objeto a ser testado
+    * @return     True se o objeto for igual à identificação, false se o objeto passado não for igual à identificação
+    **/
+    public boolean equals(Object o)
+    {
+      if(this == o) return true;
+      if(o == null && this.getClass() != o.getClass()) return false;
+      Faturacao f  = (Faturacao) o;     
+      return this.ftrTotal == f.getFtrTotal() && this.ftrMensal.equals(f.getProdMes()) &&
+             this.clMes.equals(f.getClMes()) && this.prodMes.equals(f.getProdMes());
+    }
+    
+    /**
+    * Método que converte uma identificação numa string
+    * @return  
+    **/
+    public String toString()
+    {
+       StringBuilder sb = new StringBuilder();
+       sb.append("Total global faturado:").append(ftrTotal).append("\n");
+       return sb.toString();
+    }
 }

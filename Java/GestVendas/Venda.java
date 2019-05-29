@@ -12,7 +12,7 @@ import static java.lang.System.out;
 * 
 **/
 public class Venda implements Serializable
-{
+{/**
     private TreeSet<String> codvendas;
     private File file;
     private BufferedReader br;
@@ -98,7 +98,7 @@ public class Venda implements Serializable
     /** 
     **  Faz load do ficheiro no TreeSet 
     **  Retorna o número de codigos válidos
-    **/
+  
     private void readFileV(String fileName) throws IOException 
     {
       int v = 0;
@@ -118,17 +118,17 @@ public class Venda implements Serializable
       System.out.println(v + " Vendas Validas");
     }
    
-    /**Validação do Codigo **/
+    /**Validação do Codigo 
     public boolean validateV(String c)
     {
        String[] venda = c.split(" ");
        
     }
    
-    /** Adiciona um código ao TreeSet **/
+    /** Adiciona um código ao TreeSet
     
     private void fillT(String line) 
     {
       codvendas.add(line); 
-    }
+    } **/
 }

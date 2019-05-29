@@ -16,9 +16,81 @@ import java.util.*;
 
 public class CatalogoProdutos implements ICatProdutos, Serializable
 {
-   public TreeSet<String> cprod; //ou hash
-   private File file;
-   private BufferedReader br;
+   private Set<Produto> catalogo; 
+   
+   /** 
+   * Construtor vazio que cria uma instância Catalogoprodutos
+   **/
+   public CatalogoProdutos()
+   {
+        this.catalogo = new TreeSet<Produto>();
+   }
+   
+   /** 
+   * Construtor de cópia que cria uma nova instância Catalogoprodutos a partir de uma Catalogoprodutos passado como parâmetro 
+   **/
+   public CatalogoProdutos(Set<Produto> cprod)
+   {
+       this.catalogo = catalogo; 
+   }
+   
+   /** 
+   * Construtor que cria uma nova instância Catalogoprodutos a partir de uma Catalogoprodutos passado como parâmetro 
+   **/
+   public CatalogoProdutos(CatalogoProdutos c)
+   {
+       this.catalogo = c.getCatalogo(); 
+   }
+   
+   /**
+   * Método que devolve o catalogo de Produtos
+   * @return Catalogo de produtos válidos
+   **/
+   public Set<Produto> getCatalogo()
+   {
+     Set<Produto> pp = new TreeSet<Produto>();
+     for(Produto p: this.catalogo){pp.add(p.clone());}
+     return pp;
+   }
+   
+   /**
+   * Método que define o catalogo de Produtos
+   * @param Catalogo de produtos válidos
+   **/
+   public void setCatalogo(Set<Produto> pp)
+   {
+      this.catalogo.clear();
+      for(Produto p: pp){this.catalogo.add(p.clone());}
+   }
+   
+   /** 
+    * Método que cria uma cópia de uma identificação de um Produto
+    **/
+    public CatalogoProdutos clone(){return new CatalogoProdutos(this);}
+   
+   /** 
+   * Método que testa se um objeto é igual a uma determinada identificação
+   * @param      Objeto a ser testado
+   * @return     True se o objeto for igual à identificação, false se o objeto passado não for igual à identificação
+   **/
+   public boolean equals(Object o)
+   {
+      if(this == o) return true;
+      if(o == null && this.getClass() != o.getClass()) return false;
+      CatalogoProdutos cp  = (CatalogoProdutos) o;     
+      return this.catalogo.equals(cp.getCatalogo());
+   }
+   
+   /**
+    * Método que converte uma identificação numa string
+    * @return  
+    **/
+    public String toString()
+    {
+       StringBuilder sb = new StringBuilder();
+       sb.append("Catalogo de Produtos: \n").append(catalogo).append("\n");
+       return sb.toString();
+    }
    
    
    /**Main da coisa que é para sair no fim
@@ -37,15 +109,8 @@ public class CatalogoProdutos implements ICatProdutos, Serializable
    }
    **/
    
-   public CatalogoProdutos()
-   {
-        this.cprod = new TreeSet<String>();
-   }
+   
 
-   public CatalogoProdutos(TreeSet<String> cprod)
-   {
-       this.cprod = cprod; 
-   }
    
    /**
    public CatalogoProdutos(CatalogoProdutos cp)
@@ -59,7 +124,7 @@ public class CatalogoProdutos implements ICatProdutos, Serializable
        for(CatalogoProdutos cp: this.cprod){aux.add(cp.clone());}
        return aux;
    }
-   **/
+   
    public CatalogoProdutos(String fileName) throws IOException  
    {
         this.cprod = new TreeSet<>();
@@ -69,7 +134,7 @@ public class CatalogoProdutos implements ICatProdutos, Serializable
    /** 
    **  Faz load do ficheiro no TreeSet 
    **  Retorna o número de codigos válidos
-   **/
+ 
    private int readFile(String fileName) throws IOException 
    {
       int v = 0; //válidos
@@ -89,7 +154,7 @@ public class CatalogoProdutos implements ICatProdutos, Serializable
       return v;
    }
    
-   /**Validação do Codigo **/
+   /**Validação do Codigo 
    public boolean validateP(String c)
    {
        boolean v = true;
@@ -103,7 +168,7 @@ public class CatalogoProdutos implements ICatProdutos, Serializable
    }
  
    
-   /** Procurar um Produto **/
+   /** Procurar um Produto 
    public boolean isItThereP(String c)
    {
        Iterator<String> it = this.cprod.iterator();
@@ -124,5 +189,5 @@ public class CatalogoProdutos implements ICatProdutos, Serializable
    public CatalogoProdutos clone()
    {
         return new CatalogoProdutos(this);
-   }
+   } **/
 }
