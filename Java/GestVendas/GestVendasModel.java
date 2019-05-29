@@ -5,7 +5,7 @@ import java.io.*;
 /**
 * 
 **/
-public class GestVendasModel implements Serializable
+public class GestVendasModel implements Serializable, IGestVendasModel
 {
     private ICatProdutos cprod;
     private ICatClientes ccl;

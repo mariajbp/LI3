@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=GestVendas
-comment0.text=\r\n\ SE\ ISTO\ FOR\ A\ API\ ENTAO\ E\ ISTO\r\n
+comment0.text=\n\ \n
 comment1.params=path
 comment1.target=void\ load(java.lang.String)
 comment2.params=

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #BlueJ class context
 comment0.target=GestVendasView
 comment0.text=\r\n\ \r\n
@@ -5,3 +6,23 @@ comment1.params=
 comment1.target=void\ run()
 comment1.text=\ \r\n\ M\u00E9todo\ que\ inicia\ a\ aplica\u00E7\u00E3o\ no\ menu\ principal\ \r\n
 numComments=2
+=======
+#BlueJ class context
+comment0.target=GestVendasView
+comment0.text=\n\ Classe\ que\ implementa\ um\ menu\ em\ modo\ texto.\n
+comment1.params=options
+comment1.target=GestVendasView(java.lang.String[])
+comment2.params=
+comment2.target=void\ exec()
+comment2.text=\n\ M\u00E9todo\ para\ apresentar\ o\ menu\ e\ ler\ uma\ op\u00E7\u00E3o.\n
+comment3.params=
+comment3.target=void\ showMenu()
+comment3.text=\n\ M\u00E9todo\ de\ apresenta\u00E7\u00E3o\ o\ menu\ \n
+comment4.params=
+comment4.target=int\ readOption()
+comment4.text=\n\ M\u00E9todo\ que\ l\u00EA\ a\ op\u00E7\u00E3o\ escolhida\ pelo\ utilizador\n\ @returns\ \ \ \ Op\u00E7\u00E3o\ introduzida\ pelo\ utilizador\n
+comment5.params=
+comment5.target=int\ getOption()
+comment5.text=\n\ M\u00E9todo\ que\ devolve\ a\ ultima\ op\u00E7\u00E3o\ lida\n\ @returns\ \ \ \ Ultima\ op\u00E7\u00E3o\ lida\n
+numComments=6
+>>>>>>> fe53221c884313f7ae1a7355e287e15bea114c52
