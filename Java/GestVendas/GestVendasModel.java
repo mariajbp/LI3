@@ -15,8 +15,24 @@ public class GestVendasModel implements Serializable
     {
         //PreencheProds();
         //PreencheCl();
-       // PreencheFat();
+        //PreencheFtr();
         //PreencheFilial();
+    }
+    
+    public void preencheProds()
+    {
+    }
+    
+    public void preencheCl()
+    {
+    }
+    
+    public void preencheFtr()
+    {
+    }
+    
+    public void preencheFilial()
+    {
     }
     
     /** 

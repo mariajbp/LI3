@@ -1,8 +1,9 @@
+import java.io.Serializable;
 
 /**
 * 
 **/
-public interface ICatClientes
+public interface ICatClientes extends Serializable 
 {
    
 }

@@ -1,8 +1,9 @@
+import java.io.Serializable;
 
 /**
 * 
 **/
-public interface ICatProdutos
+public interface ICatProdutos extends Serializable
 {
     
 }

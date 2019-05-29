@@ -77,18 +77,24 @@ public class TripleList
        this.right = new ArrayList<Integer>(r);
     }
     
-   public void setLeft(int index, int value){
+   public void setLeft(int index, int value)
+   {
        if(this.left.size() <= index)
              this.left.set(index, value);
-    }
-   public void setMiddle(int index, int value){
+   }
+   
+   public void setMiddle(int index, int value)
+   {
        if(this.middle.size() <= index)
              this.middle.set(index, value);
-    }
-   public void setRight(int index, int value){
+   }
+   
+   
+   public void setRight(int index, int value)
+   {
        if(this.right.size() <= index)
              this.right.set(index, value);
-    }
+   }
     
     
    /**
