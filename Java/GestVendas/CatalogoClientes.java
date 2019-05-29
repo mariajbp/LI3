@@ -84,7 +84,8 @@ public class CatalogoClientes implements ICatClientes, Serializable
    {
        boolean v = true;
        String[] part = c.split("(?<=\\D)(?=\\d)");
-       boolean isNumeric = part[1].chars().allMatch(Character::isDigit);
+       boolean isNumeric = false;
+       if(part[1].chars().allMatch(Character::isDigit) && Integer.parseInt(part[1]) > 1000 && Integer.parseInt(part[1]) < 5000) {isNumeric = true;}   
        char fst = c.charAt(0);
        if(c.length() == 5 && Character.isLetter(fst) && isNumeric) {v = true;}
        return v;      
@@ -112,9 +113,5 @@ public class CatalogoClientes implements ICatClientes, Serializable
          else v = false;
        }
        return v;
-   }
-   
-   
- 
-   
+   }  
 }

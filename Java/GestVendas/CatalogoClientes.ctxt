@@ -20,6 +20,6 @@ comment7.params=line
 comment7.target=void\ fillT(java.lang.String)
 comment7.text=Adiciona\ um\ c\u00F3digo\ ao\ TreeSet\ *
 comment8.params=c
-comment8.target=boolean\ isItThere(java.lang.String)
+comment8.target=boolean\ isItThereC(java.lang.String)
 comment8.text=Procurar\ um\ Cliente\ *
 numComments=9

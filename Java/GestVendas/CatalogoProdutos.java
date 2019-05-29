@@ -85,7 +85,8 @@ public class CatalogoProdutos implements ICatProdutos, Serializable
    {
        boolean v = true;
        String[] part = c.split("(?<=\\D)(?=\\d)");
-       boolean isNumeric = part[1].chars().allMatch( Character::isDigit );
+       boolean isNumeric = false;
+       if(part[1].chars().allMatch(Character::isDigit) && Integer.parseInt(part[1]) > 1000 && Integer.parseInt(part[1]) < 9999) {isNumeric = true;}       
        char fst = c.charAt(0);
        char snd = c.charAt(2);
        if(c.length() == 6 && Character.isLetter(fst) && Character.isLetter(snd) && isNumeric) {v = true;}
