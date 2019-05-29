@@ -1,15 +1,8 @@
-<<<<<<< HEAD
 #BlueJ class context
 comment0.target=ICatProdutos
 comment0.text=\r\n\ \r\n
-numComments=1
-=======
-#BlueJ class context
-comment0.target=ICatProdutos
-comment0.text=\n\ \n
 comment1.params=
 comment1.target=java.util.Set\ getCatalogo()
 comment2.params=pp
 comment2.target=void\ setCatalogo(java.util.Set)
 numComments=3
->>>>>>> fe53221c884313f7ae1a7355e287e15bea114c52

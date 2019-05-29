@@ -9,11 +9,8 @@ import java.util.ArrayList;
  * @author (your name)
  * @version (a version number or a date)
  */
-<<<<<<< HEAD
-public class Filial implements IFilial, Serializable
-=======
+
 public class Filial implements IFilial 
->>>>>>> fe53221c884313f7ae1a7355e287e15bea114c52
 {
     //Tabela
     //Não estava a conseguir copiar os arrays, perguntar ao professor, por agora fica assim até descobrir 
