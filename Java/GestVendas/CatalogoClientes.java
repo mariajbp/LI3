@@ -80,7 +80,7 @@ public class CatalogoClientes implements ICatClientes, Serializable
    }
    
    /**Validação do Codigo **/
-   public boolean validateC(String c)
+   public boolean validateClient(String c)
    {
        boolean v = true;
        String[] part = c.split("(?<=\\D)(?=\\d)");

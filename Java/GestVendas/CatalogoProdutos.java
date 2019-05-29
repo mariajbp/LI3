@@ -1,3 +1,4 @@
+
 import java.util.TreeSet; //ou hash later
 import java.io.Serializable;
 import java.io.*; 
@@ -6,7 +7,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Iterator;
-import static java.lang.System.out;
+
+import java.util.*;
 
 /**
 * 
@@ -44,13 +46,20 @@ public class CatalogoProdutos implements ICatProdutos, Serializable
    {
        this.cprod = cprod; 
    }
-    
-   public TreeSet<String> getCProd() throws NoProdutosException // needed??
+   
+   /**
+   public CatalogoProdutos(CatalogoProdutos cp)
    {
-       if(this.cprod.isEmpty()) throw new NoProdutosException("Não existem códigos disponiveis");
-       else return this.cprod;
+       this.cprod = cp.getCProd(); 
    }
     
+   public TreeSet<String> getCProd() 
+   {
+       Set<CatalogoProdutos> aux = new TreeSet<CatalogoProdutos>();
+       for(CatalogoProdutos cp: this.cprod){aux.add(cp.clone());}
+       return aux;
+   }
+   **/
    public CatalogoProdutos(String fileName) throws IOException  
    {
         this.cprod = new TreeSet<>();
@@ -61,9 +70,9 @@ public class CatalogoProdutos implements ICatProdutos, Serializable
    **  Faz load do ficheiro no TreeSet 
    **  Retorna o número de codigos válidos
    **/
-   private void readFile(String fileName) throws IOException 
+   private int readFile(String fileName) throws IOException 
    {
-      int v = 0;
+      int v = 0; //válidos
       try 
       {
            br = new BufferedReader(new FileReader(fileName));
@@ -72,12 +81,12 @@ public class CatalogoProdutos implements ICatProdutos, Serializable
            {
                if(validateP(line))
                {
-                   fillT(line);
+                   cprod.add(line); 
                    v++;
                }
            }
       }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
-      System.out.println(v + " Produtos Validos");
+      return v;
    }
    
    /**Validação do Codigo **/
@@ -92,14 +101,7 @@ public class CatalogoProdutos implements ICatProdutos, Serializable
        if(c.length() == 6 && Character.isLetter(fst) && Character.isLetter(snd) && isNumeric) {v = true;}
        return v;      
    }
-   
-   /** Adiciona um código ao TreeSet **/
-   public void fillT(String line) 
-   {
-      cprod.add(line); 
-   }
-        
-   
+ 
    
    /** Procurar um Produto **/
    public boolean isItThereP(String c)
@@ -117,5 +119,10 @@ public class CatalogoProdutos implements ICatProdutos, Serializable
          else v = false;
        }
        return v;
+   }
+   
+   public CatalogoProdutos clone()
+   {
+        return new CatalogoProdutos(this);
    }
 }

@@ -11,7 +11,7 @@ import static java.lang.System.out;
 /**
 * 
 **/
-public class Venda implements IVenda, Serializable
+public class Venda implements Serializable
 {
     private TreeSet<String> codvendas;
     private File file;
