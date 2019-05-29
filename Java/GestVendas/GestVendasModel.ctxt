@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=GestVendasModel
-comment0.text=\n\ \n
+comment0.text=\r\n\ \r\n
 comment1.params=
 comment1.target=void\ createData()
 comment2.params=
@@ -13,8 +13,8 @@ comment5.params=
 comment5.target=void\ preencheFilial()
 comment6.params=fileName
 comment6.target=void\ writeToTxt(java.lang.String)
-comment6.text=\n\ M\u00E9todo\ que\ guarda\ o\ estado\ de\ uma\ inst\u00E2ncia\ num\ ficheiro\ de\ texto\n
+comment6.text=\r\n\ M\u00E9todo\ que\ guarda\ o\ estado\ de\ uma\ inst\u00E2ncia\ num\ ficheiro\ de\ texto\r\n
 comment7.params=fileName
 comment7.target=void\ saveStatus(java.lang.String)
-comment7.text=\ \n\ M\u00E9todo\ que\ guarda\ em\ ficheiro\ de\ objectos\ o\ objecto\ que\ recebe\ a\ mensagem\n
+comment7.text=\ \r\n\ M\u00E9todo\ que\ guarda\ em\ ficheiro\ de\ objectos\ o\ objecto\ que\ recebe\ a\ mensagem\r\n
 numComments=8

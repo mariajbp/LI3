@@ -1,12 +1,15 @@
-import java.util.*;
-import java.lang.Object;
+import java.io.Serializable;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
 /**
  * 
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Filial
+public class Filial implements IFilial, Serializable
 {
     //Tabela
     //Não estava a conseguir copiar os arrays, perguntar ao professor, por agora fica assim até descobrir 

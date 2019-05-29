@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
 * 
 **/
-public class Faturacao implements Serializable 
+public class Faturacao implements IFaturacao, Serializable 
 {
     private double ftrTotal;
     private double[] ftrMensal;

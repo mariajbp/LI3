@@ -1,47 +1,3 @@
-<<<<<<< HEAD
-#BlueJ class context
-comment0.target=Filial
-comment0.text=\n\ \n\n\ @author\ (your\ name)\n\ @version\ (a\ version\ number\ or\ a\ date)\n
-comment1.params=
-comment1.target=Filial()
-comment10.params=f1
-comment10.target=void\ setF1(java.util.Map)
-comment11.params=f2
-comment11.target=void\ setF2(java.util.Map)
-comment12.params=f3
-comment12.target=void\ setF3(java.util.Map)
-comment13.params=p
-comment13.target=void\ setProdutos(java.util.Map)
-comment14.params=c
-comment14.target=void\ setClientes(java.util.Map)
-comment15.params=cp
-comment15.target=void\ setClProds(java.util.Map)
-comment16.params=
-comment16.target=Filial\ clone()
-comment16.text=\n\ Clone\n
-comment17.params=o
-comment17.target=boolean\ equals(java.lang.Object)
-comment17.text=\n\ Equals\n
-comment18.params=
-comment18.target=java.lang.String\ toString()
-comment2.params=f1\ f2\ f3\ prod\ cl\ clProd
-comment2.target=Filial(java.util.Map,\ java.util.Map,\ java.util.Map,\ java.util.Map,\ java.util.Map,\ java.util.Map)
-comment3.params=f
-comment3.target=Filial(Filial)
-comment4.params=
-comment4.target=java.util.Map\ getF1()
-comment5.params=
-comment5.target=java.util.Map\ getF2()
-comment6.params=
-comment6.target=java.util.Map\ getF3()
-comment7.params=
-comment7.target=java.util.Map\ getProdutos()
-comment8.params=
-comment8.target=java.util.Map\ getClientes()
-comment9.params=
-comment9.target=java.util.Map\ getClProds()
-numComments=19
-=======
 #BlueJ class context
 comment0.target=Filial
 comment0.text=\r\n\ \r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
@@ -84,4 +40,3 @@ comment8.target=java.util.Map\ getClientes()
 comment9.params=
 comment9.target=java.util.Map\ getClProds()
 numComments=19
->>>>>>> ca7f612e6a2a56010a89682d3ba420e4958d5fe2
