@@ -28,6 +28,9 @@ public class Filial implements IFilial
     //  Client, <Produto, NºProd>
     Map<Cliente, Map<Produto, Integer>> clProds;
     
+    /** 
+    * Construtor vazio que cria uma instância Filial
+    **/
     public Filial()
     {
         //this.mesFilial = new Pair[3][12];
@@ -39,6 +42,9 @@ public class Filial implements IFilial
         this.clProds = new HashMap<Cliente, Map<Produto, Integer>>();
     }
     
+    /** 
+    * Construtor que cria um novo Filial a partir dos parâmetros dados  
+    **/
     public Filial(Map<Integer, Pair> f1, Map<Integer, Pair> f2, Map<Integer, Pair> f3, Map<Produto, TripleList> prod, Map<Cliente, TripleList> cl, Map<Cliente, Map<Produto, Integer>> clProd)
     {
         this.f1 = new HashMap<Integer, Pair>(f1);
@@ -49,6 +55,9 @@ public class Filial implements IFilial
         this.clProds = new HashMap<Cliente, Map<Produto, Integer>>(clProd);
     }
     
+    /** 
+    * Construtor vazio que cria uma instância Filial
+    **/
     public Filial(Filial f)
     {
         this.f1 = f.getF1();
@@ -59,11 +68,31 @@ public class Filial implements IFilial
         this.clProds = f.getClProds();
     }
     
-    //Getters
+    /**
+    * Método que devolve uma mapa com um par que contém o número total de vendas e clientes, por mês da filial em questão
+    * @return Mapa com um que contém o número total de vendas e clientes
+    **/
     public Map<Integer, Pair> getF1(){return new HashMap<Integer, Pair>(this.f1);}
+    
+    /**
+    * Método que devolve uma mapa com um par que contém o número total de vendas e clientes, por mês da filial em questão
+    * @return Mapa com um que contém o número total de vendas e clientes
+    **/
     public Map<Integer, Pair> getF2(){return new HashMap<Integer, Pair>(this.f2);}
+    
+    /**
+    * Método que devolve uma mapa com um par que contém o número total de vendas e clientes, por mês da filial em questão
+    * @return Mapa com um que contém o número total de vendas e clientes
+    **/
     public Map<Integer, Pair> getF3(){return new HashMap<Integer, Pair>(this.f3);}
+    
+    /**
+    * Método que devolve uma mapa com um triplo que contém o número de clientes, vendas e total faturado de determinado produto, organizado por mês
+    * @return Mapa com um que contém o número de clientes, vendas e total faturado de determinado produto, organizado por mês
+    **/
     public Map<Produto, TripleList> getProdutos(){return new HashMap<Produto, TripleList>(this.produtos);}
+    
+    
     public Map<Cliente, TripleList> getClientes(){return new HashMap<Cliente, TripleList>(this.clientes);}
     public Map<Cliente, Map<Produto, Integer>> getClProds(){return new HashMap<Cliente, Map<Produto, Integer>>(this.clProds);}
     
