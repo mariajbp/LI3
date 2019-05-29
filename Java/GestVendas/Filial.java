@@ -15,29 +15,29 @@ public class Filial
     Map<Integer, Pair> f2;
     Map<Integer, Pair> f3;
     //  Produto, <NºCl, NºV, Total>
-    Map<String, TripleList> produtos;     
+    Map<Produto, TripleList> produtos;     
     //  Cliente, <NºProd distintos, Nº Comprados, Faturado>
-    Map<String, TripleList> clientes;
+    Map<Cliente, TripleList> clientes;
     //  Client, <Produto, NºProd>
-    Map<String, Map<String, Integer>> clProds;
+    Map<Cliente, Map<Produto, Integer>> clProds;
     
     public Filial(){
         //this.mesFilial = new Pair[3][12];
         this.f1 = new HashMap<Integer, Pair>(12);
         this.f2 = new HashMap<Integer, Pair>(12);
         this.f3 = new HashMap<Integer, Pair>(12);
-        this.produtos = new HashMap<String, TripleList>();
-        this.clientes = new HashMap<String, TripleList>();
-        this.clProds = new HashMap<String, Map<String, Integer>>();
+        this.produtos = new HashMap<Produto, TripleList>();
+        this.clientes = new HashMap<Cliente, TripleList>();
+        this.clProds = new HashMap<Cliente, Map<Produto, Integer>>();
     }
     
-    public Filial(Map<Integer, Pair> f1, Map<Integer, Pair> f2, Map<Integer, Pair> f3, Map<String, TripleList> prod, Map<String, TripleList> cl, Map<String, Map<String, Integer>> clProd){
+    public Filial(Map<Integer, Pair> f1, Map<Integer, Pair> f2, Map<Integer, Pair> f3, Map<Produto, TripleList> prod, Map<Cliente, TripleList> cl, Map<Cliente, Map<Produto, Integer>> clProd){
         this.f1 = new HashMap<Integer, Pair>(f1);
         this.f2 = new HashMap<Integer, Pair>(f2);
         this.f3 = new HashMap<Integer, Pair>(f3);
-        this.produtos = new HashMap<String, TripleList>(prod);
-        this.clientes = new HashMap<String, TripleList>(cl);
-        this.clProds = new HashMap<String, Map<String, Integer>>(clProd);
+        this.produtos = new HashMap<Produto, TripleList>(prod);
+        this.clientes = new HashMap<Cliente, TripleList>(cl);
+        this.clProds = new HashMap<Cliente, Map<Produto, Integer>>(clProd);
     }
     
     public Filial(Filial f){
@@ -53,9 +53,9 @@ public class Filial
     public Map<Integer, Pair> getF1(){return new HashMap<Integer, Pair>(this.f1);}
     public Map<Integer, Pair> getF2(){return new HashMap<Integer, Pair>(this.f2);}
     public Map<Integer, Pair> getF3(){return new HashMap<Integer, Pair>(this.f3);}
-    public Map<String, TripleList> getProdutos(){return new HashMap<String, TripleList>(this.produtos);}
-    public Map<String, TripleList> getClientes(){return new HashMap<String, TripleList>(this.clientes);}
-    public Map<String, Map<String, Integer>> getClProds(){return new HashMap<String, Map<String, Integer>>(this.clProds);}
+    public Map<Produto, TripleList> getProdutos(){return new HashMap<Produto, TripleList>(this.produtos);}
+    public Map<Cliente, TripleList> getClientes(){return new HashMap<Cliente, TripleList>(this.clientes);}
+    public Map<Cliente, Map<Produto, Integer>> getClProds(){return new HashMap<Cliente, Map<Produto, Integer>>(this.clProds);}
     
     //Setters
     public void setF1(Map<Integer, Pair> f1){
@@ -70,17 +70,17 @@ public class Filial
         this.f3.clear();
         this.f3 = new HashMap<Integer, Pair>(f3);
     }
-    public void setProdutos(Map<String, TripleList> p){
+    public void setProdutos(Map<Produto, TripleList> p){
         this.produtos.clear();
-        this.produtos = new HashMap<String, TripleList>(p);
+        this.produtos = new HashMap<Produto, TripleList>(p);
     }
-    public void setClientes(Map<String, TripleList> c){
+    public void setClientes(Map<Cliente, TripleList> c){
         this.clientes.clear();
-        this.clientes = new HashMap<String, TripleList>(c);
+        this.clientes = new HashMap<Cliente, TripleList>(c);
     }
-    public void setClProds(Map<String, Map<String, Integer>> cp){
+    public void setClProds(Map<Cliente, Map<Produto, Integer>> cp){
         this.clProds.clear();
-        this.clProds = new HashMap<String, Map<String, Integer>>(cp);
+        this.clProds = new HashMap<Cliente, Map<Produto, Integer>>(cp);
     }
     
     /**

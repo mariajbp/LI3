@@ -65,10 +65,7 @@ public class Faturacao implements Serializable
     **/
     public Map<Cliente, List<Integer>> getClMes()
     {
-       HashMap<Cliente,List<Integer>> aux = new HashMap<>();
-       List l = new ArrayList<Integer>();
-       for(Map.Entry<Cliente, List<Integer>> c : this.clMes.entrySet()) {aux.put(c.getKey(), c.getValue().clone(l));}
-       return aux;
+       return new HashMap<Cliente, List<Integer>>(this.clMes);
     }
     
     /**
@@ -77,6 +74,7 @@ public class Faturacao implements Serializable
     **/
     public Map<Produto, List<Integer>> getProdMes()
     {
+       return new HashMap<Produto, List<Integer>>(this.prodMes);
     }
     
     
@@ -88,7 +86,7 @@ public class Faturacao implements Serializable
     public void setClMes(Map<Cliente, List<Integer>> cl)
     {
        this.clMes.clear();
-       for(Map.Entry<Cliente, List<Integer>> c : cl.entrySet()) {this.clMes.put(c.getKey(), c.getValue().clone());}
+       this.clMes = new HashMap<Cliente, List<Integer>>(cl);
     }
     
     /**
@@ -97,8 +95,8 @@ public class Faturacao implements Serializable
     **/ 
     public void setProdMes(Map<Produto, List<Integer>> prd)
     {
-       this.clMes.clear();
-       for(Map.Entry<Produto, List<Integer>> c : prd.entrySet()) {this.prodMes.put(c.getKey(), c.getValue().clone());}
+       this.prodMes.clear();
+       this.prodMes = new HashMap<Produto, List<Integer>>(prd);
     }
     
     /** 
