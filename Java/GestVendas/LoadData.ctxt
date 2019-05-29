@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=LoadData
-comment0.text=\n\ \n
+comment0.text=\r\n\ \r\n
 comment1.params=c
 comment1.target=boolean\ validaCliente(java.lang.String)
 comment1.text=Load\ Clientes\ *
@@ -9,5 +9,5 @@ comment2.target=boolean\ validaProduto(java.lang.String)
 comment2.text=Valida\u00E7\u00E3o\ do\ Codigo\ *
 comment3.params=c
 comment3.target=boolean\ validateFt(java.lang.String)
-comment3.text=\n\ Valida\u00E7\u00E3o\ dos\ parametros\ de\ uma\ venda\n\ @param\ \ \ \ \ Linha\ do\ ficheiro\ a\ validar\n\ @returns\ \ \ True\ caso\ a\ venda\ seja\ v\u00E1lida,\ False\ caso\ contr\u00E1rio\n
+comment3.text=\r\n\ Valida\u00E7\u00E3o\ dos\ parametros\ de\ uma\ venda\r\n\ @param\ \ \ \ \ Linha\ do\ ficheiro\ a\ validar\r\n\ @returns\ \ \ True\ caso\ a\ venda\ seja\ v\u00E1lida,\ False\ caso\ contr\u00E1rio\r\n
 numComments=4

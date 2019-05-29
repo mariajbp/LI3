@@ -1,12 +1,12 @@
 #BlueJ class context
 comment0.target=GestVendasModel
-comment0.text=\n\ \n
+comment0.text=\r\n\ \r\n
 comment1.params=
 comment1.target=void\ createData()
 comment2.params=fileName
 comment2.target=void\ writeToTxt(java.lang.String)
-comment2.text=\n\ M\u00E9todo\ que\ guarda\ o\ estado\ de\ uma\ inst\u00E2ncia\ num\ ficheiro\ de\ texto\n
+comment2.text=\r\n\ M\u00E9todo\ que\ guarda\ o\ estado\ de\ uma\ inst\u00E2ncia\ num\ ficheiro\ de\ texto\r\n
 comment3.params=fileName
 comment3.target=void\ saveStatus(java.lang.String)
-comment3.text=\ \n\ M\u00E9todo\ que\ guarda\ em\ ficheiro\ de\ objectos\ o\ objecto\ que\ recebe\ a\ mensagem\n
+comment3.text=\ \r\n\ M\u00E9todo\ que\ guarda\ em\ ficheiro\ de\ objectos\ o\ objecto\ que\ recebe\ a\ mensagem\r\n
 numComments=4
