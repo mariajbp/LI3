@@ -6,7 +6,7 @@ import java.lang.Object;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Filial
+public class Filial implements IFilial 
 {
     //Tabela
     //Não estava a conseguir copiar os arrays, perguntar ao professor, por agora fica assim até descobrir 
@@ -21,7 +21,8 @@ public class Filial
     //  Client, <Produto, NºProd>
     Map<Cliente, Map<Produto, Integer>> clProds;
     
-    public Filial(){
+    public Filial()
+    {
         //this.mesFilial = new Pair[3][12];
         this.f1 = new HashMap<Integer, Pair>(12);
         this.f2 = new HashMap<Integer, Pair>(12);
@@ -31,7 +32,8 @@ public class Filial
         this.clProds = new HashMap<Cliente, Map<Produto, Integer>>();
     }
     
-    public Filial(Map<Integer, Pair> f1, Map<Integer, Pair> f2, Map<Integer, Pair> f3, Map<Produto, TripleList> prod, Map<Cliente, TripleList> cl, Map<Cliente, Map<Produto, Integer>> clProd){
+    public Filial(Map<Integer, Pair> f1, Map<Integer, Pair> f2, Map<Integer, Pair> f3, Map<Produto, TripleList> prod, Map<Cliente, TripleList> cl, Map<Cliente, Map<Produto, Integer>> clProd)
+    {
         this.f1 = new HashMap<Integer, Pair>(f1);
         this.f2 = new HashMap<Integer, Pair>(f2);
         this.f3 = new HashMap<Integer, Pair>(f3);
@@ -40,7 +42,8 @@ public class Filial
         this.clProds = new HashMap<Cliente, Map<Produto, Integer>>(clProd);
     }
     
-    public Filial(Filial f){
+    public Filial(Filial f)
+    {
         this.f1 = f.getF1();
         this.f2 = f.getF2();
         this.f3 = f.getF3();
@@ -58,39 +61,47 @@ public class Filial
     public Map<Cliente, Map<Produto, Integer>> getClProds(){return new HashMap<Cliente, Map<Produto, Integer>>(this.clProds);}
     
     //Setters
-    public void setF1(Map<Integer, Pair> f1){
+    public void setF1(Map<Integer, Pair> f1)
+    {
         this.f1.clear();
         this.f1 = new HashMap<Integer, Pair>(f1);
     }
-    public void setF2(Map<Integer, Pair> f2){
+    public void setF2(Map<Integer, Pair> f2)
+    {
         this.f2.clear();
         this.f2 = new HashMap<Integer, Pair>(f2);
     }
-    public void setF3(Map<Integer, Pair> f3){
+    public void setF3(Map<Integer, Pair> f3)
+    {
         this.f3.clear();
         this.f3 = new HashMap<Integer, Pair>(f3);
     }
-    public void setProdutos(Map<Produto, TripleList> p){
+    public void setProdutos(Map<Produto, TripleList> p)
+    {
         this.produtos.clear();
         this.produtos = new HashMap<Produto, TripleList>(p);
     }
-    public void setClientes(Map<Cliente, TripleList> c){
+    public void setClientes(Map<Cliente, TripleList> c)
+    {
         this.clientes.clear();
         this.clientes = new HashMap<Cliente, TripleList>(c);
     }
-    public void setClProds(Map<Cliente, Map<Produto, Integer>> cp){
+    public void setClProds(Map<Cliente, Map<Produto, Integer>> cp)
+    {
         this.clProds.clear();
         this.clProds = new HashMap<Cliente, Map<Produto, Integer>>(cp);
     }
     
-    /**
-     * Clone
-     */
+    /** 
+    * Método que cria uma cópia de uma identificação de um Cliente
+    **/
     public Filial clone(){return new Filial(this);}
     
-    /**
-     * Equals
-     */
+    /** 
+    * Método que testa se um objeto é igual a uma determinada identificação
+    * @param      Objeto a ser testado
+    * @return     True se o objeto for igual à identificação, false se o objeto passado não for igual à identificação
+    **/
     public boolean equals(Object o){
        if(o == this)
             return true;
@@ -102,7 +113,11 @@ public class Filial
               this.clientes.equals(f.getClientes()) &&
               this.clProds.equals(f.getClProds());
     }
-    
+
+   /**
+   * Método que converte uma identificação numa string
+   * @return  
+   **/
     public String toString(){return " ";}
     
     
