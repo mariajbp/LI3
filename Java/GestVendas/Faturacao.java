@@ -128,4 +128,10 @@ public class Faturacao implements Serializable, IFaturacao
        sb.append("Total global faturado:").append(ftrTotal).append("\n");
        return sb.toString();
     }
+    
+    /**
+    * Método que 
+    **/
+    public void addVenda(Venda v)
+    {} 
 }

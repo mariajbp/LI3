@@ -14,7 +14,7 @@ import java.util.*;
 * 
 **/
 
-public class CatalogoProdutos implements ICatProdutos, Serializable
+public class CatalogoProdutos implements ICatProdutos, Serializable 
 {
    private Set<Produto> catalogo; 
    
@@ -82,9 +82,9 @@ public class CatalogoProdutos implements ICatProdutos, Serializable
    }
    
    /**
-    * Método que converte uma identificação numa string
-    * @return  
-    **/
+   * Método que converte uma identificação numa string
+   * @return  
+   **/
     public String toString()
     {
        StringBuilder sb = new StringBuilder();
@@ -92,6 +92,20 @@ public class CatalogoProdutos implements ICatProdutos, Serializable
        return sb.toString();
     }
    
+   
+   /**
+   * Método que  
+   **/
+   public void addProduto(Produto p)
+   { 
+      catalogo.add(p);  
+   }
+    
+   public boolean containsProduto(String codigo)
+   { 
+       Produto p = new Produto(codigo);
+       return catalogo.contains(p);
+   }
    
    /**Main da coisa que é para sair no fim
    public static void main(String[] args)throws IOException
@@ -153,20 +167,7 @@ public class CatalogoProdutos implements ICatProdutos, Serializable
       }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
       return v;
    }
-   
-   /**Validação do Codigo 
-   public boolean validateP(String c)
-   {
-       boolean v = true;
-       String[] part = c.split("(?<=\\D)(?=\\d)");
-       boolean isNumeric = false;
-       if(part[1].chars().allMatch(Character::isDigit) && Integer.parseInt(part[1]) > 1000 && Integer.parseInt(part[1]) < 9999) {isNumeric = true;}       
-       char fst = c.charAt(0);
-       char snd = c.charAt(2);
-       if(c.length() == 6 && Character.isLetter(fst) && Character.isLetter(snd) && isNumeric) {v = true;}
-       return v;      
-   }
- 
+
    
    /** Procurar um Produto 
    public boolean isItThereP(String c)
@@ -185,9 +186,5 @@ public class CatalogoProdutos implements ICatProdutos, Serializable
        }
        return v;
    }
-   
-   public CatalogoProdutos clone()
-   {
-        return new CatalogoProdutos(this);
-   } **/
+ **/
 }

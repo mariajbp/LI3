@@ -1,3 +1,4 @@
+<<<<<<< HEAD:Java/GestVendas/Filiais.ctxt
 #BlueJ class context
 comment0.target=Filiais
 comment0.text=\r\n\ Classe\ Filiais\ que\ cont\u00E9m\ estruturas\ com\ dados\ das\ 3\ filiais\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
@@ -66,3 +67,56 @@ comment8.target=java.util.Map\ getClientes()
 comment9.params=
 comment9.target=java.util.Map\ getClProds()
 numComments=28
+=======
+#BlueJ class context
+comment0.target=Filial
+comment0.text=\n\ \n\n\ @author\ (your\ name)\n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=
+comment1.target=Filial()
+comment1.text=\ \n\ Construtor\ vazio\ que\ cria\ uma\ inst\u00E2ncia\ Filial\n
+comment10.params=f1
+comment10.target=void\ setF1(java.util.Map)
+comment11.params=f2
+comment11.target=void\ setF2(java.util.Map)
+comment12.params=f3
+comment12.target=void\ setF3(java.util.Map)
+comment13.params=p
+comment13.target=void\ setProdutos(java.util.Map)
+comment14.params=c
+comment14.target=void\ setClientes(java.util.Map)
+comment15.params=cp
+comment15.target=void\ setClProds(java.util.Map)
+comment16.params=
+comment16.target=Filial\ clone()
+comment16.text=\ \n\ M\u00E9todo\ que\ cria\ uma\ c\u00F3pia\ de\ uma\ identifica\u00E7\u00E3o\ de\ um\ Cliente\n
+comment17.params=o
+comment17.target=boolean\ equals(java.lang.Object)
+comment17.text=\ \n\ M\u00E9todo\ que\ testa\ se\ um\ objeto\ \u00E9\ igual\ a\ uma\ determinada\ identifica\u00E7\u00E3o\n\ @param\ \ \ \ \ \ Objeto\ a\ ser\ testado\n\ @returns\ \ \ \ \ True\ se\ o\ objeto\ for\ igual\ \u00E0\ identifica\u00E7\u00E3o,\ false\ se\ o\ objeto\ passado\ n\u00E3o\ for\ igual\ \u00E0\ identifica\u00E7\u00E3o\n
+comment18.params=
+comment18.target=java.lang.String\ toString()
+comment18.text=\n\ M\u00E9todo\ que\ converte\ uma\ identifica\u00E7\u00E3o\ numa\ string\n\ @return\ \ \n
+comment2.params=f1\ f2\ f3\ prod\ cl\ clProd
+comment2.target=Filial(java.util.Map,\ java.util.Map,\ java.util.Map,\ java.util.Map,\ java.util.Map,\ java.util.Map)
+comment2.text=\ \n\ Construtor\ que\ cria\ um\ novo\ Filial\ a\ partir\ dos\ par\u00E2metros\ dados\ \ \n
+comment3.params=f
+comment3.target=Filial(Filial)
+comment3.text=\ \n\ Construtor\ vazio\ que\ cria\ uma\ inst\u00E2ncia\ Filial\n
+comment4.params=
+comment4.target=java.util.Map\ getF1()
+comment4.text=\n\ M\u00E9todo\ que\ devolve\ uma\ mapa\ com\ um\ par\ que\ cont\u00E9m\ o\ n\u00FAmero\ total\ de\ vendas\ e\ clientes,\ por\ m\u00EAs\ da\ filial\ em\ quest\u00E3o\n\ @returns\ Mapa\ com\ um\ que\ cont\u00E9m\ o\ n\u00FAmero\ total\ de\ vendas\ e\ clientes\n
+comment5.params=
+comment5.target=java.util.Map\ getF2()
+comment5.text=\n\ M\u00E9todo\ que\ devolve\ uma\ mapa\ com\ um\ par\ que\ cont\u00E9m\ o\ n\u00FAmero\ total\ de\ vendas\ e\ clientes,\ por\ m\u00EAs\ da\ filial\ em\ quest\u00E3o\n\ @returns\ Mapa\ com\ um\ que\ cont\u00E9m\ o\ n\u00FAmero\ total\ de\ vendas\ e\ clientes\n
+comment6.params=
+comment6.target=java.util.Map\ getF3()
+comment6.text=\n\ M\u00E9todo\ que\ devolve\ uma\ mapa\ com\ um\ par\ que\ cont\u00E9m\ o\ n\u00FAmero\ total\ de\ vendas\ e\ clientes,\ por\ m\u00EAs\ da\ filial\ em\ quest\u00E3o\n\ @returns\ Mapa\ com\ um\ que\ cont\u00E9m\ o\ n\u00FAmero\ total\ de\ vendas\ e\ clientes\n
+comment7.params=
+comment7.target=java.util.Map\ getProdutos()
+comment7.text=\n\ M\u00E9todo\ que\ devolve\ uma\ mapa\ com\ um\ triplo\ que\ cont\u00E9m\ o\ n\u00FAmero\ de\ clientes,\ vendas\ e\ total\ faturado\ de\ determinado\ produto,\ organizado\ por\ m\u00EAs\n\ @returns\ Mapa\ com\ um\ que\ cont\u00E9m\ o\ n\u00FAmero\ de\ clientes,\ vendas\ e\ total\ faturado\ de\ determinado\ produto,\ organizado\ por\ m\u00EAs\n
+comment8.params=
+comment8.target=java.util.Map\ getClientes()
+comment8.text=\n\ M\u00E9todo\ que\ devolve\ uma\ mapa\ com\ um\ triplo\ que\ cont\u00E9m\ o\ n\u00FAmero\ de\ produtos,\ compras\ e\ o\ total\ gasto\ por\ um\ determinado\ cliente,\ organizado\ por\ m\u00EAs\n\ @returns\ Mapa\ com\ um\ que\ cont\u00E9m\ o\ n\u00FAmero\ de\ clientes,\ vendas\ e\ total\ faturado\ de\ determinado\ produto,\ organizado\ por\ m\u00EAs\n
+comment9.params=
+comment9.target=java.util.Map\ getClProds()
+numComments=19
+>>>>>>> 0a588da3c522db3caebc539d136de81be4f2f4ee:Java/GestVendas/Filial.ctxt

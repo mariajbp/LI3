@@ -12,8 +12,8 @@ public class TripleList
    private List<Double> right;
    
    /**
-    * Construtor Vazio 
-    */
+   * Construtor Vazio 
+   **/
    public TripleList(){
        this.left = new ArrayList<Integer>(12);
        this.middle = new ArrayList<Integer>(12);
@@ -22,7 +22,7 @@ public class TripleList
     
    /**
     * Construtor parametrizado
-    * @param listas de inteiros 
+    * @param listas de inteiros e uma lista de doubles
     */
    public TripleList(List<Integer> l, List<Integer> m, List<Double> r){
        this.left = new ArrayList<Integer>(l);

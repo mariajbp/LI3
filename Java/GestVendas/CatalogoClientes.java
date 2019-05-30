@@ -15,7 +15,7 @@ import static java.lang.System.out;
 public class CatalogoClientes implements ICatClientes, Serializable
 {
    private Set<Cliente> catalogo; 
-   
+    
    /** 
    * Construtor vazio que cria uma instância CatalogoClientes
    **/
@@ -42,7 +42,7 @@ public class CatalogoClientes implements ICatClientes, Serializable
    
    /**
    * Método que devolve o catalogo de Clientes
-   * @return Catalogo de produtos válidos
+   * @returns Catalogo de produtos válidos
    **/
    public Set<Cliente> getCatalogo()
    {
@@ -69,7 +69,7 @@ public class CatalogoClientes implements ICatClientes, Serializable
    /** 
    * Método que testa se um objeto é igual a uma determinada identificação
    * @param      Objeto a ser testado
-   * @return     True se o objeto for igual à identificação, false se o objeto passado não for igual à identificação
+   * @returns     True se o objeto for igual à identificação, false se o objeto passado não for igual à identificação
    **/
    public boolean equals(Object o)
    {
@@ -81,7 +81,7 @@ public class CatalogoClientes implements ICatClientes, Serializable
    
    /**
    * Método que converte uma identificação numa string
-   * @return  
+   * @returns  
    **/
     public String toString()
     {
@@ -90,6 +90,19 @@ public class CatalogoClientes implements ICatClientes, Serializable
        return sb.toString();
     }
    
+   /**
+   * Método que 
+   **/ 
+   public void addCliente(Cliente c)
+   {
+       catalogo.add(c);
+   }
+   
+   public boolean containsCliente(String codigo)
+   {  
+       Cliente c = new Cliente(codigo);
+       return catalogo.contains(c);
+   }
    
    
    /**
@@ -98,63 +111,8 @@ public class CatalogoClientes implements ICatClientes, Serializable
         this.cclient = new TreeSet<>();
         readFile("../Dados/Clientes.txt");
    }
-   
-   /** 
-   **  Faz load do ficheiro no TreeSet 
-   **  Retorna o número de codigos válidos
   
-   private void readFile(String fileName) throws IOException 
-   {
-      int v = 0;
-      try 
-      {
-           br = new BufferedReader(new FileReader(fileName));
-           String line = null;
-           while ((line = br.readLine()) != null) 
-           {
-               if(validateC(line))
-               {
-                   fillT(line);
-                   v++;
-               }
-           }
-      }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
-      out.println(v + " Clientes Validos");
-   }
    
-   /**Validação do Codigo 
-   public boolean validateClient(String c)
-   {
-       boolean v = true;
-       String[] part = c.split("(?<=\\D)(?=\\d)");
-       boolean isNumeric = false;
-       if(part[1].chars().allMatch(Character::isDigit) && Integer.parseInt(part[1]) > 1000 && Integer.parseInt(part[1]) < 5000) {isNumeric = true;}   
-       char fst = c.charAt(0);
-       if(c.length() == 5 && Character.isLetter(fst) && isNumeric) {v = true;}
-       return v;      
-   }
-   
-   /** Adiciona um código ao TreeSet 
-   private void fillT(String line) 
-   {
-      cclient.add(line); 
-   }
-        
-   /** Procurar um Cliente 
-   private boolean isItThereC(String c)
-   {
-       Iterator<String> it = this.cclient.iterator();
-       String s = null;
-       boolean v = false;
-       while(it.hasNext() && v == false)
-       {
-         s = it.next();
-         if (s.equals(c))
-         {
-             v = true;
-         }
-         else v = false;
-       }
-       return v;
-   } **/ 
+   **/
+      
 }

@@ -1,9 +1,5 @@
 import java.io.Serializable;
-import java.io.*; 
 import java.util.TreeSet; 
-import java.io.File;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Iterator;
 import static java.lang.System.out;
@@ -21,6 +17,7 @@ public class Venda implements Serializable
     private int month;
     private int filial;
     
+<<<<<<< HEAD
     /*
     public static void main(String[] args)throws IOException
     { 
@@ -38,6 +35,8 @@ public class Venda implements Serializable
       System.out.println("Demorei: " + elapsedTime);
     }
     */
+=======
+>>>>>>> 0a588da3c522db3caebc539d136de81be4f2f4ee
     public Venda()
     {
         this.codeP = new String();
@@ -86,6 +85,7 @@ public class Venda implements Serializable
     public void setNP(String newnp){this.codeP = newnp;}
     public void setMonth(int newm){this.month = newm;}
     public void setFilial(int newf){this.filial = newf;}
+<<<<<<< HEAD
     
     /*
     public Venda(String fileName) throws IOException 
@@ -130,4 +130,6 @@ public class Venda implements Serializable
     {
       codvendas.add(line); 
     } **/
+=======
+>>>>>>> 0a588da3c522db3caebc539d136de81be4f2f4ee
 }
