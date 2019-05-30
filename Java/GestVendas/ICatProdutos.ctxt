@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.target=ICatProdutos
 comment0.text=\n\ \n
-comment1.params=
-comment1.target=java.util.Set\ getCatalogo()
-comment2.params=pp
-comment2.target=void\ setCatalogo(java.util.Set)
+comment1.params=p
+comment1.target=void\ addProduto(Produto)
+comment2.params=codigo
+comment2.target=boolean\ containsProduto(java.lang.String)
 numComments=3

@@ -1,6 +1,12 @@
 import java.io.Serializable;
 import java.io.IOException;
 import java.io.*; 
+import java.util.TreeSet; //ou hash later
+import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+
+import java.util.*;
 
 /**
 * 
@@ -9,21 +15,51 @@ public class GestVendasModel implements Serializable, IGestVendasModel
 {
     private ICatProdutos cprod;
     private ICatClientes ccl;
-    //...
+    private IFiliais filiais; 
+    private IFaturacao ftr;
     
-    public void createData()
+    public void createData() throws IOException
     {
-        //PreencheProds();
-        //PreencheCl();
-        //PreencheFtr();
-        //PreencheFilial();
+        String[] filename = new String[2];
+        int i = 0;
+        BufferedReader br = new BufferedReader(new FileReader("../config.txt"));
+        try
+        {
+           String line = null;
+           while ((line = br.readLine()) != null && i < 3) 
+           {
+              line =  filename[i];
+              i++;
+           } 
+        }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
+
+        //PreencheProds(filename[2]);
+        //PreencheCl(filename[1]);
+        //PreencheVendas(filename[3]);
     }
     
     /**
     * Método que preenche o catalogo de produtos
+    * @returns Número de vendas válidas
     **/
-    public void preencheProds()
+    private int preencheProds(String fileName) throws IOException 
     {
+      int v = 0; //válidos
+      BufferedReader br = new BufferedReader(new FileReader(fileName));
+      try 
+      {
+           String line = null;
+           while ((line = br.readLine()) != null) 
+           {
+               if(validaProduto(line))
+               { 
+                   Produto p = new Produto();
+                   cprod.addProduto(p);   
+                   v++;
+               }
+           }
+      }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
+      return v;
     }
     
     /**
@@ -44,10 +80,26 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     }
     
     /**
-    * Método que preenche o catalogo de clientes
+    * Método que 
     **/
-    public void preencheCl()
+    private int preencheCl(String fileName) throws IOException 
     {
+       int v = 0;
+       BufferedReader br = new BufferedReader(new FileReader(fileName));
+       try 
+       {
+           String line = null;
+           while ((line = br.readLine()) != null) 
+           {
+               if(validaCliente(line))
+               {
+                   Cliente c = new Cliente();
+                   ccl.addCliente(c); 
+                   v++;
+               }
+           }
+       }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
+       return v;
     }
     
     /**
@@ -67,29 +119,41 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     }
     
     /**
-    * Método que carrega os dados da fatuaração
+    * Método que carrega os dados de uma venda
     **/
-    public void preencheFtr()
+    private void preencheVendas(String fileName) throws IOException 
     {
+      int v = 0;
+      BufferedReader br = new BufferedReader(new FileReader(fileName));
+      try 
+      {
+           String line = null;
+           while ((line = br.readLine()) != null) 
+           {
+               if(validaVenda(line))
+               {
+                   String[] part = line.split(" ");
+                   Venda venda = new Venda(part[0],Double.parseDouble(part[1]),Integer.parseInt(part[2]),part[3],part[4],Integer.parseInt(part[5]),Integer.parseInt(part[6]));           
+                   filiais.addVenda(venda); 
+                   ftr.addVenda(venda); 
+                   v++;
+               }
+           }
+      }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
+      System.out.println(v + " Vendas Validas");
     }
     
-    /**
-    * Método que carrega os dados da filial
-    **/
-    public void preencheFilial()
-    {
-    }
     
     /**
     * Validação dos parametros de uma venda
     * @param     Linha do ficheiro a validar
     * @returns   True caso a venda seja válida, False caso contrário
     **/
-    public boolean validateFt(String c)
+    public boolean validaVenda(String c)
     {
-       boolean v = false;
+       boolean validade = false;
        String[] part = c.split(" ");
-       if(validaProduto(part[0]))
+       if(validaProduto(part[0]) && cprod.containsProduto(part[0]))
        {
            if(Double.parseDouble(part[1]) > 0 && Double.parseDouble(part[1]) < 999)
            {
@@ -97,19 +161,19 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                {
                    if(part[3] == "N" || part[3] == "P")
                    {
-                       if(validaCliente(part[4]))
+                       if(validaCliente(part[4]) && ccl.containsCliente(part[4]))
                        {
                            if(Integer.parseInt(part[5]) > 0 && Integer.parseInt(part[5]) < 13)
                            {
                                if(Integer.parseInt(part[6]) > 0 && Integer.parseInt(part[6]) < 4)
-                               v = true;
+                               validade = true;     
                            }
                        }
                    }
                }
            }
        }
-       return v;      
+       return validade;      
     }
     
     

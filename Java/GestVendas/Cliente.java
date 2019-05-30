@@ -59,4 +59,6 @@ public class Cliente implements Serializable
         sb.append("Cliente " ).append(codigo_cl);    
         return sb.toString();
     }
+    
+   
 }

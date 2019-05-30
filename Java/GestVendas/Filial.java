@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * @version (a version number or a date)
  */
 
-public class Filial implements IFilial 
+public class Filial implements IFiliais 
 {
     //Tabela
     //Não estava a conseguir copiar os arrays, perguntar ao professor, por agora fica assim até descobrir 
@@ -90,7 +90,7 @@ public class Filial implements IFilial
     public Map<Produto, TripleList> getProdutos(){return new HashMap<Produto, TripleList>(this.produtos);}
     
     /**
-    * Método que devolve uma mapa com um triplo que contém o número de produtos, compras e o total gasto por um determinadocliente, organizado por mês
+    * Método que devolve uma mapa com um triplo que contém o número de produtos, compras e o total gasto por um determinado cliente, organizado por mês
     * @returns Mapa com um que contém o número de clientes, vendas e total faturado de determinado produto, organizado por mês
     **/
     public Map<Cliente, TripleList> getClientes(){return new HashMap<Cliente, TripleList>(this.clientes);}

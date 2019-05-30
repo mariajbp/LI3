@@ -1,5 +1,6 @@
 #BlueJ class context
 comment0.target=NoClientesException
+comment0.text=\n\ Classe\ NoClientesException\ que\ devolve\ uma\ mensagem\ caso\ n\u00E3o\ exista\ determinado\ cliente\n
 comment1.params=
 comment1.target=NoClientesException()
 comment2.params=message

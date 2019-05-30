@@ -45,6 +45,7 @@ comment7.target=java.util.Map\ getProdutos()
 comment7.text=\n\ M\u00E9todo\ que\ devolve\ uma\ mapa\ com\ um\ triplo\ que\ cont\u00E9m\ o\ n\u00FAmero\ de\ clientes,\ vendas\ e\ total\ faturado\ de\ determinado\ produto,\ organizado\ por\ m\u00EAs\n\ @returns\ Mapa\ com\ um\ que\ cont\u00E9m\ o\ n\u00FAmero\ de\ clientes,\ vendas\ e\ total\ faturado\ de\ determinado\ produto,\ organizado\ por\ m\u00EAs\n
 comment8.params=
 comment8.target=java.util.Map\ getClientes()
+comment8.text=\n\ M\u00E9todo\ que\ devolve\ uma\ mapa\ com\ um\ triplo\ que\ cont\u00E9m\ o\ n\u00FAmero\ de\ produtos,\ compras\ e\ o\ total\ gasto\ por\ um\ determinado\ cliente,\ organizado\ por\ m\u00EAs\n\ @returns\ Mapa\ com\ um\ que\ cont\u00E9m\ o\ n\u00FAmero\ de\ clientes,\ vendas\ e\ total\ faturado\ de\ determinado\ produto,\ organizado\ por\ m\u00EAs\n
 comment9.params=
 comment9.target=java.util.Map\ getClProds()
 numComments=19

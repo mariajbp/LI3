@@ -1,4 +1,24 @@
 #BlueJ class context
 comment0.target=IFaturacao
 comment0.text=\n\ \n
-numComments=1
+comment1.params=
+comment1.target=double\ getFtrTotal()
+comment1.text=\n\ M\u00E9todo\ que\ devolve\ a\ fatua\u00E7\u00E3o\ total\ global\n\ @return\ Fatua\u00E7\u00E3o\ total\ global\n
+comment2.params=
+comment2.target=double[]\ getFtrMensal()
+comment2.text=\n\ M\u00E9todo\ que\ devolve\ a\ fatua\u00E7\u00E3o\ total\ mnsal\n\ @return\ Fatua\u00E7\u00E3o\ total\ mensal\n
+comment3.params=
+comment3.target=java.util.Map\ getClMes()
+comment3.text=\n\ M\u00E9todo\ que\ devolve\ o\ total\ gasto\ por\ um\ cliente\ por\ m\u00EAs\n\ @returns\ \ \ HashMap\ dos\ clientes\ e\ o\ seu\ total\ gasto\ por\ um\ cliente\ por\ m\u00EAs\n
+comment4.params=
+comment4.target=java.util.Map\ getProdMes()
+comment4.text=\n\ M\u00E9todo\ que\ devolve\ o\ pre\u00E7o\ total\ de\ todos\ os\ items\ de\ um\ determinado\ produto\ por\ mes\n\ @returns\ \ \ HashMap\ do\ pre\u00E7o\ total\ de\ todos\ os\ items\ de\ um\ determinado\ produto\ por\ mes\n
+comment5.params=cl
+comment5.target=void\ setClMes(java.util.Map)
+comment5.text=\n\ M\u00E9todo\ que\ define\ um\ hashMap\ a\ partir\ de\ um\ hashMap\ passado\ como\ par\u00E2metro\n\ *\ @param\ \ \ \ HashMap\ do\ valor\ total\ gasto\ por\ um\ cliente\ por\ m\u00EAs\n
+comment6.params=prd
+comment6.target=void\ setProdMes(java.util.Map)
+comment6.text=\n\ M\u00E9todo\ que\ define\ um\ hashMap\ a\ partir\ de\ um\ hashMap\ passado\ como\ par\u00E2metro\n\ *\ @param\ \ \ \ HashMap\ do\ valor\ total\ gasto\ por\ um\ cliente\ por\ m\u00EAs\n
+comment7.params=v
+comment7.target=void\ addVenda(Venda)
+numComments=8
