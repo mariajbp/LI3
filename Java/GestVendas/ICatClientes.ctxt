@@ -1,12 +1,12 @@
 #BlueJ class context
 comment0.target=ICatClientes
-comment0.text=\n\ \n
+comment0.text=\r\n\ \r\n
 comment1.params=
 comment1.target=java.util.Set\ getCatalogo()
-comment1.text=\n\ M\u00E9todo\ que\ devolve\ o\ catalogo\ de\ Clientes\n\ @return\ Catalogo\ de\ produtos\ v\u00E1lidos\n
+comment1.text=\r\n\ M\u00E9todo\ que\ devolve\ o\ catalogo\ de\ Clientes\r\n\ @return\ Catalogo\ de\ produtos\ v\u00E1lidos\r\n
 comment2.params=cl
 comment2.target=void\ setCatalogo(java.util.Set)
-comment2.text=\n\ M\u00E9todo\ que\ define\ o\ catalogo\ de\ Clientes\n\ @param\ Catalogo\ de\ clientes\ v\u00E1lidos\n
+comment2.text=\r\n\ M\u00E9todo\ que\ define\ o\ catalogo\ de\ Clientes\r\n\ @param\ Catalogo\ de\ clientes\ v\u00E1lidos\r\n
 comment3.params=c
 comment3.target=void\ addCliente(Cliente)
 comment4.params=codigo

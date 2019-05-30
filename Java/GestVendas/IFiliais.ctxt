@@ -1,4 +1,8 @@
 #BlueJ class context
 comment0.target=IFiliais
-comment0.text=\n\ \n
-numComments=1
+comment0.text=\r\n\ \r\n
+comment1.params=v
+comment1.target=void\ addVenda(Venda)
+comment2.params=
+comment2.target=void\ endFiliais()
+numComments=3

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #BlueJ class context
 comment0.target=Venda
 comment0.text=\n\ \n
@@ -36,3 +37,43 @@ comment8.target=java.lang.String\ getNP()
 comment9.params=
 comment9.target=int\ getMes()
 numComments=18
+=======
+#BlueJ class context
+comment0.target=Venda
+comment0.text=\r\n\ \r\n
+comment1.params=
+comment1.target=Venda()
+comment10.params=
+comment10.target=int\ getFilial()
+comment11.params=newcp
+comment11.target=void\ setCodep(Produto)
+comment12.params=newp
+comment12.target=void\ setPrice(double)
+comment13.params=newu
+comment13.target=void\ setUnits(int)
+comment14.params=newcc
+comment14.target=void\ setCodeC(Cliente)
+comment15.params=newnp
+comment15.target=void\ setNP(java.lang.String)
+comment16.params=newm
+comment16.target=void\ setMonth(int)
+comment17.params=newf
+comment17.target=void\ setFilial(int)
+comment2.params=codeP\ price\ units\ codC\ np\ month\ filial
+comment2.target=Venda(java.lang.String,\ double,\ int,\ java.lang.String,\ java.lang.String,\ int,\ int)
+comment3.params=v
+comment3.target=Venda(Venda)
+comment4.params=
+comment4.target=Produto\ getProduto()
+comment5.params=
+comment5.target=double\ getPrice()
+comment6.params=
+comment6.target=int\ getUnits()
+comment7.params=
+comment7.target=Cliente\ getCliente()
+comment8.params=
+comment8.target=java.lang.String\ getNP()
+comment9.params=
+comment9.target=int\ getMonth()
+numComments=18
+>>>>>>> f3aa2a30becc6f8eedd3b7c52c3204e3a7086a73

@@ -209,6 +209,8 @@ public class Filiais implements Serializable, IFiliais
         l.setRight(mes, total+t);
     }  
     
+
+  
     /**
     * Método que atualiza as caracteristicas de um dado cliente na estrutura clientes
     * @param   Cliente a atualizar
@@ -217,7 +219,8 @@ public class Filiais implements Serializable, IFiliais
     * @param   Mês a que corresponde a atualização
     * @param   FALTA ESTE
     **/
-    public void updateCliente(Cliente cl, int comprados, int total, int mes, int produto){
+    public void updateCliente(Cliente cl, int comprados, int total, int mes, int produto)
+    {
         if(!this.clientes.containsKey(cl))
                 this.clientes.put(cl, new TripleList());
         TripleList l = this.produtos.get(cl);
@@ -286,11 +289,12 @@ public class Filiais implements Serializable, IFiliais
         this.clProds.get(c).put(pd, vendas);
     }
     
-    public void addVenda(Venda v){
+    public void addVenda(Venda v)
+    {
         updateProdutos(v.getProduto(), v.getUnidades(), v.getUnidades()*v.getPreco(), v.getMes(), /*int que representa se o cliente é distinto*/);
         updateClientes(v.getCliente(), v.getUnidades(), v.getUnidades()*v.getPreco(), v.getMes(), /*int que representa se o produto é distinto*/);
         updateClProds( v.getCliente(), v.getProduto(), v.getUnidades());  
-    };
+    }
     
     public void endFiliais(/*dados finais, estatisticos (que so podem ser calculados no fim do ficheiro ter sido processado*/){};
 }

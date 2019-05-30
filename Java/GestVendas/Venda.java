@@ -16,7 +16,6 @@ public class Venda implements Serializable
     private String np;
     private int mes;
     private int filial;
-    
     public Venda()
     {
         this.p = new Produto();
@@ -58,6 +57,7 @@ public class Venda implements Serializable
     public int getMes(){return this.mes;}
     public int getFilial(){return this.filial;}
     
+
     public void setP(Produto newcp){this.p = newcp;}
     public void setPreco(double newp){this.preco= newp;}
     public void setUnidades(int newu){this.unidades = newu;}
@@ -65,4 +65,4 @@ public class Venda implements Serializable
     public void setNP(String newnp){this.np = newnp;}
     public void setMes(int newm){this.mes = newm;}
     public void setFilial(int newf){this.filial = newf;}
-}
+} 
