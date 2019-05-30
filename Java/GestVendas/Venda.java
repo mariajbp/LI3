@@ -12,10 +12,7 @@ import static java.lang.System.out;
 * 
 **/
 public class Venda implements Serializable
-{/**
-    private TreeSet<String> codvendas;
-    private File file;
-    private BufferedReader br;
+{
     private String codeP;
     private double price;
     private int units;
@@ -24,6 +21,7 @@ public class Venda implements Serializable
     private int month;
     private int filial;
     
+    /*
     public static void main(String[] args)throws IOException
     { 
       long startTime = System.currentTimeMillis();
@@ -39,7 +37,7 @@ public class Venda implements Serializable
       long elapsedTime = stopTime - startTime;
       System.out.println("Demorei: " + elapsedTime);
     }
-    
+    */
     public Venda()
     {
         this.codeP = new String();
@@ -89,13 +87,14 @@ public class Venda implements Serializable
     public void setMonth(int newm){this.month = newm;}
     public void setFilial(int newf){this.filial = newf;}
     
+    /*
     public Venda(String fileName) throws IOException 
     {
         this.codvendas = new TreeSet<>();
         readFileV("../Dados/Vendas_1M.txt");
     }
     
-    /** 
+     
     **  Faz load do ficheiro no TreeSet 
     **  Retorna o número de codigos válidos
   

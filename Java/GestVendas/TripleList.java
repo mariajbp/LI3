@@ -9,7 +9,7 @@ public class TripleList
 {
    private List<Integer> left;
    private List<Integer> middle;
-   private List<Integer> right;
+   private List<Double> right;
    
    /**
     * Construtor Vazio 
@@ -17,17 +17,17 @@ public class TripleList
    public TripleList(){
        this.left = new ArrayList<Integer>(12);
        this.middle = new ArrayList<Integer>(12);
-       this.right = new ArrayList<Integer>(12);
+       this.right = new ArrayList<Double>(12);
     }
     
    /**
     * Construtor parametrizado
     * @param listas de inteiros 
     */
-   public TripleList(List<Integer> l, List<Integer> m, List<Integer> r){
+   public TripleList(List<Integer> l, List<Integer> m, List<Double> r){
        this.left = new ArrayList<Integer>(l);
        this.middle = new ArrayList<Integer>(m);
-       this.right = new ArrayList<Integer>(r);
+       this.right = new ArrayList<Double>(r);
     }
     
    /**
@@ -43,7 +43,7 @@ public class TripleList
    //Getters
    public List<Integer> getLeft(){return new ArrayList<Integer>(this.left);} 
    public List<Integer> getMiddle(){return new ArrayList<Integer>(this.middle);} 
-   public List<Integer> getRight(){return new ArrayList<Integer>(this.right);}
+   public List<Double> getRight(){return new ArrayList<Double>(this.right);}
    public Integer getLeft(int index){
        if(this.left.size() <= index)
             return this.left.get(index);
@@ -56,11 +56,11 @@ public class TripleList
        else 
             return -1;
     }
-   public Integer getRight(int index){
+   public Double getRight(int index){
        if(this.right.size() <= index)
             return this.right.get(index);
        else 
-            return -1;
+            return -1.0;
     }
    
    //Setters
@@ -72,9 +72,9 @@ public class TripleList
        this.middle.clear();
        this.middle = new ArrayList<Integer>(m);
     }
-   public void setRight(List<Integer> r){
+   public void setRight(List<Double> r){
        this.right.clear();
-       this.right = new ArrayList<Integer>(r);
+       this.right = new ArrayList<Double>(r);
     }
     
    public void setLeft(int index, int value)
@@ -82,15 +82,12 @@ public class TripleList
        if(this.left.size() <= index)
              this.left.set(index, value);
    }
-   
    public void setMiddle(int index, int value)
    {
        if(this.middle.size() <= index)
              this.middle.set(index, value);
-   }
-   
-   
-   public void setRight(int index, int value)
+   }   
+   public void setRight(int index, Double value)
    {
        if(this.right.size() <= index)
              this.right.set(index, value);
