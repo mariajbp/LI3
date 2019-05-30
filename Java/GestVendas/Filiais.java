@@ -203,7 +203,7 @@ public class Filiais implements Serializable, IFiliais
     }  
     
     //Função que faz update de caracteristicas de um dado cliente na estrutura clientes
-    public void updateCliente(Cliente cl, int comprados, int total, int mes, int produto){
+    public void updateCliente(Cliente cl, int comprados, double total, int mes, int produto){
         if(!this.clientes.containsKey(cl))
                 this.clientes.put(cl, new TripleList());
         TripleList l = this.produtos.get(cl);
@@ -273,9 +273,9 @@ public class Filiais implements Serializable, IFiliais
     }
     
     public void addVenda(Venda v){
-        updateProdutos(v.getProduto(), v.getQuant(), v.getQuant()*v.getPreco(), v.getMes(), /*int que representa se o cliente é distinto*/);
-        updateClientes(v.getCliente(), v.getQuant(), v.getQuant()*v.getPreco(), v.getMes(), /*int que representa se o produto é distinto*/);
-        updateClProds( v.getCliente(), v.getProduto(), v.getQuant());
+        updateProduto(v.getProduto(), v.getUnits(), v.getUnits()*v.getPrice(), v.getMonth(), 1); //assumi que são todos distintos 
+        updateCliente(v.getCliente(), v.getUnits(), v.getUnits()*v.getPrice(), v.getMonth(), 1);
+        updateClProds( v.getCliente(), v.getProduto(), v.getUnits());
     };
     
     public void endFiliais(/*dados finais, estatisticos (que so podem ser calculados no fim do ficheiro ter sido processado*/){};

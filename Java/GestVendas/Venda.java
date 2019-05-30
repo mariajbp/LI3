@@ -9,40 +9,20 @@ import static java.lang.System.out;
 **/
 public class Venda implements Serializable
 {
-    private String codeP;
+    private Produto codeP;
     private double price;
     private int units;
-    private String codeC;
+    private Cliente codeC;
     private String np;
     private int month;
     private int filial;
-    
-<<<<<<< HEAD
-    /*
-    public static void main(String[] args)throws IOException
-    { 
-      long startTime = System.currentTimeMillis();
-      Venda test = new Venda("../Dados/Vendas_1M.txt");
-     
-      long total = 0;
-      for (int i = 0; i < 10000000; i++) 
-      {
-         total += i;
-      }
 
-      long stopTime = System.currentTimeMillis();
-      long elapsedTime = stopTime - startTime;
-      System.out.println("Demorei: " + elapsedTime);
-    }
-    */
-=======
->>>>>>> 0a588da3c522db3caebc539d136de81be4f2f4ee
     public Venda()
     {
-        this.codeP = new String();
+        this.codeP = new Produto();
         this.price = 0.0;
         this.units = 0;
-        this.codeC = new String();
+        this.codeC = new Cliente();
         this.np = new String();
         this.month = 0;
         this.filial = 0;
@@ -50,10 +30,10 @@ public class Venda implements Serializable
     
     public Venda(String codeP, double price, int units, String codC, String np, int month, int filial)
     {
-        this.codeP = codeP;
+        this.codeP = new Produto(codeP);
         this.price = price;
         this.units = units;
-        this.codeC = codeC;
+        this.codeC = new Cliente(codeC);
         this.np = np;
         this.month = month;
         this.filial = filial; 
@@ -61,75 +41,28 @@ public class Venda implements Serializable
     
     public Venda(Venda v)
     {
-        this.codeP = v.getCodeP();
+        this.codeP = v.getProduto();
         this.price = v.getPrice();
         this.units = v.getUnits();
-        this.codeC = v.getCodeC();
+        this.codeC = v.getCliente();
         this.np = v.getNP();
         this.month = v.getMonth();
         this.filial = v.getFilial(); 
     }
     
-    public String getCodeP(){return this.codeP;}
+    public Produto getProduto(){return new Produto(this.codeP);}
     public double getPrice(){return this.price;}
     public int getUnits(){return this.units;}
-    public String getCodeC(){return this.codeC;}
+    public Cliente getCliente(){return new Cliente(this.codeC);}
     public String getNP(){return this.np;}
     public int getMonth(){return this.month;}
     public int getFilial(){return this.filial;}
     
-    public void setCodep(String newcp){this.codeP = newcp;}
+    public void setCodep(Produto newcp){this.codeP = newcp;}
     public void setPrice(double newp){this.price = newp;}
     public void setUnits(int newu){this.units = newu;}
-    public void setCodeC(String newcc){this.codeP = newcc;}
-    public void setNP(String newnp){this.codeP = newnp;}
+    public void setCodeC(Cliente newcc){this.codeC = newcc;}
+    public void setNP(String newnp){this.np = newnp;}
     public void setMonth(int newm){this.month = newm;}
     public void setFilial(int newf){this.filial = newf;}
-<<<<<<< HEAD
-    
-    /*
-    public Venda(String fileName) throws IOException 
-    {
-        this.codvendas = new TreeSet<>();
-        readFileV("../Dados/Vendas_1M.txt");
-    }
-    
-     
-    **  Faz load do ficheiro no TreeSet 
-    **  Retorna o número de codigos válidos
-  
-    private void readFileV(String fileName) throws IOException 
-    {
-      int v = 0;
-      try 
-      {
-           br = new BufferedReader(new FileReader(fileName));
-           String line = null;
-           while ((line = br.readLine()) != null) 
-           {
-               if(validateV(line))
-               {
-                   fillT(line);
-                   v++;
-               }
-           }
-      }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
-      System.out.println(v + " Vendas Validas");
-    }
-   
-    /**Validação do Codigo 
-    public boolean validateV(String c)
-    {
-       String[] venda = c.split(" ");
-       
-    }
-   
-    /** Adiciona um código ao TreeSet
-    
-    private void fillT(String line) 
-    {
-      codvendas.add(line); 
-    } **/
-=======
->>>>>>> 0a588da3c522db3caebc539d136de81be4f2f4ee
 }
