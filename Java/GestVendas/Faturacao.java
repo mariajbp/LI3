@@ -77,8 +77,6 @@ public class Faturacao implements Serializable, IFaturacao
        return new HashMap<Produto, List<Integer>>(this.prodMes);
     }
     
-    
-    
     /**
     * Método que define um hashMap a partir de um hashMap passado como parâmetro
     * * @param    HashMap do valor total gasto por um cliente por mês
@@ -133,5 +131,7 @@ public class Faturacao implements Serializable, IFaturacao
     * Método que 
     **/
     public void addVenda(Venda v)
-    {} 
+    {
+        
+    } 
 }
