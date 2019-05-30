@@ -16,7 +16,6 @@ public class Venda implements Serializable
     private String np;
     private int month;
     private int filial;
-
     public Venda()
     {
         this.codeP = new Produto();
