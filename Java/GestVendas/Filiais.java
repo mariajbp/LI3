@@ -180,19 +180,26 @@ public class Filiais implements Serializable, IFiliais
        String sf2 = toStringF2();
        String sf3 = toStringF3();
        sb.append("******** Dados das Filiais ********: \n").append(sf1).append(sf2).append(sf3)
-         .append("******** Dados sobre Produtos ********: \n");
+         .append("******** Dados dos Produtos ********: \n");
        return sb.toString();
     
     }
-    
-    
-    //Métodos
-    //Função que faz update de caracteristicas de um dado produto na estrutura produtos
-    public void updateProduto(Produto p, int comprados, double total, int mes, int cliente){
+     
+    /**
+    * Método que atualiza as caracteristicas de um dado produto na estrutura produtos
+    * @param   Produto a atualizar
+    * @param   Número de unidades do produto que foram compradas
+    * @param   Faturação total do produto em questão
+    * @param   Mês a que corresponde a atualização
+    * @param   FALTA ESTE
+    **/
+    public void updateProduto(Produto p, int comprados, double total, int mes, int cliente)
+    {
         if(!this.produtos.containsKey(p))
                 this.produtos.put(p, new TripleList());
         TripleList l = this.produtos.get(p);
-        if(cliente == 1){ //se for 1 quer dizer que é distinto 
+        if(cliente == 1) //se for 1 quer dizer que é distinto 
+        { 
             int cl = l.getLeft(mes);
             l.setLeft(mes, cl+cliente);
         }
@@ -202,7 +209,14 @@ public class Filiais implements Serializable, IFiliais
         l.setRight(mes, total+t);
     }  
     
-    //Função que faz update de caracteristicas de um dado cliente na estrutura clientes
+    /**
+    * Método que atualiza as caracteristicas de um dado cliente na estrutura clientes
+    * @param   Cliente a atualizar
+    * @param   Número de unidades de produtos que foram compradas pelo cliente em questão
+    * @param   Gasto total no mês em questão
+    * @param   Mês a que corresponde a atualização
+    * @param   FALTA ESTE
+    **/
     public void updateCliente(Cliente cl, int comprados, int total, int mes, int produto){
         if(!this.clientes.containsKey(cl))
                 this.clientes.put(cl, new TripleList());
@@ -273,9 +287,9 @@ public class Filiais implements Serializable, IFiliais
     }
     
     public void addVenda(Venda v){
-        updateProdutos(v.getProduto(), v.getQuant(), v.getQuant()*v.getPreco(), v.getMes(), /*int que representa se o cliente é distinto*/);
-        updateClientes(v.getCliente(), v.getQuant(), v.getQuant()*v.getPreco(), v.getMes(), /*int que representa se o produto é distinto*/);
-        updateClProds( v.getCliente(), v.getProduto(), v.getQuant());
+        updateProdutos(v.getProduto(), v.getUnidades(), v.getUnidades()*v.getPreco(), v.getMes(), /*int que representa se o cliente é distinto*/);
+        updateClientes(v.getCliente(), v.getUnidades(), v.getUnidades()*v.getPreco(), v.getMes(), /*int que representa se o produto é distinto*/);
+        updateClProds( v.getCliente(), v.getProduto(), v.getUnidades());  
     };
     
     public void endFiliais(/*dados finais, estatisticos (que so podem ser calculados no fim do ficheiro ter sido processado*/){};

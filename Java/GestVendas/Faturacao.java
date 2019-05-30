@@ -3,16 +3,19 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
 * 
 **/
-public class Faturacao implements Serializable, IFaturacao
-{
+public class Faturacao implements Serializable, IFaturacao   
+{ 
     private double ftrTotal;
     private double[] ftrMensal;
-    private Map<Cliente, List<Integer>> clMes;
-    private Map<Produto, List<Integer>> prodMes;
+    private Map<Produto, List<Double>> prodPrecoMes1;
+    private Map<Produto, List<Double>> prodPrecoMes2;
+    private Map<Produto, List<Double>> prodPrecoMes3;
+    private Map<Produto, List<Integer>> prodUnidadeMes;
     
     /** 
     * Construtor vazio que cria uma instância Faturacao
@@ -21,19 +24,24 @@ public class Faturacao implements Serializable, IFaturacao
     {
         this.ftrTotal = 0.0;
         this. ftrMensal = new double[12];
-        this.clMes = new HashMap<>();
-        this.prodMes = new HashMap<>();
+        this.prodPrecoMes1 = new HashMap<>(); 
+        this.prodPrecoMes2 = new HashMap<>();
+        this.prodPrecoMes3 = new HashMap<>(); 
+        this.prodUnidadeMes = new HashMap<>();
     }
     
     /** 
     * Construtor de cópia que cria uma nova instância Faturacao a partir de uma Faturacao passado como parâmetro 
     **/
-    public Faturacao(double ftr, double[] ftrmes, HashMap<Cliente, List<Integer>> cl, HashMap<Produto, List<Integer>> prod)
+    public Faturacao(double ftr, double[] ftrmes, HashMap<Produto, List<Double>> prod1, HashMap<Produto, List<Double>> prod2,
+                     HashMap<Produto, List<Double>> prod3, Map<Produto, List<Integer>> unit)
     {
         this.ftrTotal = ftr;
         this.ftrMensal = ftrmes;
-        this.clMes = cl;
-        this.prodMes = prod;
+        this.prodPrecoMes1 = prod1;
+        this.prodPrecoMes2 = prod2;
+        this.prodPrecoMes3 = prod3;
+        this.prodUnidadeMes = unit;
     }
     
     /** 
@@ -43,8 +51,10 @@ public class Faturacao implements Serializable, IFaturacao
     {
        this.ftrTotal = f.getFtrTotal();
        this.ftrMensal = f.getFtrMensal();
-       this.clMes = f.getClMes();
-       this.prodMes = f.getProdMes();
+       this.prodPrecoMes1 = f.getProdPrecoMes1();
+       this.prodPrecoMes2 = f.getProdPrecoMes2();
+       this.prodPrecoMes3 = f.getProdPrecoMes3();
+       this.prodUnidadeMes = f.getProdUnidadeMes();
     }
     
     /**
@@ -58,44 +68,83 @@ public class Faturacao implements Serializable, IFaturacao
     * @return Fatuação total mensal
     **/
     public double[] getFtrMensal(){ return this.ftrMensal;}
-    
+     
     /**
-    * Método que devolve o total gasto por um cliente por mês
-    * @returns   HashMap dos clientes e o seu total gasto por um cliente por mês
+    * Método que devolve a faturação total de um determinado produto por mes
+    * @returns   HashMap da faturação total de um determinado produto por mes
     **/
-    public Map<Cliente, List<Integer>> getClMes()
+    public Map<Produto, List<Double>> getProdPrecoMes1() 
     {
-       return new HashMap<Cliente, List<Integer>>(this.clMes);
+       return new HashMap<Produto, List<Double>>(this.prodPrecoMes1);
     }
     
     /**
-    * Método que devolve o preço total de todos os items de um determinado produto por mes
-    * @returns   HashMap do preço total de todos os items de um determinado produto por mes
+    * Método que devolve a faturação total de um determinado produto por mes
+    * @returns   HashMap da faturação total de um determinado produto por mes
     **/
-    public Map<Produto, List<Integer>> getProdMes()
+    public Map<Produto, List<Double>> getProdPrecoMes2() 
     {
-       return new HashMap<Produto, List<Integer>>(this.prodMes);
+       return new HashMap<Produto, List<Double>>(this.prodPrecoMes2);
+    }
+    
+    /**
+    * Método que devolve a faturação total de um determinado produto por mes
+    * @returns   HashMap da faturação total de um determinado produto por mes
+    **/
+    public Map<Produto, List<Double>> getProdPrecoMes3() 
+    {
+       return new HashMap<Produto, List<Double>>(this.prodPrecoMes3);
     }
     
     /**
     * Método que define um hashMap a partir de um hashMap passado como parâmetro
-    * * @param    HashMap do valor total gasto por um cliente por mês
+    * * @param    HashMap da faturação total de um determinado produto por mes
     **/ 
-    public void setClMes(Map<Cliente, List<Integer>> cl)
+    public void setProdPrecoMes1(Map<Produto, List<Double>> prd)
     {
-       this.clMes.clear();
-       this.clMes = new HashMap<Cliente, List<Integer>>(cl);
+       this.prodPrecoMes1.clear();
+       this.prodPrecoMes1 = new HashMap<Produto, List<Double>>(prd); 
     }
     
     /**
     * Método que define um hashMap a partir de um hashMap passado como parâmetro
-    * * @param    HashMap do valor total gasto por um cliente por mês
+    * * @param    HashMap da faturação total de um determinado produto por mes
     **/ 
-    public void setProdMes(Map<Produto, List<Integer>> prd)
+    public void setProdPrecoMes2(Map<Produto, List<Double>> prd)
     {
-       this.prodMes.clear();
-       this.prodMes = new HashMap<Produto, List<Integer>>(prd);
+       this.prodPrecoMes2.clear();
+       this.prodPrecoMes2 = new HashMap<Produto, List<Double>>(prd); 
     }
+    
+    /**
+    * Método que define um hashMap a partir de um hashMap passado como parâmetro
+    * * @param    HashMap da faturação total de um determinado produto por mes
+    **/ 
+    public void setProdPrecoMes3(Map<Produto, List<Double>> prd)
+    {
+       this.prodPrecoMes3.clear();
+       this.prodPrecoMes3 = new HashMap<Produto, List<Double>>(prd); 
+    }
+    
+    /**
+    * Método que devolve o número total de unidades vendidas de um determinado produto por mes
+    * @returns   HashMap do número total de unidades vendidas de um determinado produto por mes
+    **/
+    public Map<Produto, List<Integer>> getProdUnidadeMes() 
+    {
+       return new HashMap<Produto, List<Integer>>(this.prodUnidadeMes);
+    }
+    
+    /**
+    * Método que define um hashMap a partir de um hashMap passado como parâmetro
+    * * @param    HashMap da faturação total de um determinado produto por mes
+    **/ 
+    public void setProdUnidadeMes(Map<Produto, List<Integer>> prd)
+    {
+       this.prodUnidadeMes.clear();
+       this.prodUnidadeMes = new HashMap<Produto, List<Integer>>(prd); 
+    }
+    
     
     /** 
     * Método que cria uma cópia de uma identificação de uma Faturação
@@ -112,8 +161,8 @@ public class Faturacao implements Serializable, IFaturacao
       if(this == o) return true;
       if(o == null && this.getClass() != o.getClass()) return false;
       Faturacao f  = (Faturacao) o;     
-      return this.ftrTotal == f.getFtrTotal() && this.ftrMensal.equals(f.getProdMes()) &&
-             this.clMes.equals(f.getClMes()) && this.prodMes.equals(f.getProdMes());
+      return this.ftrTotal == f.getFtrTotal() && this.ftrMensal.equals(f.getProdPrecoMes1()) && this.prodPrecoMes1.equals(f.getProdPrecoMes1())
+             && this.prodPrecoMes2.equals(f.getProdPrecoMes2()) && this.prodPrecoMes3.equals(f.getProdPrecoMes3());
     }
     
     /**
@@ -128,10 +177,104 @@ public class Faturacao implements Serializable, IFaturacao
     }
     
     /**
-    * Método que 
+    * Método que calcula a faturação anual de determinado produto
+    * @return  Faturação anual de determinado produto
+    **/
+    public double ftrAnualProd(Produto p) throws NoProdutosException
+    {
+        double total = 0;
+        if(prodPrecoMes1.containsKey(p))
+        {  
+          List prods = prodPrecoMes1.get(prodPrecoMes1);
+          Iterator<Integer> it = prods.iterator();
+          while(it.hasNext())
+          {
+              total += it.next(); 
+          }
+        }
+        if(prodPrecoMes2.containsKey(p))
+        {  
+          List prods = prodPrecoMes2.get(prodPrecoMes2);
+          Iterator<Integer> it = prods.iterator();
+          while(it.hasNext())
+          {
+              total += it.next(); 
+          }
+        }
+        if(prodPrecoMes3.containsKey(p))
+        {  
+          List prods = prodPrecoMes2.get(prodPrecoMes3);
+          Iterator<Integer> it = prods.iterator();
+          while(it.hasNext())
+          {
+              total += it.next(); 
+          }
+        }
+        else
+        {
+            throw new NoProdutosException();
+        }
+        return total;
+    }
+    
+    /**
+    * Método que atualiza as caracteristicas de
+    * @param   
+    * @param   
+    * @param   
+    * @param     
+    **/
+    public void updateProdPrecoMes(Produto p, double preco, int mes, int filial) 
+    {
+        double precoAtual = 0;
+        double precoAtualizado = 0;
+        int index = mes-1;
+        if(filial == 1)
+        {
+           if(!this.prodPrecoMes1.containsKey(p))
+           {
+                List<Double> l = new ArrayList<>();
+                l.add(preco);
+                this.prodPrecoMes1.put(p,l);
+            }
+        }
+        else 
+        {
+           List l = this.prodPrecoMes1.get(p); 
+           precoAtual = l.get(index); 
+           precoAtualizado = precoAtual + preco;
+           l.add(index, precoAtualizado);
+        } 
+    }
+    
+    /**
+    * Método que atualiza as caracteristicas de
+    * @param   
+    * @param   
+    * @param   
+    * @param     
+    **/
+    public void updateProdUnidadesMes(Produto p, int unidades, int mes)
+    {
+       if(!this.prodUnidadeMes.containsKey(p)) 
+       {
+            List<Integer> l = new ArrayList<>();
+            l.add(unidades);
+            this.prodUnidadeMes.put(p,l);  
+       }
+       else
+       {
+           //igual ao de cima 
+           
+       }
+    }
+    
+    /**
+    * Método que
     **/
     public void addVenda(Venda v)
     {
-        
+       updateProdPrecoMes(v.getProduto(), v.getPreco(), v.getMes(), v.getFilial()); 
+       updateProdUnidadesMes(v.getProduto(), v.getUnidades(), v.getMes());   
     } 
 }

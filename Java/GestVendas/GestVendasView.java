@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import static java.lang.System.out;
+import java.awt.event.KeyEvent; 
+
 
 /**
 * Classe que 
@@ -176,5 +178,16 @@ public class GestVendasView implements Serializable, IGestVendasView
    
    public void comprasPorMes(){}
    
-  
+   public void navegador()
+   {
+       
+   }
+   
+   public void keyPressed (KeyEvent e) 
+   {
+        int c = e.getKeyCode (); 
+        if(c==KeyEvent.VK_LEFT) {} 
+        else if(c==KeyEvent.VK_RIGHT) {}
+
+    }
 }
