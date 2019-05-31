@@ -210,7 +210,12 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * 
     * @param 
     * @returns
-    **/
+    * Ir ao catalogo de produtos e à key do map da faturação e comparar se está ou não + comparator
+    
+    public List<Produto> prodsNuncaComprados()
+    {
+         
+    } **/
     
     /** 
     * Query 2:  Dado um mês válido, determinar o número total global de vendas realizadas e o número total de clientes distintos que as fizeram; 
@@ -235,7 +240,9 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * 
     * @param 
     * @returns
-    **/
+    * 
+    * METADE VEM DA FATURACAO
+    **/ 
     
     /** 
     * Query 5: Dado o código de um cliente determinar a lista de códigos de produtos que mais comprou (e quantos), ordenada por ordem 

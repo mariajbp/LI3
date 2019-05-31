@@ -180,13 +180,20 @@ public class Filiais implements Serializable, IFiliais
        String sf2 = toStringF2();
        String sf3 = toStringF3();
        sb.append("******** Dados das Filiais ********: \n").append(sf1).append(sf2).append(sf3)
-         .append("******** Dados sobre Produtos ********: \n");
+         .append("******** Dados dos Produtos ********: \n");
        return sb.toString();
     
     }
     
     
     //Métodos
+    /**
+    * Método que atualiza as caracteristicas de um dado produto na estrutura produtos
+    * @param   Produto a atualizar
+    * @param   Número de unidades do produto que foram compradas
+    * @param   Mês a que corresponde a atualização
+    * @param   Boolean que dita se o cliente é destinto ou não
+    **/
     //Função que faz update de caracteristicas de um dado produto na estrutura produtos
     public void updateProduto(Produto p, int comprados, int mes, boolean cliente){
         if(!this.produtos.containsKey(p))
@@ -204,6 +211,13 @@ public class Filiais implements Serializable, IFiliais
         this.produtos.put(p, l);
     }  
     
+    /**
+    * Método que atualiza as caracteristicas de um dado cliente na estrutura clientes
+    * @param   Cliente a atualizar
+    * @param   Número de unidades de produtos que foram compradas pelo cliente em questão
+    * @param   Mês a que corresponde a atualização
+    * @param   Boolean que dita se o produto é destinto ou não
+    **/
     //Função que faz update de caracteristicas de um dado cliente na estrutura clientes
     public void updateCliente(Cliente cl, int comprados, double total, int mes, boolean produto){
         if(!this.clientes.containsKey(cl))
@@ -278,11 +292,12 @@ public class Filiais implements Serializable, IFiliais
         this.clProds.get(c).put(pd, vendas);
     }
     
-    public void addVenda(Venda v){
-        updateProduto(v.getProduto(), v.getUnits(), v.getMonth(), false);                           //assumi que são todos distintos 
-        updateCliente(v.getCliente(), v.getUnits(), v.getUnits()*v.getPrice(), v.getMonth(), false);
-        updateClProds( v.getCliente(), v.getProduto(), v.getUnits());
-    };
+    public void addVenda(Venda v)
+    {
+        updateProduto(v.getProduto(), v.getUnidades(), v.getMes(), false);
+        updateCliente(v.getCliente(), v.getUnidades(), v.getUnidades()*v.getPreco(), v.getMes(), false);
+        updateClProds(v.getCliente(), v.getProduto(), v.getUnidades());  
+    }
     
     public void endFiliais(/*dados finais, estatisticos (que so podem ser calculados no fim do ficheiro ter sido processado*/){};
 }
