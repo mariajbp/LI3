@@ -241,7 +241,7 @@ public class Faturacao implements Serializable, IFaturacao
         else 
         {
            List l = this.prodPrecoMes1.get(p); 
-           precoAtual = l.get(index); 
+           precoAtual = l.get(index);  
            precoAtualizado = precoAtual + preco;
            l.add(index, precoAtualizado);
         } 
