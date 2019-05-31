@@ -16,13 +16,13 @@ public class Filiais implements Serializable, IFiliais
     //Pair[][] mesFilial;
     
     //Estes maps iniciais só podem ser preenchidos NO FIM de o ficheiro ter sido processado
-    //  Mês      Pair(Nº vendas, Nº clientes)
+    //  Mês      Pair(Nº vendas, Nº clientes distintos)
     Map<Integer, Pair> f1;
     Map<Integer, Pair> f2;
     Map<Integer, Pair> f3;
-    
-    //  Produto, <NºClientes distintos, NºVendas, Total>
-    Map<Produto, TripleList> produtos;     
+
+    //  Produto, [12]Pair(Nº clientes distintos, Nº Comprados)
+    Map<Produto, ArrayList<Pair>> produtos;     
     //  Cliente, <NºProd distintos, NºComprados, Total>
     Map<Cliente, TripleList> clientes;
     //  Cliente,    <Produto, NºCompras>
@@ -37,7 +37,7 @@ public class Filiais implements Serializable, IFiliais
         this.f1 = new HashMap<Integer, Pair>(12);
         this.f2 = new HashMap<Integer, Pair>(12);
         this.f3 = new HashMap<Integer, Pair>(12);
-        this.produtos = new HashMap<Produto, TripleList>();
+        this.produtos = new HashMap<Produto, ArrayList<Pair>>();
         this.clientes = new HashMap<Cliente, TripleList>();
         this.clProds = new HashMap<Cliente, Map<Produto, Integer>>();
     }
@@ -45,12 +45,12 @@ public class Filiais implements Serializable, IFiliais
     /** 
     * Construtor que cria um novo Filial a partir dos parâmetros dados  
     **/
-    public Filiais(Map<Integer, Pair> f1, Map<Integer, Pair> f2, Map<Integer, Pair> f3, Map<Produto, TripleList> prod, Map<Cliente, TripleList> cl, Map<Cliente, Map<Produto, Integer>> clProd)
+    public Filiais(Map<Integer, Pair> f1, Map<Integer, Pair> f2, Map<Integer, Pair> f3, Map<Produto, ArrayList<Pair>> prod, Map<Cliente, TripleList> cl, Map<Cliente, Map<Produto, Integer>> clProd)
     {
         this.f1 = new HashMap<Integer, Pair>(f1);
         this.f2 = new HashMap<Integer, Pair>(f2);
         this.f3 = new HashMap<Integer, Pair>(f3);
-        this.produtos = new HashMap<Produto, TripleList>(prod);
+        this.produtos = new HashMap<Produto, ArrayList<Pair>>(prod);
         this.clientes = new HashMap<Cliente, TripleList>(cl);
         this.clProds = new HashMap<Cliente, Map<Produto, Integer>>(clProd);
     }
@@ -91,7 +91,7 @@ public class Filiais implements Serializable, IFiliais
     * Método que devolve uma mapa com um triplo que contém o número de clientes, vendas e total faturado de determinado produto, organizado por mês
     * @return Mapa com um que contém o número de clientes, vendas e total faturado de determinado produto, organizado por mês
     **/
-    public Map<Produto, TripleList> getProdutos(){return new HashMap<Produto, TripleList>(this.produtos);}
+    public Map<Produto, ArrayList<Pair>> getProdutos(){return new HashMap<Produto, ArrayList<Pair>>(this.produtos);}
     
     
     public Map<Cliente, TripleList> getClientes(){return new HashMap<Cliente, TripleList>(this.clientes);}
@@ -113,10 +113,10 @@ public class Filiais implements Serializable, IFiliais
         this.f3.clear();
         this.f3 = new HashMap<Integer, Pair>(f3);
     }
-    public void setProdutos(Map<Produto, TripleList> p)
+    public void setProdutos(Map<Produto, ArrayList<Pair>> p)
     {
         this.produtos.clear();
-        this.produtos = new HashMap<Produto, TripleList>(p);
+        this.produtos = new HashMap<Produto, ArrayList<Pair>>(p);
     }
     public void setClientes(Map<Cliente, TripleList> c)
     {
@@ -188,33 +188,36 @@ public class Filiais implements Serializable, IFiliais
     
     //Métodos
     //Função que faz update de caracteristicas de um dado produto na estrutura produtos
-    public void updateProduto(Produto p, int comprados, double total, int mes, int cliente){
+    public void updateProduto(Produto p, int comprados, int mes, boolean cliente){
         if(!this.produtos.containsKey(p))
-                this.produtos.put(p, new TripleList());
-        TripleList l = this.produtos.get(p);
-        if(cliente == 1){ //se for 1 quer dizer que é distinto 
-            int cl = l.getLeft(mes);
-            l.setLeft(mes, cl+cliente);
+                this.produtos.put(p, new ArrayList<Pair>(12));
+        ArrayList<Pair> l = this.produtos.get(p);
+        Pair<Integer, Integer> pair = l.get(mes);
+        int cl = pair.getFst();
+        if(cliente == false){ //se for 1 quer dizer que é distinto 
+            cl+=1;
         }
-        int c = l.getMiddle(mes);
-        l.setMiddle(mes, comprados+c);
-        double t = l.getRight(mes);
-        l.setRight(mes, total+t);
+        int c = pair.getSnd();
+        pair.setFst(cl);
+        pair.setSnd(comprados+c);
+        l.set(mes, pair);
+        this.produtos.put(p, l);
     }  
     
     //Função que faz update de caracteristicas de um dado cliente na estrutura clientes
-    public void updateCliente(Cliente cl, int comprados, double total, int mes, int produto){
+    public void updateCliente(Cliente cl, int comprados, double total, int mes, boolean produto){
         if(!this.clientes.containsKey(cl))
                 this.clientes.put(cl, new TripleList());
-        TripleList l = this.produtos.get(cl);
-        if(produto == 1){ //se for 1 quer dizer que é distinto 
+        TripleList l = this.clientes.get(cl);
+        if(produto == false){ //se for 1 quer dizer que é distinto 
             int pd = l.getLeft(mes);
-            l.setLeft(mes, pd+produto);
+            l.setLeft(mes, pd+1);
         }
         int c = l.getMiddle(mes);
         l.setMiddle(mes, comprados+c);
         double t = l.getRight(mes);
         l.setRight(mes, total+t);
+        this.clientes.put(cl, l);
     }
     
     //Função que faz update de caracteristicas de um dado cliente na estrutura clProds
@@ -228,6 +231,7 @@ public class Filiais implements Serializable, IFiliais
             int c = map.get(p);
             map.put(p, c+comprados);
         }
+        this.clProds.put(cl, map);
     }
     
     //Funções apenas para trabalhar com VALORES ABSOLUTOS DAS VARIAVEIS (isto é, valores já 100% calculados dos dados todos)
@@ -248,13 +252,15 @@ public class Filiais implements Serializable, IFiliais
          this.f3.put(mes, p);
     }
     //Função que adiciona na estrutura produtos um registo sobre um mês
-    public void addProdutos(Produto p, int clientes, int vendas, double total, int mes){
+    public void addProdutos(Produto p, int clientes, int vendas, int mes){
         if(!this.produtos.containsKey(p))
-                this.produtos.put(p, new TripleList());
-        TripleList l = this.produtos.get(p);
-        l.setLeft(mes, clientes);
-        l.setMiddle(mes, vendas);
-        l.setRight(mes, total);
+                this.produtos.put(p, new ArrayList<Pair>(12));
+        ArrayList<Pair> l = this.produtos.get(p);
+        Pair<Integer, Integer> pair= l.get(mes);
+        pair.setFst(clientes);
+        pair.setSnd(vendas);
+        l.set(mes, pair);
+        this.produtos.put(p, l);
     }
     //Função que adiciona na estrutura clientes um registo sobre um mês    
     public void addClientes(Cliente c, int prods, int compr, double total, int mes){
@@ -273,8 +279,8 @@ public class Filiais implements Serializable, IFiliais
     }
     
     public void addVenda(Venda v){
-        updateProduto(v.getProduto(), v.getUnits(), v.getUnits()*v.getPrice(), v.getMonth(), 1); //assumi que são todos distintos 
-        updateCliente(v.getCliente(), v.getUnits(), v.getUnits()*v.getPrice(), v.getMonth(), 1);
+        updateProduto(v.getProduto(), v.getUnits(), v.getMonth(), false);                           //assumi que são todos distintos 
+        updateCliente(v.getCliente(), v.getUnits(), v.getUnits()*v.getPrice(), v.getMonth(), false);
         updateClProds( v.getCliente(), v.getProduto(), v.getUnits());
     };
     
