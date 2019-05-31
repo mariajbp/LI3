@@ -10,9 +10,9 @@ import static java.lang.System.out;
 public class Venda implements Serializable
 {
     private Produto p;
+    private Cliente cl;
     private double preco;
     private int unidades;
-    private Cliente cl;
     private String np;
     private int mes;
     private int filial;

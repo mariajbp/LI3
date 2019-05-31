@@ -16,7 +16,9 @@ public class GestVendasModel implements Serializable, IGestVendasModel
 {
     private ICatProdutos cprod;
     private ICatClientes ccl;
-    private IFiliais filiais; 
+    private IFilial f1;
+    private IFilial f2;
+    private IFilial f3;
     private IFaturacao ftr;
     
     public void createData() throws IOException
@@ -143,29 +145,17 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                {
                    String[] part = line.split(" ");
                    Venda venda = new Venda(part[0],Double.parseDouble(part[1]),Integer.parseInt(part[2]),part[3],part[4],Integer.parseInt(part[5]),Integer.parseInt(part[6]));
-                   /*Produto produto = venda.getProduto();
-                   Cliente cliente = venda.getCliente();
-                   //Verificar se o cliente é distinto e adicionar no array se ainda nao existir
-                   if(!p.containsKey(produto))
-                        p.put(produto, new ArrayList<Cliente>());
-                   ArrayList<Cliente> lc = p.get(produto);
-                   if(!(cl = p.get(produto).contains(cliente))){
-                        lc.add(cliente);
-                        p.put(produto, lc);
-                    }
                    
-                   
+                   if(venda.getFilial() == 1)
+                        f1.addVenda(venda);
+                   else
+                   {
+                        if(venda.getFilial() == 2)
+                            f2.addVenda(venda);
+                        else
+                            f3.addVenda(venda);
+                   }
                         
-                   //Verificar se o produto é distinto e adicionar no array se ainda nao existir
-                   if(!c.containsKey(cliente))
-                        c.put(cliente, new ArrayList<Produto>());
-                   ArrayList<Produto> lp = c.get(cliente);
-                   if(!(prd = lp.contains(produto)) ){
-                        lp.add(produto);
-                        c.put(cliente, lp);
-                    }
-                   
-                   filiais.addVenda(venda /*mais o boleano correspodente); */
                    ftr.addVenda(venda); 
                    v++;
                }
