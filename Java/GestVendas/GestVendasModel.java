@@ -238,7 +238,12 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * 
     * @param 
     * @returns
-    **/ 
+    
+    public Pair totalVendasClientes()
+    {
+        
+    } **/ 
+    
     
     /** 
     * Query 3: Dado um código de cliente, determinar, para cada mês, quantas compras fez, 
@@ -309,6 +314,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
    
     /** 
     * Método que guarda em ficheiro de objectos o objecto que recebe a mensagem
+    * @param Nome do ficheiro 
     **/
     public void saveStatus(String fileName) throws FileNotFoundException,IOException 
     {
@@ -321,6 +327,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
    
     /** 
     * Método que recupera uma instância de GestVendas de um ficheiro de objectos 
+    * @param Nome do ficheiro 
     **/
     public static GestVendasModel loadStatus(String fileName) throws FileNotFoundException,IOException, ClassNotFoundException 
     {
