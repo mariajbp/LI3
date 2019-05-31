@@ -1,4 +1,3 @@
-
 import java.io.Serializable;
 import java.io.IOException;
 import java.io.*; 
@@ -6,7 +5,7 @@ import java.util.TreeSet; //ou hash later
 import java.io.File;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-
+import java.util.Iterator;
 import java.util.*;
 
 /**
@@ -34,9 +33,9 @@ public class GestVendasModel implements Serializable, IGestVendasModel
            } 
         }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
 
-        //PreencheProds(filename[2]);
-        //PreencheCl(filename[1]);
-        //PreencheVendas(filename[3]);
+        preencheProds(filename[2]); 
+        preencheCl(filename[1]);
+        preencheVendas(filename[3]);
     }
     
     /**
@@ -211,16 +210,28 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     /**** QUERIES ****/
     /** 
     * Query1: Lista ordenada alfabeticamente com os códigos dos produtos nunca comprados e o seu respectivo total.
-    * 
     * @param 
     * @returns
-    * Ir ao catalogo de produtos e à key do map da faturação e comparar se está ou não + comparator
-    
-    public List<Produto> prodsNuncaComprados()
+    **/  
+    public List<Produto> prodsNuncaComprados(CatalogoProdutos cp, Faturacao ft)
     {
-         
-    } **/
-    
+       List<Produto> lp = new ArrayList<>();
+       Set<Produto> prods = cp.getCatalogo();
+       Map<Produto, List<Integer>> map = ft.getProdUnidadeMes();
+       Set<Produto> keys = map.keySet();
+       
+       Iterator<Produto> it = prods.iterator();
+       while(it.hasNext())
+       {
+          Produto p = it.next();
+          if(!keys.contains(p))
+          {
+              lp.add(p);
+          }
+       }  
+       return lp;
+    } 
+
     /** 
     * Query 2:  Dado um mês válido, determinar o número total global de vendas realizadas e o número total de clientes distintos que as fizeram; 
     * Fazer o mesmo mas para cada uma das filiais.
@@ -295,18 +306,6 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     **/
     
     
-    
-    /**
-    * Método que guarda o estado de uma instância num ficheiro de texto
-    **/
-    public void writeToTxt(String fileName) throws IOException 
-    {
-       PrintWriter fich = new PrintWriter(fileName);
-       fich.println("------- GestVendas --------");
-       fich.println(this.toString());
-       fich.flush();
-       fich.close();
-    }
    
     /** 
     * Método que guarda em ficheiro de objectos o objecto que recebe a mensagem
@@ -322,13 +321,13 @@ public class GestVendasModel implements Serializable, IGestVendasModel
    
     /** 
     * Método que recupera uma instância de GestVendas de um ficheiro de objectos 
-
-    public static UMCarroJa loadStatus(String fileName) throws FileNotFoundException,IOException, ClassNotFoundException 
+    **/
+    public static GestVendasModel loadStatus(String fileName) throws FileNotFoundException,IOException, ClassNotFoundException 
     {
       FileInputStream fis = new FileInputStream(fileName);
       ObjectInputStream ois = new ObjectInputStream(fis);
-      UMCarroJa umcj = (UMCarroJa) ois.readObject();
+      GestVendasModel gvm = (GestVendasModel) ois.readObject();
       ois.close();
-      return umcj;
-    } **/
+      return gvm;
+    } 
 }

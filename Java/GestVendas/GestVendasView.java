@@ -13,53 +13,6 @@ import java.awt.event.KeyEvent;
 
 public class GestVendasView implements Serializable, IGestVendasView
 {
-   private Menu menu;
-   
-   /** 
-   * Método que inicia o menu principal 
-   **/
-   public void mainMenu()
-   {
-       int op = 0;
-       do{
-           menu.exec();
-           op = menu.getOption();
-           /**
-           switch(op)
-           {
-               case 1: carregamentoDefault();
-                       break;
-               case 2: outroFicheiro();
-                       break;
-               case 3: ultimaGravacao();
-                       break;     
-           } **/
-       }
-       while(op != 0);
-   }
-   
-   /** 
-   * Método que inicia o menu de queries e estatisticas interativas 
-   **/
-   public void queryORestatisticasMenu()
-   {
-       String s[] = {"Consultar Queries", "Consultar Estatisticas"};
-       Menu m = new Menu(s);
-       int op = 0;
-       do
-       {
-           m.exec();
-           op = m.getOption();
-           switch(op)
-           {
-               case 1: queryMenu();
-                       break;
-               case 2: estatisticasMenu();
-           } 
-       }
-       while(op != 0);
-   }
-   
    public void outroFicheiro()
    {
        Scanner input = new Scanner(System.in);
@@ -85,109 +38,97 @@ public class GestVendasView implements Serializable, IGestVendasView
        input.close();
    }
    
-   /** 
-   * Método que inicia o menu de queries 
-   **/
-   public void queryMenu()
-   {
-       String s[] = {"Query 1", "Query 2", "Query 3", "Query 4", "Query 5", "Query 6", "Query 7", "Query 8", "Query 9",
-                     "Query 10", "Query 11", "Query 12"};
-       Menu m = new Menu(s);
-       int op = 0;
-       do
-       {
-           m.exec();
-           op = m.getOption();
-           /**
-           switch(op)
-           {
-               case 1: query1();
-                       break;
-               case 2: query2();
-                       break;
-               case 3: query3();
-                       break;
-               case 4: query4();
-                       break;
-           } **/
-       }
-       while(op != 0);
+   //Lista ordenada alfabeticamente com os códigos dos produtos nunca comprados e o seu respectivo total.
+   public void query1_Output()
+   {      
    }
    
-   public void query1()
-   {}
-   
-   public void query2()
-   {}
-   
-   public void query3()
-   {}
-   
-   public void query4()
-   {}
-   
-   public void query5()
-   {}
-   
-   public void query6()
-   {}
-   
-   public void query7()
-   {}
-   
-   public void query8()
-   {}
-   
-   public void query9()
-   {}
-   
-   public void query10()
-   {}
-   
-   public void query11()
-   {}
-   
-   public void query12()
-   {}
-   
-   /** 
-   * Método que inicia o menu de queries e estatisticas interativas 
-   **/
-   public void estatisticasMenu()
+   //Dado um mês válido, determinar o número total global de vendas realizadas e o número total de clientes distintos que as fizeram; 
+   //Fazer o mesmo mas para cada uma das filiais.
+   public void query2_Input()
    {
-       String s[] = {};
-       Menu m = new Menu(s);
-       int op = 0;
-       do
-       {
-           m.exec();
-           op = m.getOption();
-           /**
-           switch(op)
-           {
-               case 1: comprasPorMes();
-                       break;
-               case 2: 
-                       break;
-               case 3: 
-                       break;
-           } **/
-       }
-       while(op != 0);
+       int mes;
+       Scanner input = new Scanner(System.in);
+       out.println("Insira o mês que pretende consultar: \n");
    }
    
-   public void comprasPorMes(){}
-   
-   public void navegador()
+   public void query2_Output()
    {
-       
    }
    
-   public void keyPressed (KeyEvent e) 
+   //Dado um código de cliente, determinar, para cada mês, quantas compras fez, 
+   //quantos produtos distintos comprou e quanto gastou no total.
+   public void query3_Input()
    {
-        int c = e.getKeyCode (); 
-        if(c==KeyEvent.VK_LEFT) {} 
-        else if(c==KeyEvent.VK_RIGHT) {}
+       String c;
+       Scanner input = new Scanner(System.in);
+       out.println("Insira o código do cliente: \n");
+   }
+   
+   public void query3_Output()
+   {
+   }
+   
+   //Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi comprado, por quantos clientes diferentes e o total facturado.
+   public void query4_Input()
+   {
+       String p;
+       Scanner input = new Scanner(System.in);
+       out.println("Insira o código do produto: \n");
+       p = input.nextLine();
+       //...
+   }
+   
+   public void query4_Output()
+   {
+   }
+   
+   //Dado o código de um cliente determinar a lista de códigos de produtos que mais comprou (e quantos), ordenada por ordem 
+   //decrescente de quantidade e, para quantidades iguais, por ordem alfabética dos códigos.
+   public void query5_Input()
+   {
+       String c;
+       Scanner input = new Scanner(System.in);
+       out.println("Insira o código do cliente: \n");
+   }
+   
+   public void query5_Output()
+   {
+   }
+   
+   //Determinar o conjunto dos X produtos mais vendidos em todo o ano (em número de unidades vendidas) indicando o número total de 
+   //distintos clientes que o compraram (X é um inteiro dado pelo utilizador).
+   public void query6_Output()
+   {
+   }
 
-    }
+   //Determinar, para cada filial, a lista dos três maiores compradores em termos de dinheiro facturado.
+   public void query7_Output()
+   {
+   }
+
+   //Determinar os códigos dos X clientes (sendo X dado pelo utilizador) que compraram mais produtos diferentes 
+   //(não interessa a quantidade nem o valor), indicando quantos, sendo o critério de ordenação a ordem decrescente do número de produtos.
+   public void query8_Output()
+   {}
+   
+   // Dado o código de um produto que deve existir, determinar o conjunto dos X clientes que mais o compraram e, para cada um, 
+   //qual o valor gasto (ordenação cf. 5).
+   public void query9_Input() //vai haver aqui um throw qualquer
+   {
+       String p;
+       Scanner input = new Scanner(System.in);
+       out.println("Insira o código do produto: \n");
+   }
+   
+   public void query9_Output()
+   {
+   }
+   
+   //Determinar mês a mês, e para cada mês filial a filial, a facturação total com cada produto.
+   public void query10_Output()
+   {
+   }
+   
+   
 }

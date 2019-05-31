@@ -166,8 +166,7 @@ public class Faturacao implements Serializable, IFaturacao
     }
     
     /**
-    * Método que converte uma identificação numa string
-    * @return  
+    * Método que converte uma identificação numa string 
     **/
     public String toString()
     {
@@ -178,6 +177,7 @@ public class Faturacao implements Serializable, IFaturacao
     
     /**
     * Método que calcula a faturação anual de determinado produto
+    * @param   Produto a calcular
     * @return  Faturação anual de determinado produto
     **/
     public double ftrAnualProd(Produto p) throws NoProdutosException
@@ -218,11 +218,11 @@ public class Faturacao implements Serializable, IFaturacao
     }
     
     /**
-    * Método que atualiza as caracteristicas de
-    * @param   
-    * @param   
-    * @param   
-    * @param     
+    * Método que atualiza o preço de um produto por mês
+    * @param  Produto a atualizar  
+    * @param  Preço a atualizar 
+    * @param  Mês da venda do produto 
+    * @param  Filial em que o produto foi vendido  
     **/
     public void updateProdPrecoMes(Produto p, double preco, int mes, int filial) 
     {
@@ -288,11 +288,10 @@ public class Faturacao implements Serializable, IFaturacao
     }
     
     /**
-    * Método que atualiza as caracteristicas de
-    * @param   
-    * @param   
-    * @param   
-    * @param     
+    * Método que atualiza o número de unidades de um produto por mês
+    * @param Produto a atualizar   
+    * @param Número de unidades a atualizar 
+    * @param Mês de compra do produto  
     **/
     public void updateProdUnidadeMes(Produto p, int unidades, int mes)
     {
@@ -316,7 +315,8 @@ public class Faturacao implements Serializable, IFaturacao
     }
     
     /**
-    * Método que
+    * Método que divide as carateristicas de uma venda pelos Maps da classe
+    * @param Venda a adicionar
     **/
     public void addVenda(Venda v)
     {
