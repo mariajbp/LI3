@@ -3,12 +3,10 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
+
 /**
- * Classe Filiais que contém estruturas com dados das 3 filiais
- *
- * @author (your name)
- * @version (a version number or a date)
- */
+* Classe Filiais que contém estruturas com dados das 3 filiais
+*/
 
 public class Filiais implements Serializable, IFiliais
 {
@@ -43,7 +41,7 @@ public class Filiais implements Serializable, IFiliais
     }
     
     /** 
-    * Construtor que cria um novo Filial a partir dos parâmetros dados  
+    * Construtor que cria uma nova Filial a partir dos parâmetros dados  
     **/
     public Filiais(Map<Integer, Pair> f1, Map<Integer, Pair> f2, Map<Integer, Pair> f3, Map<Produto, ArrayList<Pair>> prod, Map<Cliente, TripleList> cl, Map<Cliente, Map<Produto, Integer>> clProd)
     {
