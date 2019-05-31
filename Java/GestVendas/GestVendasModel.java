@@ -1,3 +1,4 @@
+
 import java.io.Serializable;
 import java.io.IOException;
 import java.io.*; 
@@ -129,6 +130,9 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     private void preencheVendas(String fileName) throws IOException 
     {
       int v = 0;
+      Map<Produto, ArrayList<Cliente>> p = new HashMap<Produto, ArrayList<Cliente>>();
+      Map<Cliente, ArrayList<Produto>> c = new HashMap<Cliente, ArrayList<Produto>>();
+      boolean prd, cl;
       BufferedReader br = new BufferedReader(new FileReader(fileName));
       try 
       {
@@ -138,8 +142,30 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                if(validaVenda(line))
                {
                    String[] part = line.split(" ");
-                   Venda venda = new Venda(part[0],Double.parseDouble(part[1]),Integer.parseInt(part[2]),part[3],part[4],Integer.parseInt(part[5]),Integer.parseInt(part[6]));           
-                   filiais.addVenda(venda); 
+                   Venda venda = new Venda(part[0],Double.parseDouble(part[1]),Integer.parseInt(part[2]),part[3],part[4],Integer.parseInt(part[5]),Integer.parseInt(part[6]));
+                   Produto produto = venda.getProduto();
+                   Cliente cliente = venda.getCliente();
+                   //Verificar se o cliente é distinto e adicionar no array se ainda nao existir
+                   if(!p.containsKey(produto))
+                        p.put(produto, new ArrayList<Cliente>());
+                   ArrayList<Cliente> lc = p.get(produto);
+                   if(!(cl = p.get(produto).contains(cliente))){
+                        lc.add(cliente);
+                        p.put(produto, lc);
+                    }
+                   
+                   
+                        
+                   //Verificar se o produto é distinto e adicionar no array se ainda nao existir
+                   if(!c.containsKey(cliente))
+                        c.put(cliente, new ArrayList<Produto>());
+                   ArrayList<Produto> lp = c.get(cliente);
+                   if(!(prd = lp.contains(produto)) ){
+                        lp.add(produto);
+                        c.put(cliente, lp);
+                    }
+                   
+                   filiais.addVenda(venda /*mais o boleano correspodente*/); 
                    ftr.addVenda(venda); 
                    v++;
                }

@@ -34,5 +34,5 @@ public class Pair<X,Y>
     public void setFst(X fst){this.fst = fst;}
 
     public Y getSnd(){return snd;}
-    public void setSecond(Y snd){this.snd = snd;}
+    public void setSnd(Y snd){this.snd = snd;}
 }
