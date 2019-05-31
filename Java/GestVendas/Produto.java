@@ -60,4 +60,12 @@ public class Produto implements Serializable
         return sb.toString();
     }
     
+    /**
+    * Método que implementa um comparador de Produto alfabeticamente
+    * @param Produto a comparar
+    **/
+    public int compareTo(Produto p)
+    {
+        return codigo_produto.compareTo(p.getCodigo()); 
+    }
 }

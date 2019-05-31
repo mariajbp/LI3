@@ -60,5 +60,12 @@ public class Cliente implements Serializable
         return sb.toString();
     }
     
-   
+    /**
+    * Método que implementa um comparador de Cliente alfabeticamente
+    * @param Cliente a comparar
+    **/
+    public int compareTo(Cliente c)
+    {
+        return codigo_cl.compareTo(c.getCodigo()); 
+    }
 }
