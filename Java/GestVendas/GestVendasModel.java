@@ -40,7 +40,8 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     
     /**
     * Método que preenche o catalogo de produtos
-    * @returns Número de vendas válidas
+    * @param    Nome do ficheiro a carregar
+    * @returns  Número de produtos válidos
     **/
     private int preencheProds(String fileName) throws IOException 
     {
@@ -80,7 +81,9 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     }
     
     /**
-    * Método que 
+    * Método que preenche o catalogo de clientes
+    * @param    Nome do ficheiro a carregar
+    * @returns  Número de vendas válidas
     **/
     private int preencheCl(String fileName) throws IOException 
     {
@@ -120,6 +123,8 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     
     /**
     * Método que carrega os dados de uma venda
+    * @param    Nome do ficheiro a carregar
+    * @returns  Número de vendas válidas
     **/
     private void preencheVendas(String fileName) throws IOException 
     {
@@ -140,7 +145,6 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                }
            }
       }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
-      System.out.println(v + " Vendas Validas");
     }
     
     
