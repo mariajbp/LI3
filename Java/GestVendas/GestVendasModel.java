@@ -143,7 +143,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                {
                    String[] part = line.split(" ");
                    Venda venda = new Venda(part[0],Double.parseDouble(part[1]),Integer.parseInt(part[2]),part[3],part[4],Integer.parseInt(part[5]),Integer.parseInt(part[6]));
-                   Produto produto = venda.getProduto();
+                   /*Produto produto = venda.getProduto();
                    Cliente cliente = venda.getCliente();
                    //Verificar se o cliente é distinto e adicionar no array se ainda nao existir
                    if(!p.containsKey(produto))
@@ -165,7 +165,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                         c.put(cliente, lp);
                     }
                    
-                   filiais.addVenda(venda /*mais o boleano correspodente*/); 
+                   filiais.addVenda(venda /*mais o boleano correspodente); */
                    ftr.addVenda(venda); 
                    v++;
                }

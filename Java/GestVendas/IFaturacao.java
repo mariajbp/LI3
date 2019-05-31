@@ -7,5 +7,5 @@ import java.util.List;
 **/
 public interface IFaturacao extends Serializable
 {
-   
+   public void addVenda(Venda v);
 }

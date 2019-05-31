@@ -24,10 +24,10 @@ public class Faturacao implements Serializable, IFaturacao
     {
         this.ftrTotal = 0.0;
         this. ftrMensal = new double[12];
-        this.prodPrecoMes1 = new HashMap<>(); 
-        this.prodPrecoMes2 = new HashMap<>();
-        this.prodPrecoMes3 = new HashMap<>(); 
-        this.prodUnidadeMes = new HashMap<>();
+        this.prodPrecoMes1 = new HashMap<Produto, List<Double>>(); 
+        this.prodPrecoMes2 = new HashMap<Produto, List<Double>>();
+        this.prodPrecoMes3 = new HashMap<Produto, List<Double>>(); 
+        this.prodUnidadeMes = new HashMap<Produto, List<Integer>>();
     }
     
     /** 
@@ -233,18 +233,58 @@ public class Faturacao implements Serializable, IFaturacao
         {
            if(!this.prodPrecoMes1.containsKey(p))
            {
-                List<Double> l = new ArrayList<>();
-                l.add(preco);
+                List<Double> l = new ArrayList<Double>(12);
+                l.add(index, preco);
                 this.prodPrecoMes1.put(p,l);
             }
+        
+            else 
+            {
+               List l = this.prodPrecoMes1.get(p); 
+               precoAtual = (double)l.get(index); 
+               precoAtualizado = precoAtual + preco;
+               l.add(index, precoAtualizado);
+               this.prodPrecoMes1.put(p,l);
+            } 
         }
-        else 
+        
+        if(filial == 2)
         {
-           List l = this.prodPrecoMes1.get(p); 
-           precoAtual = l.get(index); 
-           precoAtualizado = precoAtual + preco;
-           l.add(index, precoAtualizado);
-        } 
+           if(!this.prodPrecoMes2.containsKey(p))
+           {
+                List<Double> l = new ArrayList<Double>(12);
+                l.add(index, preco);
+                this.prodPrecoMes2.put(p,l);
+            }
+        
+            else 
+            {
+               List l = this.prodPrecoMes2.get(p); 
+               precoAtual = (double)l.get(index); 
+               precoAtualizado = precoAtual + preco;
+               l.add(index, precoAtualizado);
+               this.prodPrecoMes2.put(p,l);
+            } 
+        }
+        
+        if(filial == 3)
+        {
+           if(!this.prodPrecoMes3.containsKey(p))
+           {
+                List<Double> l = new ArrayList<Double>(12);
+                l.add(index, preco);
+                this.prodPrecoMes3.put(p,l);
+            }
+        
+            else 
+            {
+               List l = this.prodPrecoMes3.get(p); 
+               precoAtual = (double)l.get(index); 
+               precoAtualizado = precoAtual + preco;
+               l.add(index, precoAtualizado);
+               this.prodPrecoMes3.put(p,l);
+            } 
+        }
     }
     
     /**
@@ -254,18 +294,24 @@ public class Faturacao implements Serializable, IFaturacao
     * @param   
     * @param     
     **/
-    public void updateProdUnidadesMes(Produto p, int unidades, int mes)
+    public void updateProdUnidadeMes(Produto p, int unidades, int mes)
     {
+       int index = mes-1;
+       int unidadesAtuais = 0;
+       int unidadesAtualizadas = 0;
        if(!this.prodUnidadeMes.containsKey(p)) 
        {
-            List<Integer> l = new ArrayList<>();
-            l.add(unidades);
+            List<Integer> l = new ArrayList<Integer>(12);
+            l.add(index,unidades);
             this.prodUnidadeMes.put(p,l);  
        }
        else
        {
-           //igual ao de cima 
-           
+            List l = this.prodUnidadeMes.get(p); 
+            unidadesAtuais = (Integer)l.get(index); 
+            unidadesAtualizadas = unidadesAtuais + unidades;
+            l.add(index, unidadesAtualizadas);
+            this.prodUnidadeMes.put(p,l);
        }
     }
     
@@ -275,6 +321,6 @@ public class Faturacao implements Serializable, IFaturacao
     public void addVenda(Venda v)
     {
        updateProdPrecoMes(v.getProduto(), v.getPreco(), v.getMes(), v.getFilial()); 
-       updateProdUnidadesMes(v.getProduto(), v.getUnidades(), v.getMes());   
+       updateProdUnidadeMes(v.getProduto(), v.getUnidades(), v.getMes());   
     } 
 }
