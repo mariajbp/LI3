@@ -4,7 +4,13 @@ public class Pair<X,Y>
 {
     private X fst;
     private Y snd;
-
+    
+    public Pair()
+    {
+        this.fst = null;
+        this.snd = null;
+    }
+    
     public Pair(X fst, Y snd)
     {
         this.fst = fst;
@@ -35,4 +41,11 @@ public class Pair<X,Y>
 
     public Y getSnd(){return snd;}
     public void setSnd(Y snd){this.snd = snd;}
+    
+    public boolean isEmpty(){
+        if(this.fst == null || this.snd == null)
+            return true;
+        else 
+            return false;
+    }
 }
