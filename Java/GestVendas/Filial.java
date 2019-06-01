@@ -8,23 +8,23 @@ import java.util.TreeSet;
 import java.util.Iterator;
 
 /**
-* Classe Filial que contém estruturas com dados das uma filial
+* Classe Filial que contém estruturas com dados de uma filial
 */
 
 public class Filial implements Serializable, IFilial
 {
     //PRODUTOS
-    //           (Mês, Cliente)
+    //Map que a cada Produto faz corresponder um Set com um par (Mês, Cliente)
     Map<Produto, Set<Pair>> pClientes; 
-    //            Unidades/Mês
+    //Map que a cada Produto faz corresponder uma Lista com 12 posições (meses) e o número de unidades compradas em cada um desses meses
     Map<Produto, List<Integer>>  pUnidades;
 
     //CLIENTES
-    //            (Mês, Produto)
+    //Map que a cada Cliente faz corresponder um par (Mês, Produto)
     Map<Cliente, Set<Pair>> cProdutos;
-    //             (Unidades, Total Gasto)/Mês
+    //Map que a cada Cliente faz corresponder uma Lista com 12 posições (meses) com pares (Nº de unidades compradas, Total Gasto)
     Map<Cliente, List<Pair>> cUnidadesGasto;   
-    //              <Produto, Unidades>
+    //Map que a cada Cliente faz corresponder um Map com todos os produtos distintos comprados e o número de unidades total
     Map<Cliente, Map<Produto, Integer>> clProds;
     
     /** 
@@ -213,6 +213,5 @@ public class Filial implements Serializable, IFilial
         updateCProdutos(v.getCliente(), v.getProduto(), v.getMes());
         updateCUnidadesGasto(v.getCliente(), v.getUnidades(), v.getUnidades()*v.getPreco(), v.getMes()); 
         updateClProds(v.getCliente(), v.getProduto(), v.getUnidades());  
-    }
-    
+    }   
 }

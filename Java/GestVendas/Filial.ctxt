@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Filial
-comment0.text=\r\n\ Classe\ Filial\ que\ cont\u00E9m\ estruturas\ com\ dados\ das\ uma\ filial\r\n
+comment0.text=\r\n\ Classe\ Filial\ que\ cont\u00E9m\ estruturas\ com\ dados\ de\ uma\ filial\r\n
 comment1.params=
 comment1.target=Filial()
 comment1.text=\ \r\n\ Construtor\ vazio\ que\ cria\ uma\ inst\u00E2ncia\ Filial\r\n

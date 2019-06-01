@@ -33,11 +33,11 @@ public class GestVendasModel implements Serializable, IGestVendasModel
               line =  filename[i];
               i++;
            } 
+           
+           preencheProds(filename[2]); 
+           preencheCl(filename[1]);
+           preencheVendas(filename[3]);
         }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
-
-        preencheProds(filename[2]); 
-        preencheCl(filename[1]);
-        preencheVendas(filename[3]);
     }
     
     /**
@@ -147,13 +147,10 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                    
                    if(venda.getFilial() == 1)
                         f1.addVenda(venda);
-                   else
-                   {
-                        if(venda.getFilial() == 2)
-                            f2.addVenda(venda);
-                        else
-                            f3.addVenda(venda);
-                   }
+                        else if(venda.getFilial() == 2)
+                              f2.addVenda(venda);
+                              else
+                                    f3.addVenda(venda);
                         
                    ftr.addVenda(venda); 
                    v++;
@@ -231,6 +228,8 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     
     public Pair totalVendasClientes()
     {
+        //Terá duas opções? (ver total ou ver por filial?)
+        //No controler? (por causa da view) 
         
     } **/ 
     
@@ -243,7 +242,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * @returns
     **/
     
-    
+
     /**
     * Query 4: Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi comprado, por quantos clientes diferentes 
     * e o total facturado.
@@ -253,6 +252,8 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * 
     * METADE VEM DA FATURACAO
     **/ 
+        //public List<Integer> comprasPorMes(Produto p){};
+        //public List<List<Cliente>> clientesDistintosPorMes(Produto p){};
     
     /** 
     * Query 5: Dado o código de um cliente determinar a lista de códigos de produtos que mais comprou (e quantos), ordenada por ordem 
