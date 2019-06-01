@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.util.Scanner;
 
 /**
 * 
@@ -14,8 +15,11 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
    **/
    public void mainMenu()
    {
+       String s[] = {"Carregar ficheiros default", "Carregar outro ficheiro", "Carregar ultima gravação"};
+       Menu m = new Menu(s);
        int op = 0;
-       do{
+       do
+       {
            menu.exec();
            op = menu.getOption();
            /**
@@ -31,6 +35,8 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
        }
        while(op != 0);
    }
+   
+   
    
    /** 
    * Método que inicia o menu de queries e estatisticas interativas 
@@ -97,7 +103,7 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
    
    public void query1()
    {
-       //model.prodsNuncaComprados(cp,ft); ??
+       //model.prodsNuncaComprados(); faltam os args
        view.query1_Output();
    }
    
@@ -111,6 +117,8 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
    public void query2()
    {
        view.query2_Input();
+       Scanner input = new Scanner(System.in);
+       int mes = input.nextInt();
        //..
        view.query2_Output();
    }
@@ -125,6 +133,8 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     public void query3()
     {
         view.query3_Input();
+        Scanner input = new Scanner(System.in);
+        String s = input.nextLine(); //fazer o cast para cliente
         //..
         view.query3_Output();
     } 
@@ -141,6 +151,8 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     public void query4()
     {
         view.query4_Input();
+        Scanner input = new Scanner(System.in);
+        String s = input.nextLine(); //fazer o cast para produto
         //..
         view.query4_Output();
     } 
@@ -155,6 +167,8 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     public void query5()
     {
         view.query5_Input();
+        Scanner input = new Scanner(System.in);
+        String s = input.nextLine(); //fazer o cast para cliente
         //..
         view.query5_Output();
     } 
@@ -168,6 +182,10 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     **/
     public void query6()
     {
+        view.query6_Input();
+        Scanner input = new Scanner(System.in);
+        int x = input.nextInt();
+        
         //..
         view.query6_Output();
     } 
@@ -193,6 +211,9 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     **/
     public void query8()
     {
+        view.query8_Input();
+        Scanner input = new Scanner(System.in);
+        int x = input.nextInt();
         //..
         view.query8_Output();
     } 
@@ -207,6 +228,8 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     public void query9()
     {
         view.query9_Input();
+        Scanner input = new Scanner(System.in);
+        String s = input.nextLine(); //fazer o cast para produto
         //..
         view.query9_Output();
     } 
@@ -224,7 +247,7 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     } 
     
     /** 
-    * Método que inicia o menu de queries e estatisticas interativas 
+    * Método que inicia o menu de estatisticas interativas 
     **/
     public void estatisticasMenu()
     {

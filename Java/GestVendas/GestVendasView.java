@@ -13,29 +13,17 @@ import java.awt.event.KeyEvent;
 
 public class GestVendasView implements Serializable, IGestVendasView
 {
-   public void outroFicheiro()
+ 
+   
+   public void outroFichOutputEscolha()
    {
-       Scanner input = new Scanner(System.in);
-       int op;
-       String filename;
-       out.println("Indique o tipo de ficheiro que pretende ler: \n");
-       out.println("1 - Clientes \n 2 - Produtos \n 3 - Vendas");
-       op = input.nextInt();
-       out.println("Indique o nome do ficheiro a ler: \n");
-       filename = input.nextLine();
-       if(op == 1)
-       {
-          //clientes 
-       }
-       if(op == 2)
-       {
-           //produtos
-       }
-       if(op == 3)
-       {
-           //vendas
-       }
-       input.close();
+     out.println("Indique o tipo de ficheiro que pretende ler: \n");
+     out.println("1 - Clientes \n 2 - Produtos \n 3 - Vendas");  
+   }
+   
+   public void outroFichOutputNome()
+   {
+     out.println("Indique o nome do ficheiro a ler: \n");     
    }
    
    //Lista ordenada alfabeticamente com os códigos dos produtos nunca comprados e o seu respectivo total.
@@ -47,8 +35,6 @@ public class GestVendasView implements Serializable, IGestVendasView
    //Fazer o mesmo mas para cada uma das filiais.
    public void query2_Input()
    {
-       int mes;
-       Scanner input = new Scanner(System.in);
        out.println("Insira o mês que pretende consultar: \n");
    }
    
@@ -60,8 +46,6 @@ public class GestVendasView implements Serializable, IGestVendasView
    //quantos produtos distintos comprou e quanto gastou no total.
    public void query3_Input()
    {
-       String c;
-       Scanner input = new Scanner(System.in);
        out.println("Insira o código do cliente: \n");
    }
    
@@ -72,11 +56,7 @@ public class GestVendasView implements Serializable, IGestVendasView
    //Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi comprado, por quantos clientes diferentes e o total facturado.
    public void query4_Input()
    {
-       String p;
-       Scanner input = new Scanner(System.in);
        out.println("Insira o código do produto: \n");
-       p = input.nextLine();
-       //...
    }
    
    public void query4_Output()
@@ -87,8 +67,6 @@ public class GestVendasView implements Serializable, IGestVendasView
    //decrescente de quantidade e, para quantidades iguais, por ordem alfabética dos códigos.
    public void query5_Input()
    {
-       String c;
-       Scanner input = new Scanner(System.in);
        out.println("Insira o código do cliente: \n");
    }
    
@@ -98,6 +76,11 @@ public class GestVendasView implements Serializable, IGestVendasView
    
    //Determinar o conjunto dos X produtos mais vendidos em todo o ano (em número de unidades vendidas) indicando o número total de 
    //distintos clientes que o compraram (X é um inteiro dado pelo utilizador).
+   public void query6_Input()
+   { 
+      out.println("Insira o númerode produtos que quer determinar: \n");  
+   }
+   
    public void query6_Output()
    {
    }
@@ -109,6 +92,11 @@ public class GestVendasView implements Serializable, IGestVendasView
 
    //Determinar os códigos dos X clientes (sendo X dado pelo utilizador) que compraram mais produtos diferentes 
    //(não interessa a quantidade nem o valor), indicando quantos, sendo o critério de ordenação a ordem decrescente do número de produtos.
+   public void query8_Input()
+   {
+      out.println("Insira o númerode produtos que quer determinar: \n");  
+   }
+   
    public void query8_Output()
    {}
    
@@ -116,8 +104,6 @@ public class GestVendasView implements Serializable, IGestVendasView
    //qual o valor gasto (ordenação cf. 5).
    public void query9_Input() //vai haver aqui um throw qualquer
    {
-       String p;
-       Scanner input = new Scanner(System.in);
        out.println("Insira o código do produto: \n");
    }
    
