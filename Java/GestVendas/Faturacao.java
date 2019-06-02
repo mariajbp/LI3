@@ -10,11 +10,22 @@ import java.util.Iterator;
 **/
 public class Faturacao implements Serializable, IFaturacao   
 { 
+    /** Faturação total **/
     private double ftrTotal;
+    
+    /** Array da faturação mensal **/
     private double[] ftrMensal;
+    
+    /** Map que contém para cada produto a sua faturação mensal, por filial**/
     private Map<Produto, List<Double>> prodPrecoMes1;
+    
+    /** Map que contém para cada produto a sua faturação mensal, por filial**/
     private Map<Produto, List<Double>> prodPrecoMes2;
+    
+    /** Map que contém para cada produto a sua faturação mensal, por filial**/
     private Map<Produto, List<Double>> prodPrecoMes3;
+    
+    /** Map que contém para cada produto a quantidade de unidades vendidas, por mes **/
     private Map<Produto, List<Integer>> prodUnidadeMes;
     
     /** 

@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.Iterator;
+
 
 /**
 * Classe Filial que contém estruturas com dados de uma filial
@@ -13,18 +13,19 @@ import java.util.Iterator;
 
 public class Filial implements Serializable, IFilial
 {
-    //PRODUTOS
-    //Map que a cada Produto faz corresponder um Set com um par (Mês, Cliente)
+    /**Map que a cada Produto faz corresponder um Set com um par (Mês, Cliente) **/
     Map<Produto, Set<Pair>> pClientes; 
-    //Map que a cada Produto faz corresponder uma Lista com 12 posições (meses) e o número de unidades compradas em cada um desses meses
+    
+    /** Map que a cada Produto faz corresponder uma Lista com 12 posições (meses) e o número de unidades compradas em cada um desses meses **/
     Map<Produto, List<Integer>>  pUnidades;
-
-    //CLIENTES
-    //Map que a cada Cliente faz corresponder um par (Mês, Produto)
+    
+    /**Map que a cada Cliente faz corresponder um par (Mês, Produto) **/
     Map<Cliente, Set<Pair>> cProdutos;
-    //Map que a cada Cliente faz corresponder uma Lista com 12 posições (meses) com pares (Nº de unidades compradas, Total Gasto)
-    Map<Cliente, List<Pair>> cUnidadesGasto;   
-    //Map que a cada Cliente faz corresponder um Map com todos os produtos distintos comprados e o número de unidades total
+    
+    /**Map que a cada Cliente faz corresponder uma Lista com 12 posições (meses) com pares (Nº de unidades compradas, Total Gasto) **/
+    Map<Cliente, List<Pair>> cUnidadesGasto; 
+    
+    /**Map que a cada Cliente faz corresponder um Map com todos os produtos distintos comprados e o número de unidades total **/
     Map<Cliente, Map<Produto, Integer>> clProds;
     
     /** 
@@ -63,48 +64,86 @@ public class Filial implements Serializable, IFilial
         this.clProds = f.getClProds();
     }
     
-    //Getters
+    /**
+    * Método que devolve
+    * @returns 
+    **/
     public Map<Produto, Set<Pair>> getPClientes(){
         return new HashMap<Produto, Set<Pair>>(this.pClientes);
     }
     
+    /**
+    * Método que devolve
+    * @returns 
+    **/
     public Map<Produto, List<Integer>> getPUnidades(){
         return new HashMap<Produto, List<Integer>>(this.pUnidades);
     }
     
+    /**
+    * Método que devolve
+    * @returns 
+    **/
     public Map<Cliente, Set<Pair>> getCProdutos(){
         return new HashMap<Cliente, Set<Pair>>(this.cProdutos);
     }
     
+    /**
+    * Método que devolve
+    * @returns 
+    **/
     public Map<Cliente, List<Pair>> getCUnidadesGasto(){
         return new HashMap<Cliente, List<Pair>>(this.cUnidadesGasto);
     }
     
+    /**
+    * Método que devolve
+    * @returns 
+    **/
     public Map<Cliente, Map<Produto, Integer>> getClProds(){
         return new HashMap<Cliente, Map<Produto, Integer>>(this.clProds);
     }
     
-    //Setters
+    /**
+    * Método que define
+    * @param 
+    **/
     public void setPClientes(Map<Produto, Set<Pair>> pcl){
         this.pClientes.clear();
         this.pClientes = new HashMap<Produto, Set<Pair>>(pcl);
     }
     
-    public void serPUnidades(Map<Produto, List<Integer>> pUn){
+    /**
+    * Método que define
+    * @param 
+    **/
+    public void setPUnidades(Map<Produto, List<Integer>> pUn){
         this.pUnidades.clear();
         this.pUnidades = new HashMap<Produto, List<Integer>>(pUn);
     }
     
+    /**
+    * Método que define
+    * @param 
+    **/
     public void setCProdutos(Map<Cliente, Set<Pair>> cProd){
         this.cProdutos.clear();
         this.cProdutos = new HashMap<Cliente, Set<Pair>>(cProd);
     }
     
+    /**
+    * Método que define
+    * @param 
+    **/
     public void setCUnidadesGasto(Map<Cliente, List<Pair>> cUG){
         this.cUnidadesGasto.clear();
         this.cUnidadesGasto = new HashMap<Cliente, List<Pair>>(cUG);
     }
     
+    /**
+    * Método que define
+    * @param 
+    **/
     public void setClProds(Map<Cliente, Map<Produto, Integer>> cp)
     {
         this.clProds.clear();
@@ -133,15 +172,18 @@ public class Filial implements Serializable, IFilial
 
     
     /**
-     * Método que converte uma identificação numa string
-     * @return  
-     **/
-    public String toString(){
-       return " ";
-    }
+    * Método que converte uma identificação numa string
+    **/
+    public String toString(){return " ";}
     
     
     //Métodos
+    /**
+    * Método que 
+    * @param 
+    * @param
+    * @param
+    **/
     public void updatePClientes(Produto p, Cliente c, int mes){
         if(!this.pClientes.containsKey(p))
                 this.pClientes.put(p, new TreeSet<>());
@@ -152,6 +194,12 @@ public class Filial implements Serializable, IFilial
         this.pClientes.put(p, s);
     }
     
+    /**
+    * Método que 
+    * @param 
+    * @param
+    * @param
+    **/
     public void updatePUnidades(Produto p, int uni, int mes){
         if(!this.pUnidades.containsKey(p))
                 this.pUnidades.put(p, new ArrayList<>(12));
@@ -161,6 +209,12 @@ public class Filial implements Serializable, IFilial
         this.pUnidades.put(p, l);
     }
     
+    /**
+    * Método que 
+    * @param 
+    * @param
+    * @param
+    **/
     public void updateCProdutos(Cliente c, Produto p, int mes){
         if(!this.cProdutos.containsKey(c))
                 this.cProdutos.put(c, new TreeSet<>());
@@ -171,6 +225,13 @@ public class Filial implements Serializable, IFilial
         this.cProdutos.put(c, s);
     }
     
+    /**
+    * Método que 
+    * @param 
+    * @param
+    * @param
+    * @param
+    **/
     public void updateCUnidadesGasto(Cliente c, int uni, double gasto, int mes){
         if(!this.cUnidadesGasto.containsKey(c))
                 this.cUnidadesGasto.put(c, new ArrayList<>(12));
@@ -192,7 +253,12 @@ public class Filial implements Serializable, IFilial
         this.cUnidadesGasto.put(c, l);  
     }
     
-    //Função que adiciona na estrutura clProds um produto comprado e o respetivo numero de vezes que foi comprado
+    /**
+    * Método que adiciona na estrutura clProds um produto comprado e o respetivo numero de vezes que foi comprado
+    * @param 
+    * @param
+    * @param
+    **/
     public void updateClProds(Cliente c, Produto p, int uni){
         if(!this.clProds.containsKey(c))
                 this.clProds.put(c, new HashMap<>());
@@ -206,6 +272,10 @@ public class Filial implements Serializable, IFilial
         this.clProds.get(c).put(p, uni);
     }
     
+    /**
+    * Método que divide as carateristicas de uma venda pelos Maps da classe
+    * @param Venda a adicionar
+    **/
     public void addVenda(Venda v)
     {
         updatePClientes(v.getProduto(), v.getCliente(), v.getMes());
