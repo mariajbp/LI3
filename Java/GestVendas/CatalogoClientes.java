@@ -46,9 +46,7 @@ public class CatalogoClientes implements ICatClientes, Serializable
    **/
    public Set<Cliente> getCatalogo()
    {
-     Set<Cliente> cl = new TreeSet<Cliente>();
-     for(Cliente c: this.catalogo){cl.add(c.clone());}
-     return cl;
+       return new TreeSet<Cliente>(catalogo);
    }
    
    /**

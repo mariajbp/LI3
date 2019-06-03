@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=MaioresCompradoresComparator
+comment0.text=\r\n\ Classe\ MaisCompradosComparator\ que\ imp\u00F5em\ uma\ ordem\ quando\ \r\n
+comment1.params=f1\ f2
+comment1.target=int\ compare(Filial,\ Filial)
+numComments=2

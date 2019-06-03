@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public class Pair<X,Y> 
+public class Pair<X extends Comparable<X>,Y extends Comparable<Y>> implements Comparable<Pair<X,Y>>
 {
     private X fst;
     private Y snd;
@@ -47,5 +47,10 @@ public class Pair<X,Y>
             return true;
         else 
             return false;
+    }
+    
+    public int compareTo(Pair<X,Y> p){
+        int r = snd.compareTo(p.getSnd());
+        return ( r == 0) ? fst.compareTo(p.getFst()) : r;
     }
 }
