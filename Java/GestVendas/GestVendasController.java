@@ -1,5 +1,7 @@
 import java.io.Serializable;
 import java.util.Scanner;
+import java.io.IOException;
+import java.io.FileNotFoundException;
 
 /**
 * 
@@ -22,21 +24,26 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
        {
            menu.exec();
            op = menu.getOption();
-           /**
            switch(op)
            {
-               case 1: carregamentoDefault();
+               case 1: model.carregamentoDefault();
                        break;
                case 2: outroFicheiro();
                        break;
-               case 3: ultimaGravacao();
+               case 3: try{model.loadStatus("Gravacao");} catch (IOException | ClassNotFoundException e) {e.printStackTrace();}
                        break;     
-           } **/
+           } 
        }
        while(op != 0);
    }
    
-   
+   public void outroFicheiro()
+   {
+       view.outroFichOutputEscolha();
+       Scanner input = new Scanner(System.in);
+       int op = input.nextInt();
+       try {model.outroFicheiro(op);} catch (IOException e) {e.printStackTrace();}
+   }
    
    /** 
    * Método que inicia o menu de queries e estatisticas interativas 

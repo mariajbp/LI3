@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #BlueJ class context
 comment0.target=GestVendasModel
 comment0.text=\r\n\ \r\n
@@ -31,3 +32,46 @@ comment9.params=fileName
 comment9.target=void\ saveStatus(java.lang.String)
 comment9.text=\ \r\n\ M\u00E9todo\ que\ guarda\ em\ ficheiro\ de\ objectos\ o\ objecto\ que\ recebe\ a\ mensagem\r\n\ @param\ Nome\ do\ ficheiro\ \r\n
 numComments=11
+=======
+#BlueJ class context
+comment0.target=GestVendasModel
+comment0.text=\n\ \n
+comment1.params=
+comment1.target=void\ carregamentoDefault()
+comment10.params=mes
+comment10.target=int\ totalVendasRealizadas(int)
+comment10.text=\ \n\ M\u00E9todo\ que\ dado\ um\ me\u0302s\ va\u0301lido,\ determina\ o\ nu\u0301mero\ total\ global\ de\ vendas\ realizadas\ \n\ @param\ \ \ \ \ M\u00EAs\ a\ calcular\n\ @returns\ \ \ Nu\u0301mero\ total\ global\ de\ vendas\ realizadas\n
+comment11.params=mes
+comment11.target=int\ totalClientesDistintos(int)
+comment11.text=\ \n\ M\u00E9todo\ que\ dado\ um\ me\u0302s\ va\u0301lido,\ determina\ o\ nu\u0301mero\ total\ de\ clientes\ distintos\ que\ as\ fizeram;\n\ @param\ \n\ @returns\n
+comment12.params=fileName
+comment12.target=void\ saveStatus(java.lang.String)
+comment12.text=\ \n\ M\u00E9todo\ que\ guarda\ em\ ficheiro\ de\ objectos\ o\ objecto\ que\ recebe\ a\ mensagem\n\ @param\ Nome\ do\ ficheiro\ \n
+comment13.params=fileName
+comment13.target=GestVendasModel\ loadStatus(java.lang.String)
+comment13.text=\ \n\ M\u00E9todo\ que\ recupera\ uma\ inst\u00E2ncia\ de\ GestVendas\ de\ um\ ficheiro\ de\ objectos\ \n\ @param\ Nome\ do\ ficheiro\ \n
+comment2.params=op
+comment2.target=void\ outroFicheiro(int)
+comment3.params=fileName
+comment3.target=int\ preencheProds(java.lang.String)
+comment3.text=\n\ M\u00E9todo\ que\ preenche\ o\ catalogo\ de\ produtos\n\ @param\ \ \ \ Nome\ do\ ficheiro\ a\ carregar\n\ @returns\ \ N\u00FAmero\ de\ produtos\ v\u00E1lidos\n
+comment4.params=c
+comment4.target=boolean\ validaProduto(java.lang.String)
+comment4.text=\n\ Valida\u00E7\u00E3o\ do\ c\u00F3digo\ de\ um\ produto\n\ @param\ \ \ \ \ Linha\ do\ ficheiro\ a\ validar\n\ @returns\ \ \ True\ caso\ a\ venda\ seja\ v\u00E1lida,\ False\ caso\ contr\u00E1rio\n
+comment5.params=fileName
+comment5.target=int\ preencheCl(java.lang.String)
+comment5.text=\n\ M\u00E9todo\ que\ preenche\ o\ catalogo\ de\ clientes\n\ @param\ \ \ \ Nome\ do\ ficheiro\ a\ carregar\n\ @returns\ \ N\u00FAmero\ de\ vendas\ v\u00E1lidas\n
+comment6.params=c
+comment6.target=boolean\ validaCliente(java.lang.String)
+comment6.text=\n\ Valida\u00E7\u00E3o\ do\ c\u00F3digo\ de\ um\ cliente\n\ @param\ \ \ \ \ Linha\ do\ ficheiro\ a\ validar\n\ @returns\ \ \ True\ caso\ a\ venda\ seja\ v\u00E1lida,\ False\ caso\ contr\u00E1rio\n
+comment7.params=fileName
+comment7.target=void\ preencheVendas(java.lang.String)
+comment7.text=\n\ M\u00E9todo\ que\ carrega\ os\ dados\ de\ uma\ venda\n\ @param\ \ \ \ Nome\ do\ ficheiro\ a\ carregar\n\ @returns\ \ N\u00FAmero\ de\ vendas\ v\u00E1lidas\n
+comment8.params=c
+comment8.target=boolean\ validaVenda(java.lang.String)
+comment8.text=\n\ Valida\u00E7\u00E3o\ dos\ parametros\ de\ uma\ venda\n\ @param\ \ \ \ \ Linha\ do\ ficheiro\ a\ validar\n\ @returns\ \ \ True\ caso\ a\ venda\ seja\ v\u00E1lida,\ False\ caso\ contr\u00E1rio\n
+comment9.params=cp\ ft
+comment9.target=java.util.List\ prodsNuncaComprados(CatalogoProdutos,\ Faturacao)
+comment9.text=\ \n\ Metodo\ que\ devolve\ a\ lista\ ordenada\ alfabeticamente\ com\ os\ co\u0301digos\ dos\ produtos\ nunca\ comprados\ e\ o\ seu\ respectivo\ total.\n\ @param\ \ \ \ \ \ Catalogo\ de\ produtos\n\ @returns\ \ \ \ Instancia\ de\ uma\ fatura\u00E7\u00E3o\ \n
+numComments=14
+>>>>>>> 3aa87f181e5f227068271949b4742441949d76f6
