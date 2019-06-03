@@ -1,9 +1,9 @@
 import java.util.Comparator;
 
 /**
-* Classe MaisCompradosComparator que impõem uma ordem quando se quer adicionar um veículo a uma coleção
+* Classe MaisCompradosComparator que impõem uma ordem quando 
 **/
-public class MaisCompradosComparator implements Comparator<Filial>
+public class MaioresCompradoresComparator implements Comparator<Filial>
 {
     public int compare(Filial f1, Filial f2)
     {

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.stream.Collectors;
 
 /**
 * 
@@ -334,4 +335,18 @@ public class Faturacao implements Serializable, IFaturacao
        updateProdPrecoMes(v.getProduto(), v.getPreco(), v.getMes(), v.getFilial()); 
        updateProdUnidadeMes(v.getProduto(), v.getUnidades(), v.getMes());   
     } 
+    
+     //return mapa com os produtos e o total de vendas anual
+    public Map<Produto, Integer>  prodsVendidosAnual()
+    {
+        Map<Produto, Integer> map = new HashMap<>(); 
+        for(Map.Entry<Produto, List<Integer>> e : this.prodUnidadeMes.entrySet())
+        {
+            List<Integer> l = e.getValue();
+            Integer sum = l.stream().collect(Collectors.summingInt(Integer::intValue));
+            map.put(e.getKey(), sum);
+        } 
+        return map;
+       
+    }
 }

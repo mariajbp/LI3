@@ -76,4 +76,6 @@ public interface IFaturacao extends Serializable
    * Método que divide as carateristicas de uma venda pelos Maps da classe
    **/
     public void addVenda(Venda v);
+    
+   public Map<Produto, Integer>  prodsVendidosAnual(); 
 }
