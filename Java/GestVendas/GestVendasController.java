@@ -8,60 +8,91 @@ import java.io.FileNotFoundException;
 **/
 public class GestVendasController  implements Serializable, IGestVendasController
 {
-   private GestVendasModel model; //mudar para interface
-   private GestVendasView view; //mudar para interface
-   private Menu menu;
+   private IGestVendasModel model; 
+   private IGestVendasView view; 
    
+   /**
+    * Método que faz set de um model
+    * @param GestVendasModel
+    */
+   public void setModel(IGestVendasModel model){
+       this.model = model;
+    }
+   
+   /**
+    * Método que faz set de uma view
+    * @param GestVendasView
+    */
+   public void setView(IGestVendasView view){
+        this.view = view;
+    }
+    
    /** 
    * Método que inicia o menu principal 
    **/
    public void mainMenu()
    {
        String s[] = {"Carregar ficheiros default", "Carregar outro ficheiro", "Carregar ultima gravação"};
-       Menu m = new Menu(s);
        int op = 0;
        do
        {
-           menu.exec();
-           op = menu.getOption();
+           view.setMenu(s);
+           op = view.mainMenu();
            switch(op)
            {
-               case 1: model.carregamentoDefault();
+               case 1: carregamentoDefault();
                        break;
                case 2: outroFicheiro();
                        break;
-               case 3: try{model.loadStatus("Gravacao");} catch (IOException | ClassNotFoundException e) {e.printStackTrace();}
+               case 3: loadStatus();
                        break;     
            } 
        }
        while(op != 0);
    }
    
+   public void carregamentoDefault(){
+       model.carregamentoDefault();
+       queryORestatisticasMenu();
+    }
+    
    public void outroFicheiro()
    {
        view.outroFichOutputEscolha();
        Scanner input = new Scanner(System.in);
        int op = input.nextInt();
-       try {model.outroFicheiro(op);} catch (IOException e) {e.printStackTrace();}
+       try {
+           model.outroFicheiro(op);
+           queryORestatisticasMenu();
+        } catch (IOException e) {e.printStackTrace();}
    }
    
+   public void loadStatus(){
+      try{
+          IGestVendasModel gvm = model.loadStatus("Gravacao");
+          setModel(gvm);
+          queryORestatisticasMenu();
+     } catch (IOException | ClassNotFoundException e) {e.printStackTrace();}
+    }
+    
    /** 
    * Método que inicia o menu de queries e estatisticas interativas 
    **/
    public void queryORestatisticasMenu()
    {
-       String s[] = {"Consultar Queries", "Consultar Estatisticas"};
-       Menu m = new Menu(s);
+       String s[] = {"Consultar Queries", "Consultar Estatisticas", "Gravar Estado"};
        int op = 0;
        do
        {
-           m.exec();
-           op = m.getOption();
+           view.setMenu(s);
+           op = view.queryORestatisticasMenu();
            switch(op)
            {
                case 1: queryMenu();
                        break;
                case 2: estatisticasMenu();
+                       break;
+               case 3: saveStatus();
            } 
        }
        while(op != 0);
@@ -74,12 +105,10 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
    {
        String s[] = {"Query 1", "Query 2", "Query 3", "Query 4", "Query 5", "Query 6", "Query 7", "Query 8", "Query 9",
                      "Query 10"};
-       Menu m = new Menu(s);
        int op = 0;
        do
-       {
-           m.exec();
-           op = m.getOption();
+       {   view.setMenu(s);
+           op = view.queryMenu();
            
            switch(op)
            {
@@ -108,6 +137,35 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
        while(op != 0);
    }
    
+   /** 
+    * Método que inicia o menu de estatisticas interativas 
+    **/
+    public void estatisticasMenu()
+    {
+       String s[] = {};
+       Menu m = new Menu(s);
+       int op = 0;
+       do
+       {
+           m.exec();
+           op = m.getOption();
+           switch(op)
+           {
+               case 1: stat1();
+                       break;
+               case 2: stat2();
+                       break;
+               case 3: stat3();
+                       break;
+           } 
+       }
+       while(op != 0);
+    }
+    
+   public void saveStatus(){
+    try{model.saveStatus("Gravacao");}
+    catch(IOException e){e.printStackTrace();};
+    }
    public void query1()
    {
        //model.prodsNuncaComprados(); faltam os args
@@ -253,31 +311,6 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         view.query10_Output();
     } 
     
-    /** 
-    * Método que inicia o menu de estatisticas interativas 
-    **/
-    public void estatisticasMenu()
-    {
-       String s[] = {};
-       Menu m = new Menu(s);
-       int op = 0;
-       do
-       {
-           m.exec();
-           op = m.getOption();
-           switch(op)
-           {
-               case 1: stat1();
-                       break;
-               case 2: stat2();
-                       break;
-               case 3: stat3();
-                       break;
-           } 
-       }
-       while(op != 0);
-    }
-    
     public void stat1()
     {
     }
@@ -289,4 +322,5 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     public void stat3()
     {
     }
+    
 }

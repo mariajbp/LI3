@@ -1,4 +1,10 @@
 #BlueJ class context
 comment0.target=IGestVendasController
 comment0.text=\r\n\ \r\n
-numComments=1
+comment1.params=
+comment1.target=void\ mainMenu()
+comment2.params=m
+comment2.target=void\ setModel(IGestVendasModel)
+comment3.params=v
+comment3.target=void\ setView(IGestVendasView)
+numComments=4

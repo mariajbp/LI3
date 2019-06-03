@@ -13,6 +13,28 @@ import java.awt.event.KeyEvent;
 
 public class GestVendasView implements Serializable, IGestVendasView
 {
+   private Menu menu;
+    //Passar o menu para aqui + criar construtor
+    
+   public void setMenu(String[] s){
+       menu = new Menu(s);
+    }
+   
+   public int mainMenu(){
+       menu.exec();
+       return menu.getOption();
+    }
+    
+   public int queryORestatisticasMenu(){
+       menu.exec();
+       return menu.getOption();
+    }
+    
+   public int queryMenu(){
+       menu.exec();
+       return menu.getOption();
+    }
+    
    public void outroFichOutputEscolha()
    {
      out.println("Indique o tipo de ficheiro que pretende ler: \n");

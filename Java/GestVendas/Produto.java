@@ -3,7 +3,7 @@ import java.io.Serializable;
 /**
 * Representação de um produto
 **/
-public class Produto implements Serializable
+public class Produto implements Serializable, Comparable<Produto>
 {
     private String codigo_produto;
 

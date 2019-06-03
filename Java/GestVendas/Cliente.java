@@ -3,7 +3,7 @@ import java.io.Serializable;
 /**
 * 
 **/
-public class Cliente implements Serializable
+public class Cliente implements Serializable, Comparable<Cliente>
 {
     private String codigo_cl;
 

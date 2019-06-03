@@ -19,41 +19,49 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     private IFilial f2;
     private IFilial f3;
     private IFaturacao ftr;
-   
+    
+    public GestVendasModel(){
+        this.cprod = new CatalogoProdutos();
+        this.ccl = new CatalogoClientes();
+        this.f1 = new Filial();
+        this.f2 = new Filial();
+        this.f3 = new Filial();
+        this.ftr = new Faturacao();
+    }
     
     public void carregamentoDefault()
     {
         try
         { 
-            preencheCl("../Clientes.txt"); 
-            preencheProds("../Produtos.txt");
-            preencheVendas("../Vendas_1M.txt");
+            preencheCl("../../../Clientes.txt"); 
+            preencheProds("../../../Produtos.txt");
+            preencheVendas("../../../Vendas1M.txt");
         } catch (IOException e) {e.printStackTrace();}
     }
     
-    public void outroFicheiro(int op) throws IOException 
+    public void outroFicheiro(int op) throws IOException
     {
-        String[] filename = new String[2];
-        int i = 1;
-        BufferedReader br = new BufferedReader(new FileReader("../config.txt"));
+        String[] filename = new String[3];
+        int i = 0;
+        BufferedReader br = new BufferedReader(new FileReader("../config"));
         try
         {
            String line = null;
-           while ((line = br.readLine()) != null && i < 4) 
+           while ((line = br.readLine()) != null && i < 3) 
            {
-              line =  filename[i];
+              filename[i] = line;
               i++;
            }     
-           preencheProds(filename[2]); 
-           preencheCl(filename[1]);
-           preencheVendas(filename[3]);
-           if(op == 1){preencheCl(filename[1]);}
-           if(op == 2){preencheProds(filename[2]);}
+           preencheProds(filename[1]); 
+           preencheCl(filename[0]);
+           preencheVendas(filename[2]);
+           if(op == 1){preencheCl(filename[0]);}
+           if(op == 2){preencheProds(filename[1]);}
            if(op == 3)
            {
-              preencheProds(filename[2]); 
-              preencheCl(filename[1]);
-              preencheVendas(filename[3]);
+              preencheProds(filename[1]); 
+              preencheCl(filename[0]);
+              preencheVendas(filename[2]);
            }
         }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
     }
@@ -74,7 +82,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
            {
                if(validaProduto(line))
                { 
-                   Produto p = new Produto();
+                   Produto p = new Produto(line);
                    cprod.addProduto(p);   
                    v++;
                }
@@ -116,7 +124,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
            {
                if(validaCliente(line))
                {
-                   Cliente c = new Cliente();
+                   Cliente c = new Cliente(line);
                    ccl.addCliente(c); 
                    v++;
                }
@@ -397,7 +405,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * Método que recupera uma instância de GestVendas de um ficheiro de objectos 
     * @param Nome do ficheiro 
     **/
-    public static GestVendasModel loadStatus(String fileName) throws FileNotFoundException,IOException, ClassNotFoundException 
+    public GestVendasModel loadStatus(String fileName) throws FileNotFoundException,IOException, ClassNotFoundException 
     {
       FileInputStream fis = new FileInputStream(fileName);
       ObjectInputStream ois = new ObjectInputStream(fis);
