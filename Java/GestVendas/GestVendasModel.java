@@ -56,9 +56,6 @@ public class GestVendasModel implements Serializable, IGestVendasModel
               filename[i] = line;
               i++;
            }     
-           preencheProds(filename[1]); 
-           preencheCl(filename[0]);
-           preencheVendas(filename[2]);
            if(op == 1){preencheCl(filename[0]);}
            if(op == 2){preencheProds(filename[1]);}
            if(op == 3)
@@ -173,19 +170,17 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                    Venda venda = new Venda(part[0],Double.parseDouble(part[1]),Integer.parseInt(part[2]),part[3],part[4],Integer.parseInt(part[5]),Integer.parseInt(part[6]));
                    
                    if(venda.getFilial() == 1)
-                        f1.addVenda(venda);
-                        else if(venda.getFilial() == 2)
+                       f1.addVenda(venda);
+                       else if(venda.getFilial() == 2)
                               f2.addVenda(venda);
-                              else
-                                    f3.addVenda(venda);
+                             else
+                                 f3.addVenda(venda);
                         
                    ftr.addVenda(venda); 
-                   out.println("validei");
-                   //v++;
+                   v++;
                }
-               v++;
-               out.println("não validei" + v);
            }
+           out.println(v);
       }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
     }
     
@@ -236,6 +231,8 @@ public class GestVendasModel implements Serializable, IGestVendasModel
        Set<Produto> prods = cprod.getCatalogo();
        Map<Produto, List<Integer>> map = ftr.getProdUnidadeMes();
        Set<Produto> keys = map.keySet();
+       out.println(keys.size()+ " KEYS");
+       out.println(map.size() + " MAP");
        
        Iterator<Produto> it = prods.iterator();
        while(it.hasNext())
@@ -246,6 +243,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
               lp.add(p);
           }
        }  
+       out.println(lp.size() + " LP");
        return lp;
     } 
     

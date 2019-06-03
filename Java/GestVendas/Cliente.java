@@ -36,9 +36,9 @@ public class Cliente implements Serializable, Comparable<Cliente>
     public boolean equals(Object o)
     { 
         if (o == this)return true;
-        if (this != null && this.getClass() != o.getClass()) return false;
+        if (o != null && this.getClass() != o.getClass()) return false;
         Cliente c = (Cliente) o;        
-        return this.codigo_cl.equals(c.codigo_cl);
+        return this.codigo_cl.equals(c.getCodigo());
     }
 
     /** 
@@ -67,5 +67,16 @@ public class Cliente implements Serializable, Comparable<Cliente>
     public int compareTo(Cliente c)
     {
         return codigo_cl.compareTo(c.getCodigo()); 
+    }
+    
+    public int hashCode()
+    {
+        int hash = 7;
+        
+        if( this == null)hash = 0;
+        else hash = codigo_cl.hashCode();
+        
+        hash = 37*hash + 20;
+        return hash;
     }
 }

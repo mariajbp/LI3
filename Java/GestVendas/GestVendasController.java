@@ -171,7 +171,7 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
    public void query1()
    {
        List<Produto> p = model.prodsNuncaComprados(); 
-       view.query1_Output(p, p.size());
+       //view.query1_Output(p, p.size());
    }
    
    /** 

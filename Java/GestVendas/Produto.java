@@ -36,9 +36,9 @@ public class Produto implements Serializable, Comparable<Produto>
     public boolean equals(Object o)
     { 
         if (o == this)return true;
-        if (this != null && this.getClass() != o.getClass()) return false;
+        if (o != null && this.getClass() != o.getClass()) return false;
         Produto p = (Produto) o;        
-        return this.codigo_produto.equals(p.codigo_produto);
+        return this.codigo_produto.equals(p.getCodigo());
     }
 
     /** 
@@ -67,5 +67,16 @@ public class Produto implements Serializable, Comparable<Produto>
     public int compareTo(Produto p)
     {
         return codigo_produto.compareTo(p.getCodigo()); 
+    }
+    
+    public int hashCode()
+    {
+        int hash = 7;
+        
+        if( this == null)hash = 0;
+        else hash = codigo_produto.hashCode();
+        
+        hash = 37*hash + 20;
+        return hash;
     }
 }

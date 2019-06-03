@@ -63,7 +63,7 @@ public class Venda implements Serializable
     * Método que devolve o código de um produto
     * @returns Código de um produto
     **/
-    public Produto getProduto(){return this.p;}
+    public Produto getProduto(){return this.p.clone();}
     
     /**
     * Método que devolve o preço de um produto
@@ -81,7 +81,7 @@ public class Venda implements Serializable
     * Método que devolve o código de um cliente
     * @returns Código de um produto
     **/
-    public Cliente getCliente(){return this.cl;}
+    public Cliente getCliente(){return this.cl.clone();}
     
     /**
     * Método que devolve o modo de compra de um produto

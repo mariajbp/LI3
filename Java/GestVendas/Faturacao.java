@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.stream.Collectors;
 
+import static java.lang.System.out;
 /**
 * 
 **/
@@ -245,57 +246,57 @@ public class Faturacao implements Serializable, IFaturacao
         {
            if(!this.prodPrecoMes1.containsKey(p))
            {
-                List<Double> l = new ArrayList<Double>(12);
-                l.add(index, preco);
-                this.prodPrecoMes1.put(p,l);
+                List<Double> a = new ArrayList<>(12);
+                for(int i = 0; i < 12; i++)
+                    a.add(0.0);
+                a.set(index, preco);
+                this.prodPrecoMes1.put(p,a);
             }
-        
-            else 
-            {
-               List l = this.prodPrecoMes1.get(p); 
-               precoAtual = (double)l.get(index); 
+            else{
+               List a = this.prodPrecoMes1.get(p); 
+               precoAtual = (double)a.get(index); 
                precoAtualizado = precoAtual + preco;
-               l.add(index, precoAtualizado);
-               this.prodPrecoMes1.put(p,l);
-            } 
+               a.set(index, precoAtualizado);
+               this.prodPrecoMes1.put(p,a);
+            }
         }
         
         if(filial == 2)
         {
-           if(!this.prodPrecoMes2.containsKey(p))
+           if(!this.prodPrecoMes1.containsKey(p))
            {
-                List<Double> l = new ArrayList<Double>(12);
-                l.add(index, preco);
-                this.prodPrecoMes2.put(p,l);
+                List<Double> a = new ArrayList<>(12);
+                for(int i = 0; i < 12; i++)
+                    a.add(0.0);
+                a.set(index, preco);
+                this.prodPrecoMes1.put(p,a);
             }
-        
-            else 
-            {
-               List l = this.prodPrecoMes2.get(p); 
-               precoAtual = (double)l.get(index); 
+            else{
+               List a = this.prodPrecoMes1.get(p); 
+               precoAtual = (double)a.get(index); 
                precoAtualizado = precoAtual + preco;
-               l.add(index, precoAtualizado);
-               this.prodPrecoMes2.put(p,l);
-            } 
+               a.set(index, precoAtualizado);
+               this.prodPrecoMes1.put(p,a);
+            }
         }
         
         if(filial == 3)
         {
-           if(!this.prodPrecoMes3.containsKey(p))
+           if(!this.prodPrecoMes1.containsKey(p))
            {
-                List<Double> l = new ArrayList<Double>(12);
-                l.add(index, preco);
-                this.prodPrecoMes3.put(p,l);
+                List<Double> a = new ArrayList<>(12);
+                for(int i = 0; i < 12; i++)
+                    a.add(0.0);
+                a.set(index, preco);
+                this.prodPrecoMes1.put(p,a);
             }
-        
-            else 
-            {
-               List l = this.prodPrecoMes3.get(p); 
-               precoAtual = (double)l.get(index); 
+            else{
+               List a = this.prodPrecoMes1.get(p); 
+               precoAtual = (double)a.get(index); 
                precoAtualizado = precoAtual + preco;
-               l.add(index, precoAtualizado);
-               this.prodPrecoMes3.put(p,l);
-            } 
+               a.set(index, precoAtualizado);
+               this.prodPrecoMes1.put(p,a); 
+            }
         }
     }
     
@@ -311,19 +312,21 @@ public class Faturacao implements Serializable, IFaturacao
        int unidadesAtuais = 0;
        int unidadesAtualizadas = 0;
        if(!this.prodUnidadeMes.containsKey(p)) 
-       {
+       {   
+            //out.println("nao contém");
             List<Integer> l = new ArrayList<Integer>(12);
-            l.add(index,unidades);
+            for(int i = 0; i < 12; i++)
+                    l.add(0);
+            l.set(index,unidades);
             this.prodUnidadeMes.put(p,l);  
        }
-       else
-       {
-            List l = this.prodUnidadeMes.get(p); 
-            unidadesAtuais = (Integer)l.get(index); 
-            unidadesAtualizadas = unidadesAtuais + unidades;
-            l.add(index, unidadesAtualizadas);
-            this.prodUnidadeMes.put(p,l);
-       }
+       else{
+           List l = this.prodUnidadeMes.get(p); 
+           unidadesAtuais = (Integer)l.get(index); 
+           unidadesAtualizadas = unidadesAtuais + unidades;
+           l.set(index, unidadesAtualizadas);
+           this.prodUnidadeMes.replace(p,l);
+        }
     }
     
     /**

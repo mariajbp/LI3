@@ -7,6 +7,8 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
+import static java.lang.System.out;
+
 /**
 * Classe Filial que contém estruturas com dados de uma filial
 */
@@ -191,7 +193,7 @@ public class Filial implements Serializable, IFilial
                 this.pClientes.put(p, new TreeSet<>());
         TreeSet<Pair> s = new TreeSet<>(this.pClientes.get(p));
         Pair<Integer, Cliente> pair = new Pair(mes, c);
-        if(!s.contains(c))
+        if(!s.contains(pair))
             s.add(pair);  
         this.pClientes.put(p, s);
     }
@@ -203,13 +205,16 @@ public class Filial implements Serializable, IFilial
     * @param Mês
     **/
     public void updatePUnidades(Produto p, int uni, int mes){
-        if(!this.pUnidades.containsKey(p))
-                this.pUnidades.put(p, new ArrayList<>(12));
+        if(!this.pUnidades.containsKey(p)){
+            ArrayList<Integer> a = new ArrayList<>(12);
+            for(int i = 0; i < 12; i++)
+                a.add(0);
+            this.pUnidades.put(p, a);
+            }
         ArrayList<Integer> l = new ArrayList<>(this.pUnidades.get(p));
         int uniOld = 0;
-        
         uniOld = l.get(mes-1);
-        l.add(mes-1, uniOld + uni);
+        l.set(mes-1, uniOld + uni);
         this.pUnidades.put(p, l);
     }
     
@@ -224,7 +229,7 @@ public class Filial implements Serializable, IFilial
                 this.cProdutos.put(c, new TreeSet<>());
         TreeSet<Pair> s = new TreeSet<>(this.cProdutos.get(c));
         Pair<Integer, Produto> pair = new Pair(mes, p);
-        if(!s.contains(p))
+        if(!s.contains(pair))
             s.add(pair);  
         this.cProdutos.put(c, s);
     }
@@ -237,8 +242,12 @@ public class Filial implements Serializable, IFilial
     * @param Mês
     **/
     public void updateCUnidadesGasto(Cliente c, int uni, double gasto, int mes){
-        if(!this.cUnidadesGasto.containsKey(c))
-                this.cUnidadesGasto.put(c, new ArrayList<>(12));
+        if(!this.cUnidadesGasto.containsKey(c)){
+            ArrayList<Pair> a = new ArrayList<>(12);
+            for(int i = 0; i < 12; i++)
+                a.add(new Pair());
+            this.cUnidadesGasto.put(c, a);
+        }
         ArrayList<Pair> l = new ArrayList<>(this.cUnidadesGasto.get(c));
         Pair<Integer, Double> pair = l.get(mes-1);
         if(!pair.isEmpty()){
@@ -253,7 +262,7 @@ public class Filial implements Serializable, IFilial
             pair.setSnd(gasto);
         }
             
-        l.add(mes-1, pair);
+        l.set(mes-1, pair);
         this.cUnidadesGasto.put(c, l);  
     }
     
