@@ -1,10 +1,11 @@
 import java.io.Serializable;
 
 /**
-* 
+* Representação de um cliente
 **/
 public class Cliente implements Serializable, Comparable<Cliente>
 {
+    /** Código de um cliente **/
     private String codigo_cl;
 
     /** 

@@ -1,4 +1,4 @@
-import java.io.Serializable;
+ import java.io.Serializable;
 import java.util.Scanner;
 import java.util.List;
 import java.util.Arrays;
@@ -14,23 +14,44 @@ import java.awt.event.KeyEvent;
 public class GestVendasView implements Serializable, IGestVendasView
 {
    private Menu menu;
-    
-   public void setMenu(String[] s){
-       menu = new Menu(s);
-    }
    
-   public int printMenu(){
+   public void init()
+   {
+        out.println("   ######    ########  ######  ######## ##          ## ######## ##    ## ########     ###     ######  ");
+        out.println("  ##    ##   ##       ##    ##   ##      ##        ## ##        ###   ## ##     ##   ## ##   ##    ## ");
+        out.println(" ##         ##       ##          ##       ##       ## ##        ####  ## ##     ##  ##   ##  ##     ");  
+        out.println(" ##   ####  ######    ######     ##        ##     ## ######     ## ## ## ##     ## ##     ##  ###### "); 
+        out.println(" ##    ##   ##             ##    ##         ##   ##  ##         ##  #### ##     ## #########       ## ");
+        out.println("  ##    ##  ##       ##    ##    ##          ## ##   ##         ##   ### ##     ## ##     ## ##    ## ");
+        out.println("  ######   ########  ######      ##           ###    ########   ##    ## ########  ##     ##  ######  ");
+   }
+   
+   /**
+   * Método que define o menu
+   **/
+   public void setMenu(String[] s){menu = new Menu(s);}
+   
+   /**
+   * Método que imprime o menu
+   **/
+   public int printMenu()
+   {
        menu.exec();
        return menu.getOption();
-    }
+   }
    
+   /**
+   * Método que printa a escolha de ficheiros
+   **/
    public void outroFichOutputEscolha()
    {
      out.println("Indique o tipo de ficheiro que pretende ler: \n");
      out.println("1 - Clientes \n 2 - Produtos \n 3 - Vendas");  
    }
    
-   //Lista ordenada alfabeticamente com os códigos dos produtos nunca comprados e o seu respectivo total.
+   /**
+   * Método que printa a lista ordenada alfabeticamente com os códigos dos produtos nunca comprados e o seu respectivo total.
+   **/
    public void query1_Output(List<Produto> p, int i)
    {      
        for(Produto pr: p)
@@ -66,8 +87,12 @@ public class GestVendasView implements Serializable, IGestVendasView
        out.println("Insira o código do produto: \n");
    }
    
+
    public void query4_Output()
    {
+     String mat[][] = { {"******* ", "Número de compras por mes", "Número de clientes distintos por mes"}, 
+                        { "Jan", }, 
+                        { "Fev", } };  
    }
    
    //Dado o código de um cliente determinar a lista de códigos de produtos que mais comprou (e quantos), ordenada por ordem 

@@ -4,16 +4,16 @@ import java.util.List;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import static java.lang.System.out;
-/**
- * Escreva a descrição da classe Menu aqui.
- * 
- * @author (seu nome) 
- * @version (número de versão ou data)
- */
+
 public class Menu implements Serializable 
 { 
+   /** Lista de opções do menu **/
    private List<String> options;
-   private int op; 
+   
+   /** Opção escolhida **/
+   private int op;
+   
+   /** Menu escolhido **/
    private int chosenMenu;
   
    public Menu(String[] options)
@@ -23,7 +23,7 @@ public class Menu implements Serializable
    }
    
    /**
-   * Método para apresentar o menu e ler uma opção.
+   * Método para apresentar o menu e le uma opção.
    **/
    public void exec()
    {
@@ -69,7 +69,6 @@ public class Menu implements Serializable
      return op;
    }
    
-   //MUDAR PARA O CONTROL
    /**
    * Método que devolve a ultima opção lida
    * @returns    Ultima opção lida

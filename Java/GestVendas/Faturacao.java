@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 import static java.lang.System.out;
 /**
-* 
+* Classe Faturação que contém estruturas com dados de uma faturação
 **/
 public class Faturacao implements Serializable, IFaturacao   
 { 
@@ -339,7 +339,10 @@ public class Faturacao implements Serializable, IFaturacao
        updateProdUnidadeMes(v.getProduto(), v.getUnidades(), v.getMes());   
     } 
     
-     //return mapa com os produtos e o total de vendas anual
+    /**
+    * Método que determina o total de certo produto vendido anualmente
+    * @return Map que contém o total de certo produto vendido anualmente
+    **/
     public Map<Produto, Integer>  prodsVendidosAnual()
     {
         Map<Produto, Integer> map = new HashMap<>(); 
@@ -350,6 +353,5 @@ public class Faturacao implements Serializable, IFaturacao
             map.put(e.getKey(), sum);
         } 
         return map;
-       
     }
 }

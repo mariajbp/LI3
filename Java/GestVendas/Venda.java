@@ -5,16 +5,29 @@ import java.util.Iterator;
 import static java.lang.System.out;
 
 /**
-* 
+*  Representação de uma venda
 **/
 public class Venda implements Serializable
 {
+    /** Código do produto **/
     private Produto p;
+    
+    /** Cópdigo do cliente **/
     private Cliente cl;
+    
+    /** Preço da venda **/
     private double preco;
+    
+    /** Número de unidades **/
     private int unidades;
+    
+    /** Tipo: normal ou promoção **/
     private String np;
+    
+    /** Mês**/
     private int mes;
+    
+    /** Filial **/
     private int filial;
     
     /** 
@@ -142,4 +155,44 @@ public class Venda implements Serializable
     * @param A filial onde foi comprado o produto
     **/
     public void setFilial(int newf){this.filial = newf;}
-} 
+    
+    /** 
+    * Método que cria uma cópia de uma identificação de uma Venda
+    **/
+    public Venda clone()
+    {
+        return new Venda(this);
+    }
+    
+    /** 
+    * Método que testa se um objeto é igual a uma determinada identificação
+    * @param      Objeto a ser testado
+    * @returns     True se o objeto for igual à identificação, false se o objeto passado não for igual à identificação
+    **/
+    public boolean equals(Object o)
+    { 
+        if (o == this)return true;
+        if (this != null && this.getClass() != o.getClass()) return false;
+        Venda v = (Venda) o;        
+        return this.p.equals(v.getProduto()) && this.cl.equals(v.getCliente()) && this.preco == v.getPreco()
+               && this.unidades == v.getUnidades() && this.np.equals(v.getNP()) && this.mes == v.getMes()
+               && this.filial == v.getFilial();
+    } 
+   
+   
+    /**
+    * Método que converte uma identificação numa string
+    **/
+    public String toString()
+    {
+        StringBuilder sb = new StringBuilder();  
+        sb.append("Produto: " ).append(p);  
+        sb.append("Cliente: " ).append(cl); 
+        sb.append("Preço: " ).append(preco); 
+        sb.append("Unidades: " ).append(unidades); 
+        sb.append("Tipo: " ).append(np); 
+        sb.append("Mês: " ).append(mes); 
+        sb.append("Filial: " ).append(filial); 
+        return sb.toString();
+    }
+}

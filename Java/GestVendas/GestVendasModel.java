@@ -1,7 +1,7 @@
 import java.io.Serializable;
 import java.io.IOException;
 import java.io.*; 
-import java.util.TreeSet; //ou hash later
+import java.util.TreeSet; 
 import java.io.File;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -24,7 +24,8 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     private IFilial f3;
     private IFaturacao ftr;
     
-    public GestVendasModel(){
+    public GestVendasModel()
+    {
         this.cprod = new CatalogoProdutos();
         this.ccl = new CatalogoClientes();
         this.f1 = new Filial();
@@ -274,8 +275,8 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     
     /** 
     * Método que dado um mês válido, determina o número total de clientes distintos que fizeram compras;
-    * @param 
-    * @returns
+    * @param    Mês a calcular    
+    * @returns  Número total de clientes distintos que fizeram compras
     **/
     public int totalClientesDistintos(int mes)
     {
@@ -513,14 +514,13 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * @param       Código do produto a determinar, introduzido pelo utilizador
     * @returns
     **/
-    //
-    //
+
     
     
     /**** QUERY10 ****/
     /**
     * Método que determina mês a mês, e para cada mês filial a filial, a facturação total de cada produto.
-    * @returns
+    * @returns Mapa que contém mês a mês, e para cada mês filial a filial, a facturação total de cada produto
     **/
     public Map<Produto, List<Double>> ftrTotal(int filial)
     {

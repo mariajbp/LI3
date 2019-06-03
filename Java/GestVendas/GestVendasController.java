@@ -9,30 +9,30 @@ import java.util.List;
 **/
 public class GestVendasController  implements Serializable, IGestVendasController
 {
+   /** Instancia da interface model **/
    private IGestVendasModel model; 
+   
+    /** Instancia da interface view **/
    private IGestVendasView view; 
    
    /**
-    * Método que faz set de um model
-    * @param GestVendasModel
-    */
-   public void setModel(IGestVendasModel model){
-       this.model = model;
-    }
+   * Método que faz set de um model
+   * @param GestVendasModel
+   **/
+   public void setModel(IGestVendasModel model){this.model = model;}
    
    /**
-    * Método que faz set de uma view
-    * @param GestVendasView
-    */
-   public void setView(IGestVendasView view){
-        this.view = view;
-    }
+   * Método que faz set de uma view
+   * @param GestVendasView
+   **/
+   public void setView(IGestVendasView view){this.view = view;}
     
    /** 
    * Método que inicia o menu principal 
    **/
    public void mainMenu()
    {
+       view.init(); 
        String s[] = { "Carregar ficheiros default", "Carregar outro ficheiro", "Carregar ultima gravação"};
        int op = 0;
        do
@@ -52,11 +52,18 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
        while(op != 0);
    }
    
-   public void carregamentoDefault(){
+   /**
+   * Método que carrega o ficheiro de dados default da aplicação
+   **/
+   public void carregamentoDefault()
+   {
        model.carregamentoDefault();
        queryORestatisticasMenu();
-    }
-    
+   }
+   
+   /**
+   * Método que carrega outro ficheiro dado pelo utilizador
+   **/
    public void outroFicheiro()
    {
        view.outroFichOutputEscolha();
@@ -68,11 +75,15 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         } catch (IOException e) {e.printStackTrace();}
    }
    
-   public void loadStatus(){
+   /**
+   * Método que carrega o ficheiro de dados da ultima gravação
+   **/
+   public void loadStatus()
+   {
       try{
-          IGestVendasModel gvm = model.loadStatus("Gravacao");
-          setModel(gvm);
-          queryORestatisticasMenu();
+              IGestVendasModel gvm = model.loadStatus("Gravacao");
+              setModel(gvm);
+              queryORestatisticasMenu();
      } catch (IOException | ClassNotFoundException e) {e.printStackTrace();}
     }
     
@@ -100,10 +111,20 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
    }
    
    /** 
+   * Método que grava o estado atual do ficheiro
+   **/
+   public void saveStatus()
+   {
+       try{model.saveStatus("Gravacao");}
+       catch(IOException e){e.printStackTrace();};
+   }
+   
+   /** 
    * Método que inicia o menu de queries 
    **/
    public void queryMenu()
    {
+       
        String s[] = {"Query 1", "Query 2", "Query 3", "Query 4", "Query 5", "Query 6", "Query 7", "Query 8", "Query 9",
                      "Query 10"};
        int op = 0;
@@ -139,11 +160,11 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
    }
    
    /** 
-    * Método que inicia o menu de estatisticas interativas 
-    **/
-    public void estatisticasMenu()
-    {
-       String s[] = {};
+   * Método que inicia o menu de estatisticas interativas 
+   **/
+   public void estatisticasMenu()
+   {
+       String s[] = {"Ultimo ficheiro de vendas lido", "Número total de compras por mês", "Faturação total por mês", "Número distinto de clientes que fizeram compras em cada mês"};
        
        int op = 0;
        do
@@ -152,21 +173,20 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
            op = view.printMenu();
            switch(op)
            {
-               case 1: stat1();
+               case 1: ultimoFichLido();
                        break;
-               case 2: stat2();
+               case 2: stat1();
                        break;
-               case 3: stat3();
+               case 3: stat2();
+                       break;
+               case 4: stat3();
                        break;
            } 
        }
        while(op != 0);
-    }
-    
-   public void saveStatus(){
-    try{model.saveStatus("Gravacao");}
-    catch(IOException e){e.printStackTrace();};
-    }
+   }
+   
+   
     
    public void query1()
    {
@@ -175,18 +195,19 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
    }
    
    /** 
-    * Query 2:  Dado um mês válido, determinar o número total global de vendas realizadas e o número total de clientes distintos que as fizeram; 
-    * Fazer o mesmo mas para cada uma das filiais.
-    * 
-    * @param 
-    * @returns
-    **/
+   * Query 2:  Dado um mês válido, determinar o número total global de vendas realizadas e o número total de clientes distintos que as fizeram; 
+   * Fazer o mesmo mas para cada uma das filiais.
+   * 
+   * @param 
+   * @returns
+   **/
    public void query2()
    {
        view.query2_Input();
        Scanner input = new Scanner(System.in);
        int mes = input.nextInt();
-       //..
+       //model.totalVendasRealizadas(mes);
+      // model.totalClientesDistintos(mes);
        view.query2_Output();
    }
     
@@ -220,10 +241,10 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         view.query4_Input();
         Scanner input = new Scanner(System.in);
         String s = input.nextLine(); 
-        //fazer o cast para produto
-        //totalFaturado(p,1);
-        //totalFaturado(p,2);
-        //totalFaturado(p,3);
+        Produto p = new Produto(s);
+        //model.totalFaturado(p,1);
+        //model.totalFaturado(p,2);
+        //model.totalFaturado(p,3);
         view.query4_Output();
     } 
     
@@ -238,8 +259,9 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     {
         view.query5_Input();
         Scanner input = new Scanner(System.in);
-        String s = input.nextLine(); //fazer o cast para cliente
-        //..
+        String s = input.nextLine(); 
+        Cliente c = new Cliente(s);
+        //model....
         view.query5_Output();
     } 
     
@@ -318,6 +340,10 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         view.query10_Output();
     } 
     
+    public void ultimoFichLido()
+    {
+    }
+    
     public void stat1()
     {
     }
@@ -329,5 +355,6 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     public void stat3()
     {
     }
+    
     
 }

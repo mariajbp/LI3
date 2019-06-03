@@ -5,6 +5,7 @@ import java.io.Serializable;
 **/
 public class Produto implements Serializable, Comparable<Produto>
 {
+    /** Código do produto **/
     private String codigo_produto;
 
     /** 

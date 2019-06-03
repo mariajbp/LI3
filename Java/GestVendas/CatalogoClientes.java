@@ -10,10 +10,11 @@ import java.util.Iterator;
 import static java.lang.System.out;
 
 /**
-* 
+* Representação de um catalogo de clientes
 **/
 public class CatalogoClientes implements ICatClientes, Serializable
 {
+   /** Catalogo de clientes **/
    private Set<Cliente> catalogo; 
     
    /** 
@@ -100,17 +101,5 @@ public class CatalogoClientes implements ICatClientes, Serializable
    {  
        Cliente c = new Cliente(codigo);
        return catalogo.contains(c);
-   }
-   
-   
-   /**
-   public CatalogoClientes(String fileName) throws IOException  
-   {
-        this.cclient = new TreeSet<>();
-        readFile("../Dados/Clientes.txt");
-   }
-  
-   
-   **/
-      
+   }   
 }

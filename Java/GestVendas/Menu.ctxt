@@ -1,11 +1,10 @@
 #BlueJ class context
 comment0.target=Menu
-comment0.text=\r\n\ Escreva\ a\ descri\u00E7\u00E3o\ da\ classe\ Menu\ aqui.\r\n\ \r\n\ @author\ (seu\ nome)\ \r\n\ @version\ (n\u00FAmero\ de\ vers\u00E3o\ ou\ data)\r\n
 comment1.params=options
 comment1.target=Menu(java.lang.String[])
 comment2.params=
 comment2.target=void\ exec()
-comment2.text=\r\n\ M\u00E9todo\ para\ apresentar\ o\ menu\ e\ ler\ uma\ op\u00E7\u00E3o.\r\n
+comment2.text=\r\n\ M\u00E9todo\ para\ apresentar\ o\ menu\ e\ le\ uma\ op\u00E7\u00E3o.\r\n
 comment3.params=
 comment3.target=void\ showMenu()
 comment3.text=\r\n\ M\u00E9todo\ de\ apresenta\u00E7\u00E3o\ o\ menu\ \r\n
