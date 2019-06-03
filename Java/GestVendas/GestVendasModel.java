@@ -455,7 +455,14 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     {
         Faturacao f = new Faturacao();
         Map<Produto, List<Integer>> prodUnidadeMes = f.getProdUnidadeMes();
-
+        Map<Produto, Integer> map = new HashMap<>();
+        
+        for(Map.Entry<Produto, List<Double>> e : prodUnidadeMes.entrySet())
+        {
+            List<Integer> l = e.getValue();
+            Integer sum = l.stream().collect(Collectors.summingInt(Integer::intValue));
+        }
+        
 
     }
     
