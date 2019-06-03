@@ -13,17 +13,10 @@ import java.awt.event.KeyEvent;
 
 public class GestVendasView implements Serializable, IGestVendasView
 {
- 
-   
    public void outroFichOutputEscolha()
    {
      out.println("Indique o tipo de ficheiro que pretende ler: \n");
      out.println("1 - Clientes \n 2 - Produtos \n 3 - Vendas");  
-   }
-   
-   public void outroFichOutputNome()
-   {
-     out.println("Indique o nome do ficheiro a ler: \n");     
    }
    
    //Lista ordenada alfabeticamente com os códigos dos produtos nunca comprados e o seu respectivo total.

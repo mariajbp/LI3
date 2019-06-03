@@ -11,59 +11,53 @@ import java.util.*;
 /**
 * 
 **/
-public class GestVendasModel implements Serializable, IGestVendasModel
-{
+public class GestVendasModel implements Serializable, IGestVendasModel   
+{ 
     private ICatProdutos cprod;
     private ICatClientes ccl;
     private IFilial f1;
     private IFilial f2;
     private IFilial f3;
     private IFaturacao ftr;
+   
     
-    public void createData()  //compor
+    public void carregamentoDefault()
     {
-       Scanner input = new Scanner(System.in);
-       int op;
-       String filename;
-       op = input.nextInt();
-       filename = input.nextLine();
-       if(op == 1)
-       {
-          //clientes 
-       }
-       if(op == 2)
-       {
-           //produtos
-       }
-       if(op == 3)
-       {
-           //vendas
-       }
-       input.close();
+        try
+        { 
+            preencheCl("../Clientes.txt"); 
+            preencheProds("../Produtos.txt");
+            preencheVendas("../Vendas_1M.txt");
+        } catch (IOException e) {e.printStackTrace();}
     }
     
-    public void outroFicheiro() throws IOException //compor
+    public void outroFicheiro(int op) throws IOException 
     {
         String[] filename = new String[2];
-        int i = 0;
+        int i = 1;
         BufferedReader br = new BufferedReader(new FileReader("../config.txt"));
         try
         {
            String line = null;
-           while ((line = br.readLine()) != null && i < 3) 
+           while ((line = br.readLine()) != null && i < 4) 
            {
               line =  filename[i];
               i++;
-           } 
-           
+           }     
            preencheProds(filename[2]); 
            preencheCl(filename[1]);
            preencheVendas(filename[3]);
+           if(op == 1){preencheCl(filename[1]);}
+           if(op == 2){preencheProds(filename[2]);}
+           if(op == 3)
+           {
+              preencheProds(filename[2]); 
+              preencheCl(filename[1]);
+              preencheVendas(filename[3]);
+           }
         }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
     }
     
-  
-   
     /**
     * Método que preenche o catalogo de produtos
     * @param    Nome do ficheiro a carregar
