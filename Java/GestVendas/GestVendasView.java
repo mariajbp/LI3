@@ -14,27 +14,16 @@ import java.awt.event.KeyEvent;
 public class GestVendasView implements Serializable, IGestVendasView
 {
    private Menu menu;
-    //Passar o menu para aqui + criar construtor
     
    public void setMenu(String[] s){
        menu = new Menu(s);
     }
    
-   public int mainMenu(){
+   public int printMenu(){
        menu.exec();
        return menu.getOption();
     }
-    
-   public int queryORestatisticasMenu(){
-       menu.exec();
-       return menu.getOption();
-    }
-    
-   public int queryMenu(){
-       menu.exec();
-       return menu.getOption();
-    }
-    
+   
    public void outroFichOutputEscolha()
    {
      out.println("Indique o tipo de ficheiro que pretende ler: \n");
@@ -42,8 +31,11 @@ public class GestVendasView implements Serializable, IGestVendasView
    }
    
    //Lista ordenada alfabeticamente com os códigos dos produtos nunca comprados e o seu respectivo total.
-   public void query1_Output()
+   public void query1_Output(List<Produto> p, int i)
    {      
+       for(Produto pr: p)
+            out.println(pr.toString());
+       out.println(i);
    }
    
    //Dado um mês válido, determinar o número total global de vendas realizadas e o número total de clientes distintos que as fizeram; 

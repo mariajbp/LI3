@@ -48,9 +48,7 @@ public class CatalogoProdutos implements ICatProdutos, Serializable
    **/
    public Set<Produto> getCatalogo()
    {
-     Set<Produto> pp = new TreeSet<Produto>();
-     for(Produto p: this.catalogo){pp.add(p.clone());}
-     return pp;
+     return new TreeSet<Produto>(catalogo);
    }
    
    /**

@@ -14,4 +14,5 @@ public interface IGestVendasModel extends Serializable
     public void outroFicheiro(int op) throws IOException;
     public void saveStatus(String fileName) throws FileNotFoundException,IOException ;
     public Map<Produto, List<Double>> ftrTotal(int filial);
+    public List<Produto> prodsNuncaComprados();
 }

@@ -2,6 +2,7 @@ import java.io.Serializable;
 import java.util.Scanner;
 import java.io.IOException;
 import java.io.FileNotFoundException;
+import java.util.List;
 
 /**
 * 
@@ -32,12 +33,12 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
    **/
    public void mainMenu()
    {
-       String s[] = {"Carregar ficheiros default", "Carregar outro ficheiro", "Carregar ultima gravação"};
+       String s[] = { "Carregar ficheiros default", "Carregar outro ficheiro", "Carregar ultima gravação"};
        int op = 0;
        do
        {
            view.setMenu(s);
-           op = view.mainMenu();
+           op = view.printMenu();
            switch(op)
            {
                case 1: carregamentoDefault();
@@ -85,7 +86,7 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
        do
        {
            view.setMenu(s);
-           op = view.queryORestatisticasMenu();
+           op = view.printMenu();
            switch(op)
            {
                case 1: queryMenu();
@@ -108,7 +109,7 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
        int op = 0;
        do
        {   view.setMenu(s);
-           op = view.queryMenu();
+           op = view.printMenu();
            
            switch(op)
            {
@@ -143,12 +144,12 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     public void estatisticasMenu()
     {
        String s[] = {};
-       Menu m = new Menu(s);
+       
        int op = 0;
        do
        {
-           m.exec();
-           op = m.getOption();
+           view.setMenu(s);
+           op = view.printMenu();
            switch(op)
            {
                case 1: stat1();
@@ -166,10 +167,11 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     try{model.saveStatus("Gravacao");}
     catch(IOException e){e.printStackTrace();};
     }
+    
    public void query1()
    {
-       //model.prodsNuncaComprados(); faltam os args
-       view.query1_Output();
+       List<Produto> p = model.prodsNuncaComprados(); 
+       view.query1_Output(p, p.size());
    }
    
    /** 

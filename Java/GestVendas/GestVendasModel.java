@@ -9,6 +9,9 @@ import java.util.Iterator;
 import java.util.*;
 import java.util.stream.Collectors;
 
+
+import static java.lang.System.out;
+
 /**
 * 
 **/
@@ -158,9 +161,6 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     private void preencheVendas(String fileName) throws IOException 
     {
       int v = 0;
-      Map<Produto, ArrayList<Cliente>> p = new HashMap<Produto, ArrayList<Cliente>>();
-      Map<Cliente, ArrayList<Produto>> c = new HashMap<Cliente, ArrayList<Produto>>();
-      boolean prd, cl;
       BufferedReader br = new BufferedReader(new FileReader(fileName));
       try 
       {
@@ -180,8 +180,11 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                                     f3.addVenda(venda);
                         
                    ftr.addVenda(venda); 
-                   v++;
+                   out.println("validei");
+                   //v++;
                }
+               v++;
+               out.println("não validei" + v);
            }
       }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
     }
@@ -200,9 +203,9 @@ public class GestVendasModel implements Serializable, IGestVendasModel
        {
            if(Double.parseDouble(part[1]) > 0 && Double.parseDouble(part[1]) < 999)
            {
-               if(Integer.parseInt(part[2]) > 0 && Integer.parseInt(part[2]) > 200)
+               if(Integer.parseInt(part[2]) > 0 && Integer.parseInt(part[2]) < 200)
                {
-                   if(part[3] == "N" || part[3] == "P")
+                   if(part[3].equals("N") || part[3].equals("P"))
                    {
                        if(validaCliente(part[4]) && ccl.containsCliente(part[4]))
                        {
@@ -227,11 +230,11 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * @param      Catalogo de produtos
     * @returns    Instancia de uma faturação 
     **/  
-    public List<Produto> prodsNuncaComprados(CatalogoProdutos cp, Faturacao ft)
+    public List<Produto> prodsNuncaComprados()
     {
        List<Produto> lp = new ArrayList<>();
-       Set<Produto> prods = cp.getCatalogo();
-       Map<Produto, List<Integer>> map = ft.getProdUnidadeMes();
+       Set<Produto> prods = cprod.getCatalogo();
+       Map<Produto, List<Integer>> map = ftr.getProdUnidadeMes();
        Set<Produto> keys = map.keySet();
        
        Iterator<Produto> it = prods.iterator();
@@ -245,6 +248,9 @@ public class GestVendasModel implements Serializable, IGestVendasModel
        }  
        return lp;
     } 
+    
+
+   
     
     /**** QUERY2 ****/
     /** 
@@ -450,14 +456,14 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * distintos clientes que o compraram.
     * @param     Número de produtos a determinar, introduzido pelo utilizador
     * @returns
-    **/
+    **//*
     public List<Produto> prodsMaisComprados(int x)
     {
         Faturacao f = new Faturacao();
         Map<Produto, List<Integer>> prodUnidadeMes = f.getProdUnidadeMes();
         Map<Produto, Integer> map = new HashMap<>();
         
-        for(Map.Entry<Produto, List<Double>> e : prodUnidadeMes.entrySet())
+        for(Map.Entry<Produto, List<Integer>> e : prodUnidadeMes.entrySet())
         {
             List<Integer> l = e.getValue();
             Integer sum = l.stream().collect(Collectors.summingInt(Integer::intValue));
@@ -465,7 +471,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         
 
     }
-    
+    */
     
     /**** QUERY7 ****/
     /**

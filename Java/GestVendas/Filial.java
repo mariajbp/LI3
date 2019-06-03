@@ -206,7 +206,9 @@ public class Filial implements Serializable, IFilial
         if(!this.pUnidades.containsKey(p))
                 this.pUnidades.put(p, new ArrayList<>(12));
         ArrayList<Integer> l = new ArrayList<>(this.pUnidades.get(p));
-        int uniOld = l.get(mes-1);
+        int uniOld = 0;
+        
+        uniOld = l.get(mes-1);
         l.add(mes-1, uniOld + uni);
         this.pUnidades.put(p, l);
     }

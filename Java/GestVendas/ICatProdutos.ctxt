@@ -5,4 +5,6 @@ comment1.params=p
 comment1.target=void\ addProduto(Produto)
 comment2.params=codigo
 comment2.target=boolean\ containsProduto(java.lang.String)
-numComments=3
+comment3.params=
+comment3.target=java.util.Set\ getCatalogo()
+numComments=4

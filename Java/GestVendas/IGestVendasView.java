@@ -1,16 +1,14 @@
 import java.io.Serializable;
-
+import java.util.List;
 /**
 * 
 **/
 public interface IGestVendasView extends Serializable
 {
      public void setMenu(String[] s);
-     public int mainMenu();
-     public int queryORestatisticasMenu();
-     public int queryMenu();
+     public int printMenu();
      public void outroFichOutputEscolha();
-     public void query1_Output();
+     public void query1_Output(List<Produto> s, int i);
      public void query2_Input();
      public void query2_Output();
      public void query3_Input();
