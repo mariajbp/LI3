@@ -451,28 +451,30 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * @param     Número de produtos a determinar, introduzido pelo utilizador
     * @returns
     **/
-    public List<Produto> prodsMaisComprados(int x)
+    public int maisVendidos(int filial)
     {
-        Faturacao f = new Faturacao();
-        Map<Produto, List<Integer>> prodUnidadeMes = f.getProdUnidadeMes();
-        Map<Produto, Integer> map = new HashMap<>();
         
-        for(Map.Entry<Produto, List<Double>> e : prodUnidadeMes.entrySet())
-        {
-            List<Integer> l = e.getValue();
-            Integer sum = l.stream().collect(Collectors.summingInt(Integer::intValue));
-        }
-        
-
     }
+    
     
     
     /**** QUERY7 ****/
     /**
     * Método que determina, para cada filial, a lista dos três maiores compradores em termos de dinheiro facturado.
     * @returns
-    **/
-    //public ? maioresCompradores(){}
+    
+    public List<Cliente> maioresCompradores(int filial)
+    {
+        if(filial == 1)
+        {
+            
+        }
+    } **/
+    //devolve a lista de cada cliente e o total gasto
+    public Map<Cliente,Integer> totalFTRcl()
+    {
+         
+    }
     
     
     

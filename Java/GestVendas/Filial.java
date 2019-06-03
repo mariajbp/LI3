@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.TreeSet;
-
+import java.util.stream.Collectors;
 
 /**
 * Classe Filial que contém estruturas com dados de uma filial
@@ -286,4 +286,20 @@ public class Filial implements Serializable, IFilial
         updateCUnidadesGasto(v.getCliente(), v.getUnidades(), v.getUnidades()*v.getPreco(), v.getMes()); 
         updateClProds(v.getCliente(), v.getProduto(), v.getUnidades());  
     }   
+    
+    //map cliente -> o que gastou num ano
+    public Map<Produto, Integer>  prodsVendidosAnual()
+    {
+        int total = 0;
+        Map<Produto, Integer> map = new HashMap<>(); 
+
+        for(Map.Entry<Cliente, List<Pair>> e : this.cUnidadesGasto.entrySet())
+        {
+
+        } 
+        return map;
+       
+    }
+    
+    
 }
