@@ -1,4 +1,3 @@
-
 import java.util.TreeSet; //ou hash later
 import java.io.Serializable;
 import java.io.*; 
@@ -11,11 +10,12 @@ import java.util.Iterator;
 import java.util.*;
 
 /**
-* 
+* Representação de um catalogo de produtos
 **/
 
 public class CatalogoProdutos implements ICatProdutos, Serializable 
 {
+   /** Catalogo de produtos **/
    private Set<Produto> catalogo; 
    
    /** 

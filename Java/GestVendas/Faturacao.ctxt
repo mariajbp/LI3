@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Faturacao
-comment0.text=\n\ \n
+comment0.text=\n\ Classe\ Fatura\u00E7\u00E3o\ que\ cont\u00E9m\ estruturas\ com\ dados\ de\ uma\ fatura\u00E7\u00E3o\n
 comment1.params=
 comment1.target=Faturacao()
 comment1.text=\ \n\ Construtor\ vazio\ que\ cria\ uma\ inst\u00E2ncia\ Faturacao\n
@@ -42,6 +42,7 @@ comment20.target=void\ addVenda(Venda)
 comment20.text=\n\ M\u00E9todo\ que\ divide\ as\ carateristicas\ de\ uma\ venda\ pelos\ Maps\ da\ classe\n\ @param\ Venda\ a\ adicionar\n
 comment21.params=
 comment21.target=java.util.Map\ prodsVendidosAnual()
+comment21.text=\n\ M\u00E9todo\ que\ determina\ o\ total\ de\ certo\ produto\ vendido\ anualmente\n\ @return\ Map\ que\ cont\u00E9m\ o\ total\ de\ certo\ produto\ vendido\ anualmente\n
 comment3.params=f
 comment3.target=Faturacao(Faturacao)
 comment3.text=\ \n\ Construtor\ que\ cria\ uma\ nova\ inst\u00E2ncia\ Faturacao\ a\ partir\ de\ uma\ Faturacao\ passado\ como\ par\u00E2metro\ \n

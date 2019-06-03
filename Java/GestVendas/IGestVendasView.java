@@ -6,6 +6,7 @@ import java.util.List;
 public interface IGestVendasView extends Serializable
 {
      public void setMenu(String[] s);
+     public void init();
      public int printMenu();
      public void outroFichOutputEscolha();
      public void query1_Output(List<Produto> s, int i);
