@@ -159,8 +159,11 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     {
         view.query4_Input();
         Scanner input = new Scanner(System.in);
-        String s = input.nextLine(); //fazer o cast para produto
-        //..
+        String s = input.nextLine(); 
+        //fazer o cast para produto
+        //totalFaturado(p,1);
+        //totalFaturado(p,2);
+        //totalFaturado(p,3);
         view.query4_Output();
     } 
     
@@ -249,7 +252,9 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     **/
     public void query10()
     {
-        //..
+        model.ftrToral(1);
+        model.ftrToral(2);
+        model.ftrToral(3);
         view.query10_Output();
     } 
     
