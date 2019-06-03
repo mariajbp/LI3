@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.util.Iterator;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
 * 
@@ -268,7 +269,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     }
     
     /** 
-    * Método que dado um mês válido, determina o número total de clientes distintos que as fizeram;
+    * Método que dado um mês válido, determina o número total de clientes distintos que fizeram compras;
     * @param 
     * @returns
     **/
@@ -281,10 +282,13 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         
         for (Map.Entry<Produto, Set<Pair>> e : set.entrySet())
         {
-            //Iterator<Pair> it = e.iterator();  
-          
+            Iterator<Pair> it = e.getValue().iterator();  
+            Pair<Integer,Cliente> p = it.next();
+            if(p.getFst() == mes)
+            {
+                total ++;
+            }
         }
-        
         return total;
     }
     
@@ -293,21 +297,43 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * Método que dado um código de cliente determina, para cada mês, quantas compras fez.
     * @param     Cliente introduzido pelo utilizador
     * @returns
-    **/
-    //public List<Integer> totalComprasCliente(Cliente c){}
+    
+    public List<Integer> totalComprasCliente(Cliente c)
+    {
+        int total = 0;
+        Filial f = new Filial();
+        List<Interger> l = new ArrayList<>();
+        
+        Map<Cliente, List<Pair>> map = ; 
+    } **/
     
     /** 
-    * Método que dado um código de cliente determina, para cada mês, quantos produtos distintos comprou e quanto gastou no total.
+    * Método que dado um código de cliente determina, para cada mês, quantos produtos distintos comprou.
     * @param      Cliente introduzido pelo utilizador
     * @returns
     **/
-    //public ? totalComprasCliente(Cliente c){}
-    /** 
-    * Método que dado um código de cliente determina, para cada mês,quanto gastou no total.
-    * @param      Cliente introduzido pelo utilizador
-    * @returns
-    **/
-    //public ? totalGasto(Cliente c){}
+    public List<Pair> totalComprasCliente(Cliente c)
+    {
+        Pair<Integer,Double> p;
+        Filial f = new Filial();
+        List<Pair> l = new ArrayList<>();
+        Map<Cliente, List<Pair>> unidadesGasto = f.getCUnidadesGasto(); 
+        
+        for (Map.Entry<Cliente, List<Pair>> e : unidadesGasto.entrySet())
+        {
+            if(e.getKey() == c)
+            {
+                Iterator<Pair> it = e.getValue().iterator();  
+                p = it.next();
+                {
+                    p.setFst(p.getFst());
+                    p.setSnd(p.getSnd());
+                }
+            }
+        }
+        return l;
+    }
+    
     
     
     /**** QUERY4 ****/
@@ -316,19 +342,97 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * @param       Produto introduzido pelo utilizador
     * @returns
     **/ 
-    //public List<Integer> comprasPorMes(Produto p){};
+    public List<Integer> comprasPorMes(Produto p)
+    {
+        Filial f = new Filial();
+        List<Integer> l = new ArrayList<>();
+        Map<Produto, List<Integer>> compras = f.getPUnidades(); 
+        
+        for (Map.Entry<Produto, List<Integer>> e : compras.entrySet())
+        {
+            if(e.getKey() == p)
+            {
+                l = e.getValue();
+            }
+        }
+        
+        return l;
+    }
+    
     /**
     * Dado o código de um produto existente, determina, mês a mês, por quantos clientes diferentes foi comprado
     * @param       Produto introduzido pelo utilizador
     * @returns
     **/     
-    //public List<List<Cliente>> clientesDistintosPorMes(Produto p){};
+    public List<Integer> clientesDistintosPorMes(Produto p)
+    {
+        int i = 0;
+        int total = 0;
+        Filial f = new Filial();
+        List<Integer> l = new ArrayList();
+        Map<Produto, Set<Pair>> set = f.getPClientes();
+        
+        for (Map.Entry<Produto, Set<Pair>> e : set.entrySet())
+        {
+            if(e.getKey() == p)
+            {
+                Iterator<Pair> it = e.getValue().iterator();  
+                Pair<Integer,Cliente> pair = it.next();
+                //pair.getFst() = i;
+                l.add(i,total++);
+            }
+        }
+        
+        return l;
+    }
+    
     /**
     * Método que dado o código de um produto existente, determina, mês a mês, o total facturado.
     * @param      Produto introduzido pelo utilizador
     * @returns
     **/ 
-    //public ? totalFaturado(Produto p){} 
+    public List<Double> totalFaturado(Produto p, int filial)
+    {
+       Faturacao f = new Faturacao();
+       List<Double> l = new ArrayList<>();
+       
+       if(filial == 1)
+       {
+           Map<Produto, List<Double>> prodPrecoMes1 = f.getProdPrecoMes1();
+           for(Map.Entry<Produto, List<Double>> e : prodPrecoMes1.entrySet())
+           {
+               if(e.getKey() == p)
+               {
+                   l = e.getValue();
+               }
+           }
+       }
+       
+       if(filial == 2)
+       {
+           Map<Produto, List<Double>> prodPrecoMes2 = f.getProdPrecoMes1();
+           for(Map.Entry<Produto, List<Double>> e : prodPrecoMes2.entrySet())
+           {
+               if(e.getKey() == p)
+               {
+                   l = e.getValue();
+               }
+           }
+       }
+       
+       if(filial == 3)
+       {
+           Map<Produto, List<Double>> prodPrecoMes3 = f.getProdPrecoMes1();
+           for(Map.Entry<Produto, List<Double>> e : prodPrecoMes3.entrySet())
+           {
+               if(e.getKey() == p)
+               {
+                   l = e.getValue();
+               }
+           }
+       }
+       return l;
+    } 
     
     
     /**** QUERY5 ****/
@@ -347,7 +451,13 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * @param     Número de produtos a determinar, introduzido pelo utilizador
     * @returns
     **/
-    //public ? prodsMaisComprados(int x){}
+    public List<Produto> prodsMaisComprados(int x)
+    {
+        Faturacao f = new Faturacao();
+        Map<Produto, List<Integer>> prodUnidadeMes = f.getProdUnidadeMes();
+
+
+    }
     
     
     /**** QUERY7 ****/
@@ -382,9 +492,20 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     
     /**** QUERY10 ****/
     /**
-    * Método que determina mês a mês, e para cada mês filial a filial, a facturação total com cada produto.
+    * Método que determina mês a mês, e para cada mês filial a filial, a facturação total de cada produto.
     * @returns
     **/
+    public Map<Produto, List<Double>> ftrTotal(int filial)
+    {
+        Faturacao f = new Faturacao();
+        Map<Produto, List<Double>> map = new HashMap<>();
+        
+        if(filial == 1){map = f.getProdPrecoMes1();}
+        if(filial == 2){map = f.getProdPrecoMes2();}  
+        if(filial == 3){map = f.getProdPrecoMes3();}
+        
+        return map;
+    }
     
     
    
