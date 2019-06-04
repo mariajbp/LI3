@@ -24,7 +24,12 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     private IFilial f3;
     private IFaturacao ftr;
 
+    private Crono crono;
+
     
+    /** 
+    * Construtor vazio que cria uma instância GestVendasModel
+    **/
     public GestVendasModel()
     {
         this.cprod = new CatalogoProdutos();
@@ -35,6 +40,9 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         this.ftr = new Faturacao();
     }
     
+    /** 
+    * Método que
+    **/
     public void carregamentoDefault()
     {
         try
@@ -45,6 +53,9 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         } catch (IOException e) {e.printStackTrace();}
     }
     
+    /** 
+    * Método que
+    **/
     public void outroFicheiro(int op) throws IOException
     {
         String[] filename = new String[3];
@@ -232,6 +243,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     **/  
     public List<Produto> prodsNuncaComprados()
     {
+       crono.start();
        List<Produto> lp = new ArrayList<>();
        Set<Produto> prods = cprod.getCatalogo();
        Map<Produto, List<Integer>> map = ftr.getProdUnidadeMes();
@@ -247,8 +259,11 @@ public class GestVendasModel implements Serializable, IGestVendasModel
           {
               lp.add(p);
           }
-       }  
+       } 
+       double res = crono.stop(); 
+       out.println(res);
        out.println(lp.size() + " LP");
+       
        return lp;
     } 
     
