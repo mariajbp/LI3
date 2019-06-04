@@ -188,6 +188,37 @@ public class Faturacao implements Serializable, IFaturacao
        return sb.toString();
     }
     
+    public int getUnidadesMes(Produto p, int mes)
+    {
+        return this.prodUnidadeMes.get(p).get(mes-1);
+    }
+    
+    public double getProdPrecoMesAll(Produto p, int mes)
+    {
+        double preco = 0.0;
+        List<Double> prods = new ArrayList<>();
+        if(prodPrecoMes1.containsKey(p))
+        {  
+          prods = prodPrecoMes1.get(p);
+          preco += (Double) prods.get(mes -1);
+        }
+        if(prodPrecoMes2.containsKey(p))
+        {  
+          prods = prodPrecoMes1.get(p);
+          preco += (Double) prods.get(mes -1);
+        }
+        if(prodPrecoMes3.containsKey(p))
+        {  
+          prods = prodPrecoMes1.get(p);
+          preco += (Double) prods.get(mes -1);
+        }
+        else
+        {
+            return -1;
+        }
+        return preco;
+    }
+    
     /**
     * Método que calcula a faturação anual de determinado produto
     * @param   Produto a calcular

@@ -366,23 +366,30 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * @param       Produto introduzido pelo utilizador
     * @returns
     **/ 
-    /*
-    public List<Integer> comprasPorMes(Produto p)
+    
+    public Pair<Integer, Integer> comprasPorMes(Produto p, int mes)
     {
-        Filial f = new Filial();
-        List<Integer> l = new ArrayList<>();
-        Map<Produto, List<Integer>> compras = f.getPUnidades(); 
+        Pair<Integer, Integer> pair = new Pair<>();
+        int quantos = ftr.getUnidadesMes(p, mes);
         
-        for (Map.Entry<Produto, List<Integer>> e : compras.entrySet())
-        {
-            if(e.getKey() == p)
-            {
-                l = e.getValue();
-            }
-        }
+        Set<Cliente> cl = new TreeSet<>();
+       
         
-        return l;
-    }*/
+        f1.getClientesDistintos(cl);
+        f2.getClientesDistintos(cl);
+        f3.getClientesDistintos(cl);
+        
+        int clientes = cl.size();
+        
+        pair.setFst(quantos);
+        pair.setSnd(clientes);
+        return pair;
+    }
+    
+    public Double faturadoPorMes(Produto p, int mes)
+    {
+        return ftr.getProdPrecoMesAll(p, mes);
+    }
     
     /**
     * Dado o código de um produto existente, determina, mês a mês, por quantos clientes diferentes foi comprado

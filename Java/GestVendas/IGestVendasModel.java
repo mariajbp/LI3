@@ -13,6 +13,8 @@ public interface IGestVendasModel extends Serializable
     public GestVendasModel loadStatus(String filename) throws FileNotFoundException, IOException, ClassNotFoundException ;
     public void outroFicheiro(int op) throws IOException;
     public void saveStatus(String fileName) throws FileNotFoundException,IOException ;
+    public Pair<Integer, Integer> comprasPorMes(Produto p, int mes);
+    public Double faturadoPorMes(Produto p, int mes);
     public Map<Produto, List<Double>> ftrTotal(int filial);
     public List<Produto> prodsNuncaComprados();
 }

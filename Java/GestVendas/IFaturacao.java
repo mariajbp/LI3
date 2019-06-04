@@ -57,6 +57,10 @@ public interface IFaturacao extends Serializable
    **/ 
    public void setProdUnidadeMes(Map<Produto, List<Integer>> prd);
    
+   public int getUnidadesMes(Produto p, int mes);
+   
+   public double getProdPrecoMesAll(Produto p, int mes);
+    
    /**
    * Método que calcula a faturação anual de determinado produto
    **/

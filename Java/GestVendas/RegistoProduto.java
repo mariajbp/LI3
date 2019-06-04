@@ -92,5 +92,9 @@ public class RegistoProduto implements Serializable
             }
         }
     }
-
+    
+   public  int ClientesDistintos()
+   {
+       return this.registo.size();
+    }
 }

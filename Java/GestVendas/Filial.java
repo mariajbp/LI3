@@ -3,6 +3,9 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.Iterator;
 
 /**
 * Classe Filial que contém estruturas com dados de uma filial
@@ -102,6 +105,26 @@ public class Filial implements Serializable, IFilial
     public String toString()
     {
         return " ";
+    }
+    
+    public void getClientesDistintos(Set<Cliente> s)
+    {
+        Set<Cliente> tmp = regCl.keySet();
+        Cliente c = new Cliente();
+        Iterator it = tmp.iterator();
+        while(it.hasNext())
+        {
+            c = (Cliente) it.next();
+            s.add(c);
+        }
+    }
+    
+    public int getClientesDistintos(Produto p, int mes)
+    {
+        if(this.regProd.containsKey(p))
+            return this.regProd.get(p).get(mes-1).ClientesDistintos();
+        else
+            return -1;
     }
     
     public void updateRegProd(Produto p, Cliente c, int uni, int mes)

@@ -110,6 +110,7 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
                case 2: estatisticasMenu();
                        break;
                case 3: saveStatus();
+                       break;
            } 
        }
        while(op != 0);
@@ -252,8 +253,16 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         Scanner input = new Scanner(System.in);
         String s = input.nextLine(); 
         Produto p = new Produto(s);
+        Pair<Integer, Integer> pair = new Pair<>();
+        view.query4_Output();
         crono.start();
-        //....
+        for(int i = 1; i <= 12; i++) 
+        {
+            pair = model.comprasPorMes(p, i);
+            double t = model.faturadoPorMes(p, i);
+            view.query4_Output(i, pair, t);
+        }
+        
         view.query4_Output();
         crono.stop(); 
         crono.print();
