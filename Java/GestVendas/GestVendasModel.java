@@ -282,18 +282,63 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * @param     Mês a calcular
     * @returns   Número total global de vendas realizadas
     **/
-    public int totalVendasRealizadas(int mes, int filial)
+    public Pair<Set<Cliente>,  totalVendasRealizadas(int mes, int filial)
     {
         int total = 0;
         int index = mes-1;
         
-        //Map<Cliente,ArrayList<RegistoCliente>> regCl = f.getRegCl();
+        if(filial == 1)
+        {
+            Map<Cliente,ArrayList<RegistoCliente>> regCl = f1.getRegCl();
+            
+            for(Map.Entry<Cliente,ArrayList<RegistoCliente>> e : this.regCl)
+            {
+                List l = regCl.getValue();
+                RegistoCliente rc = l.get(index);
+                total += rc.getVezes();
+                if (rc.getVezes() > 0)
+                {
+                    Set<Cliente> set = e.getKey(); 
+                }
+            }
+        }
+        
+        if(filial == 2)
+        {
+            Map<Cliente,ArrayList<RegistoCliente>> regCl = f2.getRegCl();
+            
+            for(Map.Entry<Cliente,ArrayList<RegistoCliente>> e : this.regCl)
+            {
+                List l = regCl.getValue();
+                RegistoCliente rc = l.get(index);
+                total += rc.getVezes();
+                if (rc.getVezes() > 0)
+                {
+                    Set<Cliente> set = e.getKey(); 
+                }
+            }
+        }
  
+        if(filial == 3)
+        {
+            Map<Cliente,ArrayList<RegistoCliente>> regCl = f3.getRegCl();
+            
+            for(Map.Entry<Cliente,ArrayList<RegistoCliente>> e : this.regCl)
+            {
+                List l = regCl.getValue();
+                RegistoCliente rc = l.get(index);
+                total += rc.getVezes();
+                if (rc.getVezes() > 0)
+                {
+                    Set<Cliente> set = e.getKey(); 
+                }
+            }
+        }
         
-        
-        
+        Pair<Set<Cliente> p = new Pair(set, total);
         return total;
-    }
+     }
+    
     
     /** 
     * Método que dado um mês válido, determina o número total de clientes distintos que fizeram compras
