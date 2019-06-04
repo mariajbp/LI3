@@ -1,5 +1,6 @@
 import java.io.Serializable;
-import java.util.TreeSet; 
+import java.util.TreeSet;
+import java.util.Iterator; 
 
 /**
 * Classe RegistoCliente que contém estruturas com dados de 
@@ -11,7 +12,7 @@ public class RegistoCliente implements Serializable
     private int vezes;
     
     /** Par de produtos e dinheiro gasto no mesmo, por mês **/
-    private TreeSet<Pair<Produto, Integer>> prod;
+    private TreeSet<Pair<Produto, Double>> prod;
     
     /** Número de unidades compradas, nesse mês **/
     int unidades;
@@ -30,7 +31,7 @@ public class RegistoCliente implements Serializable
         this.totalGasto = 0.0;
     }
     
-    public RegistoCliente(int vezes, TreeSet<Pair<Produto,Integer>> prod, int unidades, double total)
+    public RegistoCliente(int vezes, TreeSet<Pair<Produto,Double>> prod, int unidades, double total)
     {
         this.vezes = vezes;
         this.prod = prod;
@@ -56,7 +57,7 @@ public class RegistoCliente implements Serializable
     * Método que devolve 
     * @return 
     **/
-    public TreeSet<Pair<Produto,Integer>> getProd() {return new TreeSet<>(this.prod);}
+    public TreeSet<Pair<Produto,Double>> getProd() {return new TreeSet<>(this.prod);}
     
     /**
     * Método que devolve 
@@ -80,7 +81,7 @@ public class RegistoCliente implements Serializable
     * Método que defgine
     * @return 
     **/
-    public TreeSet<Pair<Produto,Integer>> setProd(){return new TreeSet<>(this.prod);}
+    public void setProd(TreeSet<Pair<Produto,Double>> t){this.prod = t;}
     
     /**
     * Método que defgine
@@ -92,7 +93,7 @@ public class RegistoCliente implements Serializable
     * Método que defgine
     * @return 
     **/
-    public void setTotal(int t){this.totalGasto = t;}
+    public void setTotal(double t){this.totalGasto = t;}
     
     /** 
     * Método que cria uma cópia de uma identificação de um RegistoCliente
@@ -148,10 +149,35 @@ public class RegistoCliente implements Serializable
     * Método que 
     * @param
     **/
-    public void updateTotalgASTO(int TG)
+    public void updateTotalGasto(double TG)
     {
         this.totalGasto += TG;
     }
     
-    
+    /** 
+    * Método que dado um par Produto/Gasto compradas verifica se o Produto já existe e faz o seu Registo atualizando o valor total gasto nesse produto.
+    * @param Par<Cliente, Integer>
+    **/
+   public void addProduto(Pair<Produto, Integer> p)
+   {
+       Produto prd = p.getFst();
+       double g = p.getSnd();
+       
+       Pair<Produto, Double> pair = new Pair<>();
+       Iterator it = this.prod.iterator();
+       while(it.hasNext()){
+           pair = (Pair) it.next();
+           if(pair.getFst().equals(prd)){
+               Pair<Produto, Double> newPair = new Pair<Produto, Double>();
+               double gOld = (double) pair.getSnd();
+
+               this.prod.remove(pair);
+               newPair.setFst(prd);
+               newPair.setSnd(g + gOld);
+               
+               this.prod.add(newPair);
+               break;
+            }
+        }
+    }
 }
