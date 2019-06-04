@@ -286,7 +286,6 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     {
         int total = 0;
         int index = mes-1;
-        Faturacao f = new Faturacao();
         
         //Map<Cliente,ArrayList<RegistoCliente>> regCl = f.getRegCl();
  
