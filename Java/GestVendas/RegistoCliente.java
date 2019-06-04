@@ -11,8 +11,8 @@ public class RegistoCliente implements Serializable
     /** Número de compras efetuadas, por mês **/
     private int vezes;
     
-    /** Par de produtos e dinheiro gasto no mesmo, por mês **/
-    private TreeSet<Pair<Produto, Double>> prod;
+    /** Par de produtos com informação de unidades compradas e dinheiro gasto no mesmo, por mês **/
+    private TreeSet<Pair<Produto, Pair<Integer,Double>>> prod;
     
     /** Número de unidades compradas, nesse mês **/
     int unidades;
@@ -34,7 +34,7 @@ public class RegistoCliente implements Serializable
     /** 
     * Construtor que cria um novo RegistoCliente a partir dos parâmetros dados 
     **/
-    public RegistoCliente(int vezes, TreeSet<Pair<Produto,Double>> prod, int unidades, double total)
+    public RegistoCliente(int vezes, TreeSet<Pair<Produto, Pair<Integer,Double>>> prod, int unidades, double total)
     {
         this.vezes = vezes;
         this.prod = prod;
@@ -63,7 +63,7 @@ public class RegistoCliente implements Serializable
     * Método que devolve pares de produtos e dinheiro gasto no mesmo, por mês
     * @return   Pares de produtos e dinheiro gasto no mesmo, por mês
     **/
-    public TreeSet<Pair<Produto,Double>> getProd() {return new TreeSet<>(this.prod);}
+    public TreeSet<Pair<Produto, Pair<Integer,Double>>> getProd() {return new TreeSet<>(this.prod);}
     
     /**
     * Método que devolve o número de unidades compradas, nesse mês
@@ -87,7 +87,7 @@ public class RegistoCliente implements Serializable
     * Método que define pares de produtos e dinheiro gasto no mesmo, por mês
     * @param Pares de produtos e dinheiro gasto no mesmo, por mês
     **/
-    public void setProd(TreeSet<Pair<Produto,Double>> t){this.prod = t;}
+    public void setProd(TreeSet<Pair<Produto, Pair<Integer,Double>> > t){this.prod = t;}
     
     /**
     * Método que define o número de unidades compradas, nesse mês
@@ -132,7 +132,12 @@ public class RegistoCliente implements Serializable
        sb.append("Produtos:").append(prod).append("\n");
        return sb.toString();
     }
-    
+    /*
+    public int getUnidades(Produto p)
+    {
+        
+    }
+    */
     /**
     * Método que atualiza o número de compras efetuadas por mês
     * @param   Novo número de compras efetuadas
@@ -164,19 +169,24 @@ public class RegistoCliente implements Serializable
     * Método que dado um par Produto/Gasto compradas verifica se o Produto já existe e faz o seu Registo atualizando o valor total gasto nesse produto.
     * @param Par<Cliente, Integer>
     **/
-   public void updateRegCliente(Produto prd, double g)
+   public void updateRegCliente(Produto prd, double g, int uni)
    {
-       Pair<Produto, Double> pair = new Pair<>();
+       Pair<Produto,  Pair<Integer,Double>> pair = new Pair<>();
        Iterator it = this.prod.iterator();
        while(it.hasNext()){
            pair = (Pair) it.next();
            if(pair.getFst().equals(prd)){
-               Pair<Produto, Double> newPair = new Pair<Produto, Double>();
-               double gOld = (double) pair.getSnd();
-
+               Pair<Produto,  Pair<Integer,Double>> newPair = new Pair<>();
+               int uniOld = (int) pair.getSnd().getFst();
+               double gOld = (double) pair.getSnd().getSnd();
+               
+               Pair<Integer,Double> newPair2 = new Pair<>();
+               newPair2.setFst(uni + uniOld);
+               newPair2.setSnd(g + gOld);
+               
                this.prod.remove(pair);
                newPair.setFst(prd);
-               newPair.setSnd(g + gOld);
+               newPair.setSnd(newPair2);
                
                this.prod.add(newPair);
                break;

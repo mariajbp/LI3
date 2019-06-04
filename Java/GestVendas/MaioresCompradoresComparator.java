@@ -4,6 +4,7 @@ import java.io.Serializable;
 /**
 * Classe MaisCompradosComparator que impõem uma ordem ao número de vezes que os clientes efetuaram compras
 **/
+/*
 public class MaioresCompradoresComparator implements Comparator<RegistoClientes>, Serilizable
 {
     public int compare(RegistoClientes r1, RegistoClientes r2)
@@ -15,4 +16,4 @@ public class MaioresCompradoresComparator implements Comparator<RegistoClientes>
        return 1;
     }
 } 
-}
+*/
