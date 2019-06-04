@@ -191,7 +191,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                              else
                                  f3.addVenda(venda);
                         
-                   //ftr.addVenda(venda); 
+                   ftr.addVenda(venda); 
                    v++;
                }
            }
@@ -275,7 +275,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * Método que dado um mês válido, determina o número total global de vendas realizadas 
     * @param     Mês a calcular
     * @returns   Número total global de vendas realizadas
-    **/
+    **//*
     public int totalVendasRealizadas(int mes)
     {
         int total = 0;
@@ -291,12 +291,12 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         
         return total;
     }
-    
+    */
     /** 
     * Método que dado um mês válido, determina o número total de clientes distintos que fizeram compras;
     * @param    Mês a calcular    
     * @returns  Número total de clientes distintos que fizeram compras
-    **/
+    **//*
     public int totalClientesDistintos(int mes)
     {
         int total = 0;
@@ -314,14 +314,15 @@ public class GestVendasModel implements Serializable, IGestVendasModel
             }
         }
         return total;
-    }
+    }*/
     
     /**** QUERY3 ****/
     /** 
     * Método que dado um código de cliente determina, para cada mês, quantas compras fez.
     * @param     Cliente introduzido pelo utilizador
     * @returns
-    
+    **/
+    /*
     public List<Integer> totalComprasCliente(Cliente c)
     {
         int total = 0;
@@ -331,11 +332,13 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         Map<Cliente, List<Pair>> map = ; 
     } **/
     
+    
     /** 
     * Método que dado um código de cliente determina, para cada mês, quantos produtos distintos comprou.
     * @param      Cliente introduzido pelo utilizador
     * @returns
     **/
+    /*
     public List<Pair> totalComprasCliente(Cliente c)
     {
         Pair<Integer,Double> p;
@@ -356,7 +359,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
             }
         }
         return l;
-    }
+    }*/
     
     
     
@@ -366,6 +369,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * @param       Produto introduzido pelo utilizador
     * @returns
     **/ 
+    /*
     public List<Integer> comprasPorMes(Produto p)
     {
         Filial f = new Filial();
@@ -381,13 +385,14 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         }
         
         return l;
-    }
+    }*/
     
     /**
     * Dado o código de um produto existente, determina, mês a mês, por quantos clientes diferentes foi comprado
     * @param       Produto introduzido pelo utilizador
     * @returns
-    **/     
+    **/    
+    /*
     public List<Integer> clientesDistintosPorMes(Produto p)
     {
         int i = 0;
@@ -409,7 +414,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         
         return l;
     }
-    
+    */
     /**
     * Método que dado o código de um produto existente, determina, mês a mês, o total facturado.
     * @param      Produto introduzido pelo utilizador
