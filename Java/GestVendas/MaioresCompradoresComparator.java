@@ -1,10 +1,9 @@
 import java.util.Comparator;
 
-
 /**
 * Classe MaisCompradosComparator que impõem uma ordem ao número de vezes que os clientes efetuaram compras
 **/
-<<<<<<< HEAD
+
 public class MaioresCompradoresComparator implements Comparator<RegistoCliente> 
 {   
     public int compare(RegistoCliente r1, RegistoCliente r2)
@@ -17,4 +16,3 @@ public class MaioresCompradoresComparator implements Comparator<RegistoCliente>
        return 1;
     }
 } 
-}
