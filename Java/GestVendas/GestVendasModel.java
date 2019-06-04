@@ -23,7 +23,9 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     private IFilial f2;
     private IFilial f3;
     private IFaturacao ftr;
+
     private Crono crono;
+
     
     /** 
     * Construtor vazio que cria uma instância GestVendasModel
@@ -100,6 +102,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                }
            }
       }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
+      out.println("PRODUTOS DONE");
       return v;
     }
     
@@ -142,6 +145,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                }
            }
        }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
+       out.println("CLIENTES DONE");
        return v;
     }
     
@@ -187,12 +191,13 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                              else
                                  f3.addVenda(venda);
                         
-                   ftr.addVenda(venda); 
+                   //ftr.addVenda(venda); 
                    v++;
                }
            }
            out.println(v);
       }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
+      out.println("VENDAS DONE");
     }
     
     

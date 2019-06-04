@@ -260,44 +260,44 @@ public class Faturacao implements Serializable, IFaturacao
                this.prodPrecoMes1.put(p,a);
             }
         }
-        
-        if(filial == 2)
-        {
-           if(!this.prodPrecoMes1.containsKey(p))
-           {
-                List<Double> a = new ArrayList<>(12);
-                for(int i = 0; i < 12; i++)
-                    a.add(0.0);
-                a.set(index, preco);
-                this.prodPrecoMes1.put(p,a);
+        else
+            if(filial == 2)
+            {
+               if(!this.prodPrecoMes1.containsKey(p))
+               {
+                    List<Double> a = new ArrayList<>(12);
+                    for(int i = 0; i < 12; i++)
+                        a.add(0.0);
+                    a.set(index, preco);
+                    this.prodPrecoMes1.put(p,a);
+                }
+                else{
+                   List a = this.prodPrecoMes1.get(p); 
+                   precoAtual = (double)a.get(index); 
+                   precoAtualizado = precoAtual + preco;
+                   a.set(index, precoAtualizado);
+                   this.prodPrecoMes1.put(p,a);
+                }
             }
-            else{
-               List a = this.prodPrecoMes1.get(p); 
-               precoAtual = (double)a.get(index); 
-               precoAtualizado = precoAtual + preco;
-               a.set(index, precoAtualizado);
-               this.prodPrecoMes1.put(p,a);
-            }
-        }
-        
-        if(filial == 3)
-        {
-           if(!this.prodPrecoMes1.containsKey(p))
-           {
-                List<Double> a = new ArrayList<>(12);
-                for(int i = 0; i < 12; i++)
-                    a.add(0.0);
-                a.set(index, preco);
-                this.prodPrecoMes1.put(p,a);
-            }
-            else{
-               List a = this.prodPrecoMes1.get(p); 
-               precoAtual = (double)a.get(index); 
-               precoAtualizado = precoAtual + preco;
-               a.set(index, precoAtualizado);
-               this.prodPrecoMes1.put(p,a); 
-            }
-        }
+            else
+                if(filial == 3)
+                {
+                   if(!this.prodPrecoMes1.containsKey(p))
+                   {
+                        List<Double> a = new ArrayList<>(12);
+                        for(int i = 0; i < 12; i++)
+                            a.add(0.0);
+                        a.set(index, preco);
+                        this.prodPrecoMes1.put(p,a);
+                    }
+                    else{
+                       List a = this.prodPrecoMes1.get(p); 
+                       precoAtual = (double)a.get(index); 
+                       precoAtualizado = precoAtual + preco;
+                       a.set(index, precoAtualizado);
+                       this.prodPrecoMes1.put(p,a); 
+                    }
+                }
     }
     
     /**
