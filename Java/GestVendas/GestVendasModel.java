@@ -17,16 +17,24 @@ import static java.lang.System.out;
 **/
 public class GestVendasModel implements Serializable, IGestVendasModel   
 { 
+    /** Instancia da interface CatalogoProdutos **/
     private ICatProdutos cprod;
+    
+    /** Instancia da interface CatalogoClientes **/
     private ICatClientes ccl;
+    
+    /** Instancia da interface Filial, que representa a filial 1 **/
     private IFilial f1;
+    
+    /** Instancia da interface Filial, que representa a filial 2 **/
     private IFilial f2;
+    
+    /** Instancia da interface Filial, que representa a filial 3 **/
     private IFilial f3;
+    
+    /** Instancia da interface Faturacao **/
     private IFaturacao ftr;
 
-    private Crono crono;
-
-    
     /** 
     * Construtor vazio que cria uma instância GestVendasModel
     **/
@@ -40,8 +48,8 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         this.ftr = new Faturacao();
     }
     
-    /** 
-    * Método que
+    /**
+    * Método que carrega o ficheiro de dados default da aplicação
     **/
     public void carregamentoDefault()
     {
@@ -53,8 +61,8 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         } catch (IOException e) {e.printStackTrace();}
     }
     
-    /** 
-    * Método que
+    /**
+    * Método que carrega outro ficheiro dado pelo utilizador
     **/
     public void outroFicheiro(int op) throws IOException
     {
@@ -243,7 +251,6 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     **/  
     public List<Produto> prodsNuncaComprados()
     {
-       crono.start();
        List<Produto> lp = new ArrayList<>();
        Set<Produto> prods = cprod.getCatalogo();
        Map<Produto, List<Integer>> map = ftr.getProdUnidadeMes();
@@ -260,8 +267,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
               lp.add(p);
           }
        } 
-       double res = crono.stop(); 
-       out.println(res);
+       
        out.println(lp.size() + " LP");
        
        return lp;
@@ -275,25 +281,23 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * Método que dado um mês válido, determina o número total global de vendas realizadas 
     * @param     Mês a calcular
     * @returns   Número total global de vendas realizadas
-    **//*
-    public int totalVendasRealizadas(int mes)
+    **/
+    public int totalVendasRealizadas(int mes, int filial)
     {
         int total = 0;
         int index = mes-1;
-        Filial f = new Filial();
-        Map<Produto, List<Integer>> list = f.getPUnidades();
+        Faturacao f = new Faturacao();
         
-        for (Map.Entry<Produto, List<Integer>> e : list.entrySet())
-        {
-            List<Integer> l = e.getValue();
-            total += l.get(index);
-        }
+        //Map<Cliente,ArrayList<RegistoCliente>> regCl = f.getRegCl();
+ 
+        
+        
         
         return total;
     }
-    */
+    
     /** 
-    * Método que dado um mês válido, determina o número total de clientes distintos que fizeram compras;
+    * Método que dado um mês válido, determina o número total de clientes distintos que fizeram compras
     * @param    Mês a calcular    
     * @returns  Número total de clientes distintos que fizeram compras
     **//*
@@ -302,17 +306,11 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         int total = 0;
         int index = mes-1;
         Filial f = new Filial();
-        Map<Produto, Set<Pair>> set = f.getPClientes();
         
-        for (Map.Entry<Produto, Set<Pair>> e : set.entrySet())
-        {
-            Iterator<Pair> it = e.getValue().iterator();  
-            Pair<Integer,Cliente> p = it.next();
-            if(p.getFst() == mes)
-            {
-                total ++;
-            }
-        }
+        
+        
+        
+        
         return total;
     }*/
     

@@ -12,17 +12,20 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
    /** Instancia da interface model **/
    private IGestVendasModel model; 
    
-    /** Instancia da interface view **/
+   /** Instancia da interface view **/
    private IGestVendasView view; 
    
+   /** Instancia da classe crono **/
+   private Crono crono;
+   
    /**
-   * Método que faz set de um model
-   * @param GestVendasModel
+   * Método que define uma instancia da interface IGestVendasModel
+   * @param   GestVendasModel
    **/
    public void setModel(IGestVendasModel model){this.model = model;}
    
    /**
-   * Método que faz set de uma view
+   * Método que define uma instancia da interface IGestVendasView
    * @param GestVendasView
    **/
    public void setView(IGestVendasView view){this.view = view;}
@@ -69,10 +72,11 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
        view.outroFichOutputEscolha();
        Scanner input = new Scanner(System.in);
        int op = input.nextInt();
-       try {
+       try 
+       {
            model.outroFicheiro(op);
            queryORestatisticasMenu();
-        } catch (IOException e) {e.printStackTrace();}
+       } catch (IOException e) {e.printStackTrace();}
    }
    
    /**
@@ -80,12 +84,13 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
    **/
    public void loadStatus()
    {
-      try{
+      try
+      {
               IGestVendasModel gvm = model.loadStatus("Gravacao");
               setModel(gvm);
               queryORestatisticasMenu();
-     } catch (IOException | ClassNotFoundException e) {e.printStackTrace();}
-    }
+      } catch (IOException | ClassNotFoundException e) {e.printStackTrace();}
+   }
     
    /** 
    * Método que inicia o menu de queries e estatisticas interativas 
@@ -124,7 +129,6 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
    **/
    public void queryMenu()
    {
-       
        String s[] = {"Query 1", "Query 2", "Query 3", "Query 4", "Query 5", "Query 6", "Query 7", "Query 8", "Query 9",
                      "Query 10"};
        int op = 0;
@@ -187,11 +191,14 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
    }
    
    
-    
+   /** Query 1 **/ 
    public void query1()
    {
+       crono.start();
        List<Produto> p = model.prodsNuncaComprados(); 
-       //view.query1_Output(p, p.size());
+       view.query1_Output(p, p.size());
+       crono.stop(); 
+       crono.print(); 
    }
    
    /** 
@@ -206,9 +213,11 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
        view.query2_Input();
        Scanner input = new Scanner(System.in);
        int mes = input.nextInt();
-       //model.totalVendasRealizadas(mes);
-      // model.totalClientesDistintos(mes);
+       crono.start();
+       //...
        view.query2_Output();
+       crono.stop(); 
+       crono.print();
    }
     
     /** 
@@ -222,19 +231,20 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     {
         view.query3_Input();
         Scanner input = new Scanner(System.in);
-        String s = input.nextLine(); //fazer o cast para cliente
+        String s = input.nextLine(); 
+        Cliente c = new Cliente(s);
+        crono.start();
         //..
         view.query3_Output();
+        crono.stop(); 
+        crono.print();
     } 
     
     /**
     * Query 4: Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi comprado, por quantos clientes diferentes 
     * e o total facturado.
-    * 
     * @param 
     * @returns
-    * 
-    * METADE VEM DA FATURACAO
     **/ 
     public void query4()
     {
@@ -242,10 +252,11 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         Scanner input = new Scanner(System.in);
         String s = input.nextLine(); 
         Produto p = new Produto(s);
-        //model.totalFaturado(p,1);
-        //model.totalFaturado(p,2);
-        //model.totalFaturado(p,3);
+        crono.start();
+        //....
         view.query4_Output();
+        crono.stop(); 
+        crono.print();
     } 
     
     /** 
@@ -261,8 +272,11 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         Scanner input = new Scanner(System.in);
         String s = input.nextLine(); 
         Cliente c = new Cliente(s);
+        crono.start();
         //model....
         view.query5_Output();
+        crono.stop(); 
+        crono.print();
     } 
     
     /**
@@ -277,9 +291,11 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         view.query6_Input();
         Scanner input = new Scanner(System.in);
         int x = input.nextInt();
-        
+        crono.start();
         //..
         view.query6_Output();
+        crono.stop(); 
+        crono.print();
     } 
     
     /**
@@ -290,8 +306,11 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     **/
     public void query7()
     {
+        crono.start();
         //..
         view.query7_Output();
+        crono.stop(); 
+        crono.print();
     } 
     
     /**
@@ -306,8 +325,11 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         view.query8_Input();
         Scanner input = new Scanner(System.in);
         int x = input.nextInt();
+        crono.start();
         //..
         view.query8_Output();
+        crono.stop(); 
+        crono.print();
     } 
     
     /**
@@ -321,9 +343,13 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     {
         view.query9_Input();
         Scanner input = new Scanner(System.in);
-        String s = input.nextLine(); //fazer o cast para produto
+        String s = input.nextLine(); 
+        Produto p = new Produto(s);
+        crono.start();
         //..
         view.query9_Output();
+        crono.stop(); 
+        crono.print();
     } 
     
     /**
@@ -334,27 +360,45 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     **/
     public void query10()
     {
+        crono.start();
         model.ftrTotal(1);
         model.ftrTotal(2);
         model.ftrTotal(3);
         view.query10_Output();
+        crono.stop(); 
+        crono.print();
     } 
     
     public void ultimoFichLido()
     {
+        crono.start();
+        //..
+        crono.stop(); 
+        crono.print();
     }
     
     public void stat1()
     {
+        crono.start();
+        //...
+        crono.stop(); 
+        crono.print();
     }
     
     public void stat2()
     {
+        crono.start();
+        //..
+        crono.stop(); 
+        crono.print();
     }
     
     public void stat3()
     {
+        crono.start();
+        //...
+        crono.stop(); 
+        crono.print();
     }
-    
     
 }
