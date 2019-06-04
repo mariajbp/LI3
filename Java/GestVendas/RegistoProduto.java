@@ -32,13 +32,13 @@ public class RegistoProduto implements Serializable
     
    /**
    * Método que devolve o registo
-   * @returns Set de Pares<Cliente, Integer>
+   * @returns  Set de Pares<Cliente, Integer>
    **/ 
    public Set<Pair<Cliente, Integer>> getRegisto(){return new TreeSet<>(this.registo);}
     
    /**
    * Método que faz set de um registo
-   * @param Set de Pares<Cliente, Integer>
+   * @param  Set de Pares<Cliente, Integer>
    **/
    public void setRegisto(Set<Pair<Cliente, Integer>> s)
    {
@@ -94,5 +94,5 @@ public class RegistoProduto implements Serializable
                break;
             }
         }
-    }
+   }
 }
