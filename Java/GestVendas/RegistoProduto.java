@@ -70,14 +70,11 @@ public class RegistoProduto implements Serializable
    public String toString(){return " ";}
    
    /** 
-   * Método que dado um par Cliente/Unidades compradas verifica se o Cliente já existe e faz o seu Registo atualizando as unidades.
-   * @param Par<Cliente, Integer>
-   **/
-   public void addCliente(Pair<Cliente, Integer> p)
+    * Método que dado um par Cliente/Unidades compradas verifica se o Cliente já existe e faz o seu Registo atualizando as unidades.
+    * @param Par<Cliente, Integer>
+    **/
+   public void updateRegProduto(Cliente c, int uni)
    {
-       Cliente c = p.getFst();
-       int uni = p.getSnd();
-       
        Pair<Cliente, Integer> pair = new Pair<>();
        Iterator it = this.registo.iterator();
        while(it.hasNext()){
@@ -94,5 +91,6 @@ public class RegistoProduto implements Serializable
                break;
             }
         }
-   }
+    }
+
 }

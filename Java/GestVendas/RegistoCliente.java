@@ -137,9 +137,9 @@ public class RegistoCliente implements Serializable
     * Método que atualiza o número de compras efetuadas por mês
     * @param   Novo número de compras efetuadas
     **/
-    public void updateVezes(int v)
+    public void updateVezes()
     {
-        this.vezes += v;
+        this.vezes++;
     }
     
     /**
@@ -164,11 +164,8 @@ public class RegistoCliente implements Serializable
     * Método que dado um par Produto/Gasto compradas verifica se o Produto já existe e faz o seu Registo atualizando o valor total gasto nesse produto.
     * @param Par<Cliente, Integer>
     **/
-    public void addProduto(Pair<Produto, Integer> p)
-    {
-       Produto prd = p.getFst();
-       double g = p.getSnd();
-       
+   public void updateRegCliente(Produto prd, double g)
+   {
        Pair<Produto, Double> pair = new Pair<>();
        Iterator it = this.prod.iterator();
        while(it.hasNext()){
