@@ -3,7 +3,9 @@ import java.util.Comparator;
 /**
 * Classe ProdutosMaisCompradosComparator que impõem uma ordem aos registos de produtos através da quantidade comprada
 **/
+
 public class ProdutosMaisCompradosComparator  implements Comparator<RegistoProduto>
+
 {
     public int compare(RegistoProduto r1, RegistoProduto r2)
     {

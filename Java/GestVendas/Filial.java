@@ -16,6 +16,11 @@ public class Filial implements Serializable, IFilial
     private Map<Cliente, List<RegistoCliente>> regCl;
     
     
+    /** Registo anual de cada cliente **/
+    /*
+    private Map<Cliente, RegistoCliente> anual;
+    */
+    
     /** 
     * Construtor vazio que cria uma instância Filial
     **/
@@ -129,7 +134,7 @@ public class Filial implements Serializable, IFilial
             for(int i = 0; i < 12; i++)
                     a.add(new RegistoCliente());
             RegistoCliente rc = a.get(mes-1);
-            rc.updateRegCliente(p, t);
+            rc.updateRegCliente(p, t, uni);
             rc.updateTotalGasto(t);
             rc.updateUnidades(uni);
             rc.updateVezes();
@@ -140,7 +145,7 @@ public class Filial implements Serializable, IFilial
         {
             List<RegistoCliente> a =  this.regCl.get(c);
             RegistoCliente rc = a.get(mes-1);
-            rc.updateRegCliente(p, t);
+            rc.updateRegCliente(p, t, uni);
             rc.updateTotalGasto(t);
             rc.updateUnidades(uni);
             rc.updateVezes();
