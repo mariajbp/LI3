@@ -51,6 +51,6 @@ public class Pair<X extends Comparable<X>,Y extends Comparable<Y>> implements Co
     
     public int compareTo(Pair<X,Y> p){
         int r = snd.compareTo(p.getSnd());
-        return ( r == 0) ? fst.compareTo(p.getFst()) : r;
+        return (r == 0) ? fst.compareTo(p.getFst()) : r;
     }
 }
