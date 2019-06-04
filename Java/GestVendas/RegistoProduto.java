@@ -12,54 +12,45 @@ public class RegistoProduto implements Serializable
    /** Set que contém pares os quais a cada Cliente fazem corresponder o número de unidades compradas **/
    private Set<Pair<Cliente, Integer>> registo;
    
-   /** Construtor Vazio **/
+   /** 
+   * Construtor vazio que cria uma instância CatalogoProduto
+   **/
    public RegistoProduto()
    {    
        this.registo = new TreeSet<>();
-    }
+   }
     
    /** 
-    * Construtor Parametrizado
-    * @param Set de Pares<Cliente, Integer>
-    **/
-   public RegistoProduto(Set<Pair<Cliente, Integer>> s)
-   {
-       this.registo = new TreeSet<>(s);
-    }
+   * Construtor que cria um novo RegistoProduto a partir dos parâmetros dados 
+   **/
+   public RegistoProduto(Set<Pair<Cliente, Integer>> s){this.registo = new TreeSet<>(s);}
     
    /** 
-    * Construtor de Cópia
-    * @param RegistoProduto
-    **/
-   public RegistoProduto(RegistoProduto r)
-   {
-       this.registo = r.getRegisto();
-    }
+   * Construtor de cópia que cria uma nova instância RegistoProduto a partir de um RegistoProduto passado como parâmetro 
+   **/
+   public RegistoProduto(RegistoProduto r) {this.registo = r.getRegisto();}
     
    /**
-    * Método que devolve o registo
-    * @returns Set de Pares<Cliente, Integer>
-    */ 
-   public Set<Pair<Cliente, Integer>> getRegisto()
-   {
-       return new TreeSet<>(this.registo);
-    }
+   * Método que devolve o registo
+   * @returns Set de Pares<Cliente, Integer>
+   **/ 
+   public Set<Pair<Cliente, Integer>> getRegisto(){return new TreeSet<>(this.registo);}
     
    /**
-    * Método que faz set de um registo
-    * @param Set de Pares<Cliente, Integer>
-    */
+   * Método que faz set de um registo
+   * @param Set de Pares<Cliente, Integer>
+   **/
    public void setRegisto(Set<Pair<Cliente, Integer>> s)
    {
        this.registo.clear();
        this.registo = new TreeSet<>(s);
-    }
+   }
     
    /**
-    * Método que testa se um objeto é igual a uma determinada identificação
-    * @param      Objeto a ser testado
-    * @return     True se o objeto for igual à identificação, false se o objeto passado não for igual à identificação
-    */
+   * Método que testa se um objeto é igual a uma determinada identificação
+   * @param      Objeto a ser testado
+   * @return     True se o objeto for igual à identificação, false se o objeto passado não for igual à identificação
+   **/
    public boolean equals(Object o)
    {
        if(o == this)
@@ -68,23 +59,20 @@ public class RegistoProduto implements Serializable
             return false;
        RegistoProduto r = (RegistoProduto) o;
        return this.registo.equals(r.getRegisto());
-    }
+   }
     
    /** 
-    * Método que cria uma cópia de um Registo de Produtos
-    * @returns Registo de Produto
-    **/
-   public RegistoProduto clone()
-   {
-       return new RegistoProduto(this);
-    }
+   * Método que cria uma cópia de um Registo de Produtos
+   * @returns Registo de Produto
+   **/
+   public RegistoProduto clone(){return new RegistoProduto(this);}
     
    public String toString(){return " ";}
    
    /** 
-    * Método que dado um par Cliente/Unidades compradas verifica se o Cliente já existe e faz o seu Registo atualizando as unidades.
-    * @param Par<Cliente, Integer>
-    **/
+   * Método que dado um par Cliente/Unidades compradas verifica se o Cliente já existe e faz o seu Registo atualizando as unidades.
+   * @param Par<Cliente, Integer>
+   **/
    public void addCliente(Pair<Cliente, Integer> p)
    {
        Cliente c = p.getFst();

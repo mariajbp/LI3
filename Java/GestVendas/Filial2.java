@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Filial2 implements Serializable
 {
     /** Registo mensal de cada produto **/
-    private Map<Produto,ArrayList<RegistoProduto>> regProd;
+    private Map<Produto,ArrayList<RegistoProduto>> regProd; 
     
     /** Registo mensal de cada cliente **/
     private Map<Cliente,ArrayList<RegistoCliente>> regCl;

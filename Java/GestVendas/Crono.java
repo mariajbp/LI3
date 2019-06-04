@@ -15,5 +15,5 @@ public class Crono
       return elapsedTime / 1.0E09;
   }
   
-  public static String print() {return "" + stop(); }
+  public static String print() {return "Tempo demorado: " + stop() + "segundos"; }
 }

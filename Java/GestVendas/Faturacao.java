@@ -29,7 +29,7 @@ public class Faturacao implements Serializable, IFaturacao
     
     /** Map que contém para cada produto a quantidade de unidades vendidas, por mes **/
     private Map<Produto, List<Integer>> prodUnidadeMes;
-    
+     
     /** 
     * Construtor vazio que cria uma instância Faturacao
     **/
@@ -44,7 +44,7 @@ public class Faturacao implements Serializable, IFaturacao
     }
     
     /** 
-    * Construtor de cópia que cria uma nova instância Faturacao a partir de uma Faturacao passado como parâmetro 
+    * Construtor que cria uma nova Faturacao a partir dos parâmetros dados 
     **/
     public Faturacao(double ftr, double[] ftrmes, HashMap<Produto, List<Double>> prod1, HashMap<Produto, List<Double>> prod2,
                      HashMap<Produto, List<Double>> prod3, Map<Produto, List<Integer>> unit)
@@ -58,7 +58,7 @@ public class Faturacao implements Serializable, IFaturacao
     }
     
     /** 
-    * Construtor que cria uma nova instância Faturacao a partir de uma Faturacao passado como parâmetro 
+    * Construtor de cópia que cria uma nova instância Faturacao a partir de uma Faturacao passado como parâmetro 
     **/
     public Faturacao(Faturacao f) 
     {

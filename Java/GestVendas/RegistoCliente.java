@@ -3,7 +3,7 @@ import java.util.TreeSet;
 import java.util.Iterator; 
 
 /**
-* Classe RegistoCliente que contém estruturas com dados de 
+* Classe RegistoCliente que contém estruturas com dados de de um registo
 **/
 
 public class RegistoCliente implements Serializable
@@ -17,11 +17,11 @@ public class RegistoCliente implements Serializable
     /** Número de unidades compradas, nesse mês **/
     int unidades;
     
-    /** Total gasto pelo cliente nesse mês**/
+    /** Total gasto pelo cliente nesse mês **/
     double totalGasto;
     
     /** 
-    * Construtor vazio que cria uma instância Faturacao
+    * Construtor vazio que cria uma instância CatalogoCliente
     **/
     public RegistoCliente() 
     {
@@ -31,6 +31,9 @@ public class RegistoCliente implements Serializable
         this.totalGasto = 0.0;
     }
     
+    /** 
+    * Construtor que cria um novo RegistoCliente a partir dos parâmetros dados 
+    **/
     public RegistoCliente(int vezes, TreeSet<Pair<Produto,Double>> prod, int unidades, double total)
     {
         this.vezes = vezes;
@@ -39,6 +42,9 @@ public class RegistoCliente implements Serializable
         this.totalGasto = total;
     }
     
+    /** 
+    * Construtor de cópia que cria uma nova instância CatalogoCliente a partir de uma CatalogoCliente passado como parâmetro 
+    **/
     public RegistoCliente(RegistoCliente rc)
     {
         this.vezes = rc.getVezes();
@@ -48,50 +54,50 @@ public class RegistoCliente implements Serializable
     }
     
     /**
-    * Método que devolve 
-    * @return 
+    * Método que devolve o número de compras efetuadas por mês
+    * @return   Número de compras efetuadas por mês
     **/
     public int getVezes(){ return this.vezes;}
     
     /**
-    * Método que devolve 
-    * @return 
+    * Método que devolve pares de produtos e dinheiro gasto no mesmo, por mês
+    * @return   Pares de produtos e dinheiro gasto no mesmo, por mês
     **/
     public TreeSet<Pair<Produto,Double>> getProd() {return new TreeSet<>(this.prod);}
     
     /**
-    * Método que devolve 
-    * @return 
+    * Método que devolve o número de unidades compradas, nesse mês
+    * @return   Número de unidades compradas, nesse mês
     **/
     public int getUnidades(){ return this.unidades;}
     
     /**
-    * Método que devolve 
-    * @return 
+    * Método que devolve o total gasto pelo cliente nesse mês
+    * @return    Total gasto pelo cliente nesse mês
     **/
     public double getTotal(){ return this.totalGasto;}
     
     /**
-    * Método que defgine
-    * @return 
+    * Método que define  o número de compras efetuadas por mês
+    * @param   Número de compras efetuadas por mês  
     **/
     public void setVezes(int v){this.vezes = v;}
     
     /**
-    * Método que defgine
-    * @return 
+    * Método que define pares de produtos e dinheiro gasto no mesmo, por mês
+    * @param Pares de produtos e dinheiro gasto no mesmo, por mês
     **/
     public void setProd(TreeSet<Pair<Produto,Double>> t){this.prod = t;}
     
     /**
-    * Método que defgine
-    * @return 
+    * Método que define o número de unidades compradas, nesse mês
+    * @param   Número de unidades compradas, nesse mês
     **/
     public void setUnidades(int u){this.unidades = u;}
     
     /**
-    * Método que defgine
-    * @return 
+    * Método que define o total gasto pelo cliente nesse mês
+    * @return   Total gasto pelo cliente nesse mês
     **/
     public void setTotal(double t){this.totalGasto = t;}
     
@@ -128,8 +134,8 @@ public class RegistoCliente implements Serializable
     }
     
     /**
-    * Método que 
-    * @param
+    * Método que atualiza o número de compras efetuadas por mês
+    * @param   Novo número de compras efetuadas
     **/
     public void updateVezes(int v)
     {
@@ -137,8 +143,8 @@ public class RegistoCliente implements Serializable
     }
     
     /**
-    * Método que 
-    * @param
+    * Método que atualiza o número de unidades compradas nesse mês
+    * @param    Novo número de unidades compradas, nesse mês
     **/
     public void updateUnidades(int u)
     {
@@ -146,20 +152,20 @@ public class RegistoCliente implements Serializable
     }
     
     /**
-    * Método que 
-    * @param
+    * Método que atualiza o total gasto nesse mês
+    * @param    Novo total gasto nesse mês
     **/
-    public void updateTotalGasto(double TG)
+    public void updateTotalGasto(double tg)
     {
-        this.totalGasto += TG;
+        this.totalGasto += tg;
     }
     
     /** 
     * Método que dado um par Produto/Gasto compradas verifica se o Produto já existe e faz o seu Registo atualizando o valor total gasto nesse produto.
     * @param Par<Cliente, Integer>
     **/
-   public void addProduto(Pair<Produto, Integer> p)
-   {
+    public void addProduto(Pair<Produto, Integer> p)
+    {
        Produto prd = p.getFst();
        double g = p.getSnd();
        
