@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.target=IFilial
-comment0.text=\r\n\ \r\n
-comment1.params=p\ mes
-comment1.target=int\ getClientesDistintos(Produto,\ int)
+comment0.text=\n\ \n
+comment1.params=c
+comment1.target=void\ getClientesDistintos(java.util.Set)
 comment2.params=v
 comment2.target=void\ addVenda(Venda)
 numComments=3

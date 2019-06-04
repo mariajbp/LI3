@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=IGestVendasModel
-comment0.text=\r\n\ \r\n
+comment0.text=\n\ \n
 comment1.params=
 comment1.target=void\ carregamentoDefault()
 comment2.params=filename

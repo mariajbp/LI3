@@ -281,8 +281,8 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * Método que dado um mês válido, determina o número total global de vendas realizadas 
     * @param     Mês a calcular
     * @returns   Número total global de vendas realizadas
-    **/
-    public Pair<Set<Cliente>,  totalVendasRealizadas(int mes, int filial)
+  
+    public Pair<Set<Cliente>,Integer>  totalVendasRealizadas(int mes, int filial)
     {
         int total = 0;
         int index = mes-1;
@@ -310,7 +310,8 @@ public class GestVendasModel implements Serializable, IGestVendasModel
             for(Map.Entry<Cliente,ArrayList<RegistoCliente>> e : this.regCl)
             {
                 List l = regCl.getValue();
-                RegistoCliente rc = l.get(index);
+                RegistoCliente rc = new RegistoCliente();
+                rc = l.get(index);
                 total += rc.getVezes();
                 if (rc.getVezes() > 0)
                 {
@@ -335,9 +336,9 @@ public class GestVendasModel implements Serializable, IGestVendasModel
             }
         }
         
-        Pair<Set<Cliente> p = new Pair(set, total);
+        Pair<Set<Cliente>> p = new Pair(set, total);
         return total;
-     }
+     } **/
     
     
     /** 
