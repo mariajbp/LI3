@@ -67,7 +67,7 @@ public class Filial2 implements Serializable
     **/
     public void setRegProd(Map<Produto,ArrayList<RegistoProduto>> regP)
     {
-        new HashMap<Produto,ArrayList<RegistoProduto>>(this.regProd);
+        
     }
     
     /**
