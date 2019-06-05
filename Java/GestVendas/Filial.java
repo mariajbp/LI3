@@ -225,4 +225,18 @@ public class Filial implements Serializable, IFilial
         }
         return l; 
     }
+    
+    public int distintosProd(Produto produto)
+    {
+        int d = 0;
+        for(Map.Entry<Produto, List<RegistoProduto>> e : regProd.entrySet())
+        {
+               if(produto == e.getKey())
+               {
+                     List<RegistoProduto> reg = e.getValue();
+                     d = reg.size();
+               }
+        }   
+        return d;
+    }
 }

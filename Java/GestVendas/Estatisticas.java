@@ -39,11 +39,11 @@ public class Estatisticas implements IEstatisticas
         faturacao = e.getFaturacao();
     }
 
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Estatisticas)) {
+    public boolean equals(Object o) 
+    {
+        if (this == o) {return true;}
+        if (!(o instanceof Estatisticas)) 
+        {
             return false;
         }
         Estatisticas e = (Estatisticas) o;

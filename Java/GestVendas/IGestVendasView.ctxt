@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=IGestVendasView
-comment0.text=\r\n\ \r\n
+comment0.text=\n\ \n
 comment1.params=s
 comment1.target=void\ setMenu(java.lang.String[])
 comment10.params=
@@ -18,7 +18,7 @@ comment15.target=void\ query6_Input()
 comment16.params=
 comment16.target=void\ query6_Output()
 comment17.params=p
-comment17.target=void\ query6_Output_Dados(Pair)
+comment17.target=void\ query6_Output_Dados(java.util.List)
 comment18.params=
 comment18.target=void\ query7_Output()
 comment19.params=

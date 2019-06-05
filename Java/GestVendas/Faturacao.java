@@ -410,9 +410,9 @@ public class Faturacao implements Serializable, IFaturacao
     * Método que determina o total de certo produto vendido anualmente
     * @return Map que contém o total de certo produto vendido anualmente
     **/
-    public LinkedHashMap<Produto, Integer>  prodsVendidosAnual()
+    public HashMap<Produto, Integer>  prodsVendidosAnual()
     {
-        LinkedHashMap<Produto, Integer> map = new LinkedHashMap<>();  
+        HashMap<Produto, Integer> map = new HashMap<>();  
         for(Map.Entry<Produto, List<Integer>> e : this.prodUnidadeMes.entrySet())
         {
             List<Integer> l = e.getValue();
@@ -421,4 +421,5 @@ public class Faturacao implements Serializable, IFaturacao
         } 
         return map;  
     }
+   
 }

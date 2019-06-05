@@ -514,23 +514,20 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * @param     Número de produtos a determinar, introduzido pelo utilizador
     * @returns
     **/
-    public List<Pair<Produto,Integer>> prodsMaisVendidos(int x)
+    public List<Produto> prodsMaisVendidos(int x)
     {
         int i = 0;
         HashMap<Produto, Integer> prods = this.ftr.prodsVendidosAnual();  
         HashMap<Produto, Integer> mapOrder = this.sortMap(prods); 
-        List<Pair<Produto,Integer>> l = new ArrayList<>();
-        Pair<Produto,Integer> pair = new Pair<>();
+        List<Produto> l = new ArrayList<>();
         for(Map.Entry<Produto, Integer> e : mapOrder.entrySet())
         {
              while(i<x)
              {
-                 pair.setFst(e.getKey());
-                 pair.setSnd(e.getValue());
-                 l.add(pair);
+                 l.add(e.getKey());
              }
         }
-        return l;  
+        return l;   
     }
 
     public static HashMap<Produto, Integer> sortMap(HashMap<Produto, Integer> map) 
@@ -545,39 +542,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         return result;
     }
     
-    public int distintosProd(Produto produto)
-    {
-        int dt = 0, d1 = 0, d2 = 0, d3 = 0; 
-        Map<Produto, List<RegistoProduto>> p1 = f1.getRegProd();
-        for(Map.Entry<Produto, List<RegistoProduto>> e : p1.entrySet())
-        {
-               if(produto == e.getKey())
-               {
-                     List<RegistoProduto> reg = e.getValue();
-                     d1 = reg.size();
-               }
-        }   
-        Map<Produto, List<RegistoProduto>> p2 = f2.getRegProd();
-        for(Map.Entry<Produto, List<RegistoProduto>> e : p2.entrySet())
-        {
-               if(produto == e.getKey())
-               {
-                     List<RegistoProduto> reg = e.getValue();
-                     d1 = reg.size();
-               }
-        }
-        Map<Produto, List<RegistoProduto>> p3 = f1.getRegProd();
-        for(Map.Entry<Produto, List<RegistoProduto>> e : p3.entrySet())
-        {
-               if(produto == e.getKey())
-               {
-                     List<RegistoProduto> reg = e.getValue();
-                     d1 = reg.size();
-               }
-        }
-        dt = d1 + d2 + d3;
-        return dt;
-    }
+ 
     
     
     /**** QUERY7 ****/

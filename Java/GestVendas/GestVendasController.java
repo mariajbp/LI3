@@ -306,14 +306,13 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         Scanner input = new Scanner(System.in);
         int x = input.nextInt();
         crono.start();
-        List<Pair<Produto,Integer>> l = model.prodsMaisVendidos(x);
-        Iterator<Pair<Produto,Integer>> it = l.iterator();
+        List<Produto> p = model.prodsMaisVendidos(x);
         view.query6_Output();
-        Pair pair = new Pair();
+        Iterator<Produto> it = p.iterator();
         while(it.hasNext())
         {
-            pair = it.next();
-            view.query6_Output_Dados(pair); 
+            Produto prod = it.next(); 
+            view.query6_Output_Dados(p);  
         }
         crono.stop(); 
         crono.print();

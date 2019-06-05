@@ -141,6 +141,11 @@ public class GestVendasView implements Serializable, IGestVendasView
    
    public void query3_Output()
    {
+       out.println("*******************************************************************************");
+       out.println("Filial 1" +"\t"+"\t"+ "Filial 2" +"\t"+"\t"+ "Filial 3");
+       out.println("*******************************************************************************");
+       //out.println(i ...
+       out.println("*******************************************************************************");
    }
    
    //Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi comprado, por quantos clientes diferentes e o total facturado.
@@ -159,6 +164,8 @@ public class GestVendasView implements Serializable, IGestVendasView
        out.println("*******************************************************************************");
        out.println("Mês" +"\t" + "Nº Compras" +"\t"+ "Clientes Distintos" +"\t"+ "Total Faturado");
        out.println("*******************************************************************************");
+       //
+       
    }
    
    //Dado o código de um cliente determinar a lista de códigos de produtos que mais comprou (e quantos), ordenada por ordem 
@@ -170,6 +177,11 @@ public class GestVendasView implements Serializable, IGestVendasView
    
    public void query5_Output()
    {
+       out.println("*******************************************************************************");
+       out.println("Produtos mais comprados" +"\t" + "Quantidade");
+       out.println("*******************************************************************************");
+       //
+       out.println("*******************************************************************************");
    }
    
    //Determinar o conjunto dos X produtos mais vendidos em todo o ano (em número de unidades vendidas) indicando o número total de 
@@ -184,16 +196,23 @@ public class GestVendasView implements Serializable, IGestVendasView
        out.println("*******************************************************************************");
        out.println("Produtos" +"\t"+"\t"+ "Clientes" + "\n");
        out.println("*******************************************************************************");
+       //
+       out.println("*******************************************************************************");
    }
    
-   public void query6_Output_Dados(Pair<Produto,Integer> p)
+   public void query6_Output_Dados(List<Produto> p)
    {
-       out.println("\t"+ p.getFst() + "\t" + p.getSnd() + "\n");
+       out.println("\t"+ p.toString()  + "\n"); 
    }
 
    //Determinar, para cada filial, a lista dos três maiores compradores em termos de dinheiro facturado.
    public void query7_Output()
    {
+       out.println("*******************************************************************************");
+       out.println("Filial 1" +"\t"+"\t"+ "Filial 2" +"\t"+"\t"+ "Filial 3");
+       out.println("*******************************************************************************");
+       //
+       out.println("*******************************************************************************");
    }
 
    //Determinar os códigos dos X clientes (sendo X dado pelo utilizador) que compraram mais produtos diferentes 
@@ -205,7 +224,13 @@ public class GestVendasView implements Serializable, IGestVendasView
    
    
    public void query8_Output()
-   {}
+   {
+       out.println("*******************************************************************************");
+       out.println("Clientes" +"\t"+"\t"+ "Quantidade comprada");
+       out.println("*******************************************************************************");
+       //
+       out.println("*******************************************************************************");
+   }
    
    // Dado o código  de um produto que deve existir, determinar o conjunto dos X clientes que mais o compraram e, para cada um, 
    //qual o valor gasto (ordenação cf. 5).
@@ -221,6 +246,11 @@ public class GestVendasView implements Serializable, IGestVendasView
    
    public void query9_Output()
    {
+       out.println("*******************************************************************************");
+       out.println("Clientes" +"\t"+"\t"+ "Valor gasto no produto");
+       out.println("*******************************************************************************");
+       //
+       out.println("*******************************************************************************");
    }
    
    //Determinar mês a mês, e para cada mês filial a filial, a facturação total com cada produto.
