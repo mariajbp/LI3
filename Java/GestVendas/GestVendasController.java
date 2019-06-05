@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Iterator;
 import java.awt.event.KeyEvent; 
+import java.util.Map; 
 
 /**
 * 
@@ -268,8 +269,6 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
             double t = model.faturadoPorMes(p, i);
             view.query4_Output(i, pair, t);
         }
-        
-        view.query4_Output();
         crono.stop(); 
         crono.print();
     } 
@@ -365,20 +364,15 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     **/
     public void query9()
     {
-<<<<<<< HEAD
         //view.query9_Inputp();
         Scanner input = new Scanner(System.in);
-=======
-        //view.query9_Input();
-        Scanner input = new Scanner(System.in); 
->>>>>>> 9ccff9f8636dc2655d53804580219b5336e780a5
         String s = input.nextLine(); 
         Produto p = new Produto(s);
         //view.query9_Inputx();
         //int x = input.nextInt();
         crono.start();
         //..
-        view.query9_Output();
+        //view.query9_Output();
         crono.stop(); 
         crono.print();
     } 
@@ -392,10 +386,10 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     public void query10()
     {
         crono.start();
-        model.ftrTotal(1);
-        model.ftrTotal(2);
-        model.ftrTotal(3);
-        view.query10_Output();
+        Map<Produto, List<Double>> c1 = model.ftrTotal(1);
+        Map<Produto, List<Double>> c2 = model.ftrTotal(2);
+        Map<Produto, List<Double>> c3 = model.ftrTotal(3);
+        view.query10_Output(c1,c2,c3);
         crono.stop(); 
         crono.print();
     } 

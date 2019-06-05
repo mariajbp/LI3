@@ -1,6 +1,7 @@
 import java.io.Serializable;
 import java.util.List;
 import java.awt.event.KeyEvent; 
+import java.util.Map; 
 
 /**
 * 
@@ -27,11 +28,7 @@ public interface IGestVendasView extends Serializable
      public void query7_Output();
      public void query8_Input();
      public void query8_Output();
-<<<<<<< HEAD
-=======
      public void query9_Inputp();
      public void query9_Inputx();
->>>>>>> 9ccff9f8636dc2655d53804580219b5336e780a5
-     public void query9_Output();
-     public void query10_Output();
+     public void query10_Output(Map<Produto, List<Double>> c1, Map<Produto, List<Double>> c2, Map<Produto, List<Double>> c3);
 }

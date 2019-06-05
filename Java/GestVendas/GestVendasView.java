@@ -5,7 +5,8 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 import static java.lang.System.out;
 import java.util.Iterator;
-import java.awt.event.KeyEvent; 
+import java.awt.event.KeyEvent;
+import java.util.Map; 
 
 
 /**
@@ -85,10 +86,10 @@ public class GestVendasView implements Serializable, IGestVendasView
                pos = index;
                while(it.hasNext() && pos < index + 15)
                {
-2
+                   Produto pd = p.get(index);
                    pd = it.next();
                    out.println(pd.toString());
-                   pos ++;
+                   pos ++; 
                }
                index += 15;
            }
@@ -150,12 +151,14 @@ public class GestVendasView implements Serializable, IGestVendasView
    
    public void query4_Output(int i, Pair<Integer, Integer> p, double t)
    {
-       out.println("  " + i + "    \t" + p.getFst() + "          \t" +p.getSnd() + "        \t" + t + "\n");
+       out.println(i + "       \t" + p.getFst() + "             \t" +p.getSnd() + "                \t" + t );
     }
     
    public void query4_Output()
    {
-       out.println("Mês | Vezes Comprado | Clientes Distintos | Total Faturado\n") ;
+       out.println("*******************************************************************************");
+       out.println("Mês" +"\t" + "Nº Compras" +"\t"+ "Clientes Distintos" +"\t"+ "Total Faturado");
+       out.println("*******************************************************************************");
    }
    
    //Dado o código de um cliente determinar a lista de códigos de produtos que mais comprou (e quantos), ordenada por ordem 
@@ -178,7 +181,9 @@ public class GestVendasView implements Serializable, IGestVendasView
    
    public void query6_Output()
    {
-       out.println("| Produtos |  Número de clientes | \n") ;
+       out.println("*******************************************************************************");
+       out.println("Produtos" +"\t"+"\t"+ "Clientes" + "\n");
+       out.println("*******************************************************************************");
    }
    
    public void query6_Output_Dados(Pair<Produto,Integer> p)
@@ -219,8 +224,12 @@ public class GestVendasView implements Serializable, IGestVendasView
    }
    
    //Determinar mês a mês, e para cada mês filial a filial, a facturação total com cada produto.
-   public void query10_Output()
+   public void query10_Output(Map<Produto, List<Double>> c1, Map<Produto, List<Double>> c2, Map<Produto, List<Double>> c3)
    {
+       out.println("*******************************************************************************");
+       out.println("Mês" +"\t" +"\t" + "Filial 1" +"\t"+ "Filial 2" +"\t"+ "Filial 3");
+       out.println("*******************************************************************************");
+       //out.println("Janeiro" + )
    }
    
    
