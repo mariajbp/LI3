@@ -27,13 +27,6 @@ public interface IGestVendasView extends Serializable
      public void query7_Output();
      public void query8_Input();
      public void query8_Output();
-<<<<<<< HEAD
-     public void query9_Inputp();
-     public void query9_Inputx();
-=======
-     public void query9_Input();
-     
->>>>>>> 5915f1465eedd796423e3cb900f84a715a69ebde
      public void query9_Output();
      public void query10_Output();
 }

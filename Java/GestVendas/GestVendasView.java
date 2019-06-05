@@ -68,16 +68,46 @@ public class GestVendasView implements Serializable, IGestVendasView
            {
                Produto pd = p.get(index);
                pd = it.next();
-               pd.toString();
+               out.println(pd.toString());
                pos ++;
            }
            index += 15;
        }
-       if(pag == 1){out.println("Próxima página - 1 \n");}
-       else{out.println("Próxima página - 1 \n" + "Página anterior - 2 \n");}
+       out.println("Próxima página - 1 \n" + "Página anterior - 2 \n" + "Sair - 0 \n");
        Scanner input = new Scanner(System.in);
        int in = input.nextInt();
-       //if(in == )
+       while(in != 0)
+       {
+           if(in == 1)
+           {
+               pag++;
+               Iterator<Produto> it = p.iterator();
+               pos = index;
+               while(it.hasNext() && pos < index + 15)
+               {
+2
+                   pd = it.next();
+                   out.println(pd.toString());
+                   pos ++;
+               }
+               index += 15;
+           }
+           else if (in == 2)
+           {
+               pag--;
+               Iterator<Produto> it = p.iterator();
+               pos = index - 30;
+               while(it.hasNext() && pos < index - 15)
+               {
+                   Produto pd = p.get(index);
+                   pd = it.next();
+                   pd.toString();
+                   pos ++;
+               }
+               index += 15;
+           }
+       }
+       out.println("Próxima página - 1 \n" + "Página anterior - 2 \n" + "Sair - 0 \n");
    }
         
    
