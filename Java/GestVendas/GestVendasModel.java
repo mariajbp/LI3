@@ -34,6 +34,9 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     
     /** Instancia da interface Faturacao **/
     private IFaturacao ftr;
+    
+    /** Instancia da interface Estatisticas **/
+    private IEstatisticas e;
 
     /** 
     * Construtor vazio que cria uma instância GestVendasModel
@@ -46,6 +49,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         this.f2 = new Filial();
         this.f3 = new Filial();
         this.ftr = new Faturacao();
+        this.e = new Estatisticas();
     }
     
     /**
@@ -55,8 +59,8 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     {
         try
         { 
-            preencheCl("../../../Clientes.txt"); 
-            preencheProds("../../../Produtos.txt");
+            e.setClientes(preencheCl("../../../Clientes.txt")); 
+            e.setProdutos(preencheProds("../../../Produtos.txt"));
             preencheVendas("../../../Vendas1M.txt");
         } catch (IOException e) {e.printStackTrace();}
     }
@@ -180,7 +184,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     **/
     private void preencheVendas(String fileName) throws IOException 
     {
-      int v = 0;
+      int vValidas = 0, vLidas = 0, c0 = 0;
       BufferedReader br = new BufferedReader(new FileReader(fileName));
       try 
       {
@@ -199,10 +203,15 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                              else
                                  f3.addVenda(venda);
                         
-                   ftr.addVenda(venda); 
-                   v++;
+                   ftr.addVenda(venda);
+                   if(venda.getPreco == 0.0) c0++;
+                   vValidas++;
                }
+               vLidas++;
            }
+           e.setVendasValidas(vValidas);
+           e.setVendasLidas(v);
+           e.setCompras_0(c0);
            out.println(v);
       }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
       out.println("VENDAS DONE");
