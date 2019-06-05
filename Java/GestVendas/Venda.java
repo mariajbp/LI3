@@ -47,7 +47,7 @@ public class Venda implements Serializable
     /** 
     * Construtor que cria uma nova Venda a partir dos parâmetros dados  
     **/
-    public Venda(String codP, double preco, int unidades, String codC, String np, int mes, int filial)
+    public Venda(String codP, double preco, int unidades, String np, String codC, int mes, int filial)
     {
         this.p = new Produto(codP);
         this.preco= preco;

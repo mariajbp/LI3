@@ -365,13 +365,8 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     **/
     public void query9()
     {
-<<<<<<< HEAD
-        view.query9_Inputp();
-        Scanner input = new Scanner(System.in);
-=======
-        view.query9_Input();
+        //view.query9_Input();
         Scanner input = new Scanner(System.in); 
->>>>>>> 5915f1465eedd796423e3cb900f84a715a69ebde
         String s = input.nextLine(); 
         Produto p = new Produto(s);
         view.query9_Inputx();

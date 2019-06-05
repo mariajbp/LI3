@@ -42,7 +42,7 @@ public interface IFilial extends Serializable
     /**
     * Método que atualiza o registo de um produto
     **/
-    public void updateRegProd(Produto p, Cliente c, int uni, int mes);
+    public void updateRegProd(Produto p, Cliente c, int mes);
     
     /**
     * Método que atualiza o registo de um cliente
