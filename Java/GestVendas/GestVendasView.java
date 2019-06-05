@@ -1,9 +1,10 @@
- import java.io.Serializable;
+import java.io.Serializable;
 import java.util.Scanner;
 import java.util.List;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import static java.lang.System.out;
+import java.util.Iterator;
 import java.awt.event.KeyEvent; 
 
 
@@ -11,19 +12,19 @@ import java.awt.event.KeyEvent;
 * Classe que 
 **/
 
-public class GestVendasView implements Serializable, IGestVendasView
+public class GestVendasView implements Serializable, IGestVendasView 
 {
    private Menu menu;
    
    public void init()
    {
-        out.println("   ######   ########  ######  ######## ##          ##########  ##    ## ########     ###     ######  ");
-        out.println("  ##    ##  ##       ##    #    ##      ##        ## ##        ###   ## ##     ##   ## ##   ##    ## ");
-        out.println(" ##         ##       ##         ##       ##       ## ##        ####  ## ##     ##  ##   ##  ##     ");  
-        out.println(" ##   ####  ######    ######    ##        ##     ## ######     ## ## ## ##     ## ##     ##  ###### "); 
-        out.println(" ##     ##  ##             ##   ##         ##   ##  ##         ##  #### ##     ## #########       ## ");
-        out.println("  ##    ##  ##       ##    ##   ##          ## ##   ##         ##   ### ##     ## ##     ## ##    ## ");
-        out.println("  ######   ########  ######     ##           ###    ########   ##    ## ########  ##     ##  ######  ");
+        out.println("   ******   ********  ******  ******** **          **********  **    ** ********     ***     ******  ");
+        out.println("  **    **  **       **    *    **      **        ** **        ***   ** **     **   ** **   **    ** ");
+        out.println(" **         **       **         **       **       ** **        ****  ** **     **  **   **  **     ");  
+        out.println(" **   ****  ******    ******    **        **     ** ******     ** ** ** **     ** **     **  ****** "); 
+        out.println(" **     **  **             **   **         **   **  **         **  **** **     ** *********       ** ");
+        out.println("  **    **  **       **    **   **          ** **   **         **   *** **     ** **     ** **    ** ");
+        out.println("  ******   ********  ******     **           ***    ********   **    ** ********  **     **  ******  ");
    }
    
    /**
@@ -52,12 +53,36 @@ public class GestVendasView implements Serializable, IGestVendasView
    /**
    * Método que printa a lista ordenada alfabeticamente com os códigos dos produtos nunca comprados e o seu respectivo total.
    **/
-   public void query1_Output(List<Produto> p, int i)
+   public void query1_Output(List<Produto> p)
    {      
-       for(Produto pr: p)
-            out.println(pr.toString());
-       out.println(i);
+       int i = 0;
+       int pag = 1;
+       int index = 0;
+       int pos = 0;
+       out.println("****************************** Página " + pag + "***************************************** \n");
+       if(pag == 1)
+       {
+           Iterator<Produto> it = p.iterator();
+           pos = index;
+           while(it.hasNext() && pos < index + 15)
+           {
+               Produto pd = p.get(index);
+               pd = it.next();
+               pd.toString();
+               pos ++;
+           }
+           index += 15;
+       }
+       if(pag == 1){out.println("Próxima página - 1 \n");}
+       else{out.println("Próxima página - 1 \n" + "Página anterior - 2 \n");}
+       Scanner input = new Scanner(System.in);
+       int in = input.nextInt();
+       //if(in == )
    }
+        
+   
+   
+   
    
    //Dado um mês válido, determinar o número total global de vendas realizadas e o número total de clientes distintos que as fizeram; 
    //Fazer o mesmo mas para cada uma das filiais.
@@ -66,10 +91,16 @@ public class GestVendasView implements Serializable, IGestVendasView
        out.println("Insira o mês que pretende consultar: \n");
    }
    
-   public void query2_Output()
+   public void query2_Output(Pair<Integer,Integer> p1, Pair<Integer,Integer> p2, Pair<Integer,Integer> p3, int tp, int tc)
    {
+       out.println("*******************************************************************************");
+       out.println("Filial 1" +"\t"+"\t"+ "Filial 2" +"\t"+"\t"+ "Filial 3" +"\t"+"\t" + "Total");
+       out.println("*******************************************************************************");
+       out.println("Vendas: "+ p1.getFst() + "\t"+ "\t"+"Vendas: "+ p2.getFst() +"\t"+ "\t" +"Vendas: "+ p3.getFst() +"\t"+ "\t" + tp + "\n");
+       out.println("Clientes: " + p1.getSnd() +"\t"+ "\t"+ "Clientes: " + p2.getSnd() +"\t"+ "\t"+"Clientes: " + p3.getSnd() +"\t"+ "\t" + tc);
+       out.println("*******************************************************************************");
    }
-   
+    
    //Dado um código de cliente, determinar, para cada mês, quantas compras fez, 
    //quantos produtos distintos comprou e quanto gastou no total.
    public void query3_Input()
@@ -113,13 +144,17 @@ public class GestVendasView implements Serializable, IGestVendasView
    //distintos clientes que o compraram (X é um inteiro dado pelo utilizador).
    public void query6_Input()
    { 
-      out.println("Insira o númerode produtos que quer determinar: \n");  
+      out.println("Insira o número de produtos que quer determinar: \n");  
    }
    
    public void query6_Output()
    {
        out.println("| Produtos |  Número de clientes | \n") ;
-       
+   }
+   
+   public void query6_Output_Dados(Pair<Produto,Integer> p)
+   {
+       out.println("\t"+ p.getFst() + "\t" + p.getSnd() + "\n");
    }
 
    //Determinar, para cada filial, a lista dos três maiores compradores em termos de dinheiro facturado.
@@ -131,17 +166,23 @@ public class GestVendasView implements Serializable, IGestVendasView
    //(não interessa a quantidade nem o valor), indicando quantos, sendo o critério de ordenação a ordem decrescente do número de produtos.
    public void query8_Input()
    {
-      out.println("Insira o númerode produtos que quer determinar: \n");  
+      out.println("Insira o número de produtos que quer determinar: \n");  
    }
+   
    
    public void query8_Output()
    {}
    
    // Dado o código de um produto que deve existir, determinar o conjunto dos X clientes que mais o compraram e, para cada um, 
    //qual o valor gasto (ordenação cf. 5).
-   public void query9_Input() //vai haver aqui um throw qualquer
+   public void query9_Inputp() //vai haver aqui um throw qualquer
    {
        out.println("Insira o código do produto: \n");
+   }
+   
+   public void query9_Inputx()
+   {
+      out.println("Insira o número de clientes que quer determinar: \n");  
    }
    
    public void query9_Output()

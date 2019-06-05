@@ -3,6 +3,8 @@ import java.util.Scanner;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.util.List;
+import java.util.Iterator;
+import java.awt.event.KeyEvent; 
 
 /**
 * 
@@ -197,7 +199,7 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
    {
        crono.start();
        List<Produto> p = model.prodsNuncaComprados(); 
-       view.query1_Output(p, p.size());
+       view.query1_Output(p); 
        crono.stop(); 
        crono.print(); 
    }
@@ -215,11 +217,13 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
        Scanner input = new Scanner(System.in);
        int mes = input.nextInt();
        crono.start();
-       model.totalVendasRealizadas(mes,1); //COMPOR POR FILIAL // GLOBAL
-       model.totalVendasRealizadas(mes,2);
-       model.totalVendasRealizadas(mes,3);
-       view.query2_Output();
-       crono.stop(); 
+       Pair<Integer,Integer> p1 = model.totalVendasRealizadas(mes,1);
+       Pair<Integer,Integer> p2 = model.totalVendasRealizadas(mes,2);
+       Pair<Integer,Integer> p3 = model.totalVendasRealizadas(mes,3);
+       int totalp = p1.getFst()+p2.getFst()+p3.getFst();
+       int totalc = p1.getSnd()+p2.getSnd()+p3.getSnd();
+       view.query2_Output(p1,p2,p3,totalp, totalc);
+       crono.stop();  
        crono.print();
     }
     
@@ -303,8 +307,15 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         Scanner input = new Scanner(System.in);
         int x = input.nextInt();
         crono.start();
-        
-        //view.query6_Output(l); 
+        List<Pair<Produto,Integer>> l = model.prodsMaisVendidos(x);
+        Iterator<Pair<Produto,Integer>> it = l.iterator();
+        view.query6_Output();
+        Pair pair = new Pair();
+        while(it.hasNext())
+        {
+            pair = it.next();
+            view.query6_Output_Dados(pair); 
+        }
         crono.stop(); 
         crono.print();
     } 
@@ -354,10 +365,12 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     **/
     public void query9()
     {
-        view.query9_Input();
+        view.query9_Inputp();
         Scanner input = new Scanner(System.in);
         String s = input.nextLine(); 
         Produto p = new Produto(s);
+        view.query9_Inputx();
+        int x = input.nextInt();
         crono.start();
         //..
         view.query9_Output();

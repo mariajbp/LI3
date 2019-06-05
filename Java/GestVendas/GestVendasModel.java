@@ -278,9 +278,9 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     
     /**** QUERY2 ****/
     /** 
-    * Método que dado um mês válido, determina o número total global de vendas realizadas 
+    * Método que dado um mês válido, determina o número total global de vendas realizadas e o número total de clientes distintos que a realizaram
     * @param     Mês a calcular
-    * @returns   Número total global de vendas realizadas
+    * @returns   Número total global de vendas realizadas e número distinto de clientes
     **/
     public Pair<Integer,Integer> totalVendasRealizadas(int mes, int filial)
     {
