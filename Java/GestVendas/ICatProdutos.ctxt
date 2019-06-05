@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=ICatProdutos
-comment0.text=\n\ \n
+comment0.text=\r\n\ \r\n
 comment1.params=p
 comment1.target=void\ addProduto(Produto)
 comment2.params=codigo

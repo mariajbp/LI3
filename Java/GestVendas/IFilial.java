@@ -34,11 +34,6 @@ public interface IFilial extends Serializable
     public void setRegCl(Map<Cliente, List<RegistoCliente>> regC);
     
     /**
-    * Método que devolve os clientes distintos de uma compra
-    **/
-    public void getClientesDistintos(Set<Cliente> s);
-    
-    /**
     * Método que devolve os clientes distintos de determinado produto, 
     * num mes
     **/

@@ -74,7 +74,7 @@ public class CatalogoProdutos implements ICatProdutos, Serializable
    public boolean equals(Object o)
    {
       if(this == o) return true;
-      if(o == null && this.getClass() != o.getClass()) return false;
+      if(o == null || this.getClass() != o.getClass()) return false;
       CatalogoProdutos cp  = (CatalogoProdutos) o;     
       return this.catalogo.equals(cp.getCatalogo());
    }

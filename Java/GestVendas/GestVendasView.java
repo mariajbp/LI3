@@ -89,13 +89,12 @@ public class GestVendasView implements Serializable, IGestVendasView
    
    public void query4_Output(int i, Pair<Integer, Integer> p, double t)
    {
-       out.println(i + " \t" + p.getFst() + " \t" +p.getSnd() + " \t" + t + "\n");
+       out.println("  " + i + "    \t" + p.getFst() + "          \t" +p.getSnd() + "        \t" + t + "\n");
     }
     
    public void query4_Output()
    {
-       out.println("Mês |  Comprados |  Clientes | Total \n") ;
-       
+       out.println("Mês | Vezes Comprado | Clientes Distintos | Total Faturado\n") ;
    }
    
    //Dado o código de um cliente determinar a lista de códigos de produtos que mais comprou (e quantos), ordenada por ordem 

@@ -37,7 +37,7 @@ public class Produto implements Serializable, Comparable<Produto>
     public boolean equals(Object o)
     { 
         if (o == this)return true;
-        if (o != null && this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         Produto p = (Produto) o;        
         return this.codigo_produto.equals(p.getCodigo());
     }

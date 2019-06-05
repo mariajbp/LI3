@@ -1,5 +1,5 @@
 
-public class Estatisticas
+public class Estatisticas implements IEstatisticas
 {
     private String nome;
 
