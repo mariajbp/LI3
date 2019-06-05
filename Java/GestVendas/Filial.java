@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.Iterator;
 
+import static java.lang.System.out;
 /**
 * Classe Filial que contém estruturas com dados de uma filial
 */
@@ -127,10 +128,9 @@ public class Filial implements Serializable, IFilial
     * Método que atualiza o registo de um produto
     * @param   Produto comprado
     * @param   Cliente que efetuou a compra
-    * @param   Número de unidades adquiridas
     * @param   Mês da compra
     **/
-    public void updateRegProd(Produto p, Cliente c, int uni, int mes)
+    public void updateRegProd(Produto p, Cliente c, int mes)
     {
         if(!this.regProd.containsKey(p)){
             ArrayList<RegistoProduto> a = new ArrayList<>();
@@ -195,7 +195,7 @@ public class Filial implements Serializable, IFilial
     **/
     public void addVenda(Venda v)
     {
-        updateRegProd(v.getProduto(), v.getCliente(), v.getUnidades(), v.getMes());
+        updateRegProd(v.getProduto(), v.getCliente(), v.getMes());
         updateRegCl(v.getCliente(), v.getProduto(), v.getUnidades(), v.getPreco() * v.getUnidades(), v.getMes());
     }
     

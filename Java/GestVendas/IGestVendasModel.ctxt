@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #BlueJ class context
 comment0.target=IGestVendasModel
 comment0.text=\n\ \n
@@ -26,3 +27,33 @@ comment8.target=java.util.List\ prodsNuncaComprados()
 comment9.params=mes\ filial
 comment9.target=Pair\ totalVendasRealizadas(int,\ int)
 numComments=13
+=======
+#BlueJ class context
+comment0.target=IGestVendasModel
+comment0.text=\r\n\ \r\n
+comment1.params=
+comment1.target=void\ carregamentoDefault()
+comment10.params=x
+comment10.target=java.util.List\ prodsMaisVendidos(int)
+comment11.params=p
+comment11.target=int\ distintosProd(Produto)
+comment12.params=filial
+comment12.target=java.util.List\ maioresCompradores(int)
+comment2.params=filename
+comment2.target=GestVendasModel\ loadStatus(java.lang.String)
+comment3.params=op
+comment3.target=void\ outroFicheiro(int)
+comment4.params=fileName
+comment4.target=void\ saveStatus(java.lang.String)
+comment5.params=p\ mes
+comment5.target=Pair\ comprasPorMes(Produto,\ int)
+comment6.params=p\ mes
+comment6.target=java.lang.Double\ faturadoPorMes(Produto,\ int)
+comment7.params=filial
+comment7.target=java.util.Map\ ftrTotal(int)
+comment8.params=
+comment8.target=java.util.List\ prodsNuncaComprados()
+comment9.params=mes\ filial
+comment9.target=Pair\ totalVendasRealizadas(int,\ int)
+numComments=13
+>>>>>>> 9ccff9f8636dc2655d53804580219b5336e780a5

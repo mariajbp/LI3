@@ -202,7 +202,7 @@ public class GestVendasView implements Serializable, IGestVendasView
    public void query8_Output()
    {}
    
-   // Dado o código de um produto que deve existir, determinar o conjunto dos X clientes que mais o compraram e, para cada um, 
+   // Dado o código  de um produto que deve existir, determinar o conjunto dos X clientes que mais o compraram e, para cada um, 
    //qual o valor gasto (ordenação cf. 5).
    public void query9_Inputp() //vai haver aqui um throw qualquer
    {

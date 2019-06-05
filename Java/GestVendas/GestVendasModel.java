@@ -408,16 +408,12 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         int quantos = ftr.getUnidadesMes(p, mes);
         
         int cl = 0;
-        int c1 = 0, c2 = 0, c3 = 0;
         
-        c1 = f1.getClientesDistintos(p, mes); 
-        out.println(mes + " " + c1 + " f1");
-        c2 = f2.getClientesDistintos(p, mes);
-        out.println(mes + " " + c2 + " f2");
-        c3 = f3.getClientesDistintos(p, mes);
-        out.println(mes + " " + c3 + " f3");
-
-        cl = c1+c2+c3;
+        cl += f1.getClientesDistintos(p, mes); 
+        
+        cl += f2.getClientesDistintos(p, mes);
+        
+        cl += f3.getClientesDistintos(p, mes);
         
         pair.setFst(quantos);
         pair.setSnd(cl);

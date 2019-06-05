@@ -59,7 +59,7 @@ public class RegistoProduto implements Serializable
             return false;
        RegistoProduto r = (RegistoProduto) o;
        return this.registo.equals(r.getRegisto());
-   }
+   } 
     
    /** 
    * Método que cria uma cópia de um Registo de Produtos
@@ -75,7 +75,7 @@ public class RegistoProduto implements Serializable
     **/
    public void updateRegProduto(Cliente c)
    {
-       this.registo.add(c);
+            this.registo.add(c);
     }
     
    public int ClientesDistintos()
