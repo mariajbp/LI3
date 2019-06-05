@@ -202,24 +202,26 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
        crono.print(); 
    }
    
-   /** 
-   * Query 2:  Dado um mês válido, determinar o número total global de vendas realizadas e o número total de clientes distintos que as fizeram; 
-   * Fazer o mesmo mas para cada uma das filiais.
-   * 
-   * @param 
-   * @returns
-   **/
-   public void query2()
-   {
+    /** 
+    * Query 2:  Dado um mês válido, determinar o número total global de vendas realizadas e o número total de clientes distintos que as fizeram; 
+    * Fazer o mesmo mas para cada uma das filiais.
+    * 
+    * @param 
+    * @returns
+    **/
+    public void query2()
+    {
        view.query2_Input();
        Scanner input = new Scanner(System.in);
        int mes = input.nextInt();
        crono.start();
-       //...
+       model.totalVendasRealizadas(mes,1); //COMPOR POR FILIAL // GLOBAL
+       model.totalVendasRealizadas(mes,2);
+       model.totalVendasRealizadas(mes,3);
        view.query2_Output();
        crono.stop(); 
        crono.print();
-   }
+    }
     
     /** 
     * Query 3: Dado um código de cliente, determinar, para cada mês, quantas compras fez, 
@@ -301,8 +303,8 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         Scanner input = new Scanner(System.in);
         int x = input.nextInt();
         crono.start();
-        //..
-        view.query6_Output();
+        
+        //view.query6_Output(l); 
         crono.stop(); 
         crono.print();
     } 
@@ -316,7 +318,9 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     public void query7()
     {
         crono.start();
-        //..
+        model.maioresCompradores(1);
+        model.maioresCompradores(2);
+        model.maioresCompradores(3);
         view.query7_Output();
         crono.stop(); 
         crono.print();

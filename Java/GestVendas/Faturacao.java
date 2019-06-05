@@ -1,6 +1,7 @@
 import java.io.Serializable;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -111,7 +112,7 @@ public class Faturacao implements Serializable, IFaturacao
     
     /**
     * Método que define um hashMap a partir de um hashMap passado como parâmetro
-    * * @param    HashMap da faturação total de um determinado produto por mes
+    * @param    HashMap da faturação total de um determinado produto por mes
     **/ 
     public void setProdPrecoMes1(Map<Produto, List<Double>> prd)
     {
@@ -121,7 +122,7 @@ public class Faturacao implements Serializable, IFaturacao
     
     /**
     * Método que define um hashMap a partir de um hashMap passado como parâmetro
-    * * @param    HashMap da faturação total de um determinado produto por mes
+    * @param    HashMap da faturação total de um determinado produto por mes
     **/ 
     public void setProdPrecoMes2(Map<Produto, List<Double>> prd)
     {
@@ -131,7 +132,7 @@ public class Faturacao implements Serializable, IFaturacao
     
     /**
     * Método que define um hashMap a partir de um hashMap passado como parâmetro
-    * * @param    HashMap da faturação total de um determinado produto por mes
+    * @param    HashMap da faturação total de um determinado produto por mes
     **/ 
     public void setProdPrecoMes3(Map<Produto, List<Double>> prd)
     {
@@ -150,7 +151,7 @@ public class Faturacao implements Serializable, IFaturacao
     
     /**
     * Método que define um hashMap a partir de um hashMap passado como parâmetro
-    * * @param    HashMap da faturação total de um determinado produto por mes
+    * @param    HashMap da faturação total de um determinado produto por mes
     **/ 
     public void setProdUnidadeMes(Map<Produto, List<Integer>> prd)
     {
@@ -188,11 +189,21 @@ public class Faturacao implements Serializable, IFaturacao
        return sb.toString();
     }
     
+    /**
+    * Metodo que retorna o número de unidades compradas de um produto num mês
+    * @param  Produto adquirido
+    * @param  Mês da compra
+    **/
     public int getUnidadesMes(Produto p, int mes)
     {
         return this.prodUnidadeMes.get(p).get(mes-1);
     }
     
+    /**
+    * Metodo que retorna o montante faturado com determinado produto num mês
+    * @param   Produto adquirido
+    * @param   Mês da compra
+    **/
     public double getProdPrecoMesAll(Produto p, int mes)
     {
         double preco = 0.0;
@@ -282,14 +293,15 @@ public class Faturacao implements Serializable, IFaturacao
                     a.add(0.0);
                 a.set(index, preco);
                 this.prodPrecoMes1.put(p,a);
-            }
-            else{
+           }
+           else
+           {
                List a = this.prodPrecoMes1.get(p); 
                precoAtual = (double)a.get(index); 
                precoAtualizado = precoAtual + preco;
                a.set(index, precoAtualizado);
                this.prodPrecoMes1.put(p,a);
-            }
+           }
         }
         else
             if(filial == 2)
@@ -374,15 +386,15 @@ public class Faturacao implements Serializable, IFaturacao
     * Método que determina o total de certo produto vendido anualmente
     * @return Map que contém o total de certo produto vendido anualmente
     **/
-    public Map<Produto, Integer>  prodsVendidosAnual()
+    public LinkedHashMap<Produto, Integer>  prodsVendidosAnual()
     {
-        Map<Produto, Integer> map = new HashMap<>(); 
+        LinkedHashMap<Produto, Integer> map = new LinkedHashMap<>();  
         for(Map.Entry<Produto, List<Integer>> e : this.prodUnidadeMes.entrySet())
         {
             List<Integer> l = e.getValue();
             Integer sum = l.stream().collect(Collectors.summingInt(Integer::intValue));
-            map.put(e.getKey(), sum);
+            map.put(e.getKey(), sum); 
         } 
-        return map;
+        return map;  
     }
 }

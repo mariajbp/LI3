@@ -18,12 +18,6 @@ public class Filial implements Serializable, IFilial
     /** Registo mensal de cada cliente **/
     private Map<Cliente, List<RegistoCliente>> regCl;
     
-    
-    /** Registo anual de cada cliente **/
-    /*
-    private Map<Cliente, RegistoCliente> anual;
-    */
-    
     /** 
     * Construtor vazio que cria uma instância Filial
     **/
@@ -52,8 +46,7 @@ public class Filial implements Serializable, IFilial
     }
     
     /**
-    * Método que devolve 
-    * @returns 
+    * Método que associa um registo a um produto
     **/
     public Map<Produto, List<RegistoProduto>> getRegProd()
     {
@@ -61,8 +54,7 @@ public class Filial implements Serializable, IFilial
     }
     
     /**
-    * Método que devolve 
-    * @returns 
+    * Método que associa um registo a um cliente 
     **/
     public Map<Cliente, List<RegistoCliente>> getRegCl()
     {
@@ -70,8 +62,7 @@ public class Filial implements Serializable, IFilial
     }
     
     /**
-    * Método que define 
-    * @param 
+    * Método que define um registo de determinado produto
     **/
     public void setRegProd(Map<Produto, List<RegistoProduto>> regP)
     {
@@ -80,8 +71,7 @@ public class Filial implements Serializable, IFilial
     }
     
     /**
-    * Método que define 
-    * @param 
+    * Método que define um registo de determinado cliente
     **/
     public void setRegCl(Map<Cliente, List<RegistoCliente>> regC)
     {
@@ -89,6 +79,11 @@ public class Filial implements Serializable, IFilial
         this.regCl = new HashMap<>(regC);
     }
     
+    /** 
+    * Método que testa se um objeto é igual a uma determinada identificação
+    * @param      Objeto a ser testado
+    * @return     True se o objeto for igual à identificação, false se o objeto passado não for igual à identificação
+    **/
     public boolean equals(Object o)
     {
          if(this == o) return true;
@@ -97,16 +92,26 @@ public class Filial implements Serializable, IFilial
          return this.regProd.equals(f.getRegProd()) && this.regCl.equals(f.getRegCl());
     }
     
+    /** 
+    * Método que cria uma cópia de uma identificação de uma Faturação
+    **/
     public Filial clone()
     {
         return new Filial(this);
     }
     
+    /**
+    * Método que converte uma identificação numa string 
+    **/
     public String toString()
     {
         return " ";
     }
     
+    /**
+    * Método que produz a lista com os clientes distintos de uma compra
+    * @param   Lista de clientes de uma compra
+    **/
     public void getClientesDistintos(Set<Cliente> s)
     {
         Set<Cliente> tmp = regCl.keySet();
@@ -119,6 +124,11 @@ public class Filial implements Serializable, IFilial
         }
     }
     
+    /**
+    * Método que devolve os clientes distintos de determinado produto, num mes
+    * @param   Produto comprado
+    * @param   Mês da compra
+    **/
     public int getClientesDistintos(Produto p, int mes)
     {
         if(this.regProd.containsKey(p))
@@ -127,6 +137,14 @@ public class Filial implements Serializable, IFilial
             return -1;
     }
     
+    
+    /**
+    * Método que atualiza o registo de um produto
+    * @param   Produto comprado
+    * @param   Cliente que efetuou a compra
+    * @param   Número de unidades adquiridas
+    * @param   Mês da compra
+    **/
     public void updateRegProd(Produto p, Cliente c, int uni, int mes)
     {
         if(!this.regProd.containsKey(p)){
@@ -150,9 +168,19 @@ public class Filial implements Serializable, IFilial
         }
     }
     
+    
+    /**
+    * Método que atualiza o registo de um cliente
+    * @param   Produto comprado
+    * @param   Cliente que efetuou a compra
+    * @param   Número de unidades adquiridas
+    * @param   ???
+    * @param   Mês da compra
+    **/
     public void updateRegCl(Cliente c, Produto p, int uni, double t, int mes)    
     {
-        if(!this.regCl.containsKey(c)){
+        if(!this.regCl.containsKey(c))
+        {
             ArrayList<RegistoCliente> a = new ArrayList<>();
             for(int i = 0; i < 12; i++)
                     a.add(new RegistoCliente());
@@ -177,9 +205,31 @@ public class Filial implements Serializable, IFilial
         }
     }
     
+    /**
+    * Método que divide as carateristicas de uma venda pelos Maps da classe
+    **/
     public void addVenda(Venda v)
     {
         updateRegProd(v.getProduto(), v.getCliente(), v.getUnidades(), v.getMes());
         updateRegCl(v.getCliente(), v.getProduto(), v.getUnidades(), v.getPreco() * v.getUnidades(), v.getMes());
+    }
+    
+    public HashMap<Cliente, Integer> comprasAnuais()
+    {
+        int total = 0;
+        HashMap<Cliente, Integer> l = new HashMap<>();
+        List<RegistoCliente> rc = new ArrayList<>();  
+        for(Map.Entry<Cliente, List<RegistoCliente>> e : this.regCl.entrySet())
+        {
+               rc = e.getValue();
+               Iterator<RegistoCliente> it = rc.iterator();
+               while(it.hasNext())
+               {
+                    RegistoCliente reg = it.next();
+                    total += reg.getTotal();
+               }
+               l.put(e.getKey(), total);
+        }
+        return l; 
     }
 }

@@ -1,5 +1,6 @@
 import java.io.Serializable;
 import java.util.Map;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -57,8 +58,14 @@ public interface IFaturacao extends Serializable
    **/ 
    public void setProdUnidadeMes(Map<Produto, List<Integer>> prd);
    
+   /**
+   * Metodo que retorna o número de unidades compradas de um produto num mês
+   **/
    public int getUnidadesMes(Produto p, int mes);
    
+   /**
+   * 
+   **/
    public double getProdPrecoMesAll(Produto p, int mes);
     
    /**
@@ -80,6 +87,9 @@ public interface IFaturacao extends Serializable
    * Método que divide as carateristicas de uma venda pelos Maps da classe
    **/
     public void addVenda(Venda v);
-    
-   public Map<Produto, Integer>  prodsVendidosAnual(); 
+   
+   /**
+   * Método que determina o total de certo produto vendido anualmente
+   **/
+   public LinkedHashMap<Produto, Integer>  prodsVendidosAnual(); 
 }

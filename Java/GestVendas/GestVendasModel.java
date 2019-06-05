@@ -281,83 +281,63 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * Método que dado um mês válido, determina o número total global de vendas realizadas 
     * @param     Mês a calcular
     * @returns   Número total global de vendas realizadas
-  
-    public Pair<Set<Cliente>,Integer>  totalVendasRealizadas(int mes, int filial)
+    **/
+    public Pair<Integer,Integer> totalVendasRealizadas(int mes, int filial)
     {
-        int total = 0;
-        int index = mes-1;
-        
-        if(filial == 1)
-        {
-            Map<Cliente,ArrayList<RegistoCliente>> regCl = f1.getRegCl();
-            
-            for(Map.Entry<Cliente,ArrayList<RegistoCliente>> e : this.regCl)
-            {
-                List l = regCl.getValue();
-                RegistoCliente rc = l.get(index);
-                total += rc.getVezes();
-                if (rc.getVezes() > 0)
-                {
-                    Set<Cliente> set = e.getKey(); 
-                }
-            }
-        }
-        
-        if(filial == 2)
-        {
-            Map<Cliente,ArrayList<RegistoCliente>> regCl = f2.getRegCl();
-            
-            for(Map.Entry<Cliente,ArrayList<RegistoCliente>> e : this.regCl)
-            {
-                List l = regCl.getValue();
-                RegistoCliente rc = new RegistoCliente();
-                rc = l.get(index);
-                total += rc.getVezes();
-                if (rc.getVezes() > 0)
-                {
-                    Set<Cliente> set = e.getKey(); 
-                }
-            }
-        }
- 
-        if(filial == 3)
-        {
-            Map<Cliente,ArrayList<RegistoCliente>> regCl = f3.getRegCl();
-            
-            for(Map.Entry<Cliente,ArrayList<RegistoCliente>> e : this.regCl)
-            {
-                List l = regCl.getValue();
-                RegistoCliente rc = l.get(index);
-                total += rc.getVezes();
-                if (rc.getVezes() > 0)
-                {
-                    Set<Cliente> set = e.getKey(); 
-                }
-            }
-        }
-        
-        Pair<Set<Cliente>> p = new Pair(set, total);
-        return total;
-     } **/
+       int total = 0;
+       int num = 0;
+       int cl = 0;
+       int index = mes - 1;
+       Map<Produto, List<Integer>> map = new HashMap<>();
+       map = this.ftr.getProdUnidadeMes();
+       if(filial == 1)
+       {
+           for(Map.Entry<Produto, List<Integer>> e : map.entrySet())
+           {
+              List l = new ArrayList<>(); 
+              l = e.getValue();
+              num = (int) l.get(index);  
+              total += num; 
+              if(num > 0)
+              {
+                 cl = f1.getClientesDistintos(e.getKey(), mes);  
+              }
+           }
+       }
+       if(filial == 2)
+       {
+           for(Map.Entry<Produto, List<Integer>> e : map.entrySet())
+           {
+              List l = new ArrayList<>(); 
+              l = e.getValue();
+              num = (int) l.get(index);  
+              total += num; 
+              if(num > 0)
+              {
+                 cl = f2.getClientesDistintos(e.getKey(), mes);  
+              }
+           }
+       }
+       if(filial == 3)
+       {
+           for(Map.Entry<Produto, List<Integer>> e : map.entrySet())
+           {
+              List l = new ArrayList<>(); 
+              l = e.getValue();
+              num = (int) l.get(index);  
+              total += num;
+              if(num > 0)
+              {
+                 cl = f3.getClientesDistintos(e.getKey(), mes);  
+              }
+           }
+       }
+       
+       Pair<Integer,Integer> pair = new Pair(num, cl);
+       return pair;
+    }
     
     
-    /** 
-    * Método que dado um mês válido, determina o número total de clientes distintos que fizeram compras
-    * @param    Mês a calcular    
-    * @returns  Número total de clientes distintos que fizeram compras
-    **//*
-    public int totalClientesDistintos(int mes)
-    {
-        int total = 0;
-        int index = mes-1;
-        Filial f = new Filial();
-        
-        
-        
-        
-        
-        return total;
-    }*/
     
     /**** QUERY3 ****/
     /** 
@@ -421,7 +401,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         Set<Cliente> cl = new TreeSet<>();
        
         
-        f1.getClientesDistintos(cl);
+        f1.getClientesDistintos(cl); 
         f2.getClientesDistintos(cl);
         f3.getClientesDistintos(cl);
         
@@ -529,46 +509,135 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * distintos clientes que o compraram.
     * @param     Número de produtos a determinar, introduzido pelo utilizador
     * @returns
-    **//*
-    public List<Produto> prodsMaisComprados(int x)
+    **/
+    public List<Pair<Produto,Integer>> prodsMaisVendidos(int x)
     {
-        Faturacao f = new Faturacao();
-        Map<Produto, List<Integer>> prodUnidadeMes = f.getProdUnidadeMes();
-        Map<Produto, Integer> map = new HashMap<>();
-        
-        for(Map.Entry<Produto, List<Integer>> e : prodUnidadeMes.entrySet())
+        int i = 0;
+        HashMap<Produto, Integer> prods = this.ftr.prodsVendidosAnual();  
+        HashMap<Produto, Integer> mapOrder = this.sortMap(prods); 
+        List<Pair<Produto,Integer>> l = new ArrayList<>();
+        Pair<Produto,Integer> pair = new Pair<>();
+        for(Map.Entry<Produto, Integer> e : mapOrder.entrySet())
         {
-            List<Integer> l = e.getValue();
-            Integer sum = l.stream().collect(Collectors.summingInt(Integer::intValue));
+             while(i<x)
+             {
+                 pair.setFst(e.getKey());
+                 pair.setSnd(e.getValue());
+                 l.add(pair);
+             }
         }
-
-    
-    public int maisVendidos(int filial)
-    {
-        
+        return l;  
     }
-    */
+
+    public static HashMap<Produto, Integer> sortMap(HashMap<Produto, Integer> map) 
+    {
+        List<Map.Entry<Produto, Integer>> l = new ArrayList<>(map.entrySet());
+        Collections.sort(l, (o1, o2) -> o1.getValue().compareTo(o2.getValue()));
+        HashMap<Produto, Integer> result = new HashMap<>();      
+        for (Map.Entry<Produto, Integer> entry : l)
+        {
+            result.put(entry.getKey(), entry.getValue());
+        }
+        return result;
+    }
+    
+    public int distintosProd(Produto produto)
+    {
+        int dt = 0, d1 = 0, d2 = 0, d3 = 0; 
+        Map<Produto, List<RegistoProduto>> p1 = f1.getRegProd();
+        for(Map.Entry<Produto, List<RegistoProduto>> e : p1.entrySet())
+        {
+               if(produto == e.getKey())
+               {
+                     List<RegistoProduto> reg = e.getValue();
+                     d1 = reg.size();
+               }
+        }   
+        Map<Produto, List<RegistoProduto>> p2 = f2.getRegProd();
+        for(Map.Entry<Produto, List<RegistoProduto>> e : p2.entrySet())
+        {
+               if(produto == e.getKey())
+               {
+                     List<RegistoProduto> reg = e.getValue();
+                     d1 = reg.size();
+               }
+        }
+        Map<Produto, List<RegistoProduto>> p3 = f1.getRegProd();
+        for(Map.Entry<Produto, List<RegistoProduto>> e : p3.entrySet())
+        {
+               if(produto == e.getKey())
+               {
+                     List<RegistoProduto> reg = e.getValue();
+                     d1 = reg.size();
+               }
+        }
+        dt = d1 + d2 + d3;
+        return dt;
+    }
     
     
     /**** QUERY7 ****/
     /**
     * Método que determina, para cada filial, a lista dos três maiores compradores em termos de dinheiro facturado.
     * @returns
-    
+    **/
     public List<Cliente> maioresCompradores(int filial)
     {
+        int total = 0;
+        int i = 0;
+        List<Cliente> list = new ArrayList<>();
+        HashMap<Cliente, Integer> cl = new HashMap<>(); 
+        HashMap<Cliente, Integer> clOrder = new HashMap<>();
         if(filial == 1)
         {
-            
-        }
-    } **/
-    /*
-    //devolve a lista de cada cliente e o total gasto
-    public Map<Cliente,Integer> totalFTRcl()
+            cl = f1.comprasAnuais();
+            clOrder = this.sortMapQ7(cl); 
+            for(Map.Entry<Cliente, Integer> e : clOrder.entrySet())
+            {
+                while(i < 3)
+                {
+                    list.add(e.getKey().clone());
+                }
+            }
+        }  
+        if(filial == 2)
+        {
+            cl = f2.comprasAnuais();
+            clOrder = this.sortMapQ7(cl); 
+            for(Map.Entry<Cliente, Integer> e : clOrder.entrySet())
+            {
+                while(i < 3)
+                {
+                    list.add(e.getKey().clone());
+                }
+            }
+        } 
+        if(filial == 3)
+        {
+            cl = f3.comprasAnuais();
+            clOrder = this.sortMapQ7(cl); 
+            for(Map.Entry<Cliente, Integer> e : clOrder.entrySet())
+            {
+                while(i < 3)
+                {
+                    list.add(e.getKey().clone());
+                }
+            }
+        } 
+        return list;
+    }  
+   
+    public static HashMap<Cliente, Integer> sortMapQ7(HashMap<Cliente, Integer> map) 
     {
-         
+        List<Map.Entry<Cliente, Integer>> l = new ArrayList<>(map.entrySet());
+        Collections.sort(l, (o1, o2) -> o1.getValue().compareTo(o2.getValue()));
+        HashMap<Cliente, Integer> result = new HashMap<>();      
+        for (Map.Entry<Cliente, Integer> entry : l)
+        {
+            result.put(entry.getKey(), entry.getValue());
+        }
+        return result;
     }
-    */
     
     
     /**** QUERY8 ****/

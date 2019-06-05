@@ -17,13 +17,13 @@ public class GestVendasView implements Serializable, IGestVendasView
    
    public void init()
    {
-        out.println("   ######    ########  ######  ######## ##          ## ######## ##    ## ########     ###     ######  ");
-        out.println("  ##    ##   ##       ##    ##   ##      ##        ## ##        ###   ## ##     ##   ## ##   ##    ## ");
-        out.println(" ##         ##       ##          ##       ##       ## ##        ####  ## ##     ##  ##   ##  ##     ");  
-        out.println(" ##   ####  ######    ######     ##        ##     ## ######     ## ## ## ##     ## ##     ##  ###### "); 
-        out.println(" ##    ##   ##             ##    ##         ##   ##  ##         ##  #### ##     ## #########       ## ");
-        out.println("  ##    ##  ##       ##    ##    ##          ## ##   ##         ##   ### ##     ## ##     ## ##    ## ");
-        out.println("  ######   ########  ######      ##           ###    ########   ##    ## ########  ##     ##  ######  ");
+        out.println("   ######   ########  ######  ######## ##          ##########  ##    ## ########     ###     ######  ");
+        out.println("  ##    ##  ##       ##    #    ##      ##        ## ##        ###   ## ##     ##   ## ##   ##    ## ");
+        out.println(" ##         ##       ##         ##       ##       ## ##        ####  ## ##     ##  ##   ##  ##     ");  
+        out.println(" ##   ####  ######    ######    ##        ##     ## ######     ## ## ## ##     ## ##     ##  ###### "); 
+        out.println(" ##     ##  ##             ##   ##         ##   ##  ##         ##  #### ##     ## #########       ## ");
+        out.println("  ##    ##  ##       ##    ##   ##          ## ##   ##         ##   ### ##     ## ##     ## ##    ## ");
+        out.println("  ######   ########  ######     ##           ###    ########   ##    ## ########  ##     ##  ######  ");
    }
    
    /**
@@ -118,6 +118,8 @@ public class GestVendasView implements Serializable, IGestVendasView
    
    public void query6_Output()
    {
+       out.println("| Produtos |  Número de clientes | \n") ;
+       
    }
 
    //Determinar, para cada filial, a lista dos três maiores compradores em termos de dinheiro facturado.

@@ -17,4 +17,8 @@ public interface IGestVendasModel extends Serializable
     public Double faturadoPorMes(Produto p, int mes);
     public Map<Produto, List<Double>> ftrTotal(int filial);
     public List<Produto> prodsNuncaComprados();
+    public Pair<Integer,Integer> totalVendasRealizadas(int mes, int filial);
+    public List<Pair<Produto,Integer>> prodsMaisVendidos(int x);
+    public int distintosProd(Produto p);
+    public List<Cliente> maioresCompradores(int filial);
 }
