@@ -123,6 +123,14 @@ public class Filial implements Serializable, IFilial
             return 0;
     }
      
+    public int totalVendas(int mes)
+    {
+        int v = 0;
+        for(Map.Entry<Cliente, List<RegistoCliente>> e : this.regCl.entrySet()){
+            v += e.getValue().get(mes-1).getVezes();
+        }
+        return v;
+    }
     
     /**
     * Método que atualiza o registo de um produto

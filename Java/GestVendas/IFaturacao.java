@@ -2,6 +2,7 @@ import java.io.Serializable;
 import java.util.Map;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Set;
 
 /**
 * 
@@ -33,6 +34,10 @@ public interface IFaturacao extends Serializable
    **/
    public Map<Produto, List<Double>> getProdPrecoMes3(); 
     
+   public Set<Produto> getProdutos1();
+   public Set<Produto> getProdutos2();
+   public Set<Produto> getProdutos3();
+   
    /**
    * Método que define um hashMap a partir de um hashMap passado como parâmetro
    **/ 

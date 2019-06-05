@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.stream.Collectors;
+import java.util.Set;
 
 import static java.lang.System.out;
 /**
@@ -108,6 +109,33 @@ public class Faturacao implements Serializable, IFaturacao
     public Map<Produto, List<Double>> getProdPrecoMes3() 
     {
        return new HashMap<Produto, List<Double>>(this.prodPrecoMes3);
+    }
+    
+    /**
+     * Método que devolve um Set com todos os produtos vendidos na filial 1
+     * @returns
+     */ 
+    public Set<Produto> getProdutos1()
+    {
+        return this.prodPrecoMes1.keySet();
+    }
+    
+    /**
+     * Método que devolve um Set com todos os produtos vendidos na filial 2
+     * @returns
+     */
+    public Set<Produto> getProdutos2()
+    {
+        return this.prodPrecoMes2.keySet();
+    }
+    
+    /**
+     * Método que devolve um Set com todos os produtos vendidos na filial 3
+     * @returns
+     */
+    public Set<Produto> getProdutos3()
+    {
+        return this.prodPrecoMes3.keySet();
     }
     
     /**

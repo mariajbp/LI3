@@ -294,55 +294,51 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     public Pair<Integer,Integer> totalVendasRealizadas(int mes, int filial)
     {
        int total = 0;
-       int num = 0;
        int cl = 0;
-       int index = mes - 1;
-       Map<Produto, List<Integer>> map = new HashMap<>();
-       map = this.ftr.getProdUnidadeMes();
+       Set<Produto> prd = new TreeSet<>();
+       
        if(filial == 1)
        {
-           for(Map.Entry<Produto, List<Integer>> e : map.entrySet())
-           {
-              List l = new ArrayList<>(); 
-              l = e.getValue();
-              num = (int) l.get(index);  
-              total += num; 
-              if(num > 0)
-              {
-                 cl = f1.getClientesDistintos(e.getKey(), mes);  
-              }
-           }
+           total = f1.totalVendas(mes); 
+           if(total > 0){
+               prd = this.ftr.getProdutos1();
+               Iterator it = prd.iterator();
+               while(it.hasNext()){
+                  Produto p = (Produto) it.next(); 
+                  cl += f1.getClientesDistintos(p, mes);  
+               }
+            }
        }
-       if(filial == 2)
-       {
-           for(Map.Entry<Produto, List<Integer>> e : map.entrySet())
+       else{
+           if(filial == 2)
            {
-              List l = new ArrayList<>(); 
-              l = e.getValue();
-              num = (int) l.get(index);  
-              total += num; 
-              if(num > 0)
-              {
-                 cl = f2.getClientesDistintos(e.getKey(), mes);  
-              }
+               total = f2.totalVendas(mes); 
+               if(total > 0){
+                   prd = this.ftr.getProdutos2();
+                   Iterator it = prd.iterator();
+                   while(it.hasNext()){
+                      Produto p = (Produto) it.next(); 
+                      cl += f2.getClientesDistintos(p, mes);  
+                   }
+                }
            }
-       }
-       if(filial == 3)
-       {
-           for(Map.Entry<Produto, List<Integer>> e : map.entrySet())
-           {
-              List l = new ArrayList<>(); 
-              l = e.getValue();
-              num = (int) l.get(index);  
-              total += num;
-              if(num > 0)
-              {
-                 cl = f3.getClientesDistintos(e.getKey(), mes);  
-              }
-           }
+           else{
+               if(filial == 3)
+               {
+                   total = f3.totalVendas(mes); 
+                   if(total > 0){
+                       prd = this.ftr.getProdutos3();
+                       Iterator it = prd.iterator();
+                       while(it.hasNext()){
+                          Produto p = (Produto) it.next(); 
+                          cl += f3.getClientesDistintos(p, mes);  
+                       }
+                    }
+               }
+            }
        }
        
-       Pair<Integer,Integer> pair = new Pair(num, cl);
+       Pair<Integer,Integer> pair = new Pair(total, cl);
        return pair;
     }
     

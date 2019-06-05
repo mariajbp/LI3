@@ -40,6 +40,11 @@ public interface IFilial extends Serializable
     public int getClientesDistintos(Produto p, int mes);
     
     /**
+    * Método que devolve o total de vendas num certo mês
+    **/
+    public int totalVendas(int mes);
+    
+    /**
     * Método que atualiza o registo de um produto
     **/
     public void updateRegProd(Produto p, Cliente c, int mes);
