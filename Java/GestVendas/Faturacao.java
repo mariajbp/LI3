@@ -12,7 +12,7 @@ import static java.lang.System.out;
 * Classe Faturação que contém estruturas com dados de uma faturação
 **/
 public class Faturacao implements Serializable, IFaturacao   
-{ 
+{  
     /** Faturação total **/
     private double ftrTotal;
     
@@ -173,7 +173,7 @@ public class Faturacao implements Serializable, IFaturacao
     public boolean equals(Object o)
     {
       if(this == o) return true;
-      if(o == null && this.getClass() != o.getClass()) return false;
+      if(o == null || this.getClass() != o.getClass()) return false;
       Faturacao f  = (Faturacao) o;     
       return this.ftrTotal == f.getFtrTotal() && this.ftrMensal.equals(f.getProdPrecoMes1()) && this.prodPrecoMes1.equals(f.getProdPrecoMes1())
              && this.prodPrecoMes2.equals(f.getProdPrecoMes2()) && this.prodPrecoMes3.equals(f.getProdPrecoMes3());
@@ -222,10 +222,6 @@ public class Faturacao implements Serializable, IFaturacao
         {  
           prods = prodPrecoMes1.get(p);
           preco += (Double) prods.get(mes -1);
-        }
-        else
-        {
-            return -1;
         }
         return preco;
     }
@@ -279,7 +275,7 @@ public class Faturacao implements Serializable, IFaturacao
     * @param  Mês da venda do produto 
     * @param  Filial em que o produto foi vendido  
     **/
-    public void updateProdPrecoMes(Produto p, double preco, int mes, int filial) 
+    public void updateProdPrecoMes(Produto p, double preco, int quant, int mes, int filial) 
     {
         double precoAtual = 0;
         double precoAtualizado = 0;
@@ -291,14 +287,14 @@ public class Faturacao implements Serializable, IFaturacao
                 List<Double> a = new ArrayList<>(12);
                 for(int i = 0; i < 12; i++)
                     a.add(0.0);
-                a.set(index, preco);
+                a.set(index, preco*quant);
                 this.prodPrecoMes1.put(p,a);
            }
            else
            {
                List a = this.prodPrecoMes1.get(p); 
                precoAtual = (double)a.get(index); 
-               precoAtualizado = precoAtual + preco;
+               precoAtualizado = precoAtual + (preco * quant);
                a.set(index, precoAtualizado);
                this.prodPrecoMes1.put(p,a);
            }
@@ -311,13 +307,13 @@ public class Faturacao implements Serializable, IFaturacao
                     List<Double> a = new ArrayList<>(12);
                     for(int i = 0; i < 12; i++)
                         a.add(0.0);
-                    a.set(index, preco);
+                    a.set(index, preco * quant);
                     this.prodPrecoMes1.put(p,a);
                 }
                 else{
                    List a = this.prodPrecoMes1.get(p); 
                    precoAtual = (double)a.get(index); 
-                   precoAtualizado = precoAtual + preco;
+                   precoAtualizado = precoAtual + (preco * quant);
                    a.set(index, precoAtualizado);
                    this.prodPrecoMes1.put(p,a);
                 }
@@ -330,13 +326,13 @@ public class Faturacao implements Serializable, IFaturacao
                         List<Double> a = new ArrayList<>(12);
                         for(int i = 0; i < 12; i++)
                             a.add(0.0);
-                        a.set(index, preco);
+                        a.set(index, preco * quant);
                         this.prodPrecoMes1.put(p,a);
                     }
                     else{
                        List a = this.prodPrecoMes1.get(p); 
                        precoAtual = (double)a.get(index); 
-                       precoAtualizado = precoAtual + preco;
+                       precoAtualizado = precoAtual + (preco * quant);
                        a.set(index, precoAtualizado);
                        this.prodPrecoMes1.put(p,a); 
                     }
@@ -378,7 +374,7 @@ public class Faturacao implements Serializable, IFaturacao
     **/
     public void addVenda(Venda v)
     {
-       updateProdPrecoMes(v.getProduto(), v.getPreco(), v.getMes(), v.getFilial()); 
+       updateProdPrecoMes(v.getProduto(), v.getPreco(), v.getUnidades(), v.getMes(), v.getFilial()); 
        updateProdUnidadeMes(v.getProduto(), v.getUnidades(), v.getMes());   
     } 
     

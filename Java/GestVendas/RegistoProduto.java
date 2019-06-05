@@ -9,8 +9,8 @@ import java.io.Serializable;
 **/
 public class RegistoProduto implements Serializable
 {
-   /** Set que contém pares os quais a cada Cliente fazem corresponder o número de unidades compradas **/
-   private Set<Pair<Cliente, Integer>> registo;
+   /** Set que contém quais os Clientes que o compraram **/
+   private Set<Cliente> registo;
    
    /** 
    * Construtor vazio que cria uma instância CatalogoProduto
@@ -23,7 +23,7 @@ public class RegistoProduto implements Serializable
    /** 
    * Construtor que cria um novo RegistoProduto a partir dos parâmetros dados 
    **/
-   public RegistoProduto(Set<Pair<Cliente, Integer>> s){this.registo = new TreeSet<>(s);}
+   public RegistoProduto(Set<Cliente> s){this.registo = new TreeSet<>(s);}
     
    /** 
    * Construtor de cópia que cria uma nova instância RegistoProduto a partir de um RegistoProduto passado como parâmetro 
@@ -34,13 +34,13 @@ public class RegistoProduto implements Serializable
    * Método que devolve o registo
    * @returns  Set de Pares<Cliente, Integer>
    **/ 
-   public Set<Pair<Cliente, Integer>> getRegisto(){return new TreeSet<>(this.registo);}
+   public Set<Cliente> getRegisto(){return new TreeSet<>(this.registo);}
     
    /**
    * Método que faz set de um registo
    * @param  Set de Pares<Cliente, Integer>
    **/
-   public void setRegisto(Set<Pair<Cliente, Integer>> s)
+   public void setRegisto(Set<Cliente> s)
    {
        this.registo.clear();
        this.registo = new TreeSet<>(s);
@@ -73,27 +73,12 @@ public class RegistoProduto implements Serializable
     * Método que dado um par Cliente/Unidades compradas verifica se o Cliente já existe e faz o seu Registo atualizando as unidades.
     * @param Par<Cliente, Integer>
     **/
-   public void updateRegProduto(Cliente c, int uni)
+   public void updateRegProduto(Cliente c)
    {
-       Pair<Cliente, Integer> pair = new Pair<>();
-       Iterator it = this.registo.iterator();
-       while(it.hasNext()){
-           pair = (Pair) it.next();
-           if(pair.getFst().equals(c)){
-               Pair<Cliente, Integer> newPair = new Pair<Cliente, Integer>();
-               int uniOld = (int) pair.getSnd();
-
-               this.registo.remove(pair);
-               newPair.setFst(c);
-               newPair.setSnd(uniOld + uni);
-               
-               this.registo.add(newPair);
-               break;
-            }
-        }
+       this.registo.add(c);
     }
     
-   public  int ClientesDistintos()
+   public int ClientesDistintos()
    {
        return this.registo.size();
     }

@@ -87,7 +87,7 @@ public class Filial implements Serializable, IFilial
     public boolean equals(Object o)
     {
          if(this == o) return true;
-         if(o == null && this.getClass() != o.getClass()) return false;
+         if(o == null || this.getClass() != o.getClass()) return false;
          Filial f  = (Filial) o;     
          return this.regProd.equals(f.getRegProd()) && this.regCl.equals(f.getRegCl());
     }
@@ -108,21 +108,6 @@ public class Filial implements Serializable, IFilial
         return " ";
     }
     
-    /**
-    * Método que produz a lista com os clientes distintos de uma compra
-    * @param   Lista de clientes de uma compra
-    **/
-    public void getClientesDistintos(Set<Cliente> s)
-    {
-        Set<Cliente> tmp = regCl.keySet();
-        Cliente c = new Cliente();
-        Iterator it = tmp.iterator();
-        while(it.hasNext())
-        {
-            c = (Cliente) it.next();
-            s.add(c);
-        }
-    }
     
     /**
     * Método que devolve os clientes distintos de determinado produto, num mes
@@ -134,9 +119,9 @@ public class Filial implements Serializable, IFilial
         if(this.regProd.containsKey(p))
             return this.regProd.get(p).get(mes-1).ClientesDistintos();
         else
-            return -1;
+            return 0;
     }
-    
+     
     
     /**
     * Método que atualiza o registo de um produto
@@ -152,7 +137,7 @@ public class Filial implements Serializable, IFilial
             for(int i = 0; i < 12; i++)
                     a.add(new RegistoProduto());
             RegistoProduto rp = a.get(mes-1);
-            rp.updateRegProduto(c, uni);
+            rp.updateRegProduto(c);
             a.remove(mes-1);
             a.add(mes-1, rp);
             this.regProd.put(p, a);
@@ -161,7 +146,7 @@ public class Filial implements Serializable, IFilial
         {
             List<RegistoProduto> a = this.regProd.get(p);
             RegistoProduto rp = a.get(mes-1);
-            rp.updateRegProduto(c, uni);
+            rp.updateRegProduto(c);
             a.remove(mes-1);
             a.add(mes-1, rp);
             this.regProd.put(p, a);

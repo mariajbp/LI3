@@ -37,7 +37,7 @@ public class Cliente implements Serializable, Comparable<Cliente>
     public boolean equals(Object o)
     { 
         if (o == this)return true;
-        if (o != null && this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         Cliente c = (Cliente) o;        
         return this.codigo_cl.equals(c.getCodigo());
     }

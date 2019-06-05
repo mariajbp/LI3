@@ -76,7 +76,7 @@ public interface IFaturacao extends Serializable
    /**
    * Método que atualiza o preço de um produto por mês
    **/
-    public void updateProdPrecoMes(Produto p, double preco, int mes, int filial);
+    public void updateProdPrecoMes(Produto p, double preco, int unidades, int mes, int filial);
    
    /**
    * Método que atualiza o número de unidades de um produto por mês  

@@ -1,5 +1,6 @@
 import java.io.Serializable;
-import java.util.TreeSet;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Iterator; 
 
 /**
@@ -11,8 +12,8 @@ public class RegistoCliente implements Serializable
     /** Número de compras efetuadas, por mês **/
     private int vezes;
     
-    /** Par de produtos com informação de unidades compradas e dinheiro gasto no mesmo, por mês **/
-    private TreeSet<Pair<Produto, Pair<Integer,Double>>> prod;
+    /** Map de produtos e pares de unidades compradas e dinheiro gasto no mesmo, por mês **/
+    private Map<Produto, Pair<Integer,Double>> prod;
     
     /** Número de unidades compradas, nesse mês **/
     int unidades;
@@ -26,7 +27,7 @@ public class RegistoCliente implements Serializable
     public RegistoCliente() 
     {
         this.vezes = 0;
-        this.prod = new TreeSet<>();
+        this.prod = new HashMap<>();
         this.unidades = 0;
         this.totalGasto = 0.0;
     }
@@ -34,7 +35,7 @@ public class RegistoCliente implements Serializable
     /** 
     * Construtor que cria um novo RegistoCliente a partir dos parâmetros dados 
     **/
-    public RegistoCliente(int vezes, TreeSet<Pair<Produto, Pair<Integer,Double>>> prod, int unidades, double total)
+    public RegistoCliente(int vezes, HashMap<Produto, Pair<Integer,Double>> prod, int unidades, double total)
     {
         this.vezes = vezes;
         this.prod = prod;
@@ -63,7 +64,7 @@ public class RegistoCliente implements Serializable
     * Método que devolve pares de produtos e dinheiro gasto no mesmo, por mês
     * @return   Pares de produtos e dinheiro gasto no mesmo, por mês
     **/
-    public TreeSet<Pair<Produto, Pair<Integer,Double>>> getProd() {return new TreeSet<>(this.prod);}
+    public Map<Produto, Pair<Integer,Double>> getProd() {return new HashMap<>(this.prod);}
     
     /**
     * Método que devolve o número de unidades compradas, nesse mês
@@ -87,7 +88,7 @@ public class RegistoCliente implements Serializable
     * Método que define pares de produtos e dinheiro gasto no mesmo, por mês
     * @param Pares de produtos e dinheiro gasto no mesmo, por mês
     **/
-    public void setProd(TreeSet<Pair<Produto, Pair<Integer,Double>> > t){this.prod = t;}
+    public void setProd(Map<Produto, Pair<Integer,Double>> t){this.prod = t;}
     
     /**
     * Método que define o número de unidades compradas, nesse mês
@@ -114,7 +115,7 @@ public class RegistoCliente implements Serializable
     public boolean equals(Object o)
     {
       if(this == o) return true;
-      if(o == null && this.getClass() != o.getClass()) return false;
+      if(o == null || this.getClass() != o.getClass()) return false;
       RegistoCliente rc = (RegistoCliente) o;     
       return this.vezes == rc.getVezes() && this.prod.equals(rc.getProd()) && 
              this.unidades == rc.getUnidades() && this.totalGasto == rc.getTotal() ;
@@ -171,27 +172,24 @@ public class RegistoCliente implements Serializable
     **/
    public void updateRegCliente(Produto prd, double g, int uni)
    {
-       Pair<Produto,  Pair<Integer,Double>> pair = new Pair<>();
-       Iterator it = this.prod.iterator();
-       while(it.hasNext()){
-           pair = (Pair) it.next();
-           if(pair.getFst().equals(prd)){
-               Pair<Produto,  Pair<Integer,Double>> newPair = new Pair<>();
-               int uniOld = (int) pair.getSnd().getFst();
-               double gOld = (double) pair.getSnd().getSnd();
-               
-               Pair<Integer,Double> newPair2 = new Pair<>();
-               newPair2.setFst(uni + uniOld);
-               newPair2.setSnd(g + gOld);
-               
-               this.prod.remove(pair);
-               newPair.setFst(prd);
-               newPair.setSnd(newPair2);
-               
-               this.prod.add(newPair);
-               break;
-            }
+       Pair<Integer,Double> pair = new Pair<>();
+       Pair<Integer,Double> newPair = new Pair<>();
+       
+       if(!this.prod.containsKey(prd))
+       {
+           newPair.setFst(uni);
+           newPair.setSnd(g);
         }
+       else
+       {
+           pair = this.prod.get(prd);
+           int uniOld = pair.getFst();
+           double gOld = pair.getSnd();
+           
+           newPair.setFst(uni+uniOld);
+           newPair.setSnd(g+gOld);
+        }
+       this.prod.put(prd, newPair);
     }
     
     

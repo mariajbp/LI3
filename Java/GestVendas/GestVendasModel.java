@@ -34,6 +34,9 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     
     /** Instancia da interface Faturacao **/
     private IFaturacao ftr;
+    
+    /** Instancia da interface Estatisticas **/
+    private IEstatisticas e;
 
     /** 
     * Construtor vazio que cria uma instância GestVendasModel
@@ -46,6 +49,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         this.f2 = new Filial();
         this.f3 = new Filial();
         this.ftr = new Faturacao();
+        this.e = new Estatisticas();
     }
     
     /**
@@ -93,7 +97,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * @param    Nome do ficheiro a carregar
     * @returns  Número de produtos válidos
     **/
-    private int preencheProds(String fileName) throws IOException 
+    private void preencheProds(String fileName) throws IOException 
     {
       int v = 0; //válidos
       BufferedReader br = new BufferedReader(new FileReader(fileName));
@@ -109,9 +113,9 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                    v++;
                }
            }
+           e.setProdutos(v);
       }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
       out.println("PRODUTOS DONE");
-      return v;
     }
     
     /**
@@ -136,7 +140,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * @param    Nome do ficheiro a carregar
     * @returns  Número de vendas válidas
     **/
-    private int preencheCl(String fileName) throws IOException 
+    private void preencheCl(String fileName) throws IOException 
     {
        int v = 0;
        BufferedReader br = new BufferedReader(new FileReader(fileName));
@@ -152,9 +156,9 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                    v++;
                }
            }
+           e.setClientes(v);
        }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
        out.println("CLIENTES DONE");
-       return v;
     }
     
     /**
@@ -180,7 +184,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     **/
     private void preencheVendas(String fileName) throws IOException 
     {
-      int v = 0;
+      int vValidas = 0, vLidas = 0, c0 = 0;
       BufferedReader br = new BufferedReader(new FileReader(fileName));
       try 
       {
@@ -199,11 +203,16 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                              else
                                  f3.addVenda(venda);
                         
-                   ftr.addVenda(venda); 
-                   v++;
+                   ftr.addVenda(venda);
+                   if(venda.getPreco() == 0.0) c0++;
+                   vValidas++;
                }
+               vLidas++;
            }
-           out.println(v);
+           e.setVendasValidas(vValidas);
+           e.setVendasLidas(vLidas);
+           e.setCompras_0(c0);
+           out.println(vValidas);
       }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
       out.println("VENDAS DONE");
     }
@@ -398,17 +407,20 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         Pair<Integer, Integer> pair = new Pair<>();
         int quantos = ftr.getUnidadesMes(p, mes);
         
-        Set<Cliente> cl = new TreeSet<>();
-       
+        int cl = 0;
+        int c1 = 0, c2 = 0, c3 = 0;
         
-        f1.getClientesDistintos(cl); 
-        f2.getClientesDistintos(cl);
-        f3.getClientesDistintos(cl);
-        
-        int clientes = cl.size();
+        c1 = f1.getClientesDistintos(p, mes); 
+        out.println(mes + " " + c1 + " f1");
+        c2 = f2.getClientesDistintos(p, mes);
+        out.println(mes + " " + c2 + " f2");
+        c3 = f3.getClientesDistintos(p, mes);
+        out.println(mes + " " + c3 + " f3");
+
+        cl = c1+c2+c3;
         
         pair.setFst(quantos);
-        pair.setSnd(clientes);
+        pair.setSnd(cl);
         return pair;
     }
     

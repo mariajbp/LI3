@@ -73,7 +73,7 @@ public class CatalogoClientes implements ICatClientes, Serializable
    public boolean equals(Object o)
    {
       if(this == o) return true;
-      if(o == null && this.getClass() != o.getClass()) return false;
+      if(o == null || this.getClass() != o.getClass()) return false;
       CatalogoClientes c  = (CatalogoClientes) o;     
       return this.catalogo.equals(c.getCatalogo());
    }
