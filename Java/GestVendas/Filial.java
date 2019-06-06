@@ -400,7 +400,7 @@ public class Filial implements Serializable, IFilial
         return total;
     }
     
-    public int comprasDistintasClientes(Cliente c) //query 8
+    public Set<Produto> comprasDistintasClientes(Cliente c) //query 8
     {
         Set<Produto> tmp = new TreeSet<>(); 
         Set<Produto> set = new TreeSet<>();
@@ -415,6 +415,6 @@ public class Filial implements Serializable, IFilial
                set.addAll(tmp);
             }
         }
-        return set.size();
+        return set;
     }
 }

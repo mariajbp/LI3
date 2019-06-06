@@ -60,7 +60,7 @@ public class GestVendasView implements Serializable, IGestVendasView
        int pag = 1;
        int index = 0;
        int pos = 0;
-       out.println("****************************** Página " + pag + "***************************************** \n");
+       out.println("****************************** Página " + pag + " ***************************************** \n");
        if(pag == 1)
        {
            Iterator<Produto> it = p.iterator();
@@ -74,7 +74,8 @@ public class GestVendasView implements Serializable, IGestVendasView
            }
            index += 15;
        }
-       out.println("Próxima página - 1 \n" + "Página anterior - 2 \n" + "Sair - 0 \n");
+       
+       out.println("\n1 - Próxima página" + "\t"+ "2 - Página anterior" + "\t"+ "0 - Sair\n");
        Scanner input = new Scanner(System.in);
        int in = input.nextInt();
        while(in != 0)
@@ -164,7 +165,7 @@ public class GestVendasView implements Serializable, IGestVendasView
    
    public void query4_Output(int i, Pair<Integer, Integer> p, double t)
    {
-       out.println(i + "       \t" + p.getFst() + "             \t" +p.getSnd() + "                \t" + t );
+       out.println(i  +"\t" +"\t" +  p.getFst() +"\t" +"\t"+p.getSnd() +"\t" +"\t" +t);
     }
     
    public void query4_Output()
@@ -172,8 +173,6 @@ public class GestVendasView implements Serializable, IGestVendasView
        out.println("*******************************************************************************");
        out.println("Mês" +"\t" + "Nº Compras" +"\t"+ "Clientes Distintos" +"\t"+ "Total Faturado");
        out.println("*******************************************************************************");
-       //
-       
    }
    
    //Dado o código de um cliente determinar a lista de códigos de produtos que mais comprou (e quantos), ordenada por ordem 
@@ -186,7 +185,7 @@ public class GestVendasView implements Serializable, IGestVendasView
    public void query5_Output()
    {
        out.println("*******************************************************************************");
-       out.println("Produtos mais comprados" +"\t" + "Quantidade");
+       out.println("Produtos mais comprados" +"\t" + "\t" + "Quantidade");
        out.println("*******************************************************************************");
        //
        out.println("*******************************************************************************");
@@ -267,8 +266,8 @@ public class GestVendasView implements Serializable, IGestVendasView
        out.println("*******************************************************************************");
        out.println("Mês" +"\t" +"\t" + "Filial 1" +"\t"+ "Filial 2" +"\t"+ "Filial 3");
        out.println("*******************************************************************************");
-       //out.println("Janeiro" + )
+       
    }
    
-   public void time(double t) {out.println("Tempo demorado: " + t + "segundos"); }
+   public void time(double t) {out.println("\nTempo demorado: " + t + "segundos"); }
 }
