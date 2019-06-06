@@ -142,6 +142,26 @@ public class Filial implements Serializable, IFilial
         return s;
     }
     
+    //Preenche uma lista de pares( clientes, total faturado anual)---> query 6
+    public List<Pair<Produto, Integer>> getProdUnidades()
+    {
+        List<Pair<Produto, Integer>> s = new ArrayList<>();
+        
+        for(Map.Entry<Produto, List<RegistoProduto>> e : regProd.entrySet())
+        {
+            Pair<Produto, Integer> p = new Pair<>();
+            int unidades = 0;
+            for(RegistoProduto rp : e.getValue())
+            { 
+                unidades += rp.getUnidades();
+            }
+            p.setFst(e.getKey());
+            p.setSnd(unidades);
+            s.add(p); 
+        }
+        return s;
+    }
+    
     
     //Retorna um set de produtos
     public Set<Produto> getProdutos()
@@ -339,8 +359,6 @@ public class Filial implements Serializable, IFilial
        return pair;
     }
  
-    
-    
     public Pair<Integer,Double> comprasTotaisAnual(Cliente c) //numero de compras totais e total gasto no mes 
     {
        Pair<Integer,Double> pair = new Pair(); 
@@ -373,19 +391,42 @@ public class Filial implements Serializable, IFilial
     {
         this.regCl.get(c).get(mes-1).ProdutosDistintos(s);
     }
-    /*
-    public void ProdutosMaisCompradosAnual(Cliente c)
+
+    
+    public int clDistintos(Produto p) // query 6
     {
-        if(this.regCl.contains(c))
+        int total = 0;
+        
+        if(regProd.containsKey(p))
         {
-            Set<Produto, Integer> anual = new TreeSet<>(new ProdutoMaisCompradoComparator());
-            
-            for(RegistoCliente c : this.regCl)
+           List<RegistoProduto> lrp = regProd.get(p); 
+           Iterator<RegistoProduto> it = lrp.iterator();
+           while(it.hasNext())
+           {
+               RegistoProduto rp = it.next();
+               total += rp.ClientesDistintos();
+           }
+        }
+        return total;
+    }
+    
+    public int comprasDistintasClientes(Cliente c) //query 8
+    {
+        Set<Produto> tmp = new TreeSet<>(); 
+        Set<Produto> set = new TreeSet<>();
+        if(regCl.containsKey(c))
+        {
+            List<RegistoCliente> rc = regCl.get(c);
+            Iterator<RegistoCliente> it = rc.iterator();
+            while(it.hasNext())
             {
-                Set<Produto, Integer> mensal = c.ProdutosMaisComprados();
+               RegistoCliente reg = it.next(); 
+               tmp = (reg.getProd().keySet()); 
+               set.addAll(tmp);
             }
         }
+        return set.size();
     }
-    */
+
 }
 

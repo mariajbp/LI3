@@ -1,6 +1,0 @@
-#BlueJ class context
-comment0.target=ProdutoMaisCompradoComparator
-comment0.text=\r\n\ Classe\ \ que\ imp\u00F5em\ uma\ ordem\ quando\ se\ quer\ adicionar\ um\ par\ produto\ inteiro\ a\ uma\ cole\u00E7\u00E3o\r\n
-comment1.params=p1\ p2
-comment1.target=int\ compare(Pair,\ Pair)
-numComments=2

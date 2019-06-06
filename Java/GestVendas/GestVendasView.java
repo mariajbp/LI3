@@ -198,13 +198,13 @@ public class GestVendasView implements Serializable, IGestVendasView
        out.println("*******************************************************************************");
        out.println("Produtos" +"\t"+"\t"+ "Clientes" + "\n");
        out.println("*******************************************************************************");
-       //
+       // 
        out.println("*******************************************************************************");
    }
    
-   public void query6_Output_Dados(List<Produto> p)
+   public void query6_Output_Dados(List<Pair<Produto,Integer>> p1, List<Pair<Produto,Integer>> p2, List<Pair<Produto,Integer>> p3)
    {
-       out.println("\t"+ p.toString()  + "\n"); 
+       out.println("\t"+ p1.toString()  + "\n" + "\t"+ p2.toString()  + "\n" + "\t"+ p3.toString()  + "\n"); 
    }
  
    //Determinar, para cada filial, a lista dos três maiores compradores em termos de dinheiro facturado.

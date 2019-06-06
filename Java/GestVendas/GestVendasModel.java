@@ -18,7 +18,7 @@ import static java.lang.System.out;
 public class GestVendasModel implements Serializable, IGestVendasModel   
 { 
     /** Instancia da interface CatalogoProdutos **/
-    private ICatProdutos cprod;
+    private ICatProdutos cprod; 
     
     /** Instancia da interface CatalogoClientes **/
     private ICatClientes ccl;
@@ -471,70 +471,110 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * distintos clientes que o compraram.
     * @param     Número de produtos a determinar, introduzido pelo utilizador
     * @returns
-**/
-/*
-    public List<Produto> prodsMaisVendidos(int x)
-    {
-        int i = 0;
-        HashMap<Produto, Integer> prods = this.ftr.prodsVendidosAnual();  
-        HashMap<Produto, Integer> mapOrder = this.sortMap(prods); 
-        List<Produto> l = new ArrayList<>();
-        for(Map.Entry<Produto, Integer> e : mapOrder.entrySet())
-        {
-             while(i<x)
-             {
-                 l.add(e.getKey());
-             }
-        }
-        return l;   
-    }
+    **/
 
-    public static HashMap<Produto, Integer> sortMap(HashMap<Produto, Integer> map) 
+    public List<Produto> prodsMaisVendidos(int x, int filial)
     {
-        List<Map.Entry<Produto, Integer>> l = new ArrayList<>(map.entrySet());
-        Collections.sort(l, (o1, o2) -> o1.getValue().compareTo(o2.getValue()));
-        HashMap<Produto, Integer> result = new HashMap<>();      
-        for (Map.Entry<Produto, Integer> entry : l)
+        int total = 0;
+        int i = 0;
+        List<Produto> list = new ArrayList<>();
+        List<Pair<Produto, Integer>> cl;
+        Set<Pair<Produto, Integer>> clOrder;
+        if(filial == 1)
         {
-            result.put(entry.getKey(), entry.getValue());
+            cl = f1.getProdUnidades();
+            clOrder = new TreeSet<>(new MaisCompradosComparator());
+            
+            for(Pair<Produto, Integer> p: cl){clOrder.add(p);}
+            
+            Iterator<Pair<Produto, Integer>> it = clOrder.iterator();
+            while(it.hasNext() && i < x)
+            {
+                Pair<Produto, Integer> pair = it.next();
+                list.add(pair.getFst());
+                i++;
+            }            
+            return list;
+        } 
+        else
+        {
+            if(filial == 2)
+            {
+                cl = f2.getProdUnidades();
+                clOrder = new TreeSet<>(new MaisCompradosComparator());
+                
+                for(Pair<Produto, Integer> p: cl){clOrder.add(p);}
+                out.println(clOrder.size());
+                Iterator<Pair<Produto, Integer>> it = clOrder.iterator();
+                while(it.hasNext() && i < x)
+                {
+                    Pair<Produto, Integer> pair = it.next();
+                    list.add(pair.getFst());
+                    i++;
+                }
+                return list;
+            }
+            else
+            {
+                if(filial == 3)
+                {
+                    cl = f3.getProdUnidades();
+                    clOrder = new TreeSet<>(new MaisCompradosComparator());
+                    
+                    for(Pair<Produto, Integer> p: cl){clOrder.add(p);}
+                    Iterator<Pair<Produto, Integer>> it = clOrder.iterator();
+                    while(it.hasNext() && i < x)
+                    {
+                        Pair<Produto, Integer> pair = it.next();
+                        list.add(pair.getFst());
+                        i++;
+                    }
+                    return list;
+                } 
+            }
         }
-        return result;
+        return list;
     }
     
-    public int distintosProd(Produto produto)
+    public List<Pair<Produto,Integer>> cldistintos(List<Produto> lp, int filial)
     {
-        int dt = 0, d1 = 0, d2 = 0, d3 = 0; 
-        Map<Produto, List<RegistoProduto>> p1 = f1.getRegProd();
-        for(Map.Entry<Produto, List<RegistoProduto>> e : p1.entrySet())
+        int total = 0;
+        Produto prod = new Produto();
+        List<Pair<Produto,Integer>> l = new ArrayList<>();
+        
+        Iterator<Produto> it = lp.iterator();
+        while(it.hasNext())
         {
-               if(produto == e.getKey())
-               {
-                     List<RegistoProduto> reg = e.getValue();
-                     d1 = reg.size();
-               }
-        }   
-        Map<Produto, List<RegistoProduto>> p2 = f2.getRegProd();
-        for(Map.Entry<Produto, List<RegistoProduto>> e : p2.entrySet())
-        {
-               if(produto == e.getKey())
-               {
-                     List<RegistoProduto> reg = e.getValue();
-                     d1 = reg.size();
-               }
+            Pair<Produto,Integer> pair = new Pair<>();
+            prod = it.next();
+            if(filial == 1)
+            {
+                   total = f1.clDistintos(prod);
+                   pair.setFst(prod);
+                   pair.setSnd(total);
+                   l.add(pair);
+            }
+            else{
+                if(filial == 2)
+                {
+                   total = f2.clDistintos(prod);
+                   pair.setFst(prod);
+                   pair.setSnd(total);
+                   l.add(pair);
+                }
+                else{
+                    if(filial == 3)
+                    {
+                       total = f3.clDistintos(prod);
+                       pair.setFst(prod);
+                       pair.setSnd(total);
+                       l.add(pair);
+                    }
+                }
+            }
         }
-        Map<Produto, List<RegistoProduto>> p3 = f1.getRegProd();
-        for(Map.Entry<Produto, List<RegistoProduto>> e : p3.entrySet())
-        {
-               if(produto == e.getKey())
-               {
-                     List<RegistoProduto> reg = e.getValue();
-                     d1 = reg.size();
-               }
-        }
-        dt = d1 + d2 + d3;
-        return dt;
+        return l;
     }
-*/
     
     /**** QUERY7 ****/
     /**
@@ -543,7 +583,6 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     **/
     public List<Cliente> maioresCompradores(int filial)
     {
-        int total = 0;
         int i = 0;
         List<Cliente> list = new ArrayList<>();
         List<Pair<Cliente, Double>> cl;
@@ -564,7 +603,8 @@ public class GestVendasModel implements Serializable, IGestVendasModel
             }
             return list;
         } 
-        else{
+        else
+        {
             if(filial == 2)
             {
                 cl = f2.getClientesFaturacao();
@@ -581,7 +621,8 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                 }
                 return list;
             }
-            else{
+            else
+            {
                 if(filial == 3)
                 {
                     cl = f3.getClientesFaturacao();
