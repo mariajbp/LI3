@@ -26,5 +26,5 @@ public interface IGestVendasModel extends Serializable
     public int totalProdutosDistintos(Cliente c, int mes);
     public List<Produto> prodsMaisVendidos(int x, int filial);
     public List<Pair<Produto,Integer>> cldistintos(List<Produto> lp, int filial);
-
+    public List<Pair<Produto,Integer>> prodsEcldistintos(List<Pair<Produto,Integer>> l1, List<Pair<Produto,Integer>> l2, List<Pair<Produto,Integer>> l3, int x);
 }

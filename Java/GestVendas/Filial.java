@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.Iterator;
+import java.util.Collection;
 
 import static java.lang.System.out;
 /**
@@ -427,6 +428,100 @@ public class Filial implements Serializable, IFilial
         }
         return set;
     }
-
+    
+    
+    //query9
+    //private Map<Produto, List<RegistoProduto>> regProd;
+    
+    public Set<Cliente> getClientes(Produto p) //clientes que comprar um prod num ano
+    { 
+        Set<Cliente> s = new TreeSet<>();
+        if(regProd.containsKey(p))
+        {
+            List<RegistoProduto> rp = regProd.get(p);
+            Iterator<RegistoProduto> it = rp.iterator();
+            while(it.hasNext())
+            {
+                RegistoProduto r = it.next();
+                s.addAll(r.getRegisto()); 
+            }
+        }
+        return s;
+    }
+    
+    
+    public Pair<Cliente,Double> clienteGastoAnual(Cliente c) //gasto anual de um cliente
+    {
+        double total = 0;
+        List<Pair<Cliente,Double>> l = new ArrayList();
+        Pair<Integer,Double> pair = new Pair();
+        Pair<Cliente,Double> pfinal = new Pair();
+        Pair<Cliente,Double> p = new Pair();
+        
+        if(regCl.containsKey(c))
+        {
+            List<RegistoCliente> rc = regCl.get(c);
+            Iterator<RegistoCliente> it = rc.iterator();
+            while(it.hasNext())
+            {
+                RegistoCliente r = it.next();
+                Map<Produto, Pair<Integer,Double>> prod = r.getProd();
+                for(Map.Entry<Produto, Pair<Integer,Double>> e : prod.entrySet())
+                {
+                    pair = e.getValue();
+                    p.setFst(c);
+                    p.setSnd(pair.getSnd());
+                }
+            }
+        }       
+        
+        Iterator<Pair<Cliente,Double>> it = l.iterator();
+        while(it.hasNext())
+        {
+             Pair<Cliente,Double> pcd = it.next();
+             total += pcd.getSnd();
+             
+             pfinal.setFst(c);
+             pfinal.setSnd(total);
+        }
+        return pfinal; 
+    }
+    
+    public Pair<Cliente,Integer> clienteUnidadesAnual(Cliente c) //unidades compradas anual de um cliente
+    {
+        int total = 0;
+        List<Pair<Cliente,Integer>> l = new ArrayList();
+        Pair<Integer,Double> pair = new Pair();
+        Pair<Cliente,Integer> pfinal = new Pair();
+        Pair<Cliente,Integer> p = new Pair();
+        
+        if(regCl.containsKey(c))
+        {
+            List<RegistoCliente> rc = regCl.get(c);
+            Iterator<RegistoCliente> it = rc.iterator();
+            while(it.hasNext())
+            {
+                RegistoCliente r = it.next();
+                Map<Produto, Pair<Integer,Double>> prod = r.getProd();
+                for(Map.Entry<Produto, Pair<Integer,Double>> e : prod.entrySet())
+                {
+                    pair = e.getValue();
+                    p.setFst(c);
+                    p.setSnd(pair.getFst());
+                }
+            }
+        }       
+        
+        Iterator<Pair<Cliente,Integer>> it = l.iterator();
+        while(it.hasNext())
+        {
+             Pair<Cliente,Integer> pcd = it.next();
+             total += pcd.getSnd();
+             
+             pfinal.setFst(c);
+             pfinal.setSnd(total);
+        }
+        return pfinal; 
+    }
 }
 

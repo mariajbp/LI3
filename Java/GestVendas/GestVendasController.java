@@ -305,10 +305,8 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         List<Pair<Produto,Integer>> l1 = model.cldistintos(p1, 1);
         List<Pair<Produto,Integer>> l2 = model.cldistintos(p2, 2);
         List<Pair<Produto,Integer>> l3 = model.cldistintos(p3, 3);
-        view.query6_Output(); 
-         
-        view.query6_Output_Dados(l1, l2, l3);   
-        
+        List<Pair<Produto,Integer>> l = model.prodsEcldistintos(l1,l2,l3,x);
+        view.query6_Output_Dados(l);   
         double t = crono.stop(); 
         view.time(t);
     } 
