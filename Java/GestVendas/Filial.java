@@ -15,7 +15,7 @@ public class Filial implements Serializable, IFilial
 {
     /** Registo mensal de cada produto **/
     private Map<Produto, List<RegistoProduto>> regProd;
-    
+     
     /** Registo mensal de cada cliente **/
     private Map<Cliente, List<RegistoCliente>> regCl;
     
@@ -109,6 +109,81 @@ public class Filial implements Serializable, IFilial
         return " ";
     }
     
+    //Preenche um set de produtos --->Usado na query 1
+    public void getProdutos(Set<Produto> p)
+    {
+        Set<Produto> s = this.regProd.keySet();
+        
+        Iterator it = s.iterator();
+        while(it.hasNext())
+        {   
+            Produto pd = (Produto) it.next();
+            p.add(pd.clone());
+        }
+    }
+    
+    //Preenche uma lista de pares( clientes, total faturado anual)---> query 7
+    public List<Pair<Cliente, Double>> getClientesFaturacao()
+    {
+        List<Pair<Cliente, Double>> s = new ArrayList<>();
+        
+        for(Map.Entry<Cliente, List<RegistoCliente>> e : regCl.entrySet())
+        {
+            Pair<Cliente, Double> p = new Pair<>();
+            double faturado = 0;
+            for(RegistoCliente rc : e.getValue())
+            { 
+                faturado += rc.getTotal();
+            }
+            p.setFst(e.getKey());
+            p.setSnd(faturado);
+            s.add(p); 
+        }
+        return s;
+    }
+    
+    
+    //Retorna um set de produtos
+    public Set<Produto> getProdutos()
+    {
+        return this.regProd.keySet();
+    }
+    
+    //Devolve as unidades Anuais de um produto
+    public int getUnidadesAnual(Produto p)
+    {
+        int unidades = 0;
+        if(this.regProd.containsKey(p))
+        {
+            List<RegistoProduto> l = this.regProd.get(p);
+            
+            for(RegistoProduto rp: l)
+            {
+                unidades+=rp.getUnidades();
+            }
+        }
+        return unidades;
+    }
+    
+    public int getUnidadesMes(Produto p, int mes)
+    {
+        int unidades = 0;
+        if(this.regProd.containsKey(p))
+        {
+            unidades = this.regProd.get(p).get(mes-1).getUnidades();
+        }        
+        return unidades;
+    }
+    
+    public double getFtrMensal(Produto p, int mes)
+    {
+        double f = 0;
+        if(this.regProd.containsKey(p))
+        {
+            f = this.regProd.get(p).get(mes-1).getFaturado();
+        }        
+        return f;
+    }
     
     /**
     * Método que devolve os clientes distintos de determinado produto, num mes
@@ -138,23 +213,23 @@ public class Filial implements Serializable, IFilial
     * @param   Cliente que efetuou a compra
     * @param   Mês da compra
     **/
-    public void updateRegProd(Produto p, Cliente c, int mes)
+    public void updateRegProd(Produto p, Cliente c, int mes, double f, int uni)
     {
         if(!this.regProd.containsKey(p)){
             ArrayList<RegistoProduto> a = new ArrayList<>();
             for(int i = 0; i < 12; i++)
                     a.add(new RegistoProduto());
             RegistoProduto rp = a.get(mes-1);
-            rp.updateRegProduto(c);
+            rp.updateRegProduto(c, uni, f);
             a.remove(mes-1);
             a.add(mes-1, rp);
-            this.regProd.put(p, a);
+            this.regProd.put(p, a); 
         }
         else
         {
             List<RegistoProduto> a = this.regProd.get(p);
-            RegistoProduto rp = a.get(mes-1);
-            rp.updateRegProduto(c);
+            RegistoProduto rp = a.get(mes-1); 
+            rp.updateRegProduto(c, uni, f);
             a.remove(mes-1);
             a.add(mes-1, rp);
             this.regProd.put(p, a);
@@ -203,26 +278,8 @@ public class Filial implements Serializable, IFilial
     **/
     public void addVenda(Venda v)
     {
-        updateRegProd(v.getProduto(), v.getCliente(), v.getMes());
+        updateRegProd(v.getProduto(), v.getCliente(), v.getMes(), v.getPreco()*v.getUnidades(), v.getUnidades());
         updateRegCl(v.getCliente(), v.getProduto(), v.getUnidades(), v.getPreco() * v.getUnidades(), v.getMes());
     }
     
-    public HashMap<Cliente, Integer> comprasAnuais()
-    {
-        int total = 0;
-        HashMap<Cliente, Integer> l = new HashMap<>();
-        List<RegistoCliente> rc = new ArrayList<>();  
-        for(Map.Entry<Cliente, List<RegistoCliente>> e : this.regCl.entrySet())
-        {
-               rc = e.getValue();
-               Iterator<RegistoCliente> it = rc.iterator();
-               while(it.hasNext())
-               {
-                    RegistoCliente reg = it.next();
-                    total += reg.getTotal();
-               }
-               l.put(e.getKey(), total);
-        }
-        return l; 
-    }
 }

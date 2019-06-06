@@ -47,8 +47,8 @@ public class GestVendasView implements Serializable, IGestVendasView
    **/
    public void outroFichOutputEscolha()
    {
-     out.println("Indique o tipo de ficheiro que pretende ler: \n");
-     out.println("1 - Clientes \n 2 - Produtos \n 3 - Vendas");  
+     out.println("Indique o tipo de ficheiro que pretende ler: ");
+     out.println("1 - Clientes \n2 - Produtos \n3 - Vendas");  
    }
    
    /**
@@ -190,10 +190,11 @@ public class GestVendasView implements Serializable, IGestVendasView
    {
        out.println("\t"+ p.getFst() + "\t" + p.getSnd() + "\n");
    }
-
+ 
    //Determinar, para cada filial, a lista dos três maiores compradores em termos de dinheiro facturado.
-   public void query7_Output()
+   public void query7_Output(List<Cliente> c1 , List<Cliente> c2, List<Cliente> c3)
    {
+       out.println(" Filial 1: " + c1.toString() + "\n Filial 2: " +c2.toString() + "\n Filial 3: " + c3.toString());
    }
 
    //Determinar os códigos dos X clientes (sendo X dado pelo utilizador) que compraram mais produtos diferentes 

@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=MaiorCompradorComparator
+comment0.text=\r\n\ Classe\ \ que\ imp\u00F5em\ uma\ ordem\ quando\ se\ quer\ adicionar\ um\ cliente\ a\ uma\ cole\u00E7\u00E3o\r\n
+comment1.params=c1\ c2
+comment1.target=int\ compare(Pair,\ Pair)
+numComments=2

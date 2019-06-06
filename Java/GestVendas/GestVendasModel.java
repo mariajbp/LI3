@@ -202,7 +202,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                               f2.addVenda(venda);
                              else
                                  f3.addVenda(venda);
-                        
+                                
                    ftr.addVenda(venda);
                    if(venda.getPreco() == 0.0) c0++;
                    vValidas++;
@@ -261,17 +261,21 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     public List<Produto> prodsNuncaComprados()
     {
        List<Produto> lp = new ArrayList<>();
-       Set<Produto> prods = cprod.getCatalogo();
-       Map<Produto, List<Integer>> map = ftr.getProdUnidadeMes();
-       Set<Produto> keys = map.keySet();
-       out.println(keys.size()+ " KEYS");
-       out.println(map.size() + " MAP");
+       Set<Produto> prodsAll = cprod.getCatalogo();
+       Set<Produto> prods = new TreeSet<>();
        
-       Iterator<Produto> it = prods.iterator();
+       f1.getProdutos(prods);
+       f2.getProdutos(prods);
+       f3.getProdutos(prods);
+       
+       out.println(prods.size()+ " prods");
+
+       
+       Iterator<Produto> it = prodsAll.iterator();
        while(it.hasNext())
        {
           Produto p = it.next();
-          if(!keys.contains(p))
+          if(!prods.contains(p))
           {
               lp.add(p);
           }
@@ -295,14 +299,14 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     {
        int total = 0;
        int cl = 0;
-       Set<Produto> prd = new TreeSet<>();
+       Set<Produto> prd;
        
        if(filial == 1)
        {
            total = f1.totalVendas(mes); 
            if(total > 0){
-               prd = this.ftr.getProdutos1();
-               Iterator it = prd.iterator();
+               prd = this.f1.getProdutos();
+               Iterator it = prd.iterator(); 
                while(it.hasNext()){
                   Produto p = (Produto) it.next(); 
                   cl += f1.getClientesDistintos(p, mes);  
@@ -314,7 +318,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
            {
                total = f2.totalVendas(mes); 
                if(total > 0){
-                   prd = this.ftr.getProdutos2();
+                   prd = this.f2.getProdutos();
                    Iterator it = prd.iterator();
                    while(it.hasNext()){
                       Produto p = (Produto) it.next(); 
@@ -327,7 +331,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                {
                    total = f3.totalVendas(mes); 
                    if(total > 0){
-                       prd = this.ftr.getProdutos3();
+                       prd = this.f3.getProdutos();
                        Iterator it = prd.iterator();
                        while(it.hasNext()){
                           Produto p = (Produto) it.next(); 
@@ -401,7 +405,9 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     public Pair<Integer, Integer> comprasPorMes(Produto p, int mes)
     {
         Pair<Integer, Integer> pair = new Pair<>();
-        int quantos = ftr.getUnidadesMes(p, mes);
+        int quantos = f1.getUnidadesMes(p, mes);
+        quantos += f2.getUnidadesMes(p, mes);
+        quantos += f3.getUnidadesMes(p, mes);
         
         int cl = 0;
         
@@ -411,93 +417,20 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         
         cl += f3.getClientesDistintos(p, mes);
         
-        pair.setFst(quantos);
+        pair.setFst(quantos); 
         pair.setSnd(cl);
         return pair;
     }
     
     public Double faturadoPorMes(Produto p, int mes)
     {
-        return ftr.getProdPrecoMesAll(p, mes);
+        double f = 0;
+        f += f1.getFtrMensal(p, mes);
+        f += f2.getFtrMensal(p, mes);
+        f += f3.getFtrMensal(p, mes);
+        return f;
     }
-    
-    /**
-    * Dado o código de um produto existente, determina, mês a mês, por quantos clientes diferentes foi comprado
-    * @param       Produto introduzido pelo utilizador
-    * @returns
-    **/    
-    /*
-    public List<Integer> clientesDistintosPorMes(Produto p)
-    {
-        int i = 0;
-        int total = 0;
-        Filial f = new Filial();
-        List<Integer> l = new ArrayList();
-        Map<Produto, Set<Pair>> set = f.getPClientes();
-        
-        for (Map.Entry<Produto, Set<Pair>> e : set.entrySet())
-        {
-            if(e.getKey() == p)
-            {
-                Iterator<Pair> it = e.getValue().iterator();  
-                Pair<Integer,Cliente> pair = it.next();
-                //pair.getFst() = i;
-                l.add(i,total++);
-            }
-        }
-        
-        return l;
-    }
-    */
-    /**
-    * Método que dado o código de um produto existente, determina, mês a mês, o total facturado.
-    * @param      Produto introduzido pelo utilizador
-    * @returns
-    **/ 
-    public List<Double> totalFaturado(Produto p, int filial)
-    {
-       Faturacao f = new Faturacao();
-       List<Double> l = new ArrayList<>();
-       
-       if(filial == 1)
-       {
-           Map<Produto, List<Double>> prodPrecoMes1 = f.getProdPrecoMes1();
-           for(Map.Entry<Produto, List<Double>> e : prodPrecoMes1.entrySet())
-           {
-               if(e.getKey() == p)
-               {
-                   l = e.getValue();
-               }
-           }
-       }
-       
-       if(filial == 2)
-       {
-           Map<Produto, List<Double>> prodPrecoMes2 = f.getProdPrecoMes1();
-           for(Map.Entry<Produto, List<Double>> e : prodPrecoMes2.entrySet())
-           {
-               if(e.getKey() == p)
-               {
-                   l = e.getValue();
-               }
-           }
-       }
-       
-       if(filial == 3)
-       {
-           Map<Produto, List<Double>> prodPrecoMes3 = f.getProdPrecoMes1();
-           for(Map.Entry<Produto, List<Double>> e : prodPrecoMes3.entrySet())
-           {
-               if(e.getKey() == p)
-               {
-                   l = e.getValue();
-               }
-           }
-       }
-       return l;
-    } 
-    
-    
+   
     /**** QUERY5 ****/
     /** 
     * Método que dado o código de um cliente determinar a lista de códigos de produtos que mais comprou (e quantos), ordenada por ordem 
@@ -513,7 +446,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * distintos clientes que o compraram.
     * @param     Número de produtos a determinar, introduzido pelo utilizador
     * @returns
-    **/
+    **//*
     public List<Pair<Produto,Integer>> prodsMaisVendidos(int x)
     {
         int i = 0;
@@ -578,7 +511,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         dt = d1 + d2 + d3;
         return dt;
     }
-    
+    */
     
     /**** QUERY7 ****/
     /**
@@ -590,58 +523,62 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         int total = 0;
         int i = 0;
         List<Cliente> list = new ArrayList<>();
-        HashMap<Cliente, Integer> cl = new HashMap<>(); 
-        HashMap<Cliente, Integer> clOrder = new HashMap<>();
+        List<Pair<Cliente, Double>> cl;
+        Set<Pair<Cliente, Double>> clOrder;
         if(filial == 1)
         {
-            cl = f1.comprasAnuais();
-            clOrder = this.sortMapQ7(cl); 
-            for(Map.Entry<Cliente, Integer> e : clOrder.entrySet())
+            cl = f1.getClientesFaturacao();
+            clOrder = new TreeSet<>(new MaiorCompradorComparator());
+            
+            for(Pair<Cliente, Double> p: cl){clOrder.add(p);}
+            
+            Iterator<Pair<Cliente, Double>> it = clOrder.iterator();
+            while(it.hasNext() && i < 3)
             {
-                while(i < 3)
-                {
-                    list.add(e.getKey().clone());
-                }
+                Pair<Cliente, Double> pair = it.next();
+                list.add(pair.getFst());
+                i++;
             }
-        }  
-        if(filial == 2)
-        {
-            cl = f2.comprasAnuais();
-            clOrder = this.sortMapQ7(cl); 
-            for(Map.Entry<Cliente, Integer> e : clOrder.entrySet())
-            {
-                while(i < 3)
-                {
-                    list.add(e.getKey().clone());
-                }
-            }
+            return list;
         } 
-        if(filial == 3)
-        {
-            cl = f3.comprasAnuais();
-            clOrder = this.sortMapQ7(cl); 
-            for(Map.Entry<Cliente, Integer> e : clOrder.entrySet())
+        else{
+            if(filial == 2)
             {
-                while(i < 3)
+                cl = f2.getClientesFaturacao();
+                clOrder = new TreeSet<>(new MaiorCompradorComparator());
+                
+                for(Pair<Cliente, Double> p: cl){clOrder.add(p);}
+                
+                Iterator<Pair<Cliente, Double>> it = clOrder.iterator();
+                while(it.hasNext() && i < 3)
                 {
-                    list.add(e.getKey().clone());
+                    Pair<Cliente, Double> pair = it.next();
+                    list.add(pair.getFst());
+                    i++;
                 }
+                return list;
             }
-        } 
+            else{
+                if(filial == 3)
+                {
+                    cl = f3.getClientesFaturacao();
+                    clOrder = new TreeSet<>(new MaiorCompradorComparator());
+                    
+                    for(Pair<Cliente, Double> p: cl){clOrder.add(p);}
+                    
+                    Iterator<Pair<Cliente, Double>> it = clOrder.iterator();
+                    while(it.hasNext() && i < 3)
+                    {
+                        Pair<Cliente, Double> pair = it.next();
+                        list.add(pair.getFst());
+                        i++;
+                    }
+                    return list;
+                } 
+            }
+        }
         return list;
     }  
-   
-    public static HashMap<Cliente, Integer> sortMapQ7(HashMap<Cliente, Integer> map) 
-    {
-        List<Map.Entry<Cliente, Integer>> l = new ArrayList<>(map.entrySet());
-        Collections.sort(l, (o1, o2) -> o1.getValue().compareTo(o2.getValue()));
-        HashMap<Cliente, Integer> result = new HashMap<>();      
-        for (Map.Entry<Cliente, Integer> entry : l)
-        {
-            result.put(entry.getKey(), entry.getValue());
-        }
-        return result;
-    }
     
     
     /**** QUERY8 ****/
@@ -669,6 +606,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * Método que determina mês a mês, e para cada mês filial a filial, a facturação total de cada produto.
     * @returns Mapa que contém mês a mês, e para cada mês filial a filial, a facturação total de cada produto
     **/
+    /*
     public Map<Produto, List<Double>> ftrTotal(int filial)
     {
         Faturacao f = new Faturacao();
@@ -681,7 +619,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         return map;
     }
     
-    
+    */
    
     /** 
     * Método que guarda em ficheiro de objectos o objecto que recebe a mensagem

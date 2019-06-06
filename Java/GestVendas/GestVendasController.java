@@ -301,7 +301,7 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     * @returns
     **/
     public void query6()
-    {
+    {/*
         view.query6_Input();
         Scanner input = new Scanner(System.in);
         int x = input.nextInt();
@@ -316,7 +316,7 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
             view.query6_Output_Dados(pair); 
         }
         crono.stop(); 
-        crono.print();
+        crono.print();*/
     } 
     
     /**
@@ -328,10 +328,7 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     public void query7()
     {
         crono.start();
-        model.maioresCompradores(1);
-        model.maioresCompradores(2);
-        model.maioresCompradores(3);
-        view.query7_Output();
+        view.query7_Output(model.maioresCompradores(1), model.maioresCompradores(2), model.maioresCompradores(3));
         crono.stop(); 
         crono.print();
     } 
@@ -384,7 +381,7 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     * @returns
     **/
     public void query10()
-    {
+    {/*
         crono.start();
         Map<Produto, List<Double>> c1 = model.ftrTotal(1);
         Map<Produto, List<Double>> c2 = model.ftrTotal(2);
@@ -392,6 +389,7 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         view.query10_Output(c1,c2,c3);
         crono.stop(); 
         crono.print();
+        */
     } 
     
     public void ultimoFichLido()

@@ -12,23 +12,39 @@ public class RegistoProduto implements Serializable
    /** Set que contém quais os Clientes que o compraram **/
    private Set<Cliente> registo;
    
+   /** Total faturado **/
+   double faturado;
+   
+   /** Total de unidades compradas **/
+   int unidades;
+   
    /** 
    * Construtor vazio que cria uma instância CatalogoProduto
    **/
    public RegistoProduto()
    {    
        this.registo = new TreeSet<>();
+       this.faturado = 0.0;
+       this.unidades = 0;
    }
     
    /** 
    * Construtor que cria um novo RegistoProduto a partir dos parâmetros dados 
    **/
-   public RegistoProduto(Set<Cliente> s){this.registo = new TreeSet<>(s);}
+   public RegistoProduto(Set<Cliente> s, double f, int u){
+       this.registo = new TreeSet<>(s);
+       this.faturado = f;
+       this.unidades = u;
+    }
     
    /** 
    * Construtor de cópia que cria uma nova instância RegistoProduto a partir de um RegistoProduto passado como parâmetro 
    **/
-   public RegistoProduto(RegistoProduto r) {this.registo = r.getRegisto();}
+   public RegistoProduto(RegistoProduto r) {
+       this.registo = r.getRegisto();
+       this.faturado = r.getFaturado();
+       this.unidades = r.getUnidades();
+    }
     
    /**
    * Método que devolve o registo
@@ -36,6 +52,10 @@ public class RegistoProduto implements Serializable
    **/ 
    public Set<Cliente> getRegisto(){return new TreeSet<>(this.registo);}
     
+   public double getFaturado(){return this.faturado;}
+   
+   public int getUnidades(){return this.unidades;}
+   
    /**
    * Método que faz set de um registo
    * @param  Set de Pares<Cliente, Integer>
@@ -45,7 +65,10 @@ public class RegistoProduto implements Serializable
        this.registo.clear();
        this.registo = new TreeSet<>(s);
    }
-    
+   
+   public void setFaturado(double f){this.faturado = f;}
+   public void setUnidades(int u){this.unidades = u;}
+   
    /**
    * Método que testa se um objeto é igual a uma determinada identificação
    * @param      Objeto a ser testado
@@ -58,7 +81,8 @@ public class RegistoProduto implements Serializable
        if(o == null || o.getClass() != this.getClass() )
             return false;
        RegistoProduto r = (RegistoProduto) o;
-       return this.registo.equals(r.getRegisto());
+       return this.registo.equals(r.getRegisto()) && this.faturado == r.getFaturado()
+              && this.unidades == r.getUnidades();
    } 
     
    /** 
@@ -73,9 +97,21 @@ public class RegistoProduto implements Serializable
     * Método que dado um par Cliente/Unidades compradas verifica se o Cliente já existe e faz o seu Registo atualizando as unidades.
     * @param Par<Cliente, Integer>
     **/
-   public void updateRegProduto(Cliente c)
+   public void updateRegProduto(Cliente c, int uni, double f)
    {
             this.registo.add(c);
+            this.unidades += uni;
+            this.faturado += f;
+    }
+   
+   public void updateFat (double f)
+   {
+       this.faturado += f;
+   }
+   
+   public void updateUnidades(int u)
+   {
+       this.unidades += u;
     }
     
    public int ClientesDistintos()

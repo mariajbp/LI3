@@ -39,6 +39,15 @@ public interface IFilial extends Serializable
     **/
     public int getClientesDistintos(Produto p, int mes);
     
+    
+    public void getProdutos(Set<Produto> p);
+    
+    public Set<Produto> getProdutos();
+    
+    public int getUnidadesMes(Produto p, int mes);
+    
+    public double getFtrMensal(Produto p, int mes);
+    
     /**
     * Método que devolve o total de vendas num certo mês
     **/
@@ -47,7 +56,7 @@ public interface IFilial extends Serializable
     /**
     * Método que atualiza o registo de um produto
     **/
-    public void updateRegProd(Produto p, Cliente c, int mes);
+    public void updateRegProd(Produto p, Cliente c, int mes, double f, int u);
     
     /**
     * Método que atualiza o registo de um cliente
@@ -59,5 +68,5 @@ public interface IFilial extends Serializable
     **/
     public void addVenda(Venda v);
     
-    public HashMap<Cliente, Integer> comprasAnuais();
+    public List<Pair<Cliente, Double>> getClientesFaturacao();
 }

@@ -25,7 +25,7 @@ public interface IGestVendasView extends Serializable
      public void query6_Input();
      public void query6_Output();
      public void query6_Output_Dados(Pair<Produto,Integer> p);
-     public void query7_Output();
+     public void query7_Output(List<Cliente> c1 , List<Cliente> c2, List<Cliente> c3);
      public void query8_Input();
      public void query8_Output();
      public void query9_Inputp();
