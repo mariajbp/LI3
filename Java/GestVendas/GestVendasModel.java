@@ -253,7 +253,37 @@ public class GestVendasModel implements Serializable, IGestVendasModel
        return validade;      
     }
     
-    
+    public int estatisticaProduto()
+	{
+		Set<Produto> todosProdutos = cprod.getCalalogo();
+		Set<Produto> p = new TreeSet();
+
+		f1.getProdutos(p);
+		f2.getProdutos(p);
+		f3.getProdutos(p);
+
+		e.setTotalProdutosComprados(p.size());
+		// assign do nr de produtos comprados
+
+		return (todosProdutos.size() - p.size());
+		// return do nr de produtos nao comprados
+	}
+
+	/* 
+    public int estatisticaCliente()
+	{
+		Set<Cliente> todosClientes = cprod.getCalalogo();
+		Set<Cliente> c = new TreeSet();
+
+		f1.getClientes(c); // nao existe
+		f2.getClientes(c); // nao existe
+		f3.getClientes(c); // nao existe
+
+		e.setClientesCompraram(c.size());
+
+		return (todosClientes.size() - c.size());
+	}
+    */
     
     /**** QUERY1 ****/
     /** 
