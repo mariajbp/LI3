@@ -282,4 +282,39 @@ public class Filial implements Serializable, IFilial
         updateRegCl(v.getCliente(), v.getProduto(), v.getUnidades(), v.getPreco() * v.getUnidades(), v.getMes());
     }
     
+<<<<<<< HEAD
+=======
+    public HashMap<Cliente, Integer> comprasAnuais()
+    {
+        int total = 0;
+        HashMap<Cliente, Integer> l = new HashMap<>();
+        List<RegistoCliente> rc = new ArrayList<>();  
+        for(Map.Entry<Cliente, List<RegistoCliente>> e : this.regCl.entrySet())
+        {
+               rc = e.getValue();
+               Iterator<RegistoCliente> it = rc.iterator();
+               while(it.hasNext())
+               {
+                    RegistoCliente reg = it.next();
+                    total += reg.getTotal();
+               }
+               l.put(e.getKey(), total);
+        }
+        return l; 
+    }
+    
+    public int distintosProd(Produto produto)
+    {
+        int d = 0;
+        for(Map.Entry<Produto, List<RegistoProduto>> e : regProd.entrySet())
+        {
+               if(produto == e.getKey())
+               {
+                     List<RegistoProduto> reg = e.getValue();
+                     d = reg.size();
+               }
+        }   
+        return d;
+    }
+>>>>>>> 7983450e89200a61de372548c941f8176d73b888
 }

@@ -20,5 +20,6 @@ public interface IGestVendasModel extends Serializable
     public Pair<Integer,Integer> totalVendasRealizadas(int mes, int filial);
     //public List<Pair<Produto,Integer>> prodsMaisVendidos(int x);
     //public int distintosProd(Produto p);
+
     public List<Cliente> maioresCompradores(int filial);
 }

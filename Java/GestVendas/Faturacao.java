@@ -116,4 +116,24 @@ public class Faturacao implements Serializable, IFaturacao
        updateFtrTotal(v.getPreco(), v.getUnidades());
        updateFtrMensal(v.getMes(), v.getFilial(), v.getUnidades(), v.getPreco());
     } 
+<<<<<<< HEAD
+=======
+    
+    /**
+    * Método que determina o total de certo produto vendido anualmente
+    * @return Map que contém o total de certo produto vendido anualmente
+    **/
+    public HashMap<Produto, Integer>  prodsVendidosAnual()
+    {
+        HashMap<Produto, Integer> map = new HashMap<>();  
+        for(Map.Entry<Produto, List<Integer>> e : this.prodUnidadeMes.entrySet())
+        {
+            List<Integer> l = e.getValue();
+            Integer sum = l.stream().collect(Collectors.summingInt(Integer::intValue));
+            map.put(e.getKey(), sum); 
+        } 
+        return map;  
+    }
+   
+>>>>>>> 7983450e89200a61de372548c941f8176d73b888
 }

@@ -1,20 +1,32 @@
 
 public class Estatisticas implements IEstatisticas
 {
+    /** Nome do ficheiro **/
     private String nome;
 
+    /** Número de Vendas Lidas **/
     private int num_VendasLidas;
+    /** Número de Vendas Válidas**/
     private int num_VendasValidas;
-
+    
+    /** Número de Produtos existentes **/
     private int num_Produtos;
+    /** Número de Produtos comprados **/
     private int num_totalProdutosComprados;
 
+    /** Número de Clientes existentes **/
     private int num_Clientes;
+    /** Número de Clientes comprados **/
     private int num_ClientesCompraram;
 
+    /** Número de compras cuja faturação é 0 **/
     private int compras_0;
+    /** Faturação Total **/
     private double faturacao;
-
+    
+    /**
+    * Construtor Vazio
+    **/
     public Estatisticas(){
         nome = "N/A";
         num_VendasLidas = 0;
@@ -26,7 +38,10 @@ public class Estatisticas implements IEstatisticas
         compras_0 = 0;
         faturacao = 0;
     }
-    
+
+    /**
+    * Construtor de Cópia
+    **/
     public Estatisticas(Estatisticas e){
         nome = e.getNome();
         num_VendasLidas = e.getVendasLidas();
@@ -39,6 +54,10 @@ public class Estatisticas implements IEstatisticas
         faturacao = e.getFaturacao();
     }
 
+
+    /**
+    * Método que dá Override ao equals
+    **/
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -55,10 +74,16 @@ public class Estatisticas implements IEstatisticas
                         && this.nome.equals(e.nome);
     }
 
+    /**
+    * Método que dá Override ao clone
+    **/
     public Estatisticas clone(){
         return new Estatisticas(this);
     }
 
+    /**
+    * Método que dá Override ao toString
+    **/
     public String toString(){
         StringBuilder s = new StringBuilder();
         s.append("Nome do ficheiro ").append(nome).append("\n");
@@ -71,40 +96,94 @@ public class Estatisticas implements IEstatisticas
         return s.toString();
     }
 
+    /**
+    * Método que devolve o Nome do ficheiro
+    **/
     public String getNome(){return this.nome;}
-
+    
+    /**
+    * Método que devolve o número de Vendas Lidas
+    **/
     public int getVendasLidas(){return this.num_VendasLidas;}
-
+    
+    /**
+    * Método que devolve o número de Vendas Válidas
+    **/
     public int getVendasValidas(){return this.num_VendasValidas;}
-
+    
+    /**
+    * Método que devolve o número de Produtos existentes
+    **/
     public int getProdutos(){return this.num_Produtos;}
-
+    
+    /**
+    * Método que devolve o número de Produtos comprados
+    **/
     public int getTotalProdutosComprados(){return this.num_totalProdutosComprados;}
-
+    
+    /**
+    * Método que devolve o número de Clientes existentes
+    **/
     public int getClientes(){return this.num_Clientes;}
-
+    
+    /**
+    * Método que devolve o número de Clientes comprados
+    **/
     public int getClientesCompraram(){return this.num_ClientesCompraram;}
-
+    
+    /**
+    * Método que devolve o número de compras cuja faturação foi 0
+    **/
     public int getCompras_0(){return this.compras_0;}
-
+    
+    /**
+    * Método que devolve a faturação total
+    **/
     public double getFaturacao(){return this.faturacao;}
-
+    
+    /**
+    * Método que define o Nome do ficheiro
+    **/
     public void setNome(String n){this.nome = n;}
-
+    
+    /**
+    * Método que define o número de Vendas Lidas
+    **/
     public void setVendasLidas(int vl){this.num_VendasLidas = vl;}
-
+    
+    /**
+    * Método que define o número de Vendas Válidas
+    **/
     public void setVendasValidas(int vv){this.num_VendasValidas = vv;}
-
+    
+    /**
+    * Método que define o número de Produtos existentes
+    **/
     public void setProdutos(int p){this.num_Produtos = p;}
-
+    
+    /**
+    * Método que define o número de Produtos comprados
+    **/
     public void setTotalProdutosComprados(int tpc){this.num_totalProdutosComprados = tpc;}
-
+    
+    /**
+    * Método que define o número de Clientes existentes
+    **/
     public void setClientes(int c){this.num_Clientes = c;}
-
+    
+    /**
+    * Método que define o número de Clientes comprados
+    **/
     public void setClientesCompraram(int cc){this.num_ClientesCompraram = cc;}
-
+    
+    /**
+    * Método que define o número de compras cuja faturação foi 0
+    **/
     public void setCompras_0(int c0){this.compras_0 = c0;}
-
+    
+    /**
+    * Método que define a faturação total
+    **/
     public void setFaturacao(double f){this.faturacao = f;}
 
 

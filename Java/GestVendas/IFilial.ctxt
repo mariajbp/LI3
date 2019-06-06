@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #BlueJ class context
 comment0.target=IFilial
 comment0.text=\r\n\ \r\n
@@ -39,3 +40,38 @@ comment8.target=int\ getUnidadesMes(Produto,\ int)
 comment9.params=p\ mes
 comment9.target=double\ getFtrMensal(Produto,\ int)
 numComments=15
+=======
+#BlueJ class context
+comment0.target=IFilial
+comment0.text=\n\ \n
+comment1.params=
+comment1.target=java.util.Map\ getRegProd()
+comment1.text=\n\ M\u00E9todo\ que\ associa\ um\ registo\ ao\ produto\n
+comment10.params=
+comment10.target=java.util.HashMap\ comprasAnuais()
+comment2.params=
+comment2.target=java.util.Map\ getRegCl()
+comment2.text=\n\ M\u00E9todo\ que\ associa\ um\ registo\ ao\ cliente\n\ @returns\ \n
+comment3.params=regP
+comment3.target=void\ setRegProd(java.util.Map)
+comment3.text=\n\ M\u00E9todo\ que\ define\ um\ registo\ de\ determinado\ produto\n
+comment4.params=regC
+comment4.target=void\ setRegCl(java.util.Map)
+comment4.text=\n\ M\u00E9todo\ que\ define\ um\ registo\ de\ determinado\ cliente\n
+comment5.params=p\ mes
+comment5.target=int\ getClientesDistintos(Produto,\ int)
+comment5.text=\n\ M\u00E9todo\ que\ devolve\ os\ clientes\ distintos\ de\ determinado\ produto,\ \n\ num\ mes\n
+comment6.params=mes
+comment6.target=int\ totalVendas(int)
+comment6.text=\n\ M\u00E9todo\ que\ devolve\ o\ total\ de\ vendas\ num\ certo\ m\u00EAs\n
+comment7.params=p\ c\ mes
+comment7.target=void\ updateRegProd(Produto,\ Cliente,\ int)
+comment7.text=\n\ M\u00E9todo\ que\ atualiza\ o\ registo\ de\ um\ produto\n
+comment8.params=c\ p\ uni\ t\ mes
+comment8.target=void\ updateRegCl(Cliente,\ Produto,\ int,\ double,\ int)
+comment8.text=\n\ M\u00E9todo\ que\ atualiza\ o\ registo\ de\ um\ cliente\n
+comment9.params=v
+comment9.target=void\ addVenda(Venda)
+comment9.text=\n\ M\u00E9todo\ que\ divide\ as\ carateristicas\ de\ uma\ venda\ pelos\ Maps\ da\ classe\n
+numComments=11
+>>>>>>> 7983450e89200a61de372548c941f8176d73b888

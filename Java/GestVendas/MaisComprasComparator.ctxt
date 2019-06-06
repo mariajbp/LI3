@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=MaisComprasComparator
-comment0.text=\r\n\ Classe\ MaisComprasComparator\ que\ imp\u00F5em\ uma\ ordem\ ao\ n\u00FAmero\ de\ vezes\ que\ os\ clientes\ efetuaram\ compras\r\n
+comment0.text=\n\ Classe\ MaisComprasComparator\ que\ imp\u00F5em\ uma\ ordem\ ao\ n\u00FAmero\ de\ vezes\ que\ os\ clientes\ efetuaram\ compras\n
 comment1.params=r1\ r2
 comment1.target=int\ compare(RegistoCliente,\ RegistoCliente)
 numComments=2

@@ -446,24 +446,22 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * distintos clientes que o compraram.
     * @param     Número de produtos a determinar, introduzido pelo utilizador
     * @returns
-    **//*
-    public List<Pair<Produto,Integer>> prodsMaisVendidos(int x)
+**/
+/*
+    public List<Produto> prodsMaisVendidos(int x)
     {
         int i = 0;
         HashMap<Produto, Integer> prods = this.ftr.prodsVendidosAnual();  
         HashMap<Produto, Integer> mapOrder = this.sortMap(prods); 
-        List<Pair<Produto,Integer>> l = new ArrayList<>();
-        Pair<Produto,Integer> pair = new Pair<>();
+        List<Produto> l = new ArrayList<>();
         for(Map.Entry<Produto, Integer> e : mapOrder.entrySet())
         {
              while(i<x)
              {
-                 pair.setFst(e.getKey());
-                 pair.setSnd(e.getValue());
-                 l.add(pair);
+                 l.add(e.getKey());
              }
         }
-        return l;  
+        return l;   
     }
 
     public static HashMap<Produto, Integer> sortMap(HashMap<Produto, Integer> map) 
@@ -511,7 +509,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         dt = d1 + d2 + d3;
         return dt;
     }
-    */
+*/
     
     /**** QUERY7 ****/
     /**
