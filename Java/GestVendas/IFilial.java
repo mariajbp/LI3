@@ -79,5 +79,6 @@ public interface IFilial extends Serializable
 
     public List<Pair<Produto, Integer>> getProdUnidades();
     
-    public int clDistintos(Produto p);  
+    public int clDistintos(Produto p);
+    public Set<Produto> comprasDistintasClientes(Cliente c);
 }

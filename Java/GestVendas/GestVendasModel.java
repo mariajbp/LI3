@@ -651,8 +651,11 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * (não interessa a quantidade nem o valor), indicando quantos, sendo o critério de ordenação a ordem decrescente do número de produtos.
     * @param       Número de clientes a determinar, introduzido pelo utilizador
     * @returns
-    **/
-    //public ? clientesMaisCompraram(int x){}
+    
+    public List<Pair<Cliente,Integer>> clientesMaisCompraram(int x)
+    {
+        
+    }**/
     
     
     /**** QUERY9****/

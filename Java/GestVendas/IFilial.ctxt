@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #BlueJ class context
 comment0.target=IFilial
 comment0.text=\r\n\ \r\n
@@ -49,3 +50,56 @@ comment8.target=int\ getUnidadesMes(Produto,\ int)
 comment9.params=p\ mes
 comment9.target=double\ getFtrMensal(Produto,\ int)
 numComments=20
+=======
+#BlueJ class context
+comment0.target=IFilial
+comment0.text=\n\ \n
+comment1.params=
+comment1.target=java.util.Map\ getRegProd()
+comment1.text=\n\ M\u00E9todo\ que\ associa\ um\ registo\ ao\ produto\n
+comment10.params=mes
+comment10.target=int\ totalVendas(int)
+comment10.text=\n\ M\u00E9todo\ que\ devolve\ o\ total\ de\ vendas\ num\ certo\ m\u00EAs\n
+comment11.params=p\ c\ mes\ f\ u
+comment11.target=void\ updateRegProd(Produto,\ Cliente,\ int,\ double,\ int)
+comment11.text=\n\ M\u00E9todo\ que\ atualiza\ o\ registo\ de\ um\ produto\n
+comment12.params=c\ p\ uni\ t\ mes
+comment12.target=void\ updateRegCl(Cliente,\ Produto,\ int,\ double,\ int)
+comment12.text=\n\ M\u00E9todo\ que\ atualiza\ o\ registo\ de\ um\ cliente\n
+comment13.params=v
+comment13.target=void\ addVenda(Venda)
+comment13.text=\n\ M\u00E9todo\ que\ divide\ as\ carateristicas\ de\ uma\ venda\ pelos\ Maps\ da\ classe\n
+comment14.params=
+comment14.target=java.util.List\ getClientesFaturacao()
+comment15.params=c\ mes
+comment15.target=Pair\ comprasTotais(Cliente,\ int)
+comment16.params=c\ mes
+comment16.target=int\ ProdutosDistintos(Cliente,\ int)
+comment17.params=
+comment17.target=java.util.List\ getProdUnidades()
+comment18.params=p
+comment18.target=int\ clDistintos(Produto)
+comment19.params=c
+comment19.target=java.util.Set\ comprasDistintasClientes(Cliente)
+comment2.params=
+comment2.target=java.util.Map\ getRegCl()
+comment2.text=\n\ M\u00E9todo\ que\ associa\ um\ registo\ ao\ cliente\n\ @returns\ \n
+comment3.params=regP
+comment3.target=void\ setRegProd(java.util.Map)
+comment3.text=\n\ M\u00E9todo\ que\ define\ um\ registo\ de\ determinado\ produto\n
+comment4.params=regC
+comment4.target=void\ setRegCl(java.util.Map)
+comment4.text=\n\ M\u00E9todo\ que\ define\ um\ registo\ de\ determinado\ cliente\n
+comment5.params=p\ mes
+comment5.target=int\ getClientesDistintos(Produto,\ int)
+comment5.text=\n\ M\u00E9todo\ que\ devolve\ os\ clientes\ distintos\ de\ determinado\ produto,\ \n\ num\ mes\n
+comment6.params=p
+comment6.target=void\ getProdutos(java.util.Set)
+comment7.params=
+comment7.target=java.util.Set\ getProdutos()
+comment8.params=p\ mes
+comment8.target=int\ getUnidadesMes(Produto,\ int)
+comment9.params=p\ mes
+comment9.target=double\ getFtrMensal(Produto,\ int)
+numComments=20
+>>>>>>> 8980af8a29cc1df8d1d8d2dc3298b8ed6adde8fa
