@@ -143,6 +143,26 @@ public class Filial implements Serializable, IFilial
         return s;
     }
     
+    public List<Pair<Cliente, Integer>> getClientesProdutosDistintos()
+    {
+        List<Pair<Cliente, Integer>> s = new ArrayList<>();
+        Set<Produto> prd = new TreeSet<>();
+        
+        for(Map.Entry<Cliente, List<RegistoCliente>> e : regCl.entrySet())
+        {
+            Pair<Cliente, Integer> p = new Pair<>();
+            for(RegistoCliente rc : e.getValue())
+            { 
+                rc.ProdutosDistintos(prd);
+            }
+            
+            p.setFst(e.getKey());
+            p.setSnd(prd.size());
+            s.add(p); 
+        }
+        return s;
+    }
+    
     //Preenche uma lista de pares( clientes, total faturado anual)---> query 6
     public List<Pair<Produto, Integer>> getProdUnidades()
     {
@@ -428,10 +448,9 @@ public class Filial implements Serializable, IFilial
         }
         return set;
     }
-    
-    
+
     //query9
-    //private Map<Produto, List<RegistoProduto>> regProd;
+    //Map<Produto, List<RegistoProduto>> regProd;
     
     public Set<Cliente> getClientes(Produto p) //clientes que comprar um prod num ano
     { 
@@ -480,10 +499,10 @@ public class Filial implements Serializable, IFilial
         {
              Pair<Cliente,Double> pcd = it.next();
              total += pcd.getSnd();
-             
-             pfinal.setFst(c);
-             pfinal.setSnd(total);
+
         }
+        pfinal.setFst(c);
+        pfinal.setSnd(total);
         return pfinal; 
     }
     
@@ -517,11 +536,11 @@ public class Filial implements Serializable, IFilial
         {
              Pair<Cliente,Integer> pcd = it.next();
              total += pcd.getSnd();
-             
-             pfinal.setFst(c);
-             pfinal.setSnd(total);
         }
+        pfinal.setFst(c);
+        pfinal.setSnd(total);
         return pfinal; 
     }
+
 }
 

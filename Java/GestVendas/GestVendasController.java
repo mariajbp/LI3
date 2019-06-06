@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.io.Serializable;
 import java.util.Scanner;
 import java.io.IOException;
 import java.io.FileNotFoundException;
@@ -124,7 +125,11 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
    **/
    public void saveStatus()
    {
-       try{model.saveStatus("Gravacao");}
+       try{
+           model.saveStatus("Gravacao");
+           view.saveMessage();
+           queryORestatisticasMenu();
+        }
        catch(IOException e){e.printStackTrace();};
    }
    
@@ -305,8 +310,8 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         List<Pair<Produto,Integer>> l1 = model.cldistintos(p1, 1);
         List<Pair<Produto,Integer>> l2 = model.cldistintos(p2, 2);
         List<Pair<Produto,Integer>> l3 = model.cldistintos(p3, 3);
-        List<Pair<Produto,Integer>> l = model.prodsEcldistintos(l1,l2,l3,x);
-        view.query6_Output_Dados(l);   
+        //List<Pair<Produto,Integer>> l = model.prodsEcldistintos(l1,l2,l3,x);
+        //view.query6_Output_Dados(l1, l2, l3);   
         double t = crono.stop(); 
         view.time(t);
     } 
@@ -332,8 +337,7 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         Scanner input = new Scanner(System.in);
         int x = input.nextInt();
         crono.start();
-        //..
-        view.query8_Output();
+        view.query8_Output(model.clientesMaisCompraram(x, 1), model.clientesMaisCompraram(x, 2), model.clientesMaisCompraram(x, 3));
         double t = crono.stop(); 
         view.time(t);
     } 
@@ -344,15 +348,17 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     **/
     public void query9()
     {
-        //view.query9_Inputp();
+        view.query9_Inputp();
         Scanner input = new Scanner(System.in);
         String s = input.nextLine(); 
         Produto p = new Produto(s);
-        //view.query9_Inputx();
-        //int x = input.nextInt();
+        view.query9_Inputx();
+        int x = input.nextInt();
         crono.start();
-        //..
-        //view.query9_Output();
+        
+        view.query9_Output(model.xClientesMaisCompraram(p, x, 1), model.xClientes_valorGasto(p, x, 1));
+        view.query9_Output(model.xClientesMaisCompraram(p, x, 2), model.xClientes_valorGasto(p, x, 2));
+        view.query9_Output(model.xClientesMaisCompraram(p, x, 3), model.xClientes_valorGasto(p, x, 3));
         double t = crono.stop(); 
         view.time(t);
     } 
