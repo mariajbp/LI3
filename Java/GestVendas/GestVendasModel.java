@@ -256,7 +256,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     
     public int estatisticaProduto()
   {
-    Set<Produto> todosProdutos = cprod.getCalalogo();
+    Set<Produto> todosProdutos = cprod.getCatalogo();
     Set<Produto> p = new TreeSet();
 
     f1.getProdutos(p);
