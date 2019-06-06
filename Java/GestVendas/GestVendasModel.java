@@ -345,7 +345,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
        Pair<Integer,Integer> pair = new Pair(total, cl);
        return pair;
     }
-    
+     
     
     
     /**** QUERY3 ****/
@@ -354,16 +354,23 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * @param     Cliente introduzido pelo utilizador
     * @returns
     **/
-    /*
-    public List<Integer> totalComprasCliente(Cliente c)
+    public Pair<Integer,Double> totalComprasClienteFilial(Cliente c, int filial, int mes) 
     {
-        int total = 0;
-        Filial f = new Filial();
-        List<Interger> l = new ArrayList<>();
-        
-        Map<Cliente, List<Pair>> map = ; 
-    } **/
+        Pair<Integer,Double> l = new Pair<>();
+        if(filial == 1){l = f1.comprasTotais(c, mes);}
+        if(filial == 2){l = f2.comprasTotais(c, mes);}
+        if(filial == 3){l = f3.comprasTotais(c, mes);}
+        return l;
+    } 
     
+    public int totalProdutosDistintosFilial(Cliente c, int filial, int mes)
+    {
+        int prod = 0;
+        if(filial == 1){prod = f1.ProdutosDistintos(c, mes);}
+        if(filial == 2){prod = f2.ProdutosDistintos(c, mes);}
+        if(filial == 3){prod = f3.ProdutosDistintos(c, mes);}
+        return prod; 
+    }
     
     /** 
     * Método que dado um código de cliente determina, para cada mês, quantos produtos distintos comprou.

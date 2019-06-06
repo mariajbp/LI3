@@ -14,6 +14,4 @@ public class Crono
       // segundos
       return elapsedTime / 1.0E09;
   }
-  
-  public static String print() {return "Tempo demorado: " + stop() + "segundos"; }
 }
