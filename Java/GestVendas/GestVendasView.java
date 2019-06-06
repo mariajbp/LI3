@@ -208,7 +208,7 @@ public class GestVendasView implements Serializable, IGestVendasView
        out.println("*******************************************************************************");
    }
    
-   public void query6_Output_Dados(List<Produto> p)
+   public void query6_Output_Dados(List<Pair<Produto,Integer>> p)
    {
        out.println("\t"+ p.toString()  + "\n"); 
    }

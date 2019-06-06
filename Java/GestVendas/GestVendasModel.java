@@ -18,7 +18,7 @@ import static java.lang.System.out;
 public class GestVendasModel implements Serializable, IGestVendasModel   
 { 
     /** Instancia da interface CatalogoProdutos **/
-    private ICatProdutos cprod;
+    private ICatProdutos cprod; 
     
     /** Instancia da interface CatalogoClientes **/
     private ICatClientes ccl;
@@ -453,70 +453,63 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * distintos clientes que o compraram.
     * @param     Número de produtos a determinar, introduzido pelo utilizador
     * @returns
-**/
-/*
+    **/
+
     public List<Produto> prodsMaisVendidos(int x)
     {
         int i = 0;
-        HashMap<Produto, Integer> prods = this.ftr.prodsVendidosAnual();  
-        HashMap<Produto, Integer> mapOrder = this.sortMap(prods); 
         List<Produto> l = new ArrayList<>();
-        for(Map.Entry<Produto, Integer> e : mapOrder.entrySet())
+        List<Pair<Produto, Integer>> p = new ArrayList<>();
+        p.addAll(f1.getProdUnidades());
+        p.addAll(f2.getProdUnidades());
+        p.addAll(f3.getProdUnidades());
+        Set<Pair<Produto, Integer>> pOrder = new TreeSet<>(new MaisCompradosComparator()); 
+        for(Pair<Produto, Integer> pd: p){pOrder.add(pd);}
+        
+        Iterator<Pair<Produto, Integer>> it = pOrder.iterator();
+        while(it.hasNext() && i < x)
         {
-             while(i<x)
-             {
-                 l.add(e.getKey());
-             }
+            Pair<Produto, Integer> pair = it.next();
+            l.add(pair.getFst());
         }
-        return l;   
-    }
-
-    public static HashMap<Produto, Integer> sortMap(HashMap<Produto, Integer> map) 
-    {
-        List<Map.Entry<Produto, Integer>> l = new ArrayList<>(map.entrySet());
-        Collections.sort(l, (o1, o2) -> o1.getValue().compareTo(o2.getValue()));
-        HashMap<Produto, Integer> result = new HashMap<>();      
-        for (Map.Entry<Produto, Integer> entry : l)
-        {
-            result.put(entry.getKey(), entry.getValue());
-        }
-        return result;
+        return l; 
     }
     
-    public int distintosProd(Produto produto)
+    public List<Pair<Produto,Integer>> cldistintos(List<Produto> lp)
     {
-        int dt = 0, d1 = 0, d2 = 0, d3 = 0; 
-        Map<Produto, List<RegistoProduto>> p1 = f1.getRegProd();
-        for(Map.Entry<Produto, List<RegistoProduto>> e : p1.entrySet())
+        int total = 0;
+        Produto prod = new Produto();
+        Pair<Produto,Integer> pair = new Pair();
+        List<Pair<Produto,Integer>> l = new ArrayList<>();
+        
+        Iterator<Produto> it = lp.iterator();
+        while(it.hasNext())
         {
-               if(produto == e.getKey())
-               {
-                     List<RegistoProduto> reg = e.getValue();
-                     d1 = reg.size();
-               }
-        }   
-        Map<Produto, List<RegistoProduto>> p2 = f2.getRegProd();
-        for(Map.Entry<Produto, List<RegistoProduto>> e : p2.entrySet())
-        {
-               if(produto == e.getKey())
-               {
-                     List<RegistoProduto> reg = e.getValue();
-                     d1 = reg.size();
-               }
+            prod = it.next();
+            if(f1.getRegProd().containsKey(prod))
+            {
+               total = f1.clDistintos(prod);
+               pair.setFst(prod);
+               pair.setSnd(total);
+               l.add(pair);
+            }
+            if(f2.getRegProd().containsKey(prod))
+            {
+               total = f2.clDistintos(prod);
+               pair.setFst(prod);
+               pair.setSnd(total);
+               l.add(pair);
+            }
+            if(f3.getRegProd().containsKey(prod))
+            {
+               total = f3.clDistintos(prod);
+               pair.setFst(prod);
+               pair.setSnd(total);
+               l.add(pair);
+            }
         }
-        Map<Produto, List<RegistoProduto>> p3 = f1.getRegProd();
-        for(Map.Entry<Produto, List<RegistoProduto>> e : p3.entrySet())
-        {
-               if(produto == e.getKey())
-               {
-                     List<RegistoProduto> reg = e.getValue();
-                     d1 = reg.size();
-               }
-        }
-        dt = d1 + d2 + d3;
-        return dt;
+        return l;
     }
-*/
     
     /**** QUERY7 ****/
     /**
@@ -546,7 +539,8 @@ public class GestVendasModel implements Serializable, IGestVendasModel
             }
             return list;
         } 
-        else{
+        else
+        {
             if(filial == 2)
             {
                 cl = f2.getClientesFaturacao();
@@ -563,7 +557,8 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                 }
                 return list;
             }
-            else{
+            else
+            {
                 if(filial == 3)
                 {
                     cl = f3.getClientesFaturacao();

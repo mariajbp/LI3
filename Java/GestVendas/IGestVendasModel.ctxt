@@ -1,10 +1,14 @@
 #BlueJ class context
 comment0.target=IGestVendasModel
-comment0.text=\r\n\ \r\n
+comment0.text=\n\ \n
 comment1.params=
 comment1.target=void\ carregamentoDefault()
 comment10.params=c\ filial\ mes
 comment10.target=Pair\ totalComprasClienteFilial(Cliente,\ int,\ int)
+comment11.params=x
+comment11.target=java.util.List\ prodsMaisVendidos(int)
+comment12.params=p
+comment12.target=java.util.List\ cldistintos(java.util.List)
 comment2.params=filename
 comment2.target=GestVendasModel\ loadStatus(java.lang.String)
 comment3.params=op
@@ -21,4 +25,4 @@ comment8.params=mes\ filial
 comment8.target=Pair\ totalVendasRealizadas(int,\ int)
 comment9.params=filial
 comment9.target=java.util.List\ maioresCompradores(int)
-numComments=11
+numComments=13

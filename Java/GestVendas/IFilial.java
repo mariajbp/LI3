@@ -73,4 +73,8 @@ public interface IFilial extends Serializable
     public Pair<Integer,Double> comprasTotais(Cliente c, int mes);
     
     public int ProdutosDistintos(Cliente c, int mes);
+    
+    public List<Pair<Produto, Integer>> getProdUnidades();
+    
+    public int clDistintos(Produto p);  
 }

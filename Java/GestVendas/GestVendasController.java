@@ -294,21 +294,22 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     * distintos clientes que o compraram (X é um inteiro dado pelo utilizador).
     **/
     public void query6()
-    {/*
+    {
         view.query6_Input();
         Scanner input = new Scanner(System.in);
         int x = input.nextInt();
-        crono.start();
+        crono.start(); 
         List<Produto> p = model.prodsMaisVendidos(x);
-        view.query6_Output();
+        List<Pair<Produto,Integer>> lf = model.cldistintos(p);
+        view.query6_Output(); 
         Iterator<Produto> it = p.iterator();
         while(it.hasNext())
         {
-            Produto prod = it.next(); 
-            view.query6_Output_Dados(p);  
+            Produto prod = it.next();  
+            view.query6_Output_Dados(lf);   
         }
         double t = crono.stop(); 
-        view.time(t);*/
+        view.time(t);
     } 
     
     /**

@@ -142,6 +142,26 @@ public class Filial implements Serializable, IFilial
         return s;
     }
     
+    //Preenche uma lista de pares( clientes, total faturado anual)---> query 6
+    public List<Pair<Produto, Integer>> getProdUnidades()
+    {
+        List<Pair<Produto, Integer>> s = new ArrayList<>();
+        
+        for(Map.Entry<Produto, List<RegistoProduto>> e : regProd.entrySet())
+        {
+            Pair<Produto, Integer> p = new Pair<>();
+            int unidades = 0;
+            for(RegistoProduto rp : e.getValue())
+            { 
+                unidades += rp.getUnidades();
+            }
+            p.setFst(e.getKey());
+            p.setSnd(unidades);
+            s.add(p); 
+        }
+        return s;
+    }
+    
     
     //Retorna um set de produtos
     public Set<Produto> getProdutos()
@@ -335,8 +355,6 @@ public class Filial implements Serializable, IFilial
        return pair;
     }
  
-    
-    
     public Pair<Integer,Double> comprasTotaisAnual(Cliente c) //numero de compras totais e total gasto no mes 
     {
        Pair<Integer,Double> pair = new Pair(); 
@@ -363,5 +381,40 @@ public class Filial implements Serializable, IFilial
     public int ProdutosDistintos(Cliente c, int mes)
     {
         return this.regCl.get(c).get(mes).produtosDistintos();
+    }
+    
+    public int clDistintos(Produto p) 
+    {
+        int total = 0;
+        
+        if(regProd.containsKey(p))
+        {
+           List<RegistoProduto> lrp = regProd.get(p); 
+           Iterator<RegistoProduto> it = lrp.iterator();
+           while(it.hasNext())
+           {
+               RegistoProduto rp = it.next();
+               total += rp.getRegisto().size();
+           }
+        }
+        return total;
+    }
+    
+    public int comprasDistintasClientes(Cliente c) //query 8
+    {
+        Set<Produto> tmp = new TreeSet<>(); 
+        Set<Produto> set = new TreeSet<>();
+        if(regCl.containsKey(c))
+        {
+            List<RegistoCliente> rc = regCl.get(c);
+            Iterator<RegistoCliente> it = rc.iterator();
+            while(it.hasNext())
+            {
+               RegistoCliente reg = it.next(); 
+               tmp = (reg.getProd().keySet()); 
+               set.addAll(tmp);
+            }
+        }
+        return set.size();
     }
 }
