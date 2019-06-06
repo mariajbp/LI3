@@ -4,6 +4,4 @@ comment1.params=
 comment1.target=void\ start()
 comment2.params=
 comment2.target=double\ stop()
-comment3.params=
-comment3.target=java.lang.String\ print()
-numComments=4
+numComments=3

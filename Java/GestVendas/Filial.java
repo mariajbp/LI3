@@ -215,7 +215,8 @@ public class Filial implements Serializable, IFilial
     **/
     public void updateRegProd(Produto p, Cliente c, int mes, double f, int uni)
     {
-        if(!this.regProd.containsKey(p)){
+        if(!this.regProd.containsKey(p))
+        {
             ArrayList<RegistoProduto> a = new ArrayList<>();
             for(int i = 0; i < 12; i++)
                     a.add(new RegistoProduto());
@@ -282,8 +283,6 @@ public class Filial implements Serializable, IFilial
         updateRegCl(v.getCliente(), v.getProduto(), v.getUnidades(), v.getPreco() * v.getUnidades(), v.getMes());
     }
     
-<<<<<<< HEAD
-=======
     public HashMap<Cliente, Integer> comprasAnuais()
     {
         int total = 0;
@@ -316,5 +315,31 @@ public class Filial implements Serializable, IFilial
         }   
         return d;
     }
->>>>>>> 7983450e89200a61de372548c941f8176d73b888
+    
+    public Pair<Integer,Double> comprasTotais(Cliente c, int mes) //numero de comroas totais e total gasto no mes 
+    {
+       int index = mes-1;
+       Pair<Integer,Double> pair = new Pair(); 
+                    
+       for(Map.Entry<Cliente,List<RegistoCliente>> e : this.regCl.entrySet()) 
+       {
+           if(e.getKey() == c)
+           {
+               List<RegistoCliente> lrc = e.getValue();
+               Iterator<RegistoCliente> it = lrc.iterator();
+               while(it.hasNext())
+               {
+                   RegistoCliente rc = it.next();
+                   if(mes == index)
+                   {
+                       pair.setFst(rc.getVezes());
+                       pair.setSnd(rc.getTotal()); 
+                   }
+               }
+           }
+       }
+       return pair;
+    }
+    
+    
 }

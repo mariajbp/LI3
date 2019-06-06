@@ -13,7 +13,7 @@ import java.util.Map;
 * Classe que 
 **/
 
-public class GestVendasView implements Serializable, IGestVendasView 
+public class GestVendasView implements Serializable, IGestVendasView  
 {
    private Menu menu;
    
@@ -139,11 +139,19 @@ public class GestVendasView implements Serializable, IGestVendasView
        out.println("Insira o código do cliente: \n");
    }
    
-   public void query3_Output()
+   public void query3_Output(List<Pair<Integer,Double>> l1, List<Pair<Integer,Double>> l2, List<Pair<Integer,Double>> l3)
    {
        out.println("*******************************************************************************");
-       out.println("Filial 1" +"\t"+"\t"+ "Filial 2" +"\t"+"\t"+ "Filial 3");
+       out.println("Filial 1: \n");
+       out.println("Compras  "+"Produtos  "+   "Total Gasto" );
+       out.println(l1);
        out.println("*******************************************************************************");
+       out.println("Filial 2: \n");
+       out.println("Compras  "+"Produtos  "+   "Total Gasto" );
+       //out.println(i ...
+       out.println("*******************************************************************************");
+       out.println("Filial 3: \n");
+       out.println("Compras  "+"Produtos  "+   "Total Gasto" );
        //out.println(i ...
        out.println("*******************************************************************************");
    }
@@ -208,15 +216,11 @@ public class GestVendasView implements Serializable, IGestVendasView
    //Determinar, para cada filial, a lista dos três maiores compradores em termos de dinheiro facturado.
    public void query7_Output(List<Cliente> c1 , List<Cliente> c2, List<Cliente> c3)
    {
-<<<<<<< HEAD
-       out.println(" Filial 1: " + c1.toString() + "\n Filial 2: " +c2.toString() + "\n Filial 3: " + c3.toString());
-=======
        out.println("*******************************************************************************");
-       out.println("Filial 1" +"\t"+"\t"+ "Filial 2" +"\t"+"\t"+ "Filial 3");
+       out.println("Filial 1" +"\t"+"\t"+ c1);
+       out.println("Filial 2" +"\t"+"\t"+ c2);
+       out.println("Filial 3" +"\t"+"\t"+ c3);
        out.println("*******************************************************************************");
-       //
-       out.println("*******************************************************************************");
->>>>>>> 7983450e89200a61de372548c941f8176d73b888
    }
 
    //Determinar os códigos dos X clientes (sendo X dado pelo utilizador) que compraram mais produtos diferentes 
@@ -253,7 +257,7 @@ public class GestVendasView implements Serializable, IGestVendasView
        out.println("*******************************************************************************");
        out.println("Clientes" +"\t"+"\t"+ "Valor gasto no produto");
        out.println("*******************************************************************************");
-       //
+       // 
        out.println("*******************************************************************************");
    }
    
@@ -266,5 +270,5 @@ public class GestVendasView implements Serializable, IGestVendasView
        //out.println("Janeiro" + )
    }
    
-   
+   public void time(double t) {out.println("Tempo demorado: " + t + "segundos"); }
 }

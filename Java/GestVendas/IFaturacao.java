@@ -24,15 +24,8 @@ public interface IFaturacao extends Serializable
    /**
    * Método que divide as carateristicas de uma venda pelos Maps da classe
    **/
-    public void addVenda(Venda v);
-<<<<<<< HEAD
+   public void addVenda(Venda v);
+
+
 }
-   
-=======
-   
-   /**
-   * Método que determina o total de certo produto vendido anualmente
-   **/
-   public HashMap<Produto, Integer>  prodsVendidosAnual(); 
-}
->>>>>>> 7983450e89200a61de372548c941f8176d73b888
+

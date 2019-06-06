@@ -69,4 +69,6 @@ public interface IFilial extends Serializable
     public void addVenda(Venda v);
     
     public List<Pair<Cliente, Double>> getClientesFaturacao();
+    
+    public Pair<Integer,Double> comprasTotais(Cliente c, int mes);
 }

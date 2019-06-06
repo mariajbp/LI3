@@ -195,22 +195,21 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
    }
    
    
-   /** Query 1 **/ 
+   /** 
+   * Query 1: Lista ordenada alfabeticamente com os códigos dos produtos nunca comprados e o seu respectivo total
+   **/ 
    public void query1()
    {
        crono.start();
        List<Produto> p = model.prodsNuncaComprados(); 
        view.query1_Output(p); 
-       crono.stop(); 
-       crono.print(); 
+       double t = crono.stop(); 
+       view.time(t); 
    }
    
     /** 
     * Query 2:  Dado um mês válido, determinar o número total global de vendas realizadas e o número total de clientes distintos que as fizeram; 
     * Fazer o mesmo mas para cada uma das filiais.
-    * 
-    * @param 
-    * @returns
     **/
     public void query2()
     {
@@ -224,16 +223,13 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
        int totalp = p1.getFst()+p2.getFst()+p3.getFst();
        int totalc = p1.getSnd()+p2.getSnd()+p3.getSnd();
        view.query2_Output(p1,p2,p3,totalp, totalc);
-       crono.stop();  
-       crono.print();
+       double t = crono.stop(); 
+       view.time(t);
     }
     
     /** 
     * Query 3: Dado um código de cliente, determinar, para cada mês, quantas compras fez, 
     * quantos produtos distintos comprou e quanto gastou no total.
-    * 
-    * @param 
-    * @returns
     **/
     public void query3()
     {
@@ -242,17 +238,17 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         String s = input.nextLine(); 
         Cliente c = new Cliente(s);
         crono.start();
-        //..
-        view.query3_Output();
-        crono.stop(); 
-        crono.print();
+        List<Pair<Integer,Double>> l1 = model.totalComprasCliente(c,1); 
+        List<Pair<Integer,Double>> l2 = model.totalComprasCliente(c,2);  
+        List<Pair<Integer,Double>> l3 = model.totalComprasCliente(c,3); 
+        view.query3_Output(l1,l2,l3); 
+        double t = crono.stop();  
+        view.time(t);
     } 
     
     /**
     * Query 4: Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi comprado, por quantos clientes diferentes 
     * e o total facturado.
-    * @param 
-    * @returns
     **/ 
     public void query4()
     {
@@ -269,16 +265,13 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
             double t = model.faturadoPorMes(p, i);
             view.query4_Output(i, pair, t);
         }
-        crono.stop(); 
-        crono.print();
+        double t = crono.stop(); 
+        view.time(t);
     } 
     
     /** 
     * Query 5: Dado o código de um cliente determinar a lista de códigos de produtos que mais comprou (e quantos), ordenada por ordem 
     * decrescente de quantidade e, para quantidades iguais, por ordem alfabética dos códigos.
-    * 
-    * @param 
-    * @returns
     **/    
     public void query5()
     {
@@ -289,16 +282,13 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         crono.start();
         //model....
         view.query5_Output();
-        crono.stop(); 
-        crono.print();
+        double t = crono.stop(); 
+        view.time(t);
     } 
     
     /**
     * Query 6: Determinar o conjunto dos X produtos mais vendidos em todo o ano (em número de unidades vendidas) indicando o número total de 
     * distintos clientes que o compraram (X é um inteiro dado pelo utilizador).
-    * 
-    * @param 
-    * @returns
     **/
     public void query6()
     {/*
@@ -314,30 +304,24 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
             Produto prod = it.next(); 
             view.query6_Output_Dados(p);  
         }
-        crono.stop(); 
-        crono.print();*/
+        double t = crono.stop(); 
+        view.time(t);*/
     } 
     
     /**
     * Query 7: Determinar, para cada filial, a lista dos três maiores compradores em termos de dinheiro facturado.
-    * 
-    * @param 
-    * @returns
     **/
     public void query7()
     {
         crono.start();
         view.query7_Output(model.maioresCompradores(1), model.maioresCompradores(2), model.maioresCompradores(3));
-        crono.stop(); 
-        crono.print();
+        double t = crono.stop(); 
+        view.time(t);
     } 
     
     /**
     * Query 8: Determinar os códigos dos X clientes (sendo X dado pelo utilizador) que compraram mais produtos diferentes 
     * (não interessa a quantidade nem o valor), indicando quantos, sendo o critério de ordenação a ordem decrescente do número de produtos.
-    * 
-    * @param 
-    * @returns
     **/
     public void query8()
     {
@@ -347,16 +331,13 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         crono.start();
         //..
         view.query8_Output();
-        crono.stop(); 
-        crono.print();
+        double t = crono.stop(); 
+        view.time(t);
     } 
     
     /**
     * Query 9: Dado o código de um produto que deve existir, determinar o conjunto dos X clientes que mais o compraram e, para cada um, 
     * qual o valor gasto (ordenação cf. 5).
-    * 
-    * @param 
-    * @returns
     **/
     public void query9()
     {
@@ -369,15 +350,12 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         crono.start();
         //..
         //view.query9_Output();
-        crono.stop(); 
-        crono.print();
+        double t = crono.stop(); 
+        view.time(t);
     } 
     
     /**
     * Query 10:  Determinar mês a mês, e para cada mês filial a filial, a facturação total com cada produto.
-    * 
-    * @param 
-    * @returns
     **/
     public void query10()
     {/*
@@ -391,36 +369,48 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         */
     } 
     
+    /**
+    * 
+    **/
     public void ultimoFichLido()
     {
         crono.start();
         //..
-        crono.stop(); 
-        crono.print();
+        double t = crono.stop(); 
+        view.time(t);
     }
     
+    /**
+    * 
+    **/
     public void stat1()
     {
         crono.start();
         //...
-        crono.stop(); 
-        crono.print();
+        double t = crono.stop(); 
+        view.time(t);
     }
     
+    /**
+    * 
+    **/
     public void stat2()
     {
         crono.start();
         //..
-        crono.stop(); 
-        crono.print();
+        double t = crono.stop(); 
+        view.time(t);
     }
     
+    /**
+    * 
+    **/
     public void stat3()
     {
         crono.start();
         //...
-        crono.stop(); 
-        crono.print();
+        double t = crono.stop(); 
+        view.time(t);
     }
     
 }

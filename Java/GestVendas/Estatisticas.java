@@ -6,28 +6,33 @@ public class Estatisticas implements IEstatisticas
 
     /** Número de Vendas Lidas **/
     private int num_VendasLidas;
+    
     /** Número de Vendas Válidas**/
     private int num_VendasValidas;
     
     /** Número de Produtos existentes **/
     private int num_Produtos;
+    
     /** Número de Produtos comprados **/
     private int num_totalProdutosComprados;
 
     /** Número de Clientes existentes **/
     private int num_Clientes;
+    
     /** Número de Clientes comprados **/
     private int num_ClientesCompraram;
 
     /** Número de compras cuja faturação é 0 **/
     private int compras_0;
+    
     /** Faturação Total **/
     private double faturacao;
     
-    /**
-    * Construtor Vazio
+    /** 
+    * Construtor vazio que cria uma instância Estatisticas
     **/
-    public Estatisticas(){
+    public Estatisticas()
+    {
         nome = "N/A";
         num_VendasLidas = 0;
         num_VendasValidas = 0;
@@ -39,10 +44,11 @@ public class Estatisticas implements IEstatisticas
         faturacao = 0;
     }
 
-    /**
-    * Construtor de Cópia
+    /** 
+    * Construtor de cópia que cria uma nova instância Estatisticas a partir de uma Estatistica passado como parâmetro 
     **/
-    public Estatisticas(Estatisticas e){
+    public Estatisticas(Estatisticas e)
+    {
         nome = e.getNome();
         num_VendasLidas = e.getVendasLidas();
         num_VendasValidas = e.getVendasValidas();
@@ -55,16 +61,15 @@ public class Estatisticas implements IEstatisticas
     }
 
 
-    /**
-    * Método que dá Override ao equals
+    /** 
+    * Método que testa se um objeto é igual a uma determinada identificação
+    * @param      Objeto a ser testado
+    * @return     True se o objeto for igual à identificação, false se o objeto passado não for igual à identificação
     **/
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Estatisticas)) {
-            return false;
-        }
+    public boolean equals(Object o) 
+    {
+        if(this == o) return true;
+        if(o == null || this.getClass() != o.getClass()) return false;
         Estatisticas e = (Estatisticas) o;
         return this.num_Clientes == e.num_Clientes && this.num_ClientesCompraram == e.num_ClientesCompraram
                         && this.num_Produtos == e.num_Produtos && this.num_VendasLidas == e.num_VendasLidas
@@ -74,17 +79,16 @@ public class Estatisticas implements IEstatisticas
                         && this.nome.equals(e.nome);
     }
 
-    /**
-    * Método que dá Override ao clone
-    **/
-    public Estatisticas clone(){
-        return new Estatisticas(this);
-    }
+    /** 
+    * Método que cria uma cópia de uma identificação de uma Estatistica
+    **/ 
+    public Estatisticas clone(){return new Estatisticas(this);}
 
     /**
-    * Método que dá Override ao toString
+    * Método que converte uma identificação numa string 
     **/
-    public String toString(){
+    public String toString()
+    {
         StringBuilder s = new StringBuilder();
         s.append("Nome do ficheiro ").append(nome).append("\n");
         s.append("Vendas Lidas: ").append(num_VendasLidas).append(". Vendas Validas: ").append(num_VendasValidas).append("\n");

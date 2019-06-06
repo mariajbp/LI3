@@ -354,15 +354,14 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * @param     Cliente introduzido pelo utilizador
     * @returns
     **/
-    /*
-    public List<Integer> totalComprasCliente(Cliente c)
+    public Pair<Integer,Double> totalComprasCliente(Cliente c, int filial) 
     {
-        int total = 0;
-        Filial f = new Filial();
-        List<Interger> l = new ArrayList<>();
-        
-        Map<Cliente, List<Pair>> map = ; 
-    } **/
+        Pair<Integer,Double> l = new Pair();
+        if(filial == 1){f1.comprasTotais(c);}
+        if(filial == 2){f2.comprasTotais(c);}
+        if(filial == 3){f3.comprasTotais(c);}
+        return l;
+    } 
     
     
     /** 

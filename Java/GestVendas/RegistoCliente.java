@@ -192,5 +192,9 @@ public class RegistoCliente implements Serializable
        this.prod.put(prd, newPair);
     }
     
-    
+    public int produtosDistintos()
+    {
+        int size;
+        return size = this.prod.size();
+    }
 }
