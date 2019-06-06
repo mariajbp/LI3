@@ -258,7 +258,8 @@ public class Filial implements Serializable, IFilial
             rc.updateTotalGasto(t);
             rc.updateUnidades(uni);
             rc.updateVezes();
-            a.add(rc);
+            a.remove(mes-1);
+            a.add(mes-1, rc);
             this.regCl.put(c, a);
         }
         else
@@ -269,7 +270,8 @@ public class Filial implements Serializable, IFilial
             rc.updateTotalGasto(t);
             rc.updateUnidades(uni);
             rc.updateVezes();
-            a.add(rc);
+            a.remove(mes-1);
+            a.add(mes-1, rc);
             this.regCl.put(c, a);
         }
     }
@@ -302,6 +304,7 @@ public class Filial implements Serializable, IFilial
         return l; 
     }
     
+    /*
     public int distintosProd(Produto produto)
     {
         int d = 0;
@@ -314,9 +317,10 @@ public class Filial implements Serializable, IFilial
                }
         }   
         return d;
-    }
-    
-    public Pair<Integer,Double> comprasTotais(Cliente c, int mes) //numero de comroas totais e total gasto no mes 
+    }*/
+
+    //numero de compras totais e total gasto no mes 
+    public Pair<Integer,Double> comprasTotais(Cliente c, int mes) 
     {
        int index = mes-1;
        Pair<Integer,Double> pair = new Pair(); 
@@ -362,6 +366,26 @@ public class Filial implements Serializable, IFilial
     
     public int ProdutosDistintos(Cliente c, int mes)
     {
-        return this.regCl.get(c).get(mes).produtosDistintos();
+        return this.regCl.get(c).get(mes-1).produtosDistintos();
     }
+     
+    public void ProdutosDistintos(Set<Produto> s, int mes, Cliente c)
+    {
+        this.regCl.get(c).get(mes-1).ProdutosDistintos(s);
+    }
+    /*
+    public void ProdutosMaisCompradosAnual(Cliente c)
+    {
+        if(this.regCl.contains(c))
+        {
+            Set<Produto, Integer> anual = new TreeSet<>(new ProdutoMaisCompradoComparator());
+            
+            for(RegistoCliente c : this.regCl)
+            {
+                Set<Produto, Integer> mensal = c.ProdutosMaisComprados();
+            }
+        }
+    }
+    */
 }
+

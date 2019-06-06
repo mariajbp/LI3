@@ -227,26 +227,29 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     {
        boolean validade = false;
        String[] part = c.split(" ");
-       if(validaProduto(part[0]) && cprod.containsProduto(part[0]))
+       if(part.length == 7)
        {
-           if(Double.parseDouble(part[1]) > 0 && Double.parseDouble(part[1]) < 999)
+           if(validaProduto(part[0]) && cprod.containsProduto(part[0]))
            {
-               if(Integer.parseInt(part[2]) > 0 && Integer.parseInt(part[2]) < 200)
+               if(Double.parseDouble(part[1]) > 0 && Double.parseDouble(part[1]) < 999)
                {
-                   if(part[3].equals("N") || part[3].equals("P"))
+                   if(Integer.parseInt(part[2]) > 0 && Integer.parseInt(part[2]) < 200)
                    {
-                       if(validaCliente(part[4]) && ccl.containsCliente(part[4]))
+                       if(part[3].equals("N") || part[3].equals("P"))
                        {
-                           if(Integer.parseInt(part[5]) > 0 && Integer.parseInt(part[5]) < 13)
+                           if(validaCliente(part[4]) && ccl.containsCliente(part[4]))
                            {
-                               if(Integer.parseInt(part[6]) > 0 && Integer.parseInt(part[6]) < 4)
-                               validade = true;     
+                               if(Integer.parseInt(part[5]) > 0 && Integer.parseInt(part[5]) < 13)
+                               {
+                                   if(Integer.parseInt(part[6]) > 0 && Integer.parseInt(part[6]) < 4)
+                                   validade = true;     
+                               }
                            }
                        }
                    }
                }
            }
-       }
+        }
        return validade;      
     }
     
@@ -354,22 +357,37 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * @param     Cliente introduzido pelo utilizador
     * @returns
     **/
-    public Pair<Integer,Double> totalComprasClienteFilial(Cliente c, int filial, int mes) 
+    public Pair<Integer,Double> totalComprasCliente(Cliente c, int mes) 
     {
         Pair<Integer,Double> l = new Pair<>();
-        if(filial == 1){l = f1.comprasTotais(c, mes);}
-        if(filial == 2){l = f2.comprasTotais(c, mes);}
-        if(filial == 3){l = f3.comprasTotais(c, mes);}
+        int compras = 0;
+        double total = 0;
+        
+        l = f1.comprasTotais(c, mes);
+        compras += l.getFst();
+        total += l.getSnd();
+        
+        l = f2.comprasTotais(c, mes);
+        compras += l.getFst();
+        total += l.getSnd();
+        
+        l = f3.comprasTotais(c, mes);
+        compras += l.getFst();
+        total += l.getSnd();
+        
+        l.setFst(compras);
+        l.setSnd(total);
+        
         return l;
     } 
     
-    public int totalProdutosDistintosFilial(Cliente c, int filial, int mes)
+    public int totalProdutosDistintos(Cliente c, int mes)
     {
-        int prod = 0;
-        if(filial == 1){prod = f1.ProdutosDistintos(c, mes);}
-        if(filial == 2){prod = f2.ProdutosDistintos(c, mes);}
-        if(filial == 3){prod = f3.ProdutosDistintos(c, mes);}
-        return prod; 
+        Set<Produto> s = new TreeSet<>();
+        f1.ProdutosDistintos(s, mes, c);
+        f2.ProdutosDistintos(s, mes, c);
+        f3.ProdutosDistintos(s, mes, c);
+        return s.size(); 
     }
     
     /** 

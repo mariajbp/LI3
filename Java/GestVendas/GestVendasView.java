@@ -18,7 +18,7 @@ public class GestVendasView implements Serializable, IGestVendasView
    private Menu menu;
    
    public void init()
-   {
+   { 
         out.println("   ******   ********  ******  ******** **          **********  **    ** ********     ***     ******  ");
         out.println("  **    **  **       **    *    **      **        ** **        ***   ** **     **   ** **   **    ** ");
         out.println(" **         **       **         **       **       ** **        ****  ** **     **  **   **  **     ");  
@@ -26,7 +26,7 @@ public class GestVendasView implements Serializable, IGestVendasView
         out.println(" **     **  **             **   **         **   **  **         **  **** **     ** *********       ** ");
         out.println("  **    **  **       **    **   **          ** **   **         **   *** **     ** **     ** **    ** ");
         out.println("  ******   ********  ******     **           ***    ********   **    ** ********  **     **  ******  ");
-   }
+   } 
    
    /**
    * Método que define o menu
@@ -139,21 +139,15 @@ public class GestVendasView implements Serializable, IGestVendasView
        out.println("Insira o código do cliente: \n");
    }
    
-   public void query3_Output(List<Pair<Integer,Double>> l1, List<Pair<Integer,Double>> l2, List<Pair<Integer,Double>> l3)
+   public void query3_Output()
    {
        out.println("*******************************************************************************");
-       out.println("Filial 1: \n");
-       out.println("Compras  "+"Produtos  "+   "Total Gasto" );
-       out.println(l1);
-       out.println("*******************************************************************************");
-       out.println("Filial 2: \n");
-       out.println("Compras  "+"Produtos  "+   "Total Gasto" );
-       //out.println(i ...
-       out.println("*******************************************************************************");
-       out.println("Filial 3: \n");
-       out.println("Compras  "+"Produtos  "+   "Total Gasto" );
-       //out.println(i ...
-       out.println("*******************************************************************************");
+       out.println("Mês " + "\tCompras  " + "Produtos  " +   "Total Gasto" );
+    }
+    
+   public void query3_Output(int c, double t, int p, int mes)
+   {
+       out.println("   " + mes + "\t" + c + "\t" + p + "\t" + t);
    }
    
    //Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi comprado, por quantos clientes diferentes e o total facturado.

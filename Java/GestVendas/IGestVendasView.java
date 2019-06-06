@@ -16,7 +16,8 @@ public interface IGestVendasView extends Serializable
      public void query2_Input();
      public void query2_Output(Pair<Integer,Integer> p1, Pair<Integer,Integer> p2, Pair<Integer,Integer> p3, int tp, int tc);
      public void query3_Input();
-     public void query3_Output(List<Pair<Integer,Double>> l1, List<Pair<Integer,Double>> l2, List<Pair<Integer,Double>> l3);
+     public void query3_Output();
+     public void query3_Output(int c, double t, int p, int mes);
      public void query4_Input();
      public void query4_Output();
      public void query4_Output(int i, Pair<Integer, Integer> p, double t);

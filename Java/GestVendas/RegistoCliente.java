@@ -2,6 +2,8 @@ import java.io.Serializable;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Iterator; 
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
 * Classe RegistoCliente que contém estruturas com dados de de um registo
@@ -197,4 +199,62 @@ public class RegistoCliente implements Serializable
         int size;
         return size = this.prod.size();
     }
+    
+    public void ProdutosDistintos(Set<Produto> s)
+    {
+        Iterator it = this.prod.keySet().iterator();
+        while(it.hasNext())
+        {
+            Produto p = (Produto)it.next();
+            s.add(p);
+        }
+    }
+    /*
+    //Devolve um set ordenado com os 5 produtos mais comprados e as suas unidades
+    public Set<Produto> ProdutosMaisComprados()
+    {
+        Set<Pair<Produto, Integer>> s = new TreeSet<>(new ProdutoMaisCompradoComparator());
+        
+        for(Map.Entry<Produto, Pair<Integer, Double>> e : prod.entrySet())
+        {
+            Pair<Integer, Double> p = e.get(e.getKey());
+            
+            Pair<Produto, Integer> pair = new Pair(e.getKey(), p.getFst());
+            s.add(pair);
+        }   
+        
+        Set<Pair<Produto, Integer>> top5 = new TreeSet<>();
+        int i = 0;
+        Iterator it = new s.iterator();
+        while(it.hasNext() && i < 5)
+        {
+            p = it.next();
+            top5.add(p);
+            i++;
+        }
+        return top5;
+    }
+    
+    
+    //Preenche um set com os 5 produtos mais comprados e unidades
+    public void AddProdutosMaisComprados(Set<Pair<Produto, Integer>> s )
+    {   
+        for(Map.Entry<Produto, Pair<Integer, Double>> e : prod.entrySet())
+        {
+            Pair<Integer, Double> p = e.get(e.getKey());
+            
+            Pair<Produto, Integer> pair = new Pair(e.getKey(), p.getFst());
+            s.add(pair);
+        }   
+        
+        Set<Pair<Produto, Integer>> top5 = new TreeSet<>();
+        int i = 0;
+        Iterator it = new s.iterator();
+        while(it.hasNext() && i < 5)
+        {
+            p = it.next();
+            top5.add(p);
+            i++;
+        }
+    }*/
 }

@@ -73,4 +73,6 @@ public interface IFilial extends Serializable
     public Pair<Integer,Double> comprasTotais(Cliente c, int mes);
     
     public int ProdutosDistintos(Cliente c, int mes);
+    
+    public void ProdutosDistintos(Set<Produto> s, int mes, Cliente c);
 }

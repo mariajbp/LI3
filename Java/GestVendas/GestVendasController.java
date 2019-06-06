@@ -236,13 +236,13 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         view.query3_Input();
         Scanner input = new Scanner(System.in);
         String s = input.nextLine(); 
-        Cliente c = new Cliente(s);
+        Cliente c = new Cliente(s); 
         crono.start();
-        for(int i = 0; i < 12; i++){
-            Pair<Integer,Double> l1 = model.totalComprasClienteFilial(c, 1, i); 
-            Pair<Integer,Double> l2 = model.totalComprasClienteFilial(c, 2, i);  
-            Pair<Integer,Double> l3 = model.totalComprasClienteFilial(c, 3, i); 
-           // view.query3_Output(l1,l2,l3);
+        view.query3_Output();
+        for(int i = 1; i <= 12; i++){
+            Pair<Integer,Double> l = model.totalComprasCliente(c, i); 
+            int p = model.totalProdutosDistintos(c, i);
+            view.query3_Output(l.getFst(), l.getSnd(), p, i);
         }
          
         double t = crono.stop();  
