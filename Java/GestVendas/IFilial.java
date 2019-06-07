@@ -39,6 +39,7 @@ public interface IFilial extends Serializable
     **/
     public int getClientesDistintos(Produto p, int mes);
     
+    public void getClientesDistintosMes(int mes, Set<Cliente> cl);
     
     public void getProdutos(Set<Produto> p);
     
@@ -74,14 +75,20 @@ public interface IFilial extends Serializable
     
     public int ProdutosDistintos(Cliente c, int mes);
     
+    public int getClientesDistintosTotal(int mes);
 
     public void ProdutosDistintos(Set<Produto> s, int mes, Cliente c);
 
     public List<Pair<Produto, Integer>> getProdUnidades();
     
     public int clDistintos(Produto p);
+    
     public Set<Produto> comprasDistintasClientes(Cliente c);
+
+    public List<Pair<Cliente, Integer>> getClientesProdutosDistintos();
+
     public Set<Cliente> getClientes(Produto p);
     public Pair<Cliente,Double> clienteGastoAnual(Cliente c);
     public Pair<Cliente,Integer> clienteUnidadesAnual(Cliente c);
+
 }

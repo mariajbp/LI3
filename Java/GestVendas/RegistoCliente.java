@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
+import static java.lang.System.out;
 /**
 * Classe RegistoCliente que contém estruturas com dados de de um registo
 **/
@@ -208,11 +209,14 @@ public class RegistoCliente implements Serializable
     **/
     public void ProdutosDistintos(Set<Produto> s)
     {
-        Iterator it = this.prod.keySet().iterator();
-        while(it.hasNext())
+        if(this.prod.keySet().size() > 0)
         {
-            Produto p = (Produto)it.next();
-            s.add(p);
+            Iterator it = this.prod.keySet().iterator();
+            while(it.hasNext())
+            {
+                Produto p = (Produto)it.next();
+                s.add(p);
+            }
         }
     }
     /*

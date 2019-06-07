@@ -149,10 +149,34 @@ public class Filial implements Serializable, IFilial
         return s;
     }
     
+<<<<<<< HEAD
     /**
     * Método que preenche preenche uma lista de pares com as informações de um cliente e número de unidades compradas anualmente (query 6)
     * @returns lista de clientes com o seu total faturado anualmente
     **/ 
+=======
+    public List<Pair<Cliente, Integer>> getClientesProdutosDistintos()
+    {
+        List<Pair<Cliente, Integer>> s = new ArrayList<>();
+        Set<Produto> prd = new TreeSet<>();
+        
+        for(Map.Entry<Cliente, List<RegistoCliente>> e : regCl.entrySet())
+        {
+            Pair<Cliente, Integer> p = new Pair<>();
+            for(RegistoCliente rc : e.getValue())
+            { 
+                rc.ProdutosDistintos(prd);
+            }
+            
+            p.setFst(e.getKey());
+            p.setSnd(prd.size());
+            s.add(p); 
+        }
+        return s;
+    }
+    
+    //Preenche uma lista de pares( clientes, total faturado anual)---> query 6
+>>>>>>> e64c748f0d9d4b59db52030cecc8cd16fd9fcef9
     public List<Pair<Produto, Integer>> getProdUnidades()
     {
         List<Pair<Produto, Integer>> s = new ArrayList<>();
@@ -244,11 +268,38 @@ public class Filial implements Serializable, IFilial
             return 0;
     }
     
+<<<<<<< HEAD
     /**
     * Método que calcula o total de vendas mensal
     * @param   Mês das compras
     * @param   Total de vendas
     **/
+=======
+    //Todos os clientes que compraram nesta filial no mes x ---> query 2
+    public int getClientesDistintosTotal(int mes)
+    {
+        int cl = 0;
+        RegistoCliente rc = new RegistoCliente();
+        for(Map.Entry<Cliente, List<RegistoCliente>> e : regCl.entrySet())
+        {
+            if(!e.getValue().get(mes).equals(rc))   //se não for um registo vazio
+                cl++;
+        }
+        return cl;
+    }
+     
+    //Preenche um set com clientes distintos de um certo mes
+    public void getClientesDistintosMes(int mes, Set<Cliente> cl)
+    {
+        RegistoCliente rc = new RegistoCliente();
+        for(Map.Entry<Cliente, List<RegistoCliente>> e : regCl.entrySet())
+        {
+            if(!e.getValue().get(mes).equals(rc))   //se não for um registo vazio
+                cl.add(e.getKey());
+        }
+    }
+    
+>>>>>>> e64c748f0d9d4b59db52030cecc8cd16fd9fcef9
     public int totalVendas(int mes)
     {
         int v = 0;
@@ -487,11 +538,19 @@ public class Filial implements Serializable, IFilial
         }
         return set;
     }
+<<<<<<< HEAD
     
     /**
     * ?????????
     **/
     public Set<Cliente> getClientes(Produto p) //clientes que comprar um prod num ano, query 9
+=======
+
+    //query9
+    //Map<Produto, List<RegistoProduto>> regProd;
+    
+    public Set<Cliente> getClientes(Produto p) //clientes que comprar um prod num ano
+>>>>>>> e64c748f0d9d4b59db52030cecc8cd16fd9fcef9
     { 
         Set<Cliente> s = new TreeSet<>();
         if(regProd.containsKey(p))
@@ -540,10 +599,10 @@ public class Filial implements Serializable, IFilial
         {
              Pair<Cliente,Double> pcd = it.next();
              total += pcd.getSnd();
-             
-             pfinal.setFst(c);
-             pfinal.setSnd(total);
+
         }
+        pfinal.setFst(c);
+        pfinal.setSnd(total);
         return pfinal; 
     }
     
@@ -580,11 +639,11 @@ public class Filial implements Serializable, IFilial
         {
              Pair<Cliente,Integer> pcd = it.next();
              total += pcd.getSnd();
-             
-             pfinal.setFst(c);
-             pfinal.setSnd(total);
         }
+        pfinal.setFst(c);
+        pfinal.setSnd(total);
         return pfinal; 
     }
+
 }
 

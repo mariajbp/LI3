@@ -28,7 +28,7 @@ public class GestVendasView implements Serializable, IGestVendasView
    } 
    
    /**
-   * Método que define o menu
+   * Método que define o menu 
    **/
    public void setMenu(String[] s){menu = new Menu(s);}
    
@@ -50,6 +50,14 @@ public class GestVendasView implements Serializable, IGestVendasView
      out.println("1 - Clientes \n2 - Produtos \n3 - Vendas");  
    }
    
+   /**
+   * Método que printa uma mensagem de suceso na gravação de dados
+   **/
+   public void saveMessage()
+   {
+       out.println("Gravado com sucesso!");
+    }
+    
    /**
    * Método que printa a lista ordenada alfabeticamente com os códigos dos produtos nunca comprados e o seu respectivo total.
    **/
@@ -222,16 +230,16 @@ public class GestVendasView implements Serializable, IGestVendasView
    //(não interessa a quantidade nem o valor), indicando quantos, sendo o critério de ordenação a ordem decrescente do número de produtos.
    public void query8_Input()
    {
-      out.println("Insira o número de produtos que quer determinar: \n");  
+      out.println("Insira o número de clientes que quer determinar: \n");  
    }
+    
    
-   
-   public void query8_Output()
+   public void query8_Output( List<Pair<Cliente,Integer>> c1,  List<Pair<Cliente,Integer>> c2,  List<Pair<Cliente,Integer>> c3)
    {
        out.println("*******************************************************************************");
        out.println("Clientes" +"\t"+"\t"+ "Quantidade comprada");
        out.println("*******************************************************************************");
-       //
+       out.println(c1.toString() + "\n" + c2.toString() + "\n" + c3.toString());
        out.println("*******************************************************************************");
    }
    
@@ -256,6 +264,11 @@ public class GestVendasView implements Serializable, IGestVendasView
        out.println("*******************************************************************************");
    }
    
+   public void query9_Output(List<Pair<Cliente, Integer>> uni, List<Pair<Cliente, Double>> gasto)
+   {
+       out.println("uni " + uni.toString() + "\ngasto "+ gasto.toString());
+    }
+    
    //Determinar mês a mês, e para cada mês filial a filial, a facturação total com cada produto.
    public void query10_Output(Map<Produto, List<Double>> c1, Map<Produto, List<Double>> c2, Map<Produto, List<Double>> c3)
    {

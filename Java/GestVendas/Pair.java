@@ -1,6 +1,7 @@
 import java.util.Objects;
+import java.io.Serializable;
 
-public class Pair<X extends Comparable<X>,Y extends Comparable<Y>> implements Comparable<Pair<X,Y>>
+public class Pair<X extends Comparable<X>,Y extends Comparable<Y>> implements Comparable<Pair<X,Y>>, Serializable
 {
     private X fst;
     private Y snd;
