@@ -73,50 +73,63 @@ public class GestVendasView implements Serializable, IGestVendasView
        
        Iterator<Produto> it = p.iterator();
        pos = index;
-       while(it.hasNext() && pos < index + 15)
+       while(it.hasNext() && pos <= index + 35)
        {
           Produto pd = p.get(index);
           pd = it.next();
           out.println(pd.toString());
           pos ++;
        }
-       index += 15;
+       index += 35;
       
        out.println("\n1 - Próxima página" + "\t"+ "2 - Página anterior" + "\t"+ "0 - Sair\n"); 
        Scanner input = new Scanner(System.in);
        int in = input.nextInt();
        
        while(in != 0)
-       {
+       { 
            if(in == 1)
            {
-               pag++;  
-               Iterator<Produto> its = p.iterator();
-               while(its.hasNext() && pos < (index + 15))
+               pag++; 
+               if(pag > 0)
                {
-                   Produto pd = p.get(pos);
-                   pd = its.next();
-                   out.println(pd.toString());
-                   pos ++; 
-               }
-               index += 15;
+                   out.println("****************************** Página " + pag + " ***************************************** \n");
+                   
+                   while(pos <= p.size() && pos <= (index + 35))
+                   {
+                       Produto pd = p.get(pos);
+                       out.println(pd.toString());
+                       pos ++; 
+                   }
+                   index += 35;
+                   out.println("\n1 - Próxima página" + "\t"+ "2 - Página anterior" + "\t"+ "0 - Sair\n"); 
+                   in = input.nextInt();
+                }
+                else
+                    break;
            }
-           else if (in == 2)
+           else if(in == 2)
            {
-               pag--;
-               Iterator<Produto> itb = p.iterator();
-               pos = index - 30;
-               while(itb.hasNext() && pos < (index - 15))
+               pag--;  
+               if(pag > 0 && pos > 0)
                {
-                   Produto pd = p.get(pos);
-                   pd = itb.next();
-                   pd.toString();
-                   pos ++;
-               }
-                index += 15;
+                   out.println("****************************** Página " + pag + " ***************************************** \n");
+                   pos -= 70;
+                   index -= 70;
+                   while(pos <= p.size() && pos <= (index + 35) && pos > 0)
+                   {
+                       Produto pd = p.get(pos);
+                       out.println(pd.toString());
+                       pos ++; 
+                   }
+                   index += 35;
+                   out.println("\n1 - Próxima página" + "\t"+ "2 - Página anterior" + "\t"+ "0 - Sair\n"); 
+                   in = input.nextInt();
+                }
+                else 
+                    break;
            }
        }
-       out.println("Próxima página - 1 \n" + "Página anterior - 2 \n" + "Sair - 0 \n");
    }
         
    
