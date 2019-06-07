@@ -278,5 +278,10 @@ public class GestVendasView implements Serializable, IGestVendasView
        
    }
    
+   public void printStats(Estatisticas e)
+   {
+      out.println(e.toString());
+   }
+   
    public void time(double t) {out.println("\nTempo demorado: " + t + "segundos"); }
 }
