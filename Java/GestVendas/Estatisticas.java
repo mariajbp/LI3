@@ -29,13 +29,13 @@ public class Estatisticas implements IEstatisticas
     private double faturacao;
     
     /** Número de compras por mês **/
-    private int[12] compras;
+    private int[] compras;
     
     /** Faturação por mês e por filial **/
-    private double[12][3] ftrMF;
+    private double[][] ftrMF;
     
     /** Número de clientes distintos por mês e por filial **/
-    private int[12][3] clientesMF;
+    private int[][] clientesMF;
     
     /** 
     * Construtor vazio que cria uma instância Estatisticas
@@ -134,31 +134,31 @@ public class Estatisticas implements IEstatisticas
         s.append("Número de Compras em Novembro: ").append(compras[10]).append("\n");
         s.append("Número de Compras em Dezembro: ").append(compras[11]).append("\n");
 
-        s.append("Faturação em Janeiro: ").append("Filial 1 -").append(ftrMF[0][0]).append(". Filial 2 -").append(ftrMF[0][1])..append(". Filial 3 -").append(ftrMF[0][2]).append("\n");
-        s.append("Faturação em Fevereiro: ").append("Filial 1 -").append(ftrMF[1][0]).append(". Filial 2 -").append(ftrMF[1][1])..append(". Filial 3 -").append(ftrMF[1][2]).append("\n");
-        s.append("Faturação em Março: ").append("Filial 1 -").append(ftrMF[2][0]).append(". Filial 2 -").append(ftrMF[2][1])..append(". Filial 3 -").append(ftrMF[2][2]).append("\n");
-        s.append("Faturação em Abril: ").append("Filial 1 -").append(ftrMF[3][0]).append(". Filial 2 -").append(ftrMF[3][1])..append(". Filial 3 -").append(ftrMF[3][2]).append("\n");
-        s.append("Faturação em Maio: ").append("Filial 1 -").append(ftrMF[4][0]).append(". Filial 2 -").append(ftrMF[4][1])..append(". Filial 3 -").append(ftrMF[4][2]).append("\n");
-        s.append("Faturação em Junho: ").append("Filial 1 -").append(ftrMF[5][0]).append(". Filial 2 -").append(ftrMF[5][1])..append(". Filial 3 -").append(ftrMF[5][2]).append("\n");
-        s.append("Faturação em Julho: ").append("Filial 1 -").append(ftrMF[6][0]).append(". Filial 2 -").append(ftrMF[6][1])..append(". Filial 3 -").append(ftrMF[6][2]).append("\n");
-        s.append("Faturação em Agosto: ").append("Filial 1 -").append(ftrMF[7][0]).append(". Filial 2 -").append(ftrMF[7][1])..append(". Filial 3 -").append(ftrMF[7][2]).append("\n");
-        s.append("Faturação em Setembro: ").append("Filial 1 -").append(ftrMF[8][0]).append(". Filial 2 -").append(ftrMF[8][1])..append(". Filial 3 -").append(ftrMF[8][2]).append("\n");
-        s.append("Faturação em Outubro: ").append("Filial 1 -").append(ftrMF[9][0]).append(". Filial 2 -").append(ftrMF[9][1])..append(". Filial 3 -").append(ftrMF[9][2]).append("\n");
-        s.append("Faturação em Novembro: ").append("Filial 1 -").append(ftrMF[10][0]).append(". Filial 2 -").append(ftrMF[10][1])..append(". Filial 3 -").append(ftrMF[10][2]).append("\n");
-        s.append("Faturação em Dezembro: ").append("Filial 1 -").append(ftrMF[11][0]).append(". Filial 2 -").append(ftrMF[11][1])..append(". Filial 3 -").append(ftrMF[11][2]).append("\n");
+        s.append("Faturação em Janeiro: ").append("Filial 1 -").append(ftrMF[0][0]).append(". Filial 2 -").append(ftrMF[0][1]).append(". Filial 3 -").append(ftrMF[0][2]).append("\n");
+        s.append("Faturação em Fevereiro: ").append("Filial 1 -").append(ftrMF[1][0]).append(". Filial 2 -").append(ftrMF[1][1]).append(". Filial 3 -").append(ftrMF[1][2]).append("\n");
+        s.append("Faturação em Março: ").append("Filial 1 -").append(ftrMF[2][0]).append(". Filial 2 -").append(ftrMF[2][1]).append(". Filial 3 -").append(ftrMF[2][2]).append("\n");
+        s.append("Faturação em Abril: ").append("Filial 1 -").append(ftrMF[3][0]).append(". Filial 2 -").append(ftrMF[3][1]).append(". Filial 3 -").append(ftrMF[3][2]).append("\n");
+        s.append("Faturação em Maio: ").append("Filial 1 -").append(ftrMF[4][0]).append(". Filial 2 -").append(ftrMF[4][1]).append(". Filial 3 -").append(ftrMF[4][2]).append("\n");
+        s.append("Faturação em Junho: ").append("Filial 1 -").append(ftrMF[5][0]).append(". Filial 2 -").append(ftrMF[5][1]).append(". Filial 3 -").append(ftrMF[5][2]).append("\n");
+        s.append("Faturação em Julho: ").append("Filial 1 -").append(ftrMF[6][0]).append(". Filial 2 -").append(ftrMF[6][1]).append(". Filial 3 -").append(ftrMF[6][2]).append("\n");
+        s.append("Faturação em Agosto: ").append("Filial 1 -").append(ftrMF[7][0]).append(". Filial 2 -").append(ftrMF[7][1]).append(". Filial 3 -").append(ftrMF[7][2]).append("\n");
+        s.append("Faturação em Setembro: ").append("Filial 1 -").append(ftrMF[8][0]).append(". Filial 2 -").append(ftrMF[8][1]).append(". Filial 3 -").append(ftrMF[8][2]).append("\n");
+        s.append("Faturação em Outubro: ").append("Filial 1 -").append(ftrMF[9][0]).append(". Filial 2 -").append(ftrMF[9][1]).append(". Filial 3 -").append(ftrMF[9][2]).append("\n");
+        s.append("Faturação em Novembro: ").append("Filial 1 -").append(ftrMF[10][0]).append(". Filial 2 -").append(ftrMF[10][1]).append(". Filial 3 -").append(ftrMF[10][2]).append("\n");
+        s.append("Faturação em Dezembro: ").append("Filial 1 -").append(ftrMF[11][0]).append(". Filial 2 -").append(ftrMF[11][1]).append(". Filial 3 -").append(ftrMF[11][2]).append("\n");
         
-        s.append("Clientes Distintos em Janeiro: ").append("Filial 1 -").append(clientesMF[0][0]).append(". Filial 2 -").append(clientesMF[0][1])..append(". Filial 3 -").append(clientesMF[0][2]).append("\n");
-        s.append("Clientes Distintos em Fevereiro: ").append("Filial 1 -").append(clientesMF[1][0]).append(". Filial 2 -").append(clientesMF[1][1])..append(". Filial 3 -").append(clientesMF[1][2]).append("\n");
-        s.append("Clientes Distintos em Março: ").append("Filial 1 -").append(clientesMF[2][0]).append(". Filial 2 -").append(clientesMF[2][1])..append(". Filial 3 -").append(clientesMF[2][2]).append("\n");
-        s.append("Clientes Distintos em Abril: ").append("Filial 1 -").append(clientesMF[3][0]).append(". Filial 2 -").append(clientesMF[3][1])..append(". Filial 3 -").append(clientesMF[3][2]).append("\n");
-        s.append("Clientes Distintos em Maio: ").append("Filial 1 -").append(clientesMF[4][0]).append(". Filial 2 -").append(clientesMF[4][1])..append(". Filial 3 -").append(clientesMF[4][2]).append("\n");
-        s.append("Clientes Distintos em Junho: ").append("Filial 1 -").append(clientesMF[5][0]).append(". Filial 2 -").append(clientesMF[5][1])..append(". Filial 3 -").append(clientesMF[5][2]).append("\n");
-        s.append("Clientes Distintos em Julho: ").append("Filial 1 -").append(clientesMF[6][0]).append(". Filial 2 -").append(clientesMF[6][1])..append(". Filial 3 -").append(clientesMF[6][2]).append("\n");
-        s.append("Clientes Distintos em Agosto: ").append("Filial 1 -").append(clientesMF[7][0]).append(". Filial 2 -").append(clientesMF[7][1])..append(". Filial 3 -").append(clientesMF[7][2]).append("\n");
-        s.append("Clientes Distintos em Setembro: ").append("Filial 1 -").append(clientesMF[8][0]).append(". Filial 2 -").append(clientesMF[8][1])..append(". Filial 3 -").append(clientesMF[8][2]).append("\n");
-        s.append("Clientes Distintos em Outubro: ").append("Filial 1 -").append(clientesMF[9][0]).append(". Filial 2 -").append(clientesMF[9][1])..append(". Filial 3 -").append(clientesMF[9][2]).append("\n");
-        s.append("Clientes Distintos em Novembro: ").append("Filial 1 -").append(clientesMF[10][0]).append(". Filial 2 -").append(clientesMF[10][1])..append(". Filial 3 -").append(clientesMF[10][2]).append("\n");
-        s.append("Clientes Distintos em Dezembro: ").append("Filial 1 -").append(clientesMF[11][0]).append(". Filial 2 -").append(clientesMF[11][1])..append(". Filial 3 -").append(clientesMF[11][2]).append("\n");
+        s.append("Clientes Distintos em Janeiro: ").append("Filial 1 -").append(clientesMF[0][0]).append(". Filial 2 -").append(clientesMF[0][1]).append(". Filial 3 -").append(clientesMF[0][2]).append("\n");
+        s.append("Clientes Distintos em Fevereiro: ").append("Filial 1 -").append(clientesMF[1][0]).append(". Filial 2 -").append(clientesMF[1][1]).append(". Filial 3 -").append(clientesMF[1][2]).append("\n");
+        s.append("Clientes Distintos em Março: ").append("Filial 1 -").append(clientesMF[2][0]).append(". Filial 2 -").append(clientesMF[2][1]).append(". Filial 3 -").append(clientesMF[2][2]).append("\n");
+        s.append("Clientes Distintos em Abril: ").append("Filial 1 -").append(clientesMF[3][0]).append(". Filial 2 -").append(clientesMF[3][1]).append(". Filial 3 -").append(clientesMF[3][2]).append("\n");
+        s.append("Clientes Distintos em Maio: ").append("Filial 1 -").append(clientesMF[4][0]).append(". Filial 2 -").append(clientesMF[4][1]).append(". Filial 3 -").append(clientesMF[4][2]).append("\n");
+        s.append("Clientes Distintos em Junho: ").append("Filial 1 -").append(clientesMF[5][0]).append(". Filial 2 -").append(clientesMF[5][1]).append(". Filial 3 -").append(clientesMF[5][2]).append("\n");
+        s.append("Clientes Distintos em Julho: ").append("Filial 1 -").append(clientesMF[6][0]).append(". Filial 2 -").append(clientesMF[6][1]).append(". Filial 3 -").append(clientesMF[6][2]).append("\n");
+        s.append("Clientes Distintos em Agosto: ").append("Filial 1 -").append(clientesMF[7][0]).append(". Filial 2 -").append(clientesMF[7][1]).append(". Filial 3 -").append(clientesMF[7][2]).append("\n");
+        s.append("Clientes Distintos em Setembro: ").append("Filial 1 -").append(clientesMF[8][0]).append(". Filial 2 -").append(clientesMF[8][1]).append(". Filial 3 -").append(clientesMF[8][2]).append("\n");
+        s.append("Clientes Distintos em Outubro: ").append("Filial 1 -").append(clientesMF[9][0]).append(". Filial 2 -").append(clientesMF[9][1]).append(". Filial 3 -").append(clientesMF[9][2]).append("\n");
+        s.append("Clientes Distintos em Novembro: ").append("Filial 1 -").append(clientesMF[10][0]).append(". Filial 2 -").append(clientesMF[10][1]).append(". Filial 3 -").append(clientesMF[10][2]).append("\n");
+        s.append("Clientes Distintos em Dezembro: ").append("Filial 1 -").append(clientesMF[11][0]).append(". Filial 2 -").append(clientesMF[11][1]).append(". Filial 3 -").append(clientesMF[11][2]).append("\n");
         
         return s.toString();
     }
@@ -271,16 +271,16 @@ public class Estatisticas implements IEstatisticas
     /**
     * Método que define o número de compras por mês
     **/
-    public void setCompras(int[12] c){this.compras = c;}
+    public void setCompras(int[] c){this.compras = c;}
     
     /**
     * Método que define a faturação total por mês e por filial
     **/
-    public void setftrMF(double[12][3] f){this.ftrMF = f;}
+    public void setftrMF(double[][] f){this.ftrMF = f;}
     
     /**
     * Método que define o número de clientes por mês e por filial
     **/
-    public void setClientesMF(int[12][3] c){this.clientesMF = c;}
+    public void setClientesMF(int[][] c){this.clientesMF = c;}
 
 }

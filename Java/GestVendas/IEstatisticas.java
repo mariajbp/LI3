@@ -113,16 +113,16 @@ public interface IEstatisticas extends Serializable
     /**
     * Método que define o número de compras por mês
     **/
-    public void setCompras(int[12] c);
+    public void setCompras(int[] c);
     
     /**
     * Método que define a faturação total por mês e por filial
     **/
-    public void setftrMF(double[12][3] f);
+    public void setftrMF(double[][] f);
     
     /**
     * Método que define o número de clientes por mês e por filial
     **/
-    public void setClientesMF(int[12][3] c);
+    public void setClientesMF(int[][] c);
 
 }
