@@ -90,13 +90,14 @@ public class RegistoProduto implements Serializable
    * @returns Registo de Produto
    **/
    public RegistoProduto clone(){return new RegistoProduto(this);}
-    
+   
+   
    public String toString(){return " ";}
    
    /** 
-    * Método que dado um par Cliente/Unidades compradas verifica se o Cliente já existe e faz o seu Registo atualizando as unidades.
-    * @param Par<Cliente, Integer>
-    **/
+   * Método que dado um par Cliente/Unidades compradas verifica se o Cliente já existe e faz o seu Registo atualizando as unidades.
+   * @param Par<Cliente, Integer>
+   **/
    public void updateRegProduto(Cliente c, int uni, double f)
    {
             this.registo.add(c);
@@ -104,16 +105,25 @@ public class RegistoProduto implements Serializable
             this.faturado += f;
     }
    
+    /**
+    * ?????????
+    **/
    public void updateFat (double f)
    {
        this.faturado += f;
    }
    
+   /**
+    * ?????????
+    **/
    public void updateUnidades(int u)
    {
        this.unidades += u;
-    }
-    
+   }
+   
+   /**
+   * ?????????
+   **/
    public int ClientesDistintos()
    {
        return this.registo.size();

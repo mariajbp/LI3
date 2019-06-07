@@ -8,7 +8,6 @@ import java.util.Iterator;
 import java.awt.event.KeyEvent;
 import java.util.Map; 
 
-
 /**
 * Classe que 
 **/
@@ -16,7 +15,7 @@ import java.util.Map;
 public class GestVendasView implements Serializable, IGestVendasView  
 {
    private Menu menu;
-   
+
    public void init()
    { 
         out.println("   ******   ********  ******  ******** **          **********  **    ** ********     ***     ******  ");
@@ -144,11 +143,13 @@ public class GestVendasView implements Serializable, IGestVendasView
    {
        out.println("*******************************************************************************");
        out.println("Mês " + "\tCompras  " + "Produtos  " +   "Total Gasto" );
+       out.println("*******************************************************************************");
     }
     
    public void query3_Output(int c, double t, int p, int mes)
    {
        out.println("   " + mes + "\t" + c + "\t" + p + "\t" + t);
+       out.println("*******************************************************************************");
    }
    
    //Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi comprado, por quantos clientes diferentes e o total facturado.
@@ -160,6 +161,7 @@ public class GestVendasView implements Serializable, IGestVendasView
    public void query4_Output(int i, Pair<Integer, Integer> p, double t)
    {
        out.println(i  +"\t" +"\t" +  p.getFst() +"\t" +"\t"+p.getSnd() +"\t" +"\t" +t);
+       out.println("*******************************************************************************");
     }
     
    public void query4_Output()
