@@ -320,6 +320,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         e.setClientesMF(cMF);
     }
     
+    public Estatisticas getEstatisticas(){return e;}
         
     /**** QUERY1 ****/
     /** 
