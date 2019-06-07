@@ -213,6 +213,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
            e.setVendasValidas(vValidas);
            e.setVendasLidas(vLidas);
            e.setCompras_0(c0);
+           e.setFaturacao(f.getFtrTotal());
       }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
       out.println("Vendas Carregadas");
     }
