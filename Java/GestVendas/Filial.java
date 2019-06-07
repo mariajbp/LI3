@@ -149,12 +149,10 @@ public class Filial implements Serializable, IFilial
         return s;
     }
     
-<<<<<<< HEAD
     /**
     * Método que preenche preenche uma lista de pares com as informações de um cliente e número de unidades compradas anualmente (query 6)
     * @returns lista de clientes com o seu total faturado anualmente
     **/ 
-=======
     public List<Pair<Cliente, Integer>> getClientesProdutosDistintos()
     {
         List<Pair<Cliente, Integer>> s = new ArrayList<>();
@@ -176,7 +174,6 @@ public class Filial implements Serializable, IFilial
     }
     
     //Preenche uma lista de pares( clientes, total faturado anual)---> query 6
->>>>>>> e64c748f0d9d4b59db52030cecc8cd16fd9fcef9
     public List<Pair<Produto, Integer>> getProdUnidades()
     {
         List<Pair<Produto, Integer>> s = new ArrayList<>();
@@ -268,13 +265,13 @@ public class Filial implements Serializable, IFilial
             return 0;
     }
     
-<<<<<<< HEAD
+
     /**
     * Método que calcula o total de vendas mensal
     * @param   Mês das compras
     * @param   Total de vendas
     **/
-=======
+
     //Todos os clientes que compraram nesta filial no mes x ---> query 2
     public int getClientesDistintosTotal(int mes)
     {
@@ -299,7 +296,6 @@ public class Filial implements Serializable, IFilial
         }
     }
     
->>>>>>> e64c748f0d9d4b59db52030cecc8cd16fd9fcef9
     public int totalVendas(int mes)
     {
         int v = 0;
@@ -538,19 +534,13 @@ public class Filial implements Serializable, IFilial
         }
         return set;
     }
-<<<<<<< HEAD
+
     
     /**
     * ?????????
     **/
-    public Set<Cliente> getClientes(Produto p) //clientes que comprar um prod num ano, query 9
-=======
-
-    //query9
-    //Map<Produto, List<RegistoProduto>> regProd;
-    
     public Set<Cliente> getClientes(Produto p) //clientes que comprar um prod num ano
->>>>>>> e64c748f0d9d4b59db52030cecc8cd16fd9fcef9
+
     { 
         Set<Cliente> s = new TreeSet<>();
         if(regProd.containsKey(p))

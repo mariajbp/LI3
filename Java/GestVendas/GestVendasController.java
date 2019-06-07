@@ -328,8 +328,8 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     } 
     
     /**
-    * Query 8: Determinar os códigos dos X clientes (sendo X dado pelo utilizador) que compraram mais produtos diferentes 
-    * (não interessa a quantidade nem o valor), indicando quantos, sendo o critério de ordenação a ordem decrescente do número de produtos.
+    * Query 8: Determinar os códigos dos X clientes (sendo X dado pelo utilizador) que compraram mais produtos diferentes, 
+    * indicando quantos, sendo o critério de ordenação a ordem decrescente do número de produtos.
     **/
     public void query8()
     {
@@ -373,8 +373,8 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         Map<Produto, List<Double>> c2 = model.ftrTotal(2);
         Map<Produto, List<Double>> c3 = model.ftrTotal(3);
         view.query10_Output(c1,c2,c3);
-        crono.stop(); 
-        crono.print();
+        double t = crono.stop(); 
+        view.time(t);
         */
     } 
     

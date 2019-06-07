@@ -116,7 +116,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
            }
            e.setProdutos(v);
       }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
-      out.println("PRODUTOS DONE");
+      out.println("Produtos Carregados");
     }
     
     /**
@@ -159,7 +159,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
            }
            e.setClientes(v);
        }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
-       out.println("CLIENTES DONE");
+       out.println("Clientes Carregados");
     }
     
     /**
@@ -214,7 +214,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
            e.setVendasLidas(vLidas);
            e.setCompras_0(c0);
       }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
-      out.println("VENDAS DONE");
+      out.println("Vendas Carregadas");
     }
     
     
@@ -254,20 +254,20 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     }
     
     public int estatisticaProduto()
-  {
-    Set<Produto> todosProdutos = cprod.getCatalogo();
-    Set<Produto> p = new TreeSet();
-
-    f1.getProdutos(p);
-    f2.getProdutos(p);
-    f3.getProdutos(p);
-
-    e.setTotalProdutosComprados(p.size());
-    // assign do nr de produtos comprados
-
-    return (todosProdutos.size() - p.size());
-    // return do nr de produtos nao comprados
-  }
+    {
+        Set<Produto> todosProdutos = cprod.getCatalogo();
+        Set<Produto> p = new TreeSet();
+    
+        f1.getProdutos(p);
+        f2.getProdutos(p);
+        f3.getProdutos(p);
+    
+        e.setTotalProdutosComprados(p.size());
+        // assign do nr de produtos comprados
+    
+        return (todosProdutos.size() - p.size());
+        // return do nr de produtos nao comprados
+    }
 
   /* 
     public int estatisticaCliente()
@@ -301,9 +301,6 @@ public class GestVendasModel implements Serializable, IGestVendasModel
        f2.getProdutos(prods);
        f3.getProdutos(prods);
        
-       out.println(prods.size()+ " DEBUG prods");
-
-       
        Iterator<Produto> it = prodsAll.iterator();
        while(it.hasNext())
        {
@@ -313,9 +310,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
               lp.add(p);
           }
        } 
-       
-       out.println(lp.size() + "DEBUG LP");
-       
+  
        return lp;
     } 
     
@@ -341,7 +336,8 @@ public class GestVendasModel implements Serializable, IGestVendasModel
               cl = this.f1.getClientesDistintosTotal(mes);
             }
        }
-       else{
+       else
+       {
            if(filial == 2)
            {
                total = f2.totalVendas(mes); 
@@ -349,7 +345,8 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                   cl = this.f2.getClientesDistintosTotal(mes);
                 }
            }
-           else{
+           else
+           {
                if(filial == 3)
                {
                    total = f3.totalVendas(mes); 
@@ -358,7 +355,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                     }
                }
                else //Faz o total das 3
-               {
+               { 
                    total += f1.totalVendas(mes);
                    total += f2.totalVendas(mes);
                    total += f3.totalVendas(mes);
@@ -417,34 +414,6 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         return s.size(); 
     }
     
-    /** 
-    * Método que dado um código de cliente determina, para cada mês, quantos produtos distintos comprou.
-    * @param      Cliente introduzido pelo utilizador
-    * @returns
-    **/
-    /*
-    public List<Pair> totalComprasCliente(Cliente c)
-    {
-        Pair<Integer,Double> p;
-        Filial f = new Filial();
-        List<Pair> l = new ArrayList<>();
-        Map<Cliente, List<Pair>> unidadesGasto = f.getCUnidadesGasto(); 
-        
-        for (Map.Entry<Cliente, List<Pair>> e : unidadesGasto.entrySet())
-        {
-            if(e.getKey() == c)
-            {
-                Iterator<Pair> it = e.getValue().iterator();  
-                p = it.next();
-                {
-                    p.setFst(p.getFst());
-                    p.setSnd(p.getSnd());
-                }
-            }
-        }
-        return l;
-    }*/
-    
     
     
     /**** QUERY4 ****/
@@ -483,6 +452,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         return f;
     }
    
+    
     /**** QUERY5 ****/
     /** 
     * Método que dado o código de um cliente determinar a lista de códigos de produtos que mais comprou (e quantos), ordenada por ordem 
