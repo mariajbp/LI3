@@ -3,14 +3,14 @@ import java.io.Serializable;
 /**
 * Classe NoProdutosException que devolve uma mensagem caso não exista determinado produto
 **/
-public class NoProdutosException extends Exception implements Serializable
+public class ProdutoInvalidoException extends Exception implements Serializable
 {
-    public NoProdutosException()
+    public ProdutoInvalidoException()
     {
         super();
     }
     
-    public NoProdutosException(String message)
+    public ProdutoInvalidoException(String message)
     {
         super(message);
     }

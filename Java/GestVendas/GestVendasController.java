@@ -3,12 +3,13 @@ import java.io.Serializable;
 import java.util.Scanner;
 import java.io.IOException;
 import java.io.FileNotFoundException;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Iterator;
 import java.awt.event.KeyEvent; 
 import java.util.Map; 
 
-import static java.lang.System.out; 
+
 
 /**
 * 
@@ -219,19 +220,24 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     * Fazer o mesmo mas para cada uma das filiais.
     **/
     public void query2()
-    {
+    { 
        view.query2_Input();
        Scanner input = new Scanner(System.in);
-       int mes = input.nextInt();
-       crono.start();
-       Pair<Integer,Integer> p1 = model.totalVendasRealizadas(mes,1);
-       Pair<Integer,Integer> p2 = model.totalVendasRealizadas(mes,2);
-       Pair<Integer,Integer> p3 = model.totalVendasRealizadas(mes,3);
-       Pair<Integer,Integer> pAll = model.totalVendasRealizadas(mes,0);
-       
-       view.query2_Output(p1,p2,p3,pAll.getFst(), pAll.getSnd());
-       double t = crono.stop(); 
-       view.time(t);
+       try
+       {
+           int mes = input.nextInt();
+           crono.start();
+           Pair<Integer,Integer> p1 = model.totalVendasRealizadas(mes,1);
+           Pair<Integer,Integer> p2 = model.totalVendasRealizadas(mes,2);
+           Pair<Integer,Integer> p3 = model.totalVendasRealizadas(mes,3);
+           Pair<Integer,Integer> pAll = model.totalVendasRealizadas(mes,0);
+           
+           view.query2_Output(p1,p2,p3,pAll.getFst(), pAll.getSnd());
+           double t = crono.stop(); 
+           view.time(t);
+           
+        }catch(InputMismatchException e){System.out.println("Input não é um número!");}
+         catch(InputInvalidoException e){System.out.println(e.getMessage());}
     }
     
     /** 
@@ -245,15 +251,16 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         String s = input.nextLine(); 
         Cliente c = new Cliente(s); 
         crono.start();
-        view.query3_Output();
-        for(int i = 1; i <= 12; i++){
-            Pair<Integer,Double> l = model.totalComprasCliente(c, i);  
-            int p = model.totalProdutosDistintos(c, i); 
-            view.query3_Output(l.getFst(), l.getSnd(), p, i);
-        }
-         
-        double t = crono.stop();  
-        view.time(t);
+        try{
+            view.query3_Output();
+            for(int i = 1; i <= 12; i++){
+                Pair<Integer,Double> l = model.totalComprasCliente(c, i);  
+                int p = model.totalProdutosDistintos(c, i); 
+                view.query3_Output(l.getFst(), l.getSnd(), p, i);
+            }
+            double t = crono.stop();  
+            view.time(t);
+        }catch(ClienteInvalidoException e){System.out.println(e.getMessage());}
     } 
     
     /**
@@ -267,16 +274,19 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         String s = input.nextLine(); 
         Produto p = new Produto(s);
         Pair<Integer, Integer> pair = new Pair<>();
-        view.query4_Output();
+        
         crono.start();
-        for(int i = 1; i <= 12; i++) 
-        {
-            pair = model.comprasPorMes(p, i);
-            double t = model.faturadoPorMes(p, i);
-            view.query4_Output(i, pair, t);
-        }
-        double t = crono.stop(); 
-        view.time(t);
+        try{
+                view.query4_Output();
+            for(int i = 1; i <= 12; i++) 
+            {
+                pair = model.comprasPorMes(p, i);
+                double t = model.faturadoPorMes(p, i);
+                view.query4_Output(i, pair, t);
+            }
+            double t = crono.stop(); 
+            view.time(t);
+        }catch(ProdutoInvalidoException e){System.out.println(e.getMessage());}
     } 
      
     /** 
@@ -290,12 +300,15 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         String s = input.nextLine(); 
         Cliente c = new Cliente(s);
         crono.start();
-        view.query5_Output(model.prodsMaisComprados(c));
-        double t = crono.stop(); 
-        view.time(t);
+        try
+        {
+            view.query5_Output(model.prodsMaisComprados(c));
+            double t = crono.stop(); 
+            view.time(t);
+        }catch(ClienteInvalidoException e){System.out.println(e.getMessage());}
     } 
     
-    /**
+    /** 
     * Query 6: Determinar o conjunto dos X produtos mais vendidos em todo o ano (em número de unidades vendidas) indicando o número total de 
     * distintos clientes que o compraram (X é um inteiro dado pelo utilizador).
     **/
@@ -303,15 +316,19 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     {
         view.query6_Input();
         Scanner input = new Scanner(System.in);
-        int x = input.nextInt(); 
-        crono.start(); 
+        try
+        {  
+            int x = input.nextInt(); 
+            crono.start(); 
         
-        List<Produto> pt = model.prodsMaisVendidos(x);
-        List<Pair<Produto,Integer>> l = model.cldistintos(pt);
-        view.query6_Output_Dados(l);
-        
-        double t = crono.stop(); 
-        view.time(t);
+            List<Produto> pt = model.prodsMaisVendidos(x);
+            List<Pair<Produto,Integer>> l = model.cldistintos(pt);
+            view.query6_Output_Dados(l);
+            
+            double t = crono.stop(); 
+            view.time(t);
+        }catch(InputInvalidoException e){System.out.println(e.getMessage());}
+         catch(InputMismatchException e){System.out.println("Input Inválido!");}
     } 
     
     /**
@@ -333,11 +350,15 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     {
         view.query8_Input();
         Scanner input = new Scanner(System.in);
-        int x = input.nextInt();
-        crono.start();
-        view.query8_Output(model.clientesMaisCompraram(x)); 
-        double t = crono.stop(); 
-        view.time(t); 
+        try
+        {
+            int x = input.nextInt();
+            crono.start();
+            view.query8_Output(model.clientesMaisCompraram(x)); 
+            double t = crono.stop(); 
+            view.time(t); 
+        }catch(InputMismatchException e){System.out.println("Input Inválido!");}
+         catch(InputInvalidoException e){System.out.println(e.getMessage());}
     } 
     
     /**
@@ -351,11 +372,16 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         String s = input.nextLine(); 
         Produto p = new Produto(s);
         view.query9_Inputx();
-        int x = input.nextInt();
+        int x = input.nextInt(); 
         crono.start(); 
-        view.query9_Output(model.xClientesMaisCompraram(p, x));
-        double t = crono.stop(); 
-        view.time(t);
+        try
+        {
+            view.query9_Output(model.xClientesMaisCompraram(p, x));
+            double t = crono.stop(); 
+            view.time(t);
+        }catch(InputInvalidoException e){System.out.println(e.getMessage());}
+         catch(ProdutoInvalidoException e){System.out.println(e.getMessage());}
+
     } 
     
     /**

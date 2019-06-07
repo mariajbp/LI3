@@ -26,14 +26,15 @@ public interface IFilial extends Serializable
     public void getProdutos(Set<Produto> p);
     
     
-    public int getUnidadesMes(Produto p, int mes);
+    public int getUnidadesMes(Produto p, int mes) throws ProdutoInvalidoException;
+    
     
     public double getFtrMensal(Produto p, int mes);
     
     /**
     * Método que devolve o total de vendas num certo mês
     **/
-    public int totalVendas(int mes);
+    public int totalVendas(int mes) throws InputInvalidoException;
     
     
     /**
@@ -48,7 +49,7 @@ public interface IFilial extends Serializable
     
     public int getClientesDistintosTotal(int mes);
 
-    public void ProdutosDistintos(Set<Produto> s, int mes, Cliente c);
+    public void ProdutosDistintos(Set<Produto> s, int mes, Cliente c) throws ClienteInvalidoException;
 
     
     public void getProdUnidades(Map<Produto, Integer> s);
@@ -58,10 +59,10 @@ public interface IFilial extends Serializable
 
     public void getClientesProdutosDistintos(Map<Cliente, Set<Produto>> m);
 
-    public void getClientes(Produto p, Set<Cliente> s);
+    public void getClientes(Produto p, Set<Cliente> s) throws ProdutoInvalidoException;
     public Pair<Cliente,Double> clienteGastoAnual(Cliente c);
     public Pair<Cliente,Integer> clienteUnidadesAnual(Cliente c);
-    public void numCompradoProds(Cliente c, Map<Produto, Integer> s);
+    public void numCompradoProds(Cliente c, Map<Produto, Integer> s) throws ClienteInvalidoException;
 
     
     public List<Double> totalFtrProd(Produto p);

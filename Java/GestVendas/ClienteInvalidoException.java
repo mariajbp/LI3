@@ -3,14 +3,14 @@ import java.io.Serializable;
 /**
 * Classe NoClientesException que devolve uma mensagem caso não exista determinado cliente
 **/
-public class NoClientesException extends Exception implements Serializable
+public class ClienteInvalidoException extends Exception implements Serializable
 {
-    public NoClientesException()
+    public ClienteInvalidoException()
     {
         super();
     }
     
-    public NoClientesException(String message)
+    public ClienteInvalidoException(String message)
     {
         super(message);
     }

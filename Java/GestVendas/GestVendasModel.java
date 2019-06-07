@@ -50,7 +50,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         this.f2 = new Filial();
         this.f3 = new Filial();
         this.ftr = new Faturacao();
-       // this.e = new Estatisticas();
+        this.e = new Estatisticas();
     }
     
     /**
@@ -324,54 +324,55 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * @param     Mês a calcular
     * @returns   Número total global de vendas realizadas e número distinto de clientes
     **/
-    public Pair<Integer,Integer> totalVendasRealizadas(int mes, int filial)
+    public Pair<Integer,Integer> totalVendasRealizadas(int mes, int filial) throws InputInvalidoException
     {
        int total = 0;
        int cl = 0;
        Set<Cliente> prd = new TreeSet<>();
-       
-       if(filial == 1)
-       {
-           total = f1.totalVendas(mes); 
-           if(total > 0){
-              cl = this.f1.getClientesDistintosTotal(mes);
-            }
-       }
-       else
-       {
-           if(filial == 2)
+       try{
+           if(filial == 1)
            {
-               total = f2.totalVendas(mes); 
+               total = f1.totalVendas(mes); 
                if(total > 0){
-                  cl = this.f2.getClientesDistintosTotal(mes);
+                  cl = this.f1.getClientesDistintosTotal(mes);
                 }
            }
            else
            {
-               if(filial == 3)
+               if(filial == 2)
                {
-                   total = f3.totalVendas(mes); 
+                   total = f2.totalVendas(mes); 
                    if(total > 0){
-                      cl = this.f3.getClientesDistintosTotal(mes);
+                      cl = this.f2.getClientesDistintosTotal(mes);
                     }
                }
-               else //Faz o total das 3
-               { 
-                   total += f1.totalVendas(mes);
-                   total += f2.totalVendas(mes);
-                   total += f3.totalVendas(mes);
-                   
-                   f1.getClientesDistintosMes(mes, prd);
-                   f2.getClientesDistintosMes(mes, prd);
-                   f3.getClientesDistintosMes(mes, prd);
-                   
-                   cl = prd.size();
+               else
+               {
+                   if(filial == 3)
+                   {
+                       total = f3.totalVendas(mes); 
+                       if(total > 0){
+                          cl = this.f3.getClientesDistintosTotal(mes);
+                        }
+                   }
+                   else //Faz o total das 3
+                   { 
+                       total += f1.totalVendas(mes);
+                       total += f2.totalVendas(mes);
+                       total += f3.totalVendas(mes);
+                       
+                       f1.getClientesDistintosMes(mes, prd);
+                       f2.getClientesDistintosMes(mes, prd);
+                       f3.getClientesDistintosMes(mes, prd);
+                       
+                       cl = prd.size();
+                    }
                 }
-            }
-       }
-       
-       Pair<Integer,Integer> pair = new Pair(total, cl);
-       return pair;
+           }
+           
+           Pair<Integer,Integer> pair = new Pair(total, cl);
+           return pair;
+        }catch(InputInvalidoException e){throw new InputInvalidoException("Input Inválido");}
     }
      
     
@@ -406,13 +407,15 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         return l;
     } 
     
-    public int totalProdutosDistintos(Cliente c, int mes)
+    public int totalProdutosDistintos(Cliente c, int mes) throws ClienteInvalidoException
     {
-        Set<Produto> s = new TreeSet<>();
-        f1.ProdutosDistintos(s, mes, c);
-        f2.ProdutosDistintos(s, mes, c);
-        f3.ProdutosDistintos(s, mes, c);
-        return s.size(); 
+        try{
+            Set<Produto> s = new TreeSet<>();
+            f1.ProdutosDistintos(s, mes, c);
+            f2.ProdutosDistintos(s, mes, c);
+            f3.ProdutosDistintos(s, mes, c);
+            return s.size(); 
+        }catch(ClienteInvalidoException e){throw new ClienteInvalidoException("Cliente inválido, não existe na nossa base de dados.");}
     }
     
     
@@ -424,24 +427,27 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * @returns
     **/ 
     
-    public Pair<Integer, Integer> comprasPorMes(Produto p, int mes)
+    public Pair<Integer, Integer> comprasPorMes(Produto p, int mes) throws ProdutoInvalidoException
     {
-        Pair<Integer, Integer> pair = new Pair<>();
-        int quantos = f1.getUnidadesMes(p, mes);
-        quantos += f2.getUnidadesMes(p, mes);
-        quantos += f3.getUnidadesMes(p, mes);
-        
-        int cl = 0;
-        
-        cl += f1.getClientesDistintos(p, mes); 
-        
-        cl += f2.getClientesDistintos(p, mes);
-        
-        cl += f3.getClientesDistintos(p, mes);
-        
-        pair.setFst(quantos); 
-        pair.setSnd(cl);
-        return pair;
+        try
+        {
+            Pair<Integer, Integer> pair = new Pair<>();
+            int quantos = f1.getUnidadesMes(p, mes);
+            quantos += f2.getUnidadesMes(p, mes);
+            quantos += f3.getUnidadesMes(p, mes);
+            
+            int cl = 0;
+            
+            cl += f1.getClientesDistintos(p, mes); 
+            
+            cl += f2.getClientesDistintos(p, mes);
+            
+            cl += f3.getClientesDistintos(p, mes);
+            
+            pair.setFst(quantos); 
+            pair.setSnd(cl);
+            return pair;
+        }catch(ProdutoInvalidoException e){throw new ProdutoInvalidoException("Produto Inválido, não existe na nossa base de dados");}
     }
     
     public Double faturadoPorMes(Produto p, int mes)
@@ -460,32 +466,36 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * decrescente de quantidade e, para quantidades iguais, por ordem alfabética dos códigos.
     * @returns
     **/   
-    public List<Pair<Produto,Integer>> prodsMaisComprados(Cliente c)
+    public List<Pair<Produto,Integer>> prodsMaisComprados(Cliente c) throws ClienteInvalidoException
     {
-        int i = 0;
-        List<Pair<Produto,Integer>> list = new ArrayList<>();
-        Map<Produto,Integer> cp = new HashMap<>();
-        Set<Pair<Produto,Integer>> cpOrder;
-          
-            f1.numCompradoProds(c, cp); 
-            f2.numCompradoProds(c, cp);
-            f3.numCompradoProds(c, cp);
-            cpOrder = new TreeSet<>(new DecrescenteComparatorProduto());
-            
-            
-            for(Map.Entry<Produto, Integer> p: cp.entrySet()){
-                Pair<Produto, Integer> pair = new Pair<>(p.getKey(), p.getValue());
-                cpOrder.add(pair);
-            }
-            Iterator<Pair<Produto,Integer>> it = cpOrder.iterator();
-            while(it.hasNext() && i < 5)
-            {
-                Pair<Produto,Integer> pair = it.next();
-                list.add(pair);
-                i++;
-            }          
-            Collections.sort(list, new DecrescenteComparatorProduto());
-            return list;
+        try
+        {
+            int i = 0;
+            List<Pair<Produto,Integer>> list = new ArrayList<>();
+            Map<Produto,Integer> cp = new HashMap<>();
+            Set<Pair<Produto,Integer>> cpOrder;
+              
+                f1.numCompradoProds(c, cp); 
+                f2.numCompradoProds(c, cp);
+                f3.numCompradoProds(c, cp);
+                cpOrder = new TreeSet<>(new DecrescenteComparatorProduto());
+                
+                
+                for(Map.Entry<Produto, Integer> p: cp.entrySet()){
+                    Pair<Produto, Integer> pair = new Pair<>(p.getKey(), p.getValue());
+                    cpOrder.add(pair);
+                }
+                Iterator<Pair<Produto,Integer>> it = cpOrder.iterator();
+                while(it.hasNext() && i < 5)
+                {
+                    Pair<Produto,Integer> pair = it.next();
+                    list.add(pair);
+                    i++;
+                }          
+                Collections.sort(list, new DecrescenteComparatorProduto());
+                return list;
+        }catch(ClienteInvalidoException e){ throw new ClienteInvalidoException("Cliente inválido, não existe na nossa base de dados.");}
+        
     } 
     
     
@@ -498,34 +508,39 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * @returns
     **/
 
-    public List<Produto> prodsMaisVendidos(int x)
+    public List<Produto> prodsMaisVendidos(int x) throws InputInvalidoException
     { 
-        int total = 0;
-        int i = 0; 
-        List<Produto> list = new ArrayList<>();
-        Map<Produto, Integer> cl = new HashMap<>();
-        Set<Pair<Produto, Integer>> clOrder;
-        
-        f1.getProdUnidades(cl);
-        f2.getProdUnidades(cl);
-        f3.getProdUnidades(cl); 
-                        
-        clOrder = new TreeSet<>(new MaisCompradosComparator());
-                        
-        for(Map.Entry<Produto, Integer> p: cl.entrySet()){
-            Pair<Produto, Integer> pair = new Pair<>(p.getKey(), p.getValue());
-            clOrder.add(pair);
-        }
-        Iterator<Pair<Produto, Integer>> it = clOrder.iterator();
-        while(it.hasNext() && i < x)
+        if(x <= 0)  
+            throw new InputInvalidoException("Input inválido! Introduza um número maior que 0");
+        else
         {
-               Pair<Produto, Integer> pair = it.next();
-               list.add(pair.getFst());
-                i++;
-         }
-        
-        return list;
-    } 
+            int total = 0;
+            int i = 0; 
+            List<Produto> list = new ArrayList<>();
+            Map<Produto, Integer> cl = new HashMap<>();
+            Set<Pair<Produto, Integer>> clOrder;
+            
+            f1.getProdUnidades(cl);
+            f2.getProdUnidades(cl);
+            f3.getProdUnidades(cl); 
+                            
+            clOrder = new TreeSet<>(new MaisCompradosComparator());
+                            
+            for(Map.Entry<Produto, Integer> p: cl.entrySet()){
+                Pair<Produto, Integer> pair = new Pair<>(p.getKey(), p.getValue());
+                clOrder.add(pair);
+            }
+            Iterator<Pair<Produto, Integer>> it = clOrder.iterator();
+            while(it.hasNext() && i < x)
+            {
+                   Pair<Produto, Integer> pair = it.next();
+                   list.add(pair.getFst());
+                    i++;
+             }
+            
+            return list;
+        } 
+    }
     
     public List<Pair<Produto,Integer>> cldistintos(List<Produto> lp)
     {
@@ -628,12 +643,16 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * @param       Número de clientes a determinar, introduzido pelo utilizador
     * @returns
     **/
-    public List<Pair<Cliente,Integer>> clientesMaisCompraram(int x)
+    public List<Pair<Cliente,Integer>> clientesMaisCompraram(int x) throws InputInvalidoException
     {
-        int i = 0;
-        List<Pair<Cliente, Integer>> list = new ArrayList<>();
-        Map<Cliente, Set<Produto>> cl = new HashMap<>();
-        Set<Pair<Cliente, Integer>> clOrder;
+        if(x <= 0)
+            throw new InputInvalidoException("Input inválido! Introduza um número maior que 0");
+        else
+        {
+            int i = 0;
+            List<Pair<Cliente, Integer>> list = new ArrayList<>();
+            Map<Cliente, Set<Produto>> cl = new HashMap<>();
+            Set<Pair<Cliente, Integer>> clOrder;
 
             f1.getClientesProdutosDistintos(cl);
             f2.getClientesProdutosDistintos(cl);
@@ -657,6 +676,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
             
             Collections.sort(list, new DecrescenteComparatorCliente());
             return list;
+        }
     }
     
     
@@ -668,38 +688,46 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * @returns
     **/ 
     
-    public List<Pair<Cliente, Integer>> xClientesMaisCompraram(Produto p, int x)
+    public List<Pair<Cliente, Integer>> xClientesMaisCompraram(Produto p, int x) throws InputInvalidoException, ProdutoInvalidoException
     {
-        List<Pair<Cliente, Integer>> tmp = new ArrayList<>();
-        List<Pair<Cliente, Integer>> l = new ArrayList<>();
-        Pair<Cliente, Integer> pair;
-        Set<Cliente> sc = new TreeSet<>();
-       
-        f1.getClientes(p, sc);
-        f2.getClientes(p, sc);
-        f3.getClientes(p, sc);
-        Iterator<Cliente> it = sc.iterator();
-        while(it.hasNext())
+        if(x <= 0)
+            throw new InputInvalidoException("Input inválido! Introduza um número maior que 0");
+        else
         {
-                Cliente c = it.next();
-                int snd = f1.clienteUnidadesAnual(c).getSnd(); 
-                snd += f2.clienteUnidadesAnual(c).getSnd(); 
-                snd += f3.clienteUnidadesAnual(c).getSnd(); 
-                pair = new Pair(c, snd);
-                tmp.add(pair);
+            try
+            {
+                List<Pair<Cliente, Integer>> tmp = new ArrayList<>();
+                List<Pair<Cliente, Integer>> l = new ArrayList<>();
+                Pair<Cliente, Integer> pair;
+                Set<Cliente> sc = new TreeSet<>();
+                
+                f1.getClientes(p, sc);
+                f2.getClientes(p, sc);
+                f3.getClientes(p, sc);
+                Iterator<Cliente> it = sc.iterator();
+                while(it.hasNext())
+                {
+                        Cliente c = it.next();
+                        int snd = f1.clienteUnidadesAnual(c).getSnd(); 
+                        snd += f2.clienteUnidadesAnual(c).getSnd(); 
+                        snd += f3.clienteUnidadesAnual(c).getSnd(); 
+                        pair = new Pair(c, snd);
+                        tmp.add(pair);
+                    }
+                    
+                Collections.sort(tmp, new DecrescenteComparatorCliente());
+                for(int i = 0; i < x; i ++)
+                {
+                    Cliente c = tmp.get(i).getFst();
+                    double fst = f1.clienteGastoAnual(c).getSnd();
+                    fst += f2.clienteGastoAnual(c).getSnd();
+                    fst += f3.clienteGastoAnual(c).getSnd();
+                    pair = new Pair(c, fst);
+                    l.add(pair);
+                }
+                return l;
+            }catch(ProdutoInvalidoException e){throw new ProdutoInvalidoException("Produto Inválido, não existe na nossa base de dados");}
         }
-        
-        Collections.sort(tmp, new DecrescenteComparatorCliente());
-        for(int i = 0; i < x; i ++)
-        {
-            Cliente c = tmp.get(i).getFst();
-            double fst = f1.clienteGastoAnual(c).getSnd();
-            fst += f2.clienteGastoAnual(c).getSnd();
-            fst += f3.clienteGastoAnual(c).getSnd();
-            pair = new Pair(c, fst);
-            l.add(pair);
-        }
-        return l;
     }
 
 

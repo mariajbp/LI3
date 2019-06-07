@@ -246,15 +246,13 @@ public class Filial implements Serializable, IFilial
     * Método que calcula as unidades vendidas mensalmente de um produto
     * @param   Produto em questão
     * @param   Total de unidades vendidas
-    **/
-    public int getUnidadesMes(Produto p, int mes)
+    **/ 
+    public int getUnidadesMes(Produto p, int mes) throws ProdutoInvalidoException
     {
-        int unidades = 0;
-        if(this.regProd.containsKey(p))
+        try
         {
-            unidades = this.regProd.get(p).get(mes-1).getUnidades();
-        }        
-        return unidades;
+            return this.regProd.get(p).get(mes-1).getUnidades();
+        }catch(NullPointerException e){throw new ProdutoInvalidoException();}
     }
     
     /**
@@ -315,16 +313,19 @@ public class Filial implements Serializable, IFilial
             if(!e.getValue().get(mes).equals(rc))   //se não for um registo vazio
                 cl.add(e.getKey());
         }
-    }
+    } 
     
-    public int totalVendas(int mes)
+    public int totalVendas(int mes) throws InputInvalidoException
     {
         int v = 0;
-        for(Map.Entry<Cliente, List<RegistoCliente>> e : this.regCl.entrySet())
+        try
         {
-            v += e.getValue().get(mes-1).getVezes();
-        }
-        return v;
+            for(Map.Entry<Cliente, List<RegistoCliente>> e : this.regCl.entrySet())
+            {
+                v += e.getValue().get(mes-1).getVezes();
+            }
+            return v;
+        }catch(IndexOutOfBoundsException e){throw new InputInvalidoException("Mês inválido");}
     }
     
     /**
@@ -506,13 +507,16 @@ public class Filial implements Serializable, IFilial
     {
         return this.regCl.get(c).get(mes-1).produtosDistintos();
     }
-     
+      
     /**
     * ?????????
     **/
-    public void ProdutosDistintos(Set<Produto> s, int mes, Cliente c)
+    public void ProdutosDistintos(Set<Produto> s, int mes, Cliente c) throws ClienteInvalidoException
     {
-        this.regCl.get(c).get(mes-1).ProdutosDistintos(s);
+        try
+        {
+            this.regCl.get(c).get(mes-1).ProdutosDistintos(s);
+        }catch(NullPointerException e){throw new ClienteInvalidoException();}
     }
 
     /**
@@ -565,15 +569,14 @@ public class Filial implements Serializable, IFilial
     /**
     * ?????????
     **/
-    public void getClientes(Produto p, Set<Cliente> s) //clientes que comprar um prod num ano
-
+    public void getClientes(Produto p, Set<Cliente> s) throws ProdutoInvalidoException
     { 
         if(regProd.containsKey(p))
         {
             List<RegistoProduto> rp = regProd.get(p);
             Iterator<RegistoProduto> it = rp.iterator();
             while(it.hasNext())
-            {
+            { 
                 RegistoProduto r = it.next();
                 Iterator i = r.getRegisto().iterator();
                 while(i.hasNext())
@@ -583,6 +586,8 @@ public class Filial implements Serializable, IFilial
                 }
             }
         }
+        else
+            throw new ProdutoInvalidoException();
     }
     
     /**
@@ -667,34 +672,34 @@ public class Filial implements Serializable, IFilial
     } 
     
      //query 5 dá p par produtos e unidades anuais de um cliente
-     public void numCompradoProds(Cliente c, Map<Produto, Integer> s)
-     { 
-         Pair<Integer,Double> pair = new Pair();
- 
-         if(regCl.containsKey(c))
-         {
-             List<RegistoCliente> rc = regCl.get(c);
-             Iterator<RegistoCliente> it = rc.iterator();
-             while(it.hasNext())
-             {
-                RegistoCliente r = it.next();
-                Map<Produto, Pair<Integer,Double>> prod = r.getProd();
-                for(Map.Entry<Produto, Pair<Integer,Double>> e : prod.entrySet())
-                {
-                    pair = e.getValue();
-                    if(s.containsKey(e.getKey()))
+     public void numCompradoProds(Cliente c, Map<Produto, Integer> s) throws ClienteInvalidoException
+     {  
+             try 
+             { 
+                 Pair<Integer,Double> pair = new Pair();
+             
+                 List<RegistoCliente> rc = regCl.get(c);
+                 Iterator<RegistoCliente> it = rc.iterator();
+                 while(it.hasNext())
+                 {
+                    RegistoCliente r = it.next();
+                    Map<Produto, Pair<Integer,Double>> prod = r.getProd();
+                    for(Map.Entry<Produto, Pair<Integer,Double>> e : prod.entrySet())
                     {
-                        int uniOld = s.get(e.getKey());
-                        s.put(e.getKey(), pair.getFst()+uniOld);
+                        pair = e.getValue();
+                        if(s.containsKey(e.getKey()))
+                        {
+                            int uniOld = s.get(e.getKey());
+                            s.put(e.getKey(), pair.getFst()+uniOld);
+                        }
+                        else
+                        {
+                            s.put(e.getKey(), pair.getFst());
+                        }
+                        
                     }
-                    else
-                    {
-                        s.put(e.getKey(), pair.getFst());
-                    }
-                    
-                }
-             }
-         }
+                 }
+              }catch(NullPointerException e){throw new ClienteInvalidoException();}
       }
       
       //query 10 dado um prod retorna a lista de prod e total faturado por mes
