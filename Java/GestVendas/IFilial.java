@@ -22,9 +22,18 @@ public interface IFilial extends Serializable
     
     public void getClientesDistintosMes(int mes, Set<Cliente> cl);
     
+    /**
+    * Método que preenche um Set de Produtos
+    * @param Set a preencher
+    **/ 
     public void getProdutos(Set<Produto> p);
     
-    
+    /**
+    * Método que preenche um Set de Clientes
+    * @param Set a preencher
+    **/ 
+    public void getClientes(Set<Cliente> c);
+
     public int getUnidadesMes(Produto p, int mes);
     
     public double getFtrMensal(Produto p, int mes);

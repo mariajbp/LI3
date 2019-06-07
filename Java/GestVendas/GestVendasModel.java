@@ -201,10 +201,10 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                }
                vLidas++;
            }
-           /*e.setVendasValidas(vValidas);
+           e.setVendasValidas(vValidas);
            e.setVendasLidas(vLidas);
            e.setCompras_0(c0);
-           e.setFaturacao(ftr.getFtrTotal());*/
+           e.setFaturacao(ftr.getFtrTotal());
       }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
       out.println("Vendas Carregadas");
     }
@@ -261,9 +261,9 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         // return do nr de produtos nao comprados
     }
 
-      /* 
-        public int estatisticaCliente()
-      {
+      
+    public int estatisticaCliente()
+    {
         Set<Cliente> todosClientes = cprod.getCalalogo();
         Set<Cliente> c = new TreeSet();
     
@@ -274,8 +274,8 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         e.setClientesCompraram(c.size());
     
         return (todosClientes.size() - c.size());
-      }
-        */
+    }
+
         
     /**** QUERY1 ****/
     /** 
