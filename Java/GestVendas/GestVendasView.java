@@ -186,14 +186,14 @@ public class GestVendasView implements Serializable, IGestVendasView
    public void query5_Input()
    {
        out.println("Insira o código do cliente: \n");
-   }
+   } 
    
-   public void query5_Output(List<Pair<Produto,Integer>> l1, List<Pair<Produto,Integer>> l2, List<Pair<Produto,Integer>> l3)
+   public void query5_Output(List<Pair<Produto,Integer>> l)
    {
        out.println("*******************************************************************************");
        out.println("Produtos mais comprados" +"\t" + "\t" + "Quantidade");
        out.println("*******************************************************************************");
-       out.println(l1.toString() + "\n" + l2.toString() + "\n" + l3.toString());
+       out.println(l.toString() + "\n" );
        out.println("*******************************************************************************");
    }
    
