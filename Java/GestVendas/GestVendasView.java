@@ -189,9 +189,15 @@ public class GestVendasView implements Serializable, IGestVendasView
    public void query5_Output(List<Pair<Produto,Integer>> l)
    {
        out.println("*******************************************************************************");
-       out.println("Produtos mais comprados" +"\t" + "\t" + "Quantidade");
-       out.println("*******************************************************************************");
-       out.println(l.toString() + "\n" );
+       out.println("Produtos mais comprados" +"\t" + "\t" + "    Quantidade");
+       out.println("*******************************************************************************\n");
+       Pair<Produto,Integer> p = new Pair();
+       Iterator<Pair<Produto,Integer>> it = l.iterator();
+       while(it.hasNext())
+       {
+           p = it.next();
+           out.println(p.getFst().toString() + "\t" + "\t" + "\t"+ "\t" + p.getSnd() + "\n");
+       }
        out.println("*******************************************************************************");
    }
    
@@ -205,7 +211,7 @@ public class GestVendasView implements Serializable, IGestVendasView
    
    public void query6_Output_Dados(List<Pair<Produto,Integer>> l)
    {
-       out.println("*******************************************************************************");
+       out.println("******************************************************************************* \n");
        Pair<Produto,Integer> p = new Pair();
        Iterator<Pair<Produto,Integer>> it = l.iterator();
        while(it.hasNext())
@@ -256,23 +262,17 @@ public class GestVendasView implements Serializable, IGestVendasView
       out.println("Insira o número de clientes que quer determinar: \n");  
    }
    
-   public void query9_Output() 
-   {
-       out.println("*******************************************************************************");
-       out.println("Clientes" +"\t"+"\t"+ "Valor gasto no produto");
-       out.println("*******************************************************************************");
-       //  
-       out.println("*******************************************************************************");
-   }
-   
    public void query9_Output(List<Pair<Cliente, Integer>> gasto)
    {
+       out.println("*******************************************************************************\n");
+       Pair<Cliente, Integer> p = new Pair();
+       Iterator<Pair<Cliente, Integer>> it = gasto.iterator();
+       while(it.hasNext())
+       {
+           p = it.next();
+           out.println(p.getFst().toString() +"\t"+ "Valor gasto: " + df.format(p.getSnd()) + "\n");
+       }
        out.println("*******************************************************************************");
-       out.println("Clientes" +"\t"+"\t"+ "Valor gasto no produto");
-       out.println("*******************************************************************************");
-       out.println("uni " +  "\ngasto "+ gasto.toString());
-       out.println("*******************************************************************************");
-       
     }
     
    //Determinar mês a mês, e para cada mês filial a filial, a facturação total com cada produto.

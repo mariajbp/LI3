@@ -9,7 +9,7 @@ public class DecrescenteComparatorCliente implements Comparator<Pair<Cliente,Int
         double x1 = p1.getSnd();
         double x2 =  p2.getSnd();
         
-        if(x2 >= x1) return -1;
+        if(x2 <= x1) return -1;
         return 1;
    }
 }

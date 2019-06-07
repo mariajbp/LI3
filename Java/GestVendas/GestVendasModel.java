@@ -678,7 +678,6 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         f1.getClientes(p, sc);
         f2.getClientes(p, sc);
         f3.getClientes(p, sc);
-        out.println(sc);
         Iterator<Cliente> it = sc.iterator();
         while(it.hasNext())
         {
