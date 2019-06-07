@@ -168,20 +168,25 @@ public class GestVendasView implements Serializable, IGestVendasView
        out.println("Insira o código do cliente: \n");
    }
    
+   /**
+   * Método que imprime para cada mês, quantas compras fez determinado cliente fez, quantos produtos distintos comprou e quanto gastou no total.
+   **/
    public void query3_Output()
    {
        out.println("*******************************************************************************");
        out.println("Mês " + "\t"+ "\tCompras  " + "\t"+ "Produtos  " + "\t"+  "Total Gasto" );
        out.println("*******************************************************************************");
     }
-    
+   
+   /**
+   * Método que imprime para cada mês, quantas compras fez determinado cliente fez, quantos produtos distintos comprou e quanto gastou no total.
+   **/
    public void query3_Output(int c, double t, int p, int mes)
    {
        out.println( mes + "\t"+"\t"+ c + "\t"+"\t" + p + "\t"+ "\t" + df.format(t));
        out.println("*******************************************************************************");
    }
    
-   //Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi comprado, por quantos clientes diferentes e o total facturado.
    /**
    * Método que imprime um pedido de input
    **/
@@ -190,12 +195,18 @@ public class GestVendasView implements Serializable, IGestVendasView
        out.println("Insira o código do produto: \n");
    }
    
+   /**
+   * Método que imprime mês a mês, quantas vezes foi comprado um produto fou comprado, por quantos clientes diferentes e o total facturado. 
+   **/
    public void query4_Output(int i, Pair<Integer, Integer> p, double t)
    {
        out.println(i  +"\t" +"\t" +  p.getFst() +"\t" +"\t"+p.getSnd() +"\t" +"\t" + df.format(t));
        out.println("*******************************************************************************");
-    }
-    
+   }
+   
+   /**
+   * Método que imprime mês a mês, quantas vezes foi comprado um produto fou comprado, por quantos clientes diferentes e o total facturado. 
+   **/ 
    public void query4_Output()
    {
        out.println("*******************************************************************************");
@@ -203,8 +214,7 @@ public class GestVendasView implements Serializable, IGestVendasView
        out.println("*******************************************************************************");
    }
    
-   //Dado o código de um cliente determinar a lista de códigos de produtos que mais comprou (e quantos), ordenada por ordem 
-   //decrescente de quantidade e, para quantidades iguais, por ordem alfabética dos códigos.
+  
    /**
    * Método que imprime um pedido de input
    **/
@@ -213,6 +223,9 @@ public class GestVendasView implements Serializable, IGestVendasView
        out.println("Insira o código do cliente: \n");
    } 
    
+   /**
+   * Método que imprime  a lista de códigos de produtos que um cliente mais comprou
+   **/
    public void query5_Output(List<Pair<Produto,Integer>> l)
    {
        out.println("*******************************************************************************\n");
@@ -236,7 +249,9 @@ public class GestVendasView implements Serializable, IGestVendasView
       out.println("Insira o número de produtos que quer determinar: \n");  
    }
    
-   
+   /**
+   * Método que imprime o conjunto dos X produtos mais vendidos em todo o ano e o número total de distintos clientes que o compraram  
+   **/
    public void query6_Output_Dados(List<Pair<Produto,Integer>> l)
    {
        out.println("******************************************************************************* \n");
@@ -250,7 +265,9 @@ public class GestVendasView implements Serializable, IGestVendasView
        out.println("*******************************************************************************");       
    }
  
-   //Determinar, para cada filial, a lista dos três maiores compradores em termos de dinheiro facturado.
+   /**
+   * Método que imprime para cada filial, a lista dos três maiores compradores em termos de dinheiro facturado. 
+   **/
    public void query7_Output(List<Cliente> c1 , List<Cliente> c2, List<Cliente> c3)
    {
        out.println("*******************************************************************************\n");
@@ -260,8 +277,6 @@ public class GestVendasView implements Serializable, IGestVendasView
        out.println("*******************************************************************************");
    }
 
-   //Determinar os códigos dos X clientes (sendo X dado pelo utilizador) que compraram mais produtos diferentes 
-   //(não interessa a quantidade nem o valor), indicando quantos, sendo o critério de ordenação a ordem decrescente do número de produtos.
    /**
    * Método que imprime um pedido de input
    **/
@@ -270,7 +285,9 @@ public class GestVendasView implements Serializable, IGestVendasView
       out.println("Insira o número de clientes que quer determinar: \n");  
    }
     
-   
+   /**
+   * Método que imprime os códigos dos X clientes que compraram mais produtos diferentes e indica quantos
+   **/
    public void query8_Output( List<Pair<Cliente,Integer>> c1)
    {
        out.println("*******************************************************************************\n");
@@ -284,12 +301,10 @@ public class GestVendasView implements Serializable, IGestVendasView
        out.println("*******************************************************************************");
    }
    
-   // Dado o código  de um produto que deve existir, determinar o conjunto dos X clientes que mais o compraram e, para cada um, 
-   //qual o valor gasto (ordenação cf. 5).
    /**
    * Método que imprime um pedido de input
    **/
-   public void query9_Inputp() //vai haver aqui um throw qualquer
+   public void query9_Inputp()
    {
        out.println("Insira o código do produto: \n");
    }
@@ -302,6 +317,9 @@ public class GestVendasView implements Serializable, IGestVendasView
       out.println("Insira o número de clientes que quer determinar: \n");  
    }
    
+   /**
+   * Método que imprime o conjunto dos X clientes que mais o compraram um produto e, para cada um, qual o valor gasto
+   **/
    public void query9_Output(List<Pair<Cliente, Integer>> gasto)
    {
        out.println("*******************************************************************************\n");
@@ -315,7 +333,9 @@ public class GestVendasView implements Serializable, IGestVendasView
        out.println("*******************************************************************************");
    }
     
-   //Determinar mês a mês, e para cada mês filial a filial, a facturação total com cada produto.
+   /**
+   * Método que imprime  mês a mês, e para cada mês filial a filial, a facturação total com cada produto
+   **/
    public void query10_Output(Map<Produto, List<Double>> c1, Map<Produto, List<Double>> c2, Map<Produto, List<Double>> c3)
    {
        out.println("*******************************************************************************");
