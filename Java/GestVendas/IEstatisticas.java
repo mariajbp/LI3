@@ -53,17 +53,17 @@ public interface IEstatisticas extends Serializable
     /**
     * Método que devolve o número total de compras por mês
     **/
-    public int[12] getCompras();
+    public int[] getCompras();
     
     /**
     * Método que devolve a faturação total por mês e por filial
     **/
-    public double[12][3] getftrMF();
+    public double[][] getftrMF();
     
     /**
     * Método que devolve o número de clientes distintos por mês e por filial
     **/
-    public int[12][3] getClientesMF();
+    public int[][] getClientesMF();
 
     /**
     * Método que define o Nome do ficheiro

@@ -211,17 +211,17 @@ public class Estatisticas implements IEstatisticas
     /**
     * Método que devolve o número total de compras por mês
     **/
-    public int[12] getCompras(){return this.compras;}
+    public int[] getCompras(){return this.compras;}
     
     /**
     * Método que devolve a faturação total por mês e por filial
     **/
-    public double[12][3] getftrMF(){return this.ftrMF;}
+    public double[][] getftrMF(){return this.ftrMF;}
     
     /**
     * Método que devolve o número de clientes distintos por mês e por filial
     **/
-    public int[12][3] getClientesMF(){return this.clientesMF;}
+    public int[][] getClientesMF(){return this.clientesMF;}
     
     /**
     * Método que define o Nome do ficheiro

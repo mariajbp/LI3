@@ -581,53 +581,10 @@ public class GestVendasModel implements Serializable, IGestVendasModel
             pair.setSnd(total);
             l.add(pair);
          }
-        //Collections.sort(l, new...); 
+        Collections.sort(l, new DecrescenteComparatorProduto()); 
         return l;
     }
-    
-    public List<Pair<Produto,Integer>> prodsEcldistintos(List<Pair<Produto,Integer>> l1, List<Pair<Produto,Integer>> l2, List<Pair<Produto,Integer>> l3, int x)
-    {
-        int i = 0;
-        
-        Pair<Produto,Integer> p = new Pair();
-        Pair<Produto,Integer> p2 = new Pair();
-        Pair<Produto,Integer> p3 = new Pair();
-        List<Pair<Produto,Integer>> l = new ArrayList<>();
-        
-        Set<Pair<Produto,Integer>> set = new TreeSet<>(new MaisCompradosComparator());
-        set.addAll(l1);
-        
-        Iterator<Pair<Produto,Integer>> its = l2.iterator();
-        while(its.hasNext())
-        {
-            p2 = its.next();
-            if(!set.contains(p2.getFst()))
-            {
-                set.add(p2);
-            }
-        }
-
-        Iterator<Pair<Produto,Integer>> it3 = l3.iterator();
-        while(its.hasNext())
-        {
-            p3 = its.next();
-            if(!set.contains(p3.getFst()))
-            {
-                set.add(p3);
-            }
-        }
-        
-        
-        Iterator<Pair<Produto,Integer>> it = set.iterator();
-        while(it.hasNext() && i<x)
-        {
-            p = it.next();
-            l.add(p); 
-            i++;
-        }
-        return l;
-    }
-    
+     
     /**** QUERY7 ****/
     /**
     * Método que determina, para cada filial, a lista dos três maiores compradores em termos de dinheiro facturado.
