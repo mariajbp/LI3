@@ -92,6 +92,7 @@ public class Faturacao implements Serializable, IFaturacao
     {
        StringBuilder sb = new StringBuilder();
        sb.append("Total global faturado:").append(ftrTotal).append("\n");
+       sb.append("Faturação mensal: ").append(ftrMensal).append("\n");
        return sb.toString();
     }
     

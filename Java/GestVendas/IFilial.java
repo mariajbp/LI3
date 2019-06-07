@@ -90,5 +90,5 @@ public interface IFilial extends Serializable
     public Set<Cliente> getClientes(Produto p);
     public Pair<Cliente,Double> clienteGastoAnual(Cliente c);
     public Pair<Cliente,Integer> clienteUnidadesAnual(Cliente c);
-  
+    public List<Pair<Produto, Integer>> numCompradoProds(Cliente c);
 }

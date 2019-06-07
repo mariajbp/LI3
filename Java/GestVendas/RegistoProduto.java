@@ -92,7 +92,14 @@ public class RegistoProduto implements Serializable
    public RegistoProduto clone(){return new RegistoProduto(this);}
    
    
-   public String toString(){return " ";}
+   public String toString()
+   {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Clientes que efetuaram mais compras: ").append(registo).append("\n");
+        sb.append("Total faturado: ").append(faturado).append("\n");
+        sb.append("Total  de unidades compradaso: ").append(unidades).append("\n");
+        return sb.toString();
+   }
    
    /** 
    * Método que dado um par Cliente/Unidades compradas verifica se o Cliente já existe e faz o seu Registo atualizando as unidades.

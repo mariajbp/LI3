@@ -15,7 +15,7 @@ import java.util.Map;
 public class GestVendasView implements Serializable, IGestVendasView  
 {
    private Menu menu;
-
+ 
    public void init()
    { 
         out.println("   ******   ********  ******  ******** **          **********  **    ** ********     ***     ******  ");
@@ -150,13 +150,13 @@ public class GestVendasView implements Serializable, IGestVendasView
    public void query3_Output()
    {
        out.println("*******************************************************************************");
-       out.println("Mês " + "\tCompras  " + "Produtos  " +   "Total Gasto" );
+       out.println("Mês " + "\t"+ "\tCompras  " + "\t"+ "Produtos  " + "\t"+  "Total Gasto" );
        out.println("*******************************************************************************");
     }
     
    public void query3_Output(int c, double t, int p, int mes)
    {
-       out.println("   " + mes + "\t" + c + "\t" + p + "\t" + t);
+       out.println( mes + "\t"+"\t"+ c + "\t"+"\t" + p + "\t"+ "\t" + t);
        out.println("*******************************************************************************");
    }
    
@@ -186,12 +186,12 @@ public class GestVendasView implements Serializable, IGestVendasView
        out.println("Insira o código do cliente: \n");
    }
    
-   public void query5_Output()
+   public void query5_Output(List<Pair<Produto,Integer>> l1, List<Pair<Produto,Integer>> l2, List<Pair<Produto,Integer>> l3)
    {
        out.println("*******************************************************************************");
        out.println("Produtos mais comprados" +"\t" + "\t" + "Quantidade");
        out.println("*******************************************************************************");
-       //
+       out.println(l1.toString() + "\n" + l2.toString() + "\n" + l3.toString());
        out.println("*******************************************************************************");
    }
    
@@ -266,7 +266,12 @@ public class GestVendasView implements Serializable, IGestVendasView
    
    public void query9_Output(List<Pair<Cliente, Integer>> uni, List<Pair<Cliente, Double>> gasto)
    {
+       out.println("*******************************************************************************");
+       out.println("Clientes" +"\t"+"\t"+ "Valor gasto no produto");
+       out.println("*******************************************************************************");
        out.println("uni " + uni.toString() + "\ngasto "+ gasto.toString());
+       out.println("*******************************************************************************");
+       
     }
     
    //Determinar mês a mês, e para cada mês filial a filial, a facturação total com cada produto.

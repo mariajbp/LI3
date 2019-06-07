@@ -276,7 +276,7 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         double t = crono.stop(); 
         view.time(t);
     } 
-    
+     
     /** 
     * Query 5: Dado o código de um cliente determinar a lista de códigos de produtos que mais comprou (e quantos), ordenada por ordem 
     * decrescente de quantidade e, para quantidades iguais, por ordem alfabética dos códigos.
@@ -288,8 +288,7 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         String s = input.nextLine(); 
         Cliente c = new Cliente(s);
         crono.start();
-        //model....
-        view.query5_Output();
+        view.query5_Output(model.prodsMaisComprados(c, 1), model.prodsMaisComprados(c, 2), model.prodsMaisComprados(c, 3));
         double t = crono.stop(); 
         view.time(t);
     } 
@@ -339,7 +338,7 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         crono.start();
         view.query8_Output(model.clientesMaisCompraram(x, 1), model.clientesMaisCompraram(x, 2), model.clientesMaisCompraram(x, 3));
         double t = crono.stop(); 
-        view.time(t);
+        view.time(t); 
     } 
     
     /**
@@ -347,7 +346,7 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     * qual o valor gasto (ordenação cf. 5).
     **/
     public void query9()
-    {
+    { 
         view.query9_Inputp();
         Scanner input = new Scanner(System.in);
         String s = input.nextLine(); 

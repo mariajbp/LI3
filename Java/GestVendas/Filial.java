@@ -107,7 +107,10 @@ public class Filial implements Serializable, IFilial
     **/
     public String toString()
     {
-        return " ";
+        StringBuilder sb = new StringBuilder();
+        sb.append("Registo mensal de cada produto: ").append(regProd).append("\n");
+        sb.append("Registo mensal de cada cliente: ").append(regCl).append("\n");
+        return sb.toString();
     }
     
     /**
@@ -634,6 +637,32 @@ public class Filial implements Serializable, IFilial
         pfinal.setSnd(total);
         return pfinal; 
     }
-
+    
+     //query 5 dá p par produtos e unidades anuais de um cliente
+     public List<Pair<Produto, Integer>> numCompradoProds(Cliente c)
+     {
+         Pair<Produto, Integer> p = new Pair();
+         Pair<Integer,Double> pair = new Pair();
+         List<Pair<Produto, Integer>> l = new ArrayList();
+         if(regCl.containsKey(c))
+         {
+             List<RegistoCliente> rc = regCl.get(c);
+             Iterator<RegistoCliente> it = rc.iterator();
+             while(it.hasNext())
+             {
+                RegistoCliente r = it.next();
+                Map<Produto, Pair<Integer,Double>> prod = r.getProd();
+                for(Map.Entry<Produto, Pair<Integer,Double>> e : prod.entrySet())
+                {
+                    pair = e.getValue();
+                    p.setFst(e.getKey());
+                    p.setSnd(pair.getFst());
+                }
+                l.add(p);
+             }
+         }
+         
+         return l;
+      }
 }
 
