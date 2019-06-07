@@ -6,6 +6,9 @@ import java.util.Iterator;
 import java.util.Map; 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.util.Set;
+import java.util.Collection;
+
 
 /**
 * Classe que 
@@ -337,7 +340,7 @@ public class GestVendasView implements Serializable, IGestVendasView
            out.println("\t"+"\t"+ e.getKey().toString() + df.format(e.getValue()) );
        }
    }
-   
+    
    /**
    * Método que imprime as estatisticas
    **/
