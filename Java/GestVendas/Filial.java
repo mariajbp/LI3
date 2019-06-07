@@ -130,6 +130,22 @@ public class Filial implements Serializable, IFilial
     }
     
     /**
+    * Método que preenche um Set de Clientes
+    * @param Set a preencher
+    **/ 
+    public void getClientes(Set<Cliente> c)
+    {
+        Set<Cliente> s = this.regCl.keySet();
+        
+        Iterator it = s.iterator();
+        while(it.hasNext())
+        {   
+            Cliente cl = (Cliente) it.next();
+            c.add(cl.clone());
+        }
+    }
+    
+    /**
     * Método que preenche uma lista de clientes com o seu total faturado anualmente (query 7)
     * @returns lista de clientes com o seu total faturado anualmente
     **/ 
