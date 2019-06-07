@@ -54,6 +54,9 @@ public class GestVendasModel implements Serializable, IGestVendasModel
             preencheCl("../../../Clientes.txt"); 
             preencheProds("../../../Produtos.txt");
             preencheVendas("../../../Vendas1M.txt");
+            estatisticaProduto();
+            estatisticaCliente();
+            statsMF();
         } catch (IOException e) {e.printStackTrace();}
     }
     
