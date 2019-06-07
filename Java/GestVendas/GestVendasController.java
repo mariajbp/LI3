@@ -225,9 +225,9 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
        Pair<Integer,Integer> p1 = model.totalVendasRealizadas(mes,1);
        Pair<Integer,Integer> p2 = model.totalVendasRealizadas(mes,2);
        Pair<Integer,Integer> p3 = model.totalVendasRealizadas(mes,3);
-       int totalp = p1.getFst()+p2.getFst()+p3.getFst();
-       int totalc = p1.getSnd()+p2.getSnd()+p3.getSnd();
-       view.query2_Output(p1,p2,p3,totalp, totalc);
+       Pair<Integer,Integer> pAll = model.totalVendasRealizadas(mes,0);
+       
+       view.query2_Output(p1,p2,p3,pAll.getFst(), pAll.getSnd());
        double t = crono.stop(); 
        view.time(t);
     }

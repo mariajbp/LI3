@@ -238,7 +238,31 @@ public class Filial implements Serializable, IFilial
         else
             return 0;
     }
+    
+    //Todos os clientes que compraram nesta filial no mes x ---> query 2
+    public int getClientesDistintosTotal(int mes)
+    {
+        int cl = 0;
+        RegistoCliente rc = new RegistoCliente();
+        for(Map.Entry<Cliente, List<RegistoCliente>> e : regCl.entrySet())
+        {
+            if(!e.getValue().get(mes).equals(rc))   //se não for um registo vazio
+                cl++;
+        }
+        return cl;
+    }
      
+    //Preenche um set com clientes distintos de um certo mes
+    public void getClientesDistintosMes(int mes, Set<Cliente> cl)
+    {
+        RegistoCliente rc = new RegistoCliente();
+        for(Map.Entry<Cliente, List<RegistoCliente>> e : regCl.entrySet())
+        {
+            if(!e.getValue().get(mes).equals(rc))   //se não for um registo vazio
+                cl.add(e.getKey());
+        }
+    }
+    
     public int totalVendas(int mes)
     {
         int v = 0;

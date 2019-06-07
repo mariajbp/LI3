@@ -213,7 +213,6 @@ public class GestVendasModel implements Serializable, IGestVendasModel
            e.setVendasValidas(vValidas);
            e.setVendasLidas(vLidas);
            e.setCompras_0(c0);
-           out.println(vValidas);
       }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
       out.println("VENDAS DONE");
     }
@@ -302,7 +301,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
        f2.getProdutos(prods);
        f3.getProdutos(prods);
        
-       out.println(prods.size()+ " prods");
+       out.println(prods.size()+ " DEBUG prods");
 
        
        Iterator<Produto> it = prodsAll.iterator();
@@ -315,7 +314,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
           }
        } 
        
-       out.println(lp.size() + " LP");
+       out.println(lp.size() + "DEBUG LP");
        
        return lp;
     } 
@@ -333,18 +332,13 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     {
        int total = 0;
        int cl = 0;
-       Set<Produto> prd;
+       Set<Cliente> prd = new TreeSet<>();
        
        if(filial == 1)
        {
            total = f1.totalVendas(mes); 
            if(total > 0){
-               prd = this.f1.getProdutos();
-               Iterator it = prd.iterator(); 
-               while(it.hasNext()){
-                  Produto p = (Produto) it.next(); 
-                  cl += f1.getClientesDistintos(p, mes);  
-               }
+              cl = this.f1.getClientesDistintosTotal(mes);
             }
        }
        else{
@@ -352,12 +346,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
            {
                total = f2.totalVendas(mes); 
                if(total > 0){
-                   prd = this.f2.getProdutos();
-                   Iterator it = prd.iterator();
-                   while(it.hasNext()){
-                      Produto p = (Produto) it.next(); 
-                      cl += f2.getClientesDistintos(p, mes);  
-                   }
+                  cl = this.f2.getClientesDistintosTotal(mes);
                 }
            }
            else{
@@ -365,14 +354,21 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                {
                    total = f3.totalVendas(mes); 
                    if(total > 0){
-                       prd = this.f3.getProdutos();
-                       Iterator it = prd.iterator();
-                       while(it.hasNext()){
-                          Produto p = (Produto) it.next(); 
-                          cl += f3.getClientesDistintos(p, mes);  
-                       }
+                      cl = this.f3.getClientesDistintosTotal(mes);
                     }
                }
+               else //Faz o total das 3
+               {
+                   total += f1.totalVendas(mes);
+                   total += f2.totalVendas(mes);
+                   total += f3.totalVendas(mes);
+                   
+                   f1.getClientesDistintosMes(mes, prd);
+                   f2.getClientesDistintosMes(mes, prd);
+                   f3.getClientesDistintosMes(mes, prd);
+                   
+                   cl = prd.size();
+                }
             }
        }
        
@@ -535,7 +531,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                 clOrder = new TreeSet<>(new MaisCompradosComparator());
                 
                 for(Pair<Produto, Integer> p: cl){clOrder.add(p);}
-                out.println(clOrder.size());
+                
                 Iterator<Pair<Produto, Integer>> it = clOrder.iterator();
                 while(it.hasNext() && i < x)
                 {
