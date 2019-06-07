@@ -19,13 +19,21 @@ public interface IGestVendasModel extends Serializable
     **/
     public void outroFicheiro(int op) throws IOException;
     
-    public Pair<Integer, Integer> comprasPorMes(Produto p, int mes) throws ProdutoInvalidoException;
-    public Double faturadoPorMes(Produto p, int mes);
+    /**** Estatisticas ****/
+    
+    /**** QUERY 1 ****/
     public List<Produto> prodsNuncaComprados();
+    
+    /**** QUERY 2 ****/
     public Pair<Integer,Integer> totalVendasRealizadas(int mes, int filial) throws InputInvalidoException;
     
+    /**** QUERY 3 ****/
     public Pair<Integer,Double> totalComprasCliente(Cliente c, int mes);
     public int totalProdutosDistintos(Cliente c, int mes) throws ClienteInvalidoException;
+    
+    /**** QUERY 4 ****/
+    public Pair<Integer, Integer> comprasPorMes(Produto p, int mes) throws ProdutoInvalidoException;
+    public Double faturadoPorMes(Produto p, int mes);
     
     /**** QUERY 5 ****/
     public List<Pair<Produto,Integer>> prodsMaisComprados(Cliente c) throws ClienteInvalidoException;
@@ -49,7 +57,6 @@ public interface IGestVendasModel extends Serializable
     
     /** 
     * Método que guarda em ficheiro de objectos o objecto que recebe a mensagem
-    * @param Nome do ficheiro 
     **/
     public void saveStatus(String fileName) throws FileNotFoundException,IOException;
     
