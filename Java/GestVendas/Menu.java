@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 import static java.lang.System.out;
 
+/**
+* Classe que implementa um menu em modo texto.
+**/
 public class Menu implements Serializable 
 { 
    /** Lista de opções do menu **/

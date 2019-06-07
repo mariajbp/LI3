@@ -62,7 +62,7 @@ public class CatalogoClientes implements ICatClientes, Serializable
    
    /** 
    * Método que testa se um objeto é igual a uma determinada identificação
-   * @param      Objeto a ser testado
+   * @param       Objeto a ser testado
    * @returns     True se o objeto for igual à identificação, false se o objeto passado não for igual à identificação
    **/
    public boolean equals(Object o)
@@ -75,7 +75,6 @@ public class CatalogoClientes implements ICatClientes, Serializable
    
    /**
    * Método que converte uma identificação numa string
-   * @returns  
    **/
     public String toString()
     {
@@ -85,13 +84,18 @@ public class CatalogoClientes implements ICatClientes, Serializable
     }
    
    /**
-   * Método que 
+   * Método que adiciona um cliente a uma catalogo
+   * @param  Cliente a adicionar
    **/ 
    public void addCliente(Cliente c)
    {
        catalogo.add(c);
    }
    
+   /**
+   * Método que verifica se um código existe no catalogo
+   * @returns  True se existir, False caso contrário
+   **/ 
    public boolean containsCliente(String codigo)
    {  
        Cliente c = new Cliente(codigo);

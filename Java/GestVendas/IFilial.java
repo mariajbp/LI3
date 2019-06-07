@@ -13,8 +13,7 @@ public interface IFilial extends Serializable
     * Método que associa um registo ao produto
     **/
     public Map<Produto, List<RegistoProduto>> getRegProd();
-    
-    
+
     /**
     * Método que devolve os clientes distintos de determinado produto, 
     * num mes
@@ -23,11 +22,24 @@ public interface IFilial extends Serializable
     
     public void getClientesDistintosMes(int mes, Set<Cliente> cl);
     
+    /**
+    * Método que preenche um Set de Produtos
+    * @param Set a preencher
+    **/ 
     public void getProdutos(Set<Produto> p);
     
     
     public int getUnidadesMes(Produto p, int mes) throws ProdutoInvalidoException;
     
+
+    /**
+    * Método que preenche um Set de Clientes
+    * @param Set a preencher
+    **/ 
+    public void getClientes(Set<Cliente> c);
+
+
+
     
     public double getFtrMensal(Produto p, int mes);
     
@@ -42,27 +54,39 @@ public interface IFilial extends Serializable
     **/
     public void addVenda(Venda v);
     
+    
     public List<Pair<Cliente, Double>> getClientesFaturacao();
+    
     
     public Pair<Integer,Double> comprasTotais(Cliente c, int mes);
     
     
+    
     public int getClientesDistintosTotal(int mes);
+
 
     public void ProdutosDistintos(Set<Produto> s, int mes, Cliente c) throws ClienteInvalidoException;
 
+
     
     public void getProdUnidades(Map<Produto, Integer> s);
+    
     
     public void clDistintos(Produto p, Set<Cliente> s);
     
 
     public void getClientesProdutosDistintos(Map<Cliente, Set<Produto>> m);
 
+
     public void getClientes(Produto p, Set<Cliente> s) throws ProdutoInvalidoException;
+
     public Pair<Cliente,Double> clienteGastoAnual(Cliente c);
+    
+    
     public Pair<Cliente,Integer> clienteUnidadesAnual(Cliente c);
+
     public void numCompradoProds(Cliente c, Map<Produto, Integer> s) throws ClienteInvalidoException;
+
 
     
     public List<Double> totalFtrProd(Produto p);

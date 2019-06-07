@@ -10,4 +10,6 @@ public interface ICatClientes extends Serializable
   public void addCliente(Cliente c);
   
   public boolean containsCliente(String codigo);
+  
+  public Set<Cliente> getCatalogo();
 }

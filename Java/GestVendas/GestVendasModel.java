@@ -1,15 +1,6 @@
 import java.io.Serializable;
-import java.io.IOException;
 import java.io.*;  
-import java.util.TreeSet; 
-import java.io.File;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.util.Iterator;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.Collections;
-
 
 import static java.lang.System.out;
 
@@ -210,10 +201,10 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                }
                vLidas++;
            }
-           /*e.setVendasValidas(vValidas);
+           e.setVendasValidas(vValidas);
            e.setVendasLidas(vLidas);
            e.setCompras_0(c0);
-           e.setFaturacao(ftr.getFtrTotal());*/
+           e.setFaturacao(ftr.getFtrTotal());
       }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
       out.println("Vendas Carregadas");
     }
@@ -270,10 +261,10 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         // return do nr de produtos nao comprados
     }
 
-      /* 
-        public int estatisticaCliente()
-      {
-        Set<Cliente> todosClientes = cprod.getCalalogo();
+       
+    public int estatisticaCliente()
+    {
+        Set<Cliente> todosClientes = ccl.getCatalogo();
         Set<Cliente> c = new TreeSet();
     
         f1.getClientes(c); // nao existe
@@ -283,8 +274,8 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         e.setClientesCompraram(c.size());
     
         return (todosClientes.size() - c.size());
-      }
-        */
+    }
+
         
     /**** QUERY1 ****/
     /** 

@@ -1,8 +1,6 @@
 import java.io.Serializable;
 import java.util.Scanner;
 import java.util.List;
-import java.util.Arrays;
-import java.util.InputMismatchException;
 import static java.lang.System.out;
 import java.util.Iterator;
 import java.util.Map; 
@@ -15,9 +13,13 @@ import java.text.DecimalFormat;
 
 public class GestVendasView implements Serializable, IGestVendasView  
 {
+   /** Instancia da classe Menu **/
    private Menu menu;
+   
+   /** Variavél que permite truncar um double para duas casas decimais **/
    private static DecimalFormat df = new DecimalFormat("#.##");
    
+   /** Método que imprimir o header inicial da aplicação **/
    public void init()
    { 
         out.println("   ******   ********  ******  ******** **          **********  **    ** ********     ***     ******  ");
@@ -44,7 +46,7 @@ public class GestVendasView implements Serializable, IGestVendasView
    }
    
    /**
-   * Método que printa a escolha de ficheiros
+   * Método que imprime a escolha de ficheiros
    **/
    public void outroFichOutputEscolha()
    {
@@ -53,15 +55,15 @@ public class GestVendasView implements Serializable, IGestVendasView
    }
    
    /**
-   * Método que printa uma mensagem de suceso na gravação de dados
+   * Método que imprime uma mensagem de suceso na gravação de dados
    **/
    public void saveMessage()
    {
        out.println("Gravado com sucesso!");
-    }
+   }
     
    /**
-   * Método que printa a lista ordenada alfabeticamente com os códigos dos produtos nunca comprados e o seu respectivo total.
+   * Método que imprime a lista ordenada alfabeticamente com os códigos dos produtos nunca comprados e o seu respectivo total, através um navegador
    **/
    public void query1_Output(List<Produto> p)
    {      
@@ -132,17 +134,17 @@ public class GestVendasView implements Serializable, IGestVendasView
        }
    }
         
-   
-   
-   
-   
-   //Dado um mês válido, determinar o número total global de vendas realizadas e o número total de clientes distintos que as fizeram; 
-   //Fazer o mesmo mas para cada uma das filiais.
+   /**
+   * Método que imprime um pedido de input
+   **/
    public void query2_Input()
    {
        out.println("Insira o mês que pretende consultar: \n");
    }
    
+   /**
+   * Método que dado um mês válido, determinar o número total global de vendas realizadas e o número total de clientes distintos que as fizeram 
+   **/
    public void query2_Output(Pair<Integer,Integer> p1, Pair<Integer,Integer> p2, Pair<Integer,Integer> p3, int tp, int tc)
    {
        out.println("*******************************************************************************");
@@ -155,6 +157,9 @@ public class GestVendasView implements Serializable, IGestVendasView
     
    //Dado um código de cliente, determinar, para cada mês, quantas compras fez, 
    //quantos produtos distintos comprou e quanto gastou no total.
+   /**
+   * Método que imprime um pedido de input
+   **/
    public void query3_Input()
    {
        out.println("Insira o código do cliente: \n");
@@ -174,6 +179,9 @@ public class GestVendasView implements Serializable, IGestVendasView
    }
    
    //Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi comprado, por quantos clientes diferentes e o total facturado.
+   /**
+   * Método que imprime um pedido de input
+   **/
    public void query4_Input()
    {
        out.println("Insira o código do produto: \n");
@@ -194,6 +202,9 @@ public class GestVendasView implements Serializable, IGestVendasView
    
    //Dado o código de um cliente determinar a lista de códigos de produtos que mais comprou (e quantos), ordenada por ordem 
    //decrescente de quantidade e, para quantidades iguais, por ordem alfabética dos códigos.
+   /**
+   * Método que imprime um pedido de input
+   **/
    public void query5_Input()
    {
        out.println("Insira o código do cliente: \n");
@@ -214,6 +225,9 @@ public class GestVendasView implements Serializable, IGestVendasView
    
    //Determinar o conjunto dos X produtos mais vendidos em todo o ano (em número de unidades vendidas) indicando o número total de 
    //distintos clientes que o compraram (X é um inteiro dado pelo utilizador).
+   /**
+   * Método que imprime um pedido de input
+   **/
    public void query6_Input()
    { 
       out.println("Insira o número de produtos que quer determinar: \n");  
@@ -245,6 +259,9 @@ public class GestVendasView implements Serializable, IGestVendasView
 
    //Determinar os códigos dos X clientes (sendo X dado pelo utilizador) que compraram mais produtos diferentes 
    //(não interessa a quantidade nem o valor), indicando quantos, sendo o critério de ordenação a ordem decrescente do número de produtos.
+   /**
+   * Método que imprime um pedido de input
+   **/
    public void query8_Input()
    {
       out.println("Insira o número de clientes que quer determinar: \n");  
@@ -266,11 +283,17 @@ public class GestVendasView implements Serializable, IGestVendasView
    
    // Dado o código  de um produto que deve existir, determinar o conjunto dos X clientes que mais o compraram e, para cada um, 
    //qual o valor gasto (ordenação cf. 5).
+   /**
+   * Método que imprime um pedido de input
+   **/
    public void query9_Inputp() //vai haver aqui um throw qualquer
    {
        out.println("Insira o código do produto: \n");
    }
    
+   /**
+   * Método que imprime um pedido de input
+   **/
    public void query9_Inputx()
    {
       out.println("Insira o número de clientes que quer determinar: \n");  
@@ -287,7 +310,7 @@ public class GestVendasView implements Serializable, IGestVendasView
            out.println(p.getFst().toString() + "\t" + "\t" + "Valor gasto: " + df.format(p.getSnd()) + "\n");
        }
        out.println("*******************************************************************************");
-    }
+   }
     
    //Determinar mês a mês, e para cada mês filial a filial, a facturação total com cada produto.
    public void query10_Output(Map<Produto, List<Double>> c1, Map<Produto, List<Double>> c2, Map<Produto, List<Double>> c3)
@@ -315,10 +338,16 @@ public class GestVendasView implements Serializable, IGestVendasView
        }
    }
    
+   /**
+   * Método que imprime as estatisticas
+   **/
    public void printStats(Estatisticas e)
    {
       out.println(e.toString());
    }
    
+   /**
+   * Método que imprime o tempo que o programa demourou a correr, em segundos
+   **/
    public void time(double t) {out.println("\nTempo demorado: " + df.format(t) + " segundos"); }
 }

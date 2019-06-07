@@ -1,6 +1,7 @@
 import java.util.Comparator;
+
 /**
-* 
+* Classe DecrescenteComparatorCliente que impõem uma ordem decrescente a um par de clientes e inteiros
 **/
 public class DecrescenteComparatorCliente implements Comparator<Pair<Cliente,Integer>>
 {

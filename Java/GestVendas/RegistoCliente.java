@@ -5,7 +5,6 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
-import static java.lang.System.out;
 /**
 * Classe RegistoCliente que contém estruturas com dados de de um registo
 **/
@@ -136,12 +135,7 @@ public class RegistoCliente implements Serializable
        sb.append("Produtos:").append(prod).append("\n");
        return sb.toString();
     }
-    /*
-    public int getUnidades(Produto p)
-    {
-        
-    }
-    */
+    
     /**
     * Método que atualiza o número de compras efetuadas por mês
     * @param   Novo número de compras efetuadas
@@ -173,8 +167,8 @@ public class RegistoCliente implements Serializable
     * Método que dado um par Produto/Gasto compradas verifica se o Produto já existe e faz o seu Registo atualizando o valor total gasto nesse produto.
     * @param Par<Cliente, Integer>
     **/
-   public void updateRegCliente(Produto prd, double g, int uni)
-   {
+    public void updateRegCliente(Produto prd, double g, int uni)
+    {
        Pair<Integer,Double> pair = new Pair<>();
        Pair<Integer,Double> newPair = new Pair<>();
        
@@ -219,52 +213,5 @@ public class RegistoCliente implements Serializable
             }
         }
     }
-    /*
-    //Devolve um set ordenado com os 5 produtos mais comprados e as suas unidades
-    public Set<Produto> ProdutosMaisComprados()
-    {
-        Set<Pair<Produto, Integer>> s = new TreeSet<>(new ProdutoMaisCompradoComparator());
-        
-        for(Map.Entry<Produto, Pair<Integer, Double>> e : prod.entrySet())
-        {
-            Pair<Integer, Double> p = e.get(e.getKey());
-            
-            Pair<Produto, Integer> pair = new Pair(e.getKey(), p.getFst());
-            s.add(pair);
-        }   
-        
-        Set<Pair<Produto, Integer>> top5 = new TreeSet<>();
-        int i = 0;
-        Iterator it = new s.iterator();
-        while(it.hasNext() && i < 5)
-        {
-            p = it.next();
-            top5.add(p);
-            i++;
-        }
-        return top5;
-    }
-    
-    
-    //Preenche um set com os 5 produtos mais comprados e unidades
-    public void AddProdutosMaisComprados(Set<Pair<Produto, Integer>> s )
-    {   
-        for(Map.Entry<Produto, Pair<Integer, Double>> e : prod.entrySet())
-        {
-            Pair<Integer, Double> p = e.get(e.getKey());
-            
-            Pair<Produto, Integer> pair = new Pair(e.getKey(), p.getFst());
-            s.add(pair);
-        }   
-        
-        Set<Pair<Produto, Integer>> top5 = new TreeSet<>();
-        int i = 0;
-        Iterator it = new s.iterator();
-        while(it.hasNext() && i < 5)
-        {
-            p = it.next();
-            top5.add(p);
-            i++;
-        }
-    }*/
+
 }

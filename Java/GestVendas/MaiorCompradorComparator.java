@@ -1,7 +1,7 @@
 import java.util.Comparator;
 
 /**
-* Classe  que impõem uma ordem quando se quer adicionar um cliente a uma coleção
+* Classe MaiorCompradorComparator que ordena clientes através do número de unidades compradas
 **/
 public class MaiorCompradorComparator implements Comparator<Pair<Cliente, Double>>
 {

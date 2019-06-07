@@ -1,17 +1,18 @@
 #BlueJ class context
 comment0.target=Menu
+comment0.text=\r\n\ Classe\ que\ implementa\ um\ menu\ em\ modo\ texto.\r\n
 comment1.params=options
 comment1.target=Menu(java.lang.String[])
 comment2.params=
 comment2.target=void\ exec()
-comment2.text=\n\ M\u00E9todo\ para\ apresentar\ o\ menu\ e\ le\ uma\ op\u00E7\u00E3o.\n
+comment2.text=\r\n\ M\u00E9todo\ para\ apresentar\ o\ menu\ e\ le\ uma\ op\u00E7\u00E3o.\r\n
 comment3.params=
 comment3.target=void\ showMenu()
-comment3.text=\n\ M\u00E9todo\ de\ apresenta\u00E7\u00E3o\ o\ menu\ \n
+comment3.text=\r\n\ M\u00E9todo\ de\ apresenta\u00E7\u00E3o\ o\ menu\ \r\n
 comment4.params=
 comment4.target=int\ readOption()
-comment4.text=\n\ M\u00E9todo\ que\ l\u00EA\ a\ op\u00E7\u00E3o\ escolhida\ pelo\ utilizador\n\ @returns\ \ \ \ Op\u00E7\u00E3o\ introduzida\ pelo\ utilizador\n
+comment4.text=\r\n\ M\u00E9todo\ que\ l\u00EA\ a\ op\u00E7\u00E3o\ escolhida\ pelo\ utilizador\r\n\ @returns\ \ \ \ Op\u00E7\u00E3o\ introduzida\ pelo\ utilizador\r\n
 comment5.params=
 comment5.target=int\ getOption()
-comment5.text=\n\ M\u00E9todo\ que\ devolve\ a\ ultima\ op\u00E7\u00E3o\ lida\n\ @returns\ \ \ \ Ultima\ op\u00E7\u00E3o\ lida\n
+comment5.text=\r\n\ M\u00E9todo\ que\ devolve\ a\ ultima\ op\u00E7\u00E3o\ lida\r\n\ @returns\ \ \ \ Ultima\ op\u00E7\u00E3o\ lida\r\n
 numComments=6

@@ -52,7 +52,6 @@ public class Produto implements Serializable, Comparable<Produto>
     
     /**
     * Método que converte uma identificação numa string
-    * @returns 
     **/
     public String toString()
     {
@@ -70,6 +69,9 @@ public class Produto implements Serializable, Comparable<Produto>
         return codigo_produto.compareTo(p.getCodigo()); 
     }
     
+    /** 
+    * Método que calcula o hashcode da classe
+    **/
     public int hashCode()
     {
         int hash = 7;
