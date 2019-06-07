@@ -116,7 +116,4 @@ public class Faturacao implements Serializable, IFaturacao
        updateFtrTotal(v.getPreco(), v.getUnidades());
        updateFtrMensal(v.getMes(), v.getFilial(), v.getUnidades(), v.getPreco());
     } 
-
-    
-
 }

@@ -110,7 +110,10 @@ public class Filial implements Serializable, IFilial
         return " ";
     }
     
-    //Preenche um set de produtos --->Usado na query 1
+    /**
+    * Método que preenche um Set de produtos (query 1)
+    * @param Set a preencher
+    **/ 
     public void getProdutos(Set<Produto> p)
     {
         Set<Produto> s = this.regProd.keySet();
@@ -123,7 +126,10 @@ public class Filial implements Serializable, IFilial
         }
     }
     
-    //Preenche uma lista de pares( clientes, total faturado anual)---> query 7
+    /**
+    * Método que preenche uma lista de clientes com o seu total faturado anualmente (query 7)
+    * @returns lista de clientes com o seu total faturado anualmente
+    **/ 
     public List<Pair<Cliente, Double>> getClientesFaturacao()
     {
         List<Pair<Cliente, Double>> s = new ArrayList<>();
@@ -143,6 +149,10 @@ public class Filial implements Serializable, IFilial
         return s;
     }
     
+    /**
+    * Método que preenche preenche uma lista de pares com as informações de um cliente e número de unidades compradas anualmente (query 6)
+    * @returns lista de clientes com o seu total faturado anualmente
+    **/ 
     public List<Pair<Cliente, Integer>> getClientesProdutosDistintos()
     {
         List<Pair<Cliente, Integer>> s = new ArrayList<>();
@@ -183,14 +193,19 @@ public class Filial implements Serializable, IFilial
         return s;
     }
     
-    
-    //Retorna um set de produtos
+    /**
+    * Método que retorna um set de produtos 
+    **/
     public Set<Produto> getProdutos()
     {
         return this.regProd.keySet();
     }
     
-    //Devolve as unidades Anuais de um produto
+    /**
+    * Método que calcula as unidades vendidas anualmente de um produto
+    * @param   Produto em questão
+    * @param   Total de unidades vendidas
+    **/
     public int getUnidadesAnual(Produto p)
     {
         int unidades = 0;
@@ -206,6 +221,11 @@ public class Filial implements Serializable, IFilial
         return unidades;
     }
     
+    /**
+    * Método que calcula as unidades vendidas mensalmente de um produto
+    * @param   Produto em questão
+    * @param   Total de unidades vendidas
+    **/
     public int getUnidadesMes(Produto p, int mes)
     {
         int unidades = 0;
@@ -216,6 +236,11 @@ public class Filial implements Serializable, IFilial
         return unidades;
     }
     
+    /**
+    * Método que calcula a faturação de um produto num determinado mês
+    * @param   Produto em questão
+    * @param   Faturação mensal
+    **/
     public double getFtrMensal(Produto p, int mes)
     {
         double f = 0;
@@ -227,9 +252,10 @@ public class Filial implements Serializable, IFilial
     }
     
     /**
-    * Método que devolve os clientes distintos de determinado produto, num mes
-    * @param   Produto comprado
-    * @param   Mês da compra
+    * Método que calcula o número de clientes distintos que adquiriram determinado produto mensalmente
+    * @param     Produto comprado
+    * @param     Mês da compra
+    * @returns   Número de clientes distintos que adquiriram o produto
     **/
     public int getClientesDistintos(Produto p, int mes)
     {
@@ -239,6 +265,13 @@ public class Filial implements Serializable, IFilial
             return 0;
     }
     
+
+    /**
+    * Método que calcula o total de vendas mensal
+    * @param   Mês das compras
+    * @param   Total de vendas
+    **/
+
     //Todos os clientes que compraram nesta filial no mes x ---> query 2
     public int getClientesDistintosTotal(int mes)
     {
@@ -266,7 +299,8 @@ public class Filial implements Serializable, IFilial
     public int totalVendas(int mes)
     {
         int v = 0;
-        for(Map.Entry<Cliente, List<RegistoCliente>> e : this.regCl.entrySet()){
+        for(Map.Entry<Cliente, List<RegistoCliente>> e : this.regCl.entrySet())
+        {
             v += e.getValue().get(mes-1).getVezes();
         }
         return v;
@@ -277,6 +311,8 @@ public class Filial implements Serializable, IFilial
     * @param   Produto comprado
     * @param   Cliente que efetuou a compra
     * @param   Mês da compra
+    * @param
+    * @param
     **/
     public void updateRegProd(Produto p, Cliente c, int mes, double f, int uni)
     {
@@ -350,6 +386,10 @@ public class Filial implements Serializable, IFilial
         updateRegCl(v.getCliente(), v.getProduto(), v.getUnidades(), v.getPreco() * v.getUnidades(), v.getMes());
     }
     
+    /**
+    * Método que 
+    * @returns   
+    **/
     public HashMap<Cliente, Integer> comprasAnuais()
     {
         int total = 0;
@@ -384,7 +424,12 @@ public class Filial implements Serializable, IFilial
         return d;
     }*/
 
-    //numero de compras totais e total gasto no mes 
+    /**
+    * Método que calcula o numero de compras totais e o total gasto por um cliente num mês
+    * @param     Cliente em questão
+    * @param     Mês a calcular
+    * @returns   Numero de compras totais e o total gasto por um cliente num mês   
+    **/
     public Pair<Integer,Double> comprasTotais(Cliente c, int mes) 
     {
        int index = mes-1;
@@ -403,7 +448,10 @@ public class Filial implements Serializable, IFilial
        pair.setSnd(total); 
        return pair;
     }
- 
+    
+    /**
+    * ?????????
+    **/
     public Pair<Integer,Double> comprasTotaisAnual(Cliente c) //numero de compras totais e total gasto no mes 
     {
        Pair<Integer,Double> pair = new Pair(); 
@@ -427,17 +475,28 @@ public class Filial implements Serializable, IFilial
        return pair;
     }
     
+    /**
+    * Método que calcula o numero de produtos distintos adquiridos por um cliente em determinado mês
+    * @param     Cliente em questão
+    * @param     Mês a calcular
+    * @returns   Número de produtos distintos adquiridos   
+    **/
     public int ProdutosDistintos(Cliente c, int mes)
     {
         return this.regCl.get(c).get(mes-1).produtosDistintos();
     }
      
+    /**
+    * ?????????
+    **/
     public void ProdutosDistintos(Set<Produto> s, int mes, Cliente c)
     {
         this.regCl.get(c).get(mes-1).ProdutosDistintos(s);
     }
 
-    
+    /**
+    * ?????????
+    **/
     public int clDistintos(Produto p) // query 6
     {
         int total = 0;
@@ -455,6 +514,9 @@ public class Filial implements Serializable, IFilial
         return total;
     }
     
+    /**
+    * ?????????
+    **/
     public Set<Produto> comprasDistintasClientes(Cliente c) //query 8
     {
         Set<Produto> tmp = new TreeSet<>(); 
@@ -473,10 +535,12 @@ public class Filial implements Serializable, IFilial
         return set;
     }
 
-    //query9
-    //Map<Produto, List<RegistoProduto>> regProd;
     
+    /**
+    * ?????????
+    **/
     public Set<Cliente> getClientes(Produto p) //clientes que comprar um prod num ano
+
     { 
         Set<Cliente> s = new TreeSet<>();
         if(regProd.containsKey(p))
@@ -492,7 +556,9 @@ public class Filial implements Serializable, IFilial
         return s;
     }
     
-    
+    /**
+    * ?????????
+    **/
     public Pair<Cliente,Double> clienteGastoAnual(Cliente c) //gasto anual de um cliente
     {
         double total = 0;
@@ -530,6 +596,9 @@ public class Filial implements Serializable, IFilial
         return pfinal; 
     }
     
+    /**
+    * ?????????
+    **/
     public Pair<Cliente,Integer> clienteUnidadesAnual(Cliente c) //unidades compradas anual de um cliente
     {
         int total = 0;

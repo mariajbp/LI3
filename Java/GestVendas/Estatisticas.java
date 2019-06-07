@@ -19,7 +19,7 @@ public class Estatisticas implements IEstatisticas
     /** Número de Clientes existentes **/
     private int num_Clientes;
     
-    /** Número de Clientes comprados **/
+    /** Número de Clientes que realizaram compras **/
     private int num_ClientesCompraram;
 
     /** Número de compras cuja faturação é 0 **/
