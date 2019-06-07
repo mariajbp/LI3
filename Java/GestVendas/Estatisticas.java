@@ -82,7 +82,6 @@ public class Estatisticas implements IEstatisticas, Serializable
         num_ClientesCompraram = e.getClientesCompraram();
         compras_0 = e.getCompras_0();
         faturacao = e.getFaturacao();
-        
         compras = e.getCompras();
         ftrMF = e.getftrMF();
         clientesMF = e.getClientesMF();
@@ -118,7 +117,7 @@ public class Estatisticas implements IEstatisticas, Serializable
     public String toString()
     {
         StringBuilder s = new StringBuilder();
-        s.append("Nome do ficheiro ").append(nome).append("\n");
+        s.append("Nome do ficheiro: ").append(nome).append("\n");
         s.append("Vendas Lidas: ").append(num_VendasLidas).append(". Vendas Validas: ").append(num_VendasValidas).append(". Vendas não Validas: ").append(num_VendasLidas - num_VendasValidas).append("\n");
         s.append("Numero Total de Produtos: ").append(num_Produtos).append(". Produtos comprados: ").append(num_totalProdutosComprados).append("\n");
         s.append("Produtos que nunca foram comprados: ").append(num_Produtos - num_totalProdutosComprados).append("\n");

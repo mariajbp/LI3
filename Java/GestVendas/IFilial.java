@@ -14,21 +14,6 @@ public interface IFilial extends Serializable
     **/
     public Map<Produto, List<RegistoProduto>> getRegProd();
     
-    /**
-    * Método que associa um registo ao cliente
-    * @returns 
-    **/
-    public Map<Cliente, List<RegistoCliente>> getRegCl();
-    
-    /**
-    * Método que define um registo de determinado produto
-    **/
-    public void setRegProd(Map<Produto, List<RegistoProduto>> regP);
-    
-    /**
-    * Método que define um registo de determinado cliente
-    **/
-    public void setRegCl(Map<Cliente, List<RegistoCliente>> regC);
     
     /**
     * Método que devolve os clientes distintos de determinado produto, 
@@ -40,7 +25,6 @@ public interface IFilial extends Serializable
     
     public void getProdutos(Set<Produto> p);
     
-    public Set<Produto> getProdutos();
     
     public int getUnidadesMes(Produto p, int mes);
     
@@ -51,15 +35,6 @@ public interface IFilial extends Serializable
     **/
     public int totalVendas(int mes);
     
-    /**
-    * Método que atualiza o registo de um produto
-    **/
-    public void updateRegProd(Produto p, Cliente c, int mes, double f, int u);
-    
-    /**
-    * Método que atualiza o registo de um cliente
-    **/
-    public void updateRegCl(Cliente c, Produto p, int uni, double t, int mes);
     
     /**
     * Método que divide as carateristicas de uma venda pelos Maps da classe
@@ -70,7 +45,6 @@ public interface IFilial extends Serializable
     
     public Pair<Integer,Double> comprasTotais(Cliente c, int mes);
     
-    public int ProdutosDistintos(Cliente c, int mes);
     
     public int getClientesDistintosTotal(int mes);
 
@@ -81,7 +55,6 @@ public interface IFilial extends Serializable
     
     public void clDistintos(Produto p, Set<Cliente> s);
     
-    public Set<Produto> comprasDistintasClientes(Cliente c);
 
     public void getClientesProdutosDistintos(Map<Cliente, Set<Produto>> m);
 

@@ -201,15 +201,13 @@ public class GestVendasView implements Serializable, IGestVendasView
    
    public void query5_Output(List<Pair<Produto,Integer>> l)
    {
-       out.println("*******************************************************************************");
-       out.println("Produtos mais comprados" +"\t" + "\t" + "    Quantidade");
        out.println("*******************************************************************************\n");
        Pair<Produto,Integer> p = new Pair();
        Iterator<Pair<Produto,Integer>> it = l.iterator();
        while(it.hasNext())
        {
            p = it.next();
-           out.println(p.getFst().toString() + "\t" + "\t" + "\t"+ "\t" + p.getSnd() + "\n");
+           out.println(p.getFst().toString() + "\t" + "\t" + "Quantidade: " + p.getSnd() + "\n");
        }
        out.println("*******************************************************************************");
    }
@@ -230,7 +228,7 @@ public class GestVendasView implements Serializable, IGestVendasView
        while(it.hasNext())
        {
            p = it.next();
-           out.println(p.getFst().toString() + " Número de clientes: " + p.getSnd() + "\n");
+           out.println(p.getFst().toString() + "\t" + "\t" + " Número de clientes: " + p.getSnd() + "\n");
        }
        out.println("*******************************************************************************");       
    }
@@ -238,10 +236,10 @@ public class GestVendasView implements Serializable, IGestVendasView
    //Determinar, para cada filial, a lista dos três maiores compradores em termos de dinheiro facturado.
    public void query7_Output(List<Cliente> c1 , List<Cliente> c2, List<Cliente> c3)
    {
-       out.println("*******************************************************************************");
-       out.println("Filial 1" +"\t"+"\t"+ c1);
-       out.println("Filial 2" +"\t"+"\t"+ c2);
-       out.println("Filial 3" +"\t"+"\t"+ c3);
+       out.println("*******************************************************************************\n");
+       out.println("Filial 1" +"\t"+"\t"+ c1+"\n");
+       out.println("Filial 2" +"\t"+"\t"+ c2+"\n");
+       out.println("Filial 3" +"\t"+"\t"+ c3+"\n");
        out.println("*******************************************************************************");
    }
 
@@ -255,11 +253,14 @@ public class GestVendasView implements Serializable, IGestVendasView
    
    public void query8_Output( List<Pair<Cliente,Integer>> c1)
    {
-       Pair<Cliente,Integer> p1 = new Pair();
-       out.println("*******************************************************************************");
-       out.println("Clientes" +"\t"+"\t"+ "Produtos Distintos");
-       out.println("*******************************************************************************");
-       out.println(c1.toString() + "\n");
+       out.println("*******************************************************************************\n");
+       Pair<Cliente, Integer> p = new Pair();
+       Iterator<Pair<Cliente, Integer>> it = c1.iterator();
+       while(it.hasNext())
+       {
+           p = it.next();
+           out.println(p.getFst().toString() + "\t" + "\t" + "Valor gasto: " + df.format(p.getSnd()) + "\n");
+       }
        out.println("*******************************************************************************");
    }
    
@@ -283,7 +284,7 @@ public class GestVendasView implements Serializable, IGestVendasView
        while(it.hasNext())
        {
            p = it.next();
-           out.println(p.getFst().toString() +"\t"+ "Valor gasto: " + df.format(p.getSnd()) + "\n");
+           out.println(p.getFst().toString() + "\t" + "\t" + "Valor gasto: " + df.format(p.getSnd()) + "\n");
        }
        out.println("*******************************************************************************");
     }
@@ -319,5 +320,5 @@ public class GestVendasView implements Serializable, IGestVendasView
       out.println(e.toString());
    }
    
-   public void time(double t) {out.println("\nTempo demorado: " + t + "segundos"); }
+   public void time(double t) {out.println("\nTempo demorado: " + df.format(t) + " segundos"); }
 }
