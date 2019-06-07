@@ -270,22 +270,22 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         // return do nr de produtos nao comprados
     }
 
-  /* 
-    public int estatisticaCliente()
-  {
-    Set<Cliente> todosClientes = cprod.getCalalogo();
-    Set<Cliente> c = new TreeSet();
-
-    f1.getClientes(c); // nao existe
-    f2.getClientes(c); // nao existe
-    f3.getClientes(c); // nao existe
-
-    e.setClientesCompraram(c.size());
-
-    return (todosClientes.size() - c.size());
-  }
-    */
+      /* 
+        public int estatisticaCliente()
+      {
+        Set<Cliente> todosClientes = cprod.getCalalogo();
+        Set<Cliente> c = new TreeSet();
     
+        f1.getClientes(c); // nao existe
+        f2.getClientes(c); // nao existe
+        f3.getClientes(c); // nao existe
+    
+        e.setClientesCompraram(c.size());
+    
+        return (todosClientes.size() - c.size());
+      }
+        */
+        
     /**** QUERY1 ****/
     /** 
     * Metodo que devolve a lista ordenada alfabeticamente com os códigos dos produtos nunca comprados e o seu respectivo total.
@@ -463,7 +463,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     //public ? prodsMaisComprados(){} + comparator 
     
     
-    /**** QUERY 6 ****/
+    /**** QUERY6 ****/
     /**
     * Método que determina o conjunto dos X produtos mais vendidos em todo o ano (em número de unidades vendidas) indicando o número total de 
     * distintos clientes que o compraram.
@@ -471,106 +471,54 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * @returns
     **/
 
-    public List<Produto> prodsMaisVendidos(int x, int filial)
+    public List<Produto> prodsMaisVendidos(int x)
     {
         int total = 0;
-        int i = 0;
+        int i = 0; 
         List<Produto> list = new ArrayList<>();
-        List<Pair<Produto, Integer>> cl;
+        List<Pair<Produto, Integer>> cl = new ArrayList<>();
         Set<Pair<Produto, Integer>> clOrder;
-        if(filial == 1)
+        
+        f1.getProdUnidades(cl);
+        f2.getProdUnidades(cl);
+        f3.getProdUnidades(cl); 
+                        
+        clOrder = new TreeSet<>(new MaisCompradosComparator());
+                        
+        for(Pair<Produto, Integer> p: cl){clOrder.add(p);}
+        Iterator<Pair<Produto, Integer>> it = clOrder.iterator();
+        while(it.hasNext() && i < x)
         {
-            cl = f1.getProdUnidades();
-            clOrder = new TreeSet<>(new MaisCompradosComparator());
-            
-            for(Pair<Produto, Integer> p: cl){clOrder.add(p);}
-            
-            Iterator<Pair<Produto, Integer>> it = clOrder.iterator();
-            while(it.hasNext() && i < x)
-            {
-                Pair<Produto, Integer> pair = it.next();
-                list.add(pair.getFst());
-                i++;
-            }            
-            return list;
-        } 
-        else
-        {
-            if(filial == 2)
-            {
-                cl = f2.getProdUnidades();
-                clOrder = new TreeSet<>(new MaisCompradosComparator());
-                
-                for(Pair<Produto, Integer> p: cl){clOrder.add(p);}
-                
-                Iterator<Pair<Produto, Integer>> it = clOrder.iterator();
-                while(it.hasNext() && i < x)
-                {
-                    Pair<Produto, Integer> pair = it.next();
-                    list.add(pair.getFst());
-                    i++;
-                }
-                return list;
-            }
-            else
-            {
-                if(filial == 3)
-                {
-                    cl = f3.getProdUnidades();
-                    clOrder = new TreeSet<>(new MaisCompradosComparator());
-                    
-                    for(Pair<Produto, Integer> p: cl){clOrder.add(p);}
-                    Iterator<Pair<Produto, Integer>> it = clOrder.iterator();
-                    while(it.hasNext() && i < x)
-                    {
-                        Pair<Produto, Integer> pair = it.next();
-                        list.add(pair.getFst());
-                        i++;
-                    }
-                    return list;
-                } 
-            }
-        }
+               Pair<Produto, Integer> pair = it.next();
+               list.add(pair.getFst());
+               i++;
+         }
+        
         return list;
     }
     
-    public List<Pair<Produto,Integer>> cldistintos(List<Produto> lp, int filial)
+    public List<Pair<Produto,Integer>> cldistintos(List<Produto> lp)
     {
         int total = 0;
         Produto prod = new Produto();
         List<Pair<Produto,Integer>> l = new ArrayList<>();
         
+        
         Iterator<Produto> it = lp.iterator();
         while(it.hasNext())
         {
+            Set<Cliente> s = new TreeSet<>();
             Pair<Produto,Integer> pair = new Pair<>();
             prod = it.next();
-            if(filial == 1)
-            {
-                   total = f1.clDistintos(prod);
-                   pair.setFst(prod);
-                   pair.setSnd(total);
-                   l.add(pair);
-            }
-            else{
-                if(filial == 2)
-                {
-                   total = f2.clDistintos(prod);
-                   pair.setFst(prod);
-                   pair.setSnd(total);
-                   l.add(pair);
-                }
-                else{
-                    if(filial == 3)
-                    {
-                       total = f3.clDistintos(prod);
-                       pair.setFst(prod);
-                       pair.setSnd(total);
-                       l.add(pair);
-                    }
-                }
-            }
-        }
+            f1.clDistintos(prod, s);
+            f2.clDistintos(prod, s);
+            f3.clDistintos(prod, s);
+            total = s.size();
+            pair.setFst(prod);
+            pair.setSnd(total);
+            l.add(pair);
+         }
+        //Collections.sort(l, new...); 
         return l;
     }
     

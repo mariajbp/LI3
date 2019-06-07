@@ -193,6 +193,22 @@ public class Filial implements Serializable, IFilial
         return s;
     }
     
+    public void getProdUnidades(List<Pair<Produto, Integer>> s)
+    {
+        for(Map.Entry<Produto, List<RegistoProduto>> e : regProd.entrySet())
+        {
+            Pair<Produto, Integer> p = new Pair<>();
+            int unidades = 0;
+            for(RegistoProduto rp : e.getValue())
+            { 
+                unidades += rp.getUnidades();
+            }
+            p.setFst(e.getKey());
+            p.setSnd(unidades);
+            s.add(p); 
+        }
+    }
+    
     /**
     * Método que retorna um set de produtos 
     **/
@@ -497,10 +513,8 @@ public class Filial implements Serializable, IFilial
     /**
     * ?????????
     **/
-    public int clDistintos(Produto p) // query 6
-    {
-        int total = 0;
-        
+    public void clDistintos(Produto p, Set<Cliente> s) // query 6
+    {   
         if(regProd.containsKey(p))
         {
            List<RegistoProduto> lrp = regProd.get(p); 
@@ -508,10 +522,14 @@ public class Filial implements Serializable, IFilial
            while(it.hasNext())
            {
                RegistoProduto rp = it.next();
-               total += rp.ClientesDistintos();
+               Iterator i = rp.getRegisto().iterator();
+               while(i.hasNext())
+               {
+                   Cliente c = (Cliente) i.next();
+                   s.add(c);
+                }
            }
         }
-        return total;
     }
     
     /**

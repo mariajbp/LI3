@@ -8,6 +8,8 @@ import java.util.Iterator;
 import java.awt.event.KeyEvent; 
 import java.util.Map; 
 
+import static java.lang.System.out;
+
 /**
 * 
 **/
@@ -304,14 +306,17 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         Scanner input = new Scanner(System.in);
         int x = input.nextInt(); 
         crono.start(); 
-        List<Produto> p1 = model.prodsMaisVendidos(x, 1);
-        List<Produto> p2 = model.prodsMaisVendidos(x, 2);
-        List<Produto> p3 = model.prodsMaisVendidos(x, 3);
-        List<Pair<Produto,Integer>> l1 = model.cldistintos(p1, 1);
+        
+        List<Produto> pt = model.prodsMaisVendidos(x);
+        /*List<Pair<Produto,Integer>> l1 = model.cldistintos(p1, 1);
         List<Pair<Produto,Integer>> l2 = model.cldistintos(p2, 2);
-        List<Pair<Produto,Integer>> l3 = model.cldistintos(p3, 3);
-        //List<Pair<Produto,Integer>> l = model.prodsEcldistintos(l1,l2,l3,x);
+        List<Pair<Produto,Integer>> l3 = model.cldistintos(p3, 3);*/
+        List<Pair<Produto,Integer>> l = model.cldistintos(pt);
         //view.query6_Output_Dados(l1, l2, l3);   
+        
+        
+        out.println(pt);
+        out.println(l);
         double t = crono.stop(); 
         view.time(t);
     } 
