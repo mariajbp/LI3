@@ -270,11 +270,7 @@ public class GestVendasView implements Serializable, IGestVendasView
        out.println("*******************************************************************************");
        out.println("Clientes" +"\t"+"\t"+ "Valor gasto no produto");
        out.println("*******************************************************************************");
-<<<<<<< HEAD
        out.println("uni " +  "\ngasto "+ gasto.toString());
-=======
-       out.println("uni " + uni.toString() + "\ngasto "+ df.format(gasto.toString()));
->>>>>>> d00feca6728bbdcf63ed6842a63a55fa40cd01d8
        out.println("*******************************************************************************");
        
     }
