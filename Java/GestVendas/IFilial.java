@@ -92,4 +92,8 @@ public interface IFilial extends Serializable
     public Pair<Cliente,Double> clienteGastoAnual(Cliente c);
     public Pair<Cliente,Integer> clienteUnidadesAnual(Cliente c);
     public void numCompradoProds(Cliente c, Map<Produto, Integer> s);
+
+    
+    public List<Double> totalFtrProd(Produto p);
+
 }

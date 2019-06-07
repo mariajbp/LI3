@@ -67,6 +67,7 @@ public class RegistoProduto implements Serializable
    }
    
    public void setFaturado(double f){this.faturado = f;}
+   
    public void setUnidades(int u){this.unidades = u;}
    
    /**
