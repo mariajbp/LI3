@@ -182,7 +182,7 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
    **/
    public void estatisticasMenu()
    {
-       String s[] = {"Ultimo ficheiro de vendas lido", "Número total de compras por mês", "Faturação total por mês", "Número distinto de clientes que fizeram compras em cada mês"};
+       String s[] = {"Ver as estatisticas do ultimo ficheiro lido"};
        
        int op = 0;
        do
@@ -191,14 +191,9 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
            op = view.printMenu();
            switch(op)
            {
-               case 1: ultimoFichLido();
-                       break;
-               case 2: stat1();
-                       break;
-               case 3: stat2();
-                       break;
-               case 4: stat3();
-                       break;
+               default:
+                  view.printStats(model.getEstatisticas);
+                  break;
            } 
        }
        while(op != 0);
@@ -400,49 +395,5 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         view.time(t);
         
     } 
-    
-    /**
-    * 
-    **/
-    public void ultimoFichLido()
-    {
-        crono.start();
-        //..
-        double t = crono.stop(); 
-        view.time(t);
-    }
-    
-    /**
-    * 
-    **/
-    public void stat1()
-    {
-        crono.start();
-        //...
-        double t = crono.stop(); 
-        view.time(t);
-    }
-    
-    /**
-    * 
-    **/
-    public void stat2()
-    {
-        crono.start();
-        //..
-        double t = crono.stop(); 
-        view.time(t);
-    }
-    
-    /**
-    * 
-    **/
-    public void stat3()
-    {
-        crono.start();
-        //...
-        double t = crono.stop(); 
-        view.time(t);
-    }
     
 }
