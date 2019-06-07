@@ -236,6 +236,7 @@ public class GestVendasView implements Serializable, IGestVendasView
    
    public void query8_Output( List<Pair<Cliente,Integer>> c1,  List<Pair<Cliente,Integer>> c2,  List<Pair<Cliente,Integer>> c3)
    {
+       Pair<Cliente,Integer> p1 = new Pair();
        out.println("*******************************************************************************");
        out.println("Clientes" +"\t"+"\t"+ "Quantidade comprada");
        out.println("*******************************************************************************");
@@ -278,9 +279,26 @@ public class GestVendasView implements Serializable, IGestVendasView
    public void query10_Output(Map<Produto, List<Double>> c1, Map<Produto, List<Double>> c2, Map<Produto, List<Double>> c3)
    {
        out.println("*******************************************************************************");
-       out.println("Mês" +"\t" +"\t" + "Filial 1" +"\t"+ "Filial 2" +"\t"+ "Filial 3");
+       out.println("Filial 1");
        out.println("*******************************************************************************");
-       
+       for(Map.Entry<Produto, List<Double>> e : c1.entrySet())
+       {
+           out.println("\t"+"\t"+ e.getKey().toString() + e.getValue() );
+       }
+       out.println("*******************************************************************************");
+       out.println("Filial 2");
+       out.println("*******************************************************************************");
+       for(Map.Entry<Produto, List<Double>> e : c2.entrySet())
+       {
+           out.println("\t"+"\t"+ e.getKey().toString() + e.getValue() );
+       }
+       out.println("*******************************************************************************");
+       out.println("Filial 3");
+       out.println("*******************************************************************************");
+       for(Map.Entry<Produto, List<Double>> e : c3.entrySet())
+       {
+           out.println("\t"+"\t"+ e.getKey().toString() + e.getValue() );
+       }
    }
    
    public void printStats(Estatisticas e)

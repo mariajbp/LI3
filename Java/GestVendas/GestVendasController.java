@@ -371,15 +371,15 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     * Query 10:  Determinar mês a mês, e para cada mês filial a filial, a facturação total com cada produto.
     **/
     public void query10()
-    {/*
+    {
         crono.start();
         Map<Produto, List<Double>> c1 = model.ftrTotal(1);
         Map<Produto, List<Double>> c2 = model.ftrTotal(2);
-        Map<Produto, List<Double>> c3 = model.ftrTotal(3);
+        Map<Produto, List<Double>> c3 = model.ftrTotal(3); 
         view.query10_Output(c1,c2,c3);
         double t = crono.stop(); 
         view.time(t);
-        */
+        
     } 
     
     /**

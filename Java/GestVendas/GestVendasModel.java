@@ -866,20 +866,42 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * Método que determina mês a mês, e para cada mês filial a filial, a facturação total de cada produto.
     * @returns Mapa que contém mês a mês, e para cada mês filial a filial, a facturação total de cada produto
     **/
-    /*
     public Map<Produto, List<Double>> ftrTotal(int filial)
     {
-        Faturacao f = new Faturacao();
-        Map<Produto, List<Double>> map = new HashMap<>();
+        Map<Produto, List<Double>>  m = new HashMap<>();
+        if(filial == 1)
+        {
+           Map<Produto, List<RegistoProduto>> regProd = f1.getRegProd();
+           for(Map.Entry<Produto, List<RegistoProduto>> e : regProd.entrySet())
+           {
+              List<Double> l = f1.totalFtrProd(e.getKey()); 
+              m.put(e.getKey(), l);
+           }
+        }
         
-        if(filial == 1){map = f.getProdPrecoMes1();}
-        if(filial == 2){map = f.getProdPrecoMes2();}  
-        if(filial == 3){map = f.getProdPrecoMes3();}
+        if(filial == 2)
+        {
+           Map<Produto, List<RegistoProduto>> regProd = f2.getRegProd();
+           for(Map.Entry<Produto, List<RegistoProduto>> e : regProd.entrySet())
+           {
+              List<Double> l = f2.totalFtrProd(e.getKey()); 
+              m.put(e.getKey(), l);
+           }
+        }
         
-        return map;
+        if(filial == 3)
+        {
+           Map<Produto, List<RegistoProduto>> regProd = f3.getRegProd();
+           for(Map.Entry<Produto, List<RegistoProduto>> e : regProd.entrySet())
+           {
+              List<Double> l = f3.totalFtrProd(e.getKey()); 
+              m.put(e.getKey(), l);
+           }
+        }
+        return m;
     }
     
-    */
+
    
     /** 
     * Método que guarda em ficheiro de objectos o objecto que recebe a mensagem

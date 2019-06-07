@@ -600,7 +600,8 @@ public class Filial implements Serializable, IFilial
                 {
                     pair = e.getValue();
                     p.setFst(c);
-                    p.setSnd(pair.getSnd());
+                    total = pair.getSnd();
+                    p.setSnd(total);
                 }
             }
         }       
@@ -639,9 +640,10 @@ public class Filial implements Serializable, IFilial
                 for(Map.Entry<Produto, Pair<Integer,Double>> e : prod.entrySet())
                 {
                     pair = e.getValue();
-                    p.setFst(c);
-                    p.setSnd(pair.getFst());
+                    total = pair.getFst();  
                 }
+                p.setFst(c);
+                p.setSnd(total);
             }
         }       
         
@@ -682,5 +684,26 @@ public class Filial implements Serializable, IFilial
          
          return l;
       }
+      
+      //query 10 dado um prod retorna a lista de prod e total faturado por mes
+     public List<Double> totalFtrProd(Produto p)
+     {
+          double ftr;
+          Pair<Produto,Double> pair = new Pair();
+          List<Double> l = new ArrayList<>();
+          
+          if(regProd.containsKey(p))
+          {
+              List<RegistoProduto> rp = regProd.get(p);
+              Iterator<RegistoProduto> it = rp.iterator();
+              while(it.hasNext())
+              {
+                 RegistoProduto r = it.next();
+                 ftr = r.getFaturado();
+                 l.add(ftr);
+              }
+          }
+          return l;
+     }
 }
 
