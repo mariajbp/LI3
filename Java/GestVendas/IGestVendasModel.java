@@ -30,5 +30,5 @@ public interface IGestVendasModel extends Serializable
    
     public List<Pair<Cliente, Integer>> xClientesMaisCompraram(Produto p, int x, int filial);
     public List<Pair<Cliente, Double>> xClientes_valorGasto(Produto p, int x, int filial);
-    public List<Pair<Produto,Integer>> prodsMaisComprados(Cliente c, int filial);
+    public List<Pair<Produto,Integer>> prodsMaisComprados(Cliente c);
 }

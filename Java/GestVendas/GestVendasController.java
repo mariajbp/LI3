@@ -290,7 +290,7 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         String s = input.nextLine(); 
         Cliente c = new Cliente(s);
         crono.start();
-        view.query5_Output(model.prodsMaisComprados(c, 1), model.prodsMaisComprados(c, 2), model.prodsMaisComprados(c, 3));
+        view.query5_Output(model.prodsMaisComprados(c));
         double t = crono.stop(); 
         view.time(t);
     } 

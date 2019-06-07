@@ -177,26 +177,7 @@ public class Filial implements Serializable, IFilial
     }
     
     //Preenche uma lista de pares( clientes, total faturado anual)---> query 6
-    public List<Pair<Produto, Integer>> getProdUnidades()
-    {
-        List<Pair<Produto, Integer>> s = new ArrayList<>();
-        
-        for(Map.Entry<Produto, List<RegistoProduto>> e : regProd.entrySet())
-        {
-            Pair<Produto, Integer> p = new Pair<>();
-            int unidades = 0;
-            for(RegistoProduto rp : e.getValue())
-            { 
-                unidades += rp.getUnidades();
-            }
-            p.setFst(e.getKey());
-            p.setSnd(unidades);
-            s.add(p); 
-        }
-        return s;
-    }
-    
-    public void getProdUnidades(List<Pair<Produto, Integer>> s)
+    public void getProdUnidades(Map<Produto, Integer> s)
     {
         for(Map.Entry<Produto, List<RegistoProduto>> e : regProd.entrySet())
         {
@@ -206,9 +187,16 @@ public class Filial implements Serializable, IFilial
             { 
                 unidades += rp.getUnidades();
             }
-            p.setFst(e.getKey());
-            p.setSnd(unidades);
-            s.add(p); 
+            
+            if(s.containsKey(e.getKey()))
+            {
+                int uniOld = s.get(e.getKey());
+                s.put(e.getKey(), uniOld + unidades); 
+            }
+            else
+            {
+                s.put(e.getKey(), unidades);
+            }
         }
     }
     
@@ -654,14 +642,13 @@ public class Filial implements Serializable, IFilial
         pfinal.setFst(c);
         pfinal.setSnd(total);
         return pfinal; 
-    }
+    } 
     
      //query 5 dá p par produtos e unidades anuais de um cliente
-     public List<Pair<Produto, Integer>> numCompradoProds(Cliente c)
-     {
-         Pair<Produto, Integer> p = new Pair();
+     public void numCompradoProds(Cliente c, Map<Produto, Integer> s)
+     { 
          Pair<Integer,Double> pair = new Pair();
-         List<Pair<Produto, Integer>> l = new ArrayList();
+ 
          if(regCl.containsKey(c))
          {
              List<RegistoCliente> rc = regCl.get(c);
@@ -673,14 +660,19 @@ public class Filial implements Serializable, IFilial
                 for(Map.Entry<Produto, Pair<Integer,Double>> e : prod.entrySet())
                 {
                     pair = e.getValue();
-                    p.setFst(e.getKey());
-                    p.setSnd(pair.getFst());
+                    if(s.containsKey(e.getKey()))
+                    {
+                        int uniOld = s.get(e.getKey());
+                        s.put(e.getKey(), pair.getFst()+uniOld);
+                    }
+                    else
+                    {
+                        s.put(e.getKey(), pair.getFst());
+                    }
+                    
                 }
-                l.add(p);
              }
          }
-         
-         return l;
       }
 }
 

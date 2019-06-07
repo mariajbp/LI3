@@ -460,20 +460,23 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * decrescente de quantidade e, para quantidades iguais, por ordem alfabética dos códigos.
     * @returns
     **/   
-    public List<Pair<Produto,Integer>> prodsMaisComprados(Cliente c, int filial)
+    public List<Pair<Produto,Integer>> prodsMaisComprados(Cliente c)
     {
         int i = 0;
         List<Pair<Produto,Integer>> list = new ArrayList<>();
-        List<Pair<Produto,Integer>> cp;
+        Map<Produto,Integer> cp = new HashMap<>();
         Set<Pair<Produto,Integer>> cpOrder;
         
-        if(filial == 1)
-        {
-            cp = f1.numCompradoProds(c); 
+            f1.numCompradoProds(c, cp); 
+            f2.numCompradoProds(c, cp);
+            f3.numCompradoProds(c, cp);
             cpOrder = new TreeSet<>(new DecrescenteComparatorProduto());
             
-            for(Pair<Produto,Integer> p: cp){cpOrder.add(p);}
             
+            for(Map.Entry<Produto, Integer> p: cp.entrySet()){
+                Pair<Produto, Integer> pair = new Pair<>(p.getKey(), p.getValue());
+                cpOrder.add(pair);
+            }
             Iterator<Pair<Produto,Integer>> it = cpOrder.iterator();
             while(it.hasNext() && i < 5)
             {
@@ -483,45 +486,6 @@ public class GestVendasModel implements Serializable, IGestVendasModel
             }          
             Collections.sort(list, new DecrescenteComparatorProduto());
             return list;
-        } 
-        
-        if(filial == 2)
-        {
-            cp = f2.numCompradoProds(c); 
-            cpOrder = new TreeSet<>(new DecrescenteComparatorProduto());
-            
-            for(Pair<Produto,Integer> p: cp){cpOrder.add(p);}
-            
-            Iterator<Pair<Produto,Integer>> it = cpOrder.iterator();
-            while(it.hasNext() && i < 5)
-            {
-                Pair<Produto,Integer> pair = it.next();
-                list.add(pair);
-                i++;
-            }          
-            Collections.sort(list, new DecrescenteComparatorProduto());
-            return list;
-        }
-        
-        if(filial == 3)
-        {
-            cp = f3.numCompradoProds(c); 
-            cpOrder = new TreeSet<>(new DecrescenteComparatorProduto());
-            
-            for(Pair<Produto,Integer> p: cp){cpOrder.add(p);}
-            
-            Iterator<Pair<Produto,Integer>> it = cpOrder.iterator();
-            while(it.hasNext() && i < 5)
-            {
-                Pair<Produto,Integer> pair = it.next();
-                list.add(pair);
-                i++;
-            }          
-            Collections.sort(list, new DecrescenteComparatorProduto());
-            return list;
-        }
-        
-        return list;
     } 
     
     
@@ -535,11 +499,11 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     **/
 
     public List<Produto> prodsMaisVendidos(int x)
-    {
+    { 
         int total = 0;
         int i = 0; 
         List<Produto> list = new ArrayList<>();
-        List<Pair<Produto, Integer>> cl = new ArrayList<>();
+        Map<Produto, Integer> cl = new HashMap<>();
         Set<Pair<Produto, Integer>> clOrder;
         
         f1.getProdUnidades(cl);
@@ -548,7 +512,10 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                         
         clOrder = new TreeSet<>(new MaisCompradosComparator());
                         
-        for(Pair<Produto, Integer> p: cl){clOrder.add(p);}
+        for(Map.Entry<Produto, Integer> p: cl.entrySet()){
+            Pair<Produto, Integer> pair = new Pair<>(p.getKey(), p.getValue());
+            clOrder.add(pair);
+        }
         Iterator<Pair<Produto, Integer>> it = clOrder.iterator();
         while(it.hasNext() && i < x)
         {
@@ -558,7 +525,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
          }
         
         return list;
-    }
+    } 
     
     public List<Pair<Produto,Integer>> cldistintos(List<Produto> lp)
     {
