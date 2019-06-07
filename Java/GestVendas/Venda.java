@@ -1,8 +1,4 @@
 import java.io.Serializable;
-import java.util.TreeSet; 
-import java.util.Arrays;
-import java.util.Iterator;
-import static java.lang.System.out;
 
 /**
 *  Representação de uma venda

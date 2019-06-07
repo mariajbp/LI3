@@ -5,8 +5,9 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 import static java.lang.System.out;
 import java.util.Iterator;
-import java.awt.event.KeyEvent;
 import java.util.Map; 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 /**
 * Classe que 
@@ -15,7 +16,8 @@ import java.util.Map;
 public class GestVendasView implements Serializable, IGestVendasView  
 {
    private Menu menu;
- 
+   private static DecimalFormat df = new DecimalFormat("#.##");
+   
    public void init()
    { 
         out.println("   ******   ********  ******  ******** **          **********  **    ** ********     ***     ******  ");
@@ -136,7 +138,7 @@ public class GestVendasView implements Serializable, IGestVendasView
        out.println("Filial 1" +"\t"+"\t"+ "Filial 2" +"\t"+"\t"+ "Filial 3" +"\t"+"\t" + "Total");
        out.println("*******************************************************************************");
        out.println("Vendas: "+ p1.getFst() + "\t"+ "\t"+"Vendas: "+ p2.getFst() +"\t"+ "\t" +"Vendas: "+ p3.getFst() +"\t"+ "\t" + tp + "\n");
-       out.println("Clientes: " + p1.getSnd() +"\t"+ "\t"+ "Clientes: " + p2.getSnd() +"\t"+ "\t"+"Clientes: " + p3.getSnd() +"\t"+ "\t" + tc);
+       out.println("Clientes: " + p1.getSnd() +"\t"+ "\t"+ "Clientes: " + p2.getSnd() +"\t"+ "\t"+"Clientes: " + p3.getSnd() +"\t"+ "\t" + tc); 
        out.println("*******************************************************************************");
    }
     
@@ -156,7 +158,7 @@ public class GestVendasView implements Serializable, IGestVendasView
     
    public void query3_Output(int c, double t, int p, int mes)
    {
-       out.println( mes + "\t"+"\t"+ c + "\t"+"\t" + p + "\t"+ "\t" + t);
+       out.println( mes + "\t"+"\t"+ c + "\t"+"\t" + p + "\t"+ "\t" + df.format(t));
        out.println("*******************************************************************************");
    }
    
@@ -168,7 +170,7 @@ public class GestVendasView implements Serializable, IGestVendasView
    
    public void query4_Output(int i, Pair<Integer, Integer> p, double t)
    {
-       out.println(i  +"\t" +"\t" +  p.getFst() +"\t" +"\t"+p.getSnd() +"\t" +"\t" +t);
+       out.println(i  +"\t" +"\t" +  p.getFst() +"\t" +"\t"+p.getSnd() +"\t" +"\t" + df.format(t));
        out.println("*******************************************************************************");
     }
     
@@ -261,7 +263,7 @@ public class GestVendasView implements Serializable, IGestVendasView
        out.println("*******************************************************************************");
        out.println("Clientes" +"\t"+"\t"+ "Valor gasto no produto");
        out.println("*******************************************************************************");
-       // 
+       //  
        out.println("*******************************************************************************");
    }
    
@@ -270,7 +272,7 @@ public class GestVendasView implements Serializable, IGestVendasView
        out.println("*******************************************************************************");
        out.println("Clientes" +"\t"+"\t"+ "Valor gasto no produto");
        out.println("*******************************************************************************");
-       out.println("uni " + uni.toString() + "\ngasto "+ gasto.toString());
+       out.println("uni " + uni.toString() + "\ngasto "+ df.format(gasto.toString()));
        out.println("*******************************************************************************");
        
     }
@@ -283,21 +285,21 @@ public class GestVendasView implements Serializable, IGestVendasView
        out.println("*******************************************************************************");
        for(Map.Entry<Produto, List<Double>> e : c1.entrySet())
        {
-           out.println("\t"+"\t"+ e.getKey().toString() + e.getValue() );
+           out.println("\t"+"\t"+ e.getKey().toString() + df.format(e.getValue()) );
        }
        out.println("*******************************************************************************");
        out.println("Filial 2");
        out.println("*******************************************************************************");
        for(Map.Entry<Produto, List<Double>> e : c2.entrySet())
        {
-           out.println("\t"+"\t"+ e.getKey().toString() + e.getValue() );
+           out.println("\t"+"\t"+ e.getKey().toString() + df.format(e.getValue()) );
        }
        out.println("*******************************************************************************");
        out.println("Filial 3");
        out.println("*******************************************************************************");
        for(Map.Entry<Produto, List<Double>> e : c3.entrySet())
        {
-           out.println("\t"+"\t"+ e.getKey().toString() + e.getValue() );
+           out.println("\t"+"\t"+ e.getKey().toString() + df.format(e.getValue()) );
        }
    }
    
