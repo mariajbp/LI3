@@ -105,7 +105,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                    v++;
                }
            }
-          // e.setProdutos(v);
+           e.setProdutos(v);
       }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
       out.println("Produtos Carregados");
     }
@@ -148,7 +148,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                    v++;
                }
            }
-           //e.setClientes(v);
+           e.setClientes(v);
        }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
        out.println("Clientes Carregados");
     }
@@ -246,7 +246,8 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     }
     
     /**
-    * 
+    * Metodo para estatistica de Produtos
+    * @returns   número de produtos não comprados
     **/
     public int estatisticaProduto()
     {
@@ -265,22 +266,57 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     }
 
     /**
-    * 
+    * Metodo para estatistica de Clientes
+    * @returns   número de clientes não comprados
     **/  
     public int estatisticaCliente()
     {
         Set<Cliente> todosClientes = ccl.getCatalogo();
         Set<Cliente> c = new TreeSet();
     
-        f1.getClientes(c); // nao existe
-        f2.getClientes(c); // nao existe
-        f3.getClientes(c); // nao existe
+        f1.getClientes(c);
+        f2.getClientes(c);
+        f3.getClientes(c);
     
         e.setClientesCompraram(c.size());
     
         return (todosClientes.size() - c.size());
     }
-
+   
+   /**
+    * Metodo para interação da Classe Estatistica com a classe Filial
+    **/
+    public void statsMF()
+    {
+        int[] c = new int[12];
+        for(int m = 0; m < 12; m++)
+        {
+            c[m] += f1.totalVendas(m);
+            c[m] += f2.totalVendas(m);
+            c[m] += f3.totalVendas(m);
+        }
+        e.setCompras(c);
+        
+        double[][] fMF = new double[12][3];
+        for(int m = 0; m < 12; m++)
+        {
+            for(int f = 0; f < 3; f++)
+            {
+                fMF[m][f] = ftr.getFtrMensal(m,f);
+            }
+        }
+        e.setftrMF(fMF);
+        
+        int[][] cMF = new int[12][3];
+        for(int m = 0; m < 12; m++)
+        {
+            cMF[m][0] = f1.getClientesDistintosTotal(m);
+            cMF[m][1] = f2.getClientesDistintosTotal(m);
+            cMF[m][2] = f3.getClientesDistintosTotal(m);
+        }
+        e.setClientesMF(cMF);
+    }
+    
         
     /**** QUERY1 ****/
     /** 
