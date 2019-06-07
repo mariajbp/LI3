@@ -158,9 +158,10 @@ public class Filial implements Serializable, IFilial
     **/ 
     public void getClientesProdutosDistintos(Map<Cliente, Set<Produto>> m)
     {   
-        Set<Produto> p1 = new TreeSet<>();
+        
         for(Map.Entry<Cliente, List<RegistoCliente>> e : regCl.entrySet())
         {
+            Set<Produto> p1 = new TreeSet<>();
             for(RegistoCliente rc : e.getValue())
             {   
                 Set<Produto> p = new TreeSet<>();

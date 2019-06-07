@@ -628,7 +628,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * @param       Número de clientes a determinar, introduzido pelo utilizador
     * @returns
     **/
-    public List<Pair<Cliente,Integer>> clientesMaisCompraram(int x, int filial)
+    public List<Pair<Cliente,Integer>> clientesMaisCompraram(int x)
     {
         int i = 0;
         List<Pair<Cliente, Integer>> list = new ArrayList<>();
@@ -638,6 +638,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
             f1.getClientesProdutosDistintos(cl);
             f2.getClientesProdutosDistintos(cl);
             f3.getClientesProdutosDistintos(cl);
+            
             
             clOrder = new TreeSet<>(new DecrescenteComparatorCliente());
             

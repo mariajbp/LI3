@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=IGestVendasModel
-comment0.text=\n\ \n
+comment0.text=\r\n\ \r\n
 comment1.params=
 comment1.target=void\ carregamentoDefault()
 comment10.params=c\ mes
@@ -11,8 +11,8 @@ comment12.params=x
 comment12.target=java.util.List\ prodsMaisVendidos(int)
 comment13.params=lp
 comment13.target=java.util.List\ cldistintos(java.util.List)
-comment14.params=x\ filial
-comment14.target=java.util.List\ clientesMaisCompraram(int,\ int)
+comment14.params=x
+comment14.target=java.util.List\ clientesMaisCompraram(int)
 comment15.params=p\ x
 comment15.target=java.util.List\ xClientesMaisCompraram(Produto,\ int)
 comment16.params=c
