@@ -8,7 +8,7 @@ import java.util.Iterator;
 import java.awt.event.KeyEvent; 
 import java.util.Map; 
 
-import static java.lang.System.out;
+import static java.lang.System.out; 
 
 /**
 * 
@@ -66,7 +66,7 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
    **/
    public void carregamentoDefault()
    {
-       model.carregamentoDefault();
+       model.carregamentoDefault(); 
        queryORestatisticasMenu();
    }
    
@@ -247,8 +247,8 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         crono.start();
         view.query3_Output();
         for(int i = 1; i <= 12; i++){
-            Pair<Integer,Double> l = model.totalComprasCliente(c, i); 
-            int p = model.totalProdutosDistintos(c, i);
+            Pair<Integer,Double> l = model.totalComprasCliente(c, i);  
+            int p = model.totalProdutosDistintos(c, i); 
             view.query3_Output(l.getFst(), l.getSnd(), p, i);
         }
          
@@ -320,7 +320,7 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     public void query7()
     {
         crono.start();
-        view.query7_Output(model.maioresCompradores(1), model.maioresCompradores(2), model.maioresCompradores(3));
+        view.query7_Output(model.maioresCompradores(1), model.maioresCompradores(2), model.maioresCompradores(3)); 
         double t = crono.stop(); 
         view.time(t);
     } 
@@ -335,7 +335,7 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         Scanner input = new Scanner(System.in);
         int x = input.nextInt();
         crono.start();
-        view.query8_Output(model.clientesMaisCompraram(x));
+        view.query8_Output(model.clientesMaisCompraram(x)); 
         double t = crono.stop(); 
         view.time(t); 
     } 
@@ -363,7 +363,7 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     **/
     public void query10()
     {
-        crono.start();
+        crono.start(); 
         Map<Produto, List<Double>> c1 = model.ftrTotal(1);
         Map<Produto, List<Double>> c2 = model.ftrTotal(2);
         Map<Produto, List<Double>> c3 = model.ftrTotal(3); 
