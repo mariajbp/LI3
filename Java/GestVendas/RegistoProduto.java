@@ -40,20 +40,29 @@ public class RegistoProduto implements Serializable
    /** 
    * Construtor de cópia que cria uma nova instância RegistoProduto a partir de um RegistoProduto passado como parâmetro 
    **/
-   public RegistoProduto(RegistoProduto r) {
+   public RegistoProduto(RegistoProduto r) 
+   {
        this.registo = r.getRegisto();
        this.faturado = r.getFaturado();
        this.unidades = r.getUnidades();
     }
     
    /**
-   * Método que devolve o registo
+   * Método que devolve o registo de um cliente
    * @returns  Set de Pares<Cliente, Integer>
    **/ 
    public Set<Cliente> getRegisto(){return new TreeSet<>(this.registo);}
-    
+   
+   /**
+   * Método que 
+   * @returns  
+   **/ 
    public double getFaturado(){return this.faturado;}
    
+   /**
+   * Método que 
+   * @returns  
+   **/ 
    public int getUnidades(){return this.unidades;}
    
    /**
@@ -66,8 +75,16 @@ public class RegistoProduto implements Serializable
        this.registo = new TreeSet<>(s);
    }
    
+   /**
+   * Método que 
+   * @param
+   **/ 
    public void setFaturado(double f){this.faturado = f;}
    
+   /**
+   * Método que 
+   * @param
+   **/ 
    public void setUnidades(int u){this.unidades = u;}
    
    /**
@@ -108,14 +125,14 @@ public class RegistoProduto implements Serializable
    **/
    public void updateRegProduto(Cliente c, int uni, double f)
    {
-            this.registo.add(c);
-            this.unidades += uni;
-            this.faturado += f;
+       this.registo.add(c);
+       this.unidades += uni;
+       this.faturado += f;
     }
    
-    /**
-    * ?????????
-    **/
+   /**
+   * ?????????
+   **/
    public void updateFat (double f)
    {
        this.faturado += f;

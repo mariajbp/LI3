@@ -1,7 +1,7 @@
 import java.util.Comparator;
 
 /**
-* 
+* Classe MaisCompradosComparator que ordena produtos através do número de unidades compradas
 **/
 public class MaisCompradosComparator implements Comparator<Pair<Produto,Integer>>
 {

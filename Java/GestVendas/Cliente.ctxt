@@ -27,4 +27,5 @@ comment8.target=int\ compareTo(Cliente)
 comment8.text=\n\ M\u00E9todo\ que\ implementa\ um\ comparador\ de\ Cliente\ alfabeticamente\n\ @param\ Cliente\ a\ comparar\n
 comment9.params=
 comment9.target=int\ hashCode()
+comment9.text=\ \n\ M\u00E9todo\ que\ calcula\ o\ hashcode\ da\ classe\n
 numComments=10

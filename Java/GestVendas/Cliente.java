@@ -70,6 +70,9 @@ public class Cliente implements Serializable, Comparable<Cliente>
         return codigo_cl.compareTo(c.getCodigo()); 
     }
     
+    /** 
+    * Método que calcula o hashcode da classe
+    **/
     public int hashCode()
     {
         int hash = 7;

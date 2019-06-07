@@ -1,6 +1,6 @@
 import java.util.Comparator;
 /**
-* 
+* Classe DecrescenteComparatorCliente que impõem uma ordem decrescente a um par de produtos e inteiros
 **/
 public class DecrescenteComparatorProduto implements Comparator<Pair<Produto,Integer>>
 {

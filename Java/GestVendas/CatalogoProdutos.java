@@ -55,8 +55,8 @@ public class CatalogoProdutos implements ICatProdutos, Serializable
    }
    
    /** 
-    * Método que cria uma cópia de uma identificação de um Produto
-    **/
+   * Método que cria uma cópia de uma identificação de um Produto
+   **/
     public CatalogoProdutos clone(){return new CatalogoProdutos(this);}
    
    /** 
@@ -74,7 +74,6 @@ public class CatalogoProdutos implements ICatProdutos, Serializable
    
    /**
    * Método que converte uma identificação numa string
-   * @return  
    **/
     public String toString()
     {
@@ -85,97 +84,21 @@ public class CatalogoProdutos implements ICatProdutos, Serializable
    
    
    /**
-   * Método que  
-   **/
+   * Método que adiciona um produto a uma catalogo
+   * @param   Produto a adicionar
+   **/ 
    public void addProduto(Produto p)
    { 
       catalogo.add(p);  
    }
-    
+   
+   /**
+   * Método que verifica se um código existe no catalogo
+   * @returns  True se existir, False caso contrário
+   **/ 
    public boolean containsProduto(String codigo)
    { 
        Produto p = new Produto(codigo);
        return catalogo.contains(p);
    }
-   
-   /**Main da coisa que é para sair no fim
-   public static void main(String[] args)throws IOException
-   { 
-      long startTime = System.currentTimeMillis();
-      CatalogoProdutos test = new CatalogoProdutos("../Dados/Produtos.txt");
-      long total = 0;
-      for (int i = 0; i < 10000000; i++) 
-      {
-         total += i;
-      }
-      long stopTime = System.currentTimeMillis();
-      long elapsedTime = stopTime - startTime;
-      System.out.println("Demorei: " + elapsedTime + " ms");
-   }
-   **/
-   
-   
-
-   
-   /**
-   public CatalogoProdutos(CatalogoProdutos cp)
-   {
-       this.cprod = cp.getCProd(); 
-   }
-    
-   public TreeSet<String> getCProd() 
-   {
-       Set<CatalogoProdutos> aux = new TreeSet<CatalogoProdutos>();
-       for(CatalogoProdutos cp: this.cprod){aux.add(cp.clone());}
-       return aux;
-   }
-   
-   public CatalogoProdutos(String fileName) throws IOException  
-   {
-        this.cprod = new TreeSet<>();
-        readFile("../Dados/Produtos.txt");
-   }
-    
-   /** 
-   **  Faz load do ficheiro no TreeSet 
-   **  Retorna o número de codigos válidos
- 
-   private int readFile(String fileName) throws IOException 
-   {
-      int v = 0; //válidos
-      try 
-      {
-           br = new BufferedReader(new FileReader(fileName));
-           String line = null;
-           while ((line = br.readLine()) != null) 
-           {
-               if(validateP(line))
-               {
-                   cprod.add(line); 
-                   v++;
-               }
-           }
-      }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
-      return v;
-   }
-
-   
-   /** Procurar um Produto 
-   public boolean isItThereP(String c)
-   {
-       Iterator<String> it = this.cprod.iterator();
-       String s = null;
-       boolean v = false;
-       while(it.hasNext() && v == false)
-       {
-         s = it.next();
-         if (s.equals(c))
-         {
-             v = true;
-         }
-         else v = false;
-       }
-       return v;
-   }
- **/
 }
