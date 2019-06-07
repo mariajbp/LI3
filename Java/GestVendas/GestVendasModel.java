@@ -245,6 +245,9 @@ public class GestVendasModel implements Serializable, IGestVendasModel
        return validade;      
     }
     
+    /**
+    * 
+    **/
     public int estatisticaProduto()
     {
         Set<Produto> todosProdutos = cprod.getCatalogo();
@@ -261,7 +264,9 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         // return do nr de produtos nao comprados
     }
 
-       
+    /**
+    * 
+    **/  
     public int estatisticaCliente()
     {
         Set<Cliente> todosClientes = ccl.getCatalogo();

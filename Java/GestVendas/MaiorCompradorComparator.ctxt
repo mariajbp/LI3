@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=MaiorCompradorComparator
-comment0.text=\r\n\ Classe\ MaiorCompradorComparator\ que\ ordena\ clientes\ atrav\u00E9s\ do\ n\u00FAmero\ de\ unidades\ compradas\r\n
+comment0.text=\n\ Classe\ MaiorCompradorComparator\ que\ ordena\ clientes\ atrav\u00E9s\ do\ n\u00FAmero\ de\ unidades\ compradas\n
 comment1.params=c1\ c2
 comment1.target=int\ compare(Pair,\ Pair)
 numComments=2
