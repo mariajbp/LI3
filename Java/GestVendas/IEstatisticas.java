@@ -51,6 +51,21 @@ public interface IEstatisticas extends Serializable
     public double getFaturacao();
     
     /**
+    * Método que devolve o número total de compras por mês
+    **/
+    public int[12] getCompras();
+    
+    /**
+    * Método que devolve a faturação total por mês e por filial
+    **/
+    public double[12][3] getftrMF();
+    
+    /**
+    * Método que devolve o número de clientes distintos por mês e por filial
+    **/
+    public int[12][3] getClientesMF();
+
+    /**
     * Método que define o Nome do ficheiro
     **/
     public void setNome(String n);
@@ -94,4 +109,20 @@ public interface IEstatisticas extends Serializable
     * Método que define a faturação total
     **/
     public void setFaturacao(double f);
+    
+    /**
+    * Método que define o número de compras por mês
+    **/
+    public void setCompras(int[12] c);
+    
+    /**
+    * Método que define a faturação total por mês e por filial
+    **/
+    public void setftrMF(double[12][3] f);
+    
+    /**
+    * Método que define o número de clientes por mês e por filial
+    **/
+    public void setClientesMF(int[12][3] c);
+
 }
