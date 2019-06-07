@@ -50,7 +50,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         this.f2 = new Filial();
         this.f3 = new Filial();
         this.ftr = new Faturacao();
-        this.e = new Estatisticas();
+       // this.e = new Estatisticas();
     }
     
     /**
@@ -114,7 +114,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                    v++;
                }
            }
-           e.setProdutos(v);
+          // e.setProdutos(v);
       }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
       out.println("Produtos Carregados");
     }
@@ -157,7 +157,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                    v++;
                }
            }
-           e.setClientes(v);
+           //e.setClientes(v);
        }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
        out.println("Clientes Carregados");
     }
@@ -210,10 +210,10 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                }
                vLidas++;
            }
-           e.setVendasValidas(vValidas);
+           /*e.setVendasValidas(vValidas);
            e.setVendasLidas(vLidas);
            e.setCompras_0(c0);
-           e.setFaturacao(ftr.getFtrTotal());
+           e.setFaturacao(ftr.getFtrTotal());*/
       }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
       out.println("Vendas Carregadas");
     }
@@ -456,7 +456,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     
     /**** QUERY5 ****/
     /** 
-    * Método que dado o código de um cliente determinar a lista de códigos de produtos que mais comprou (e quantos), ordenada por ordem 
+    * Método que dado o código de um cliente determina a lista de códigos de produtos que mais comprou (e quantos), ordenada por ordem 
     * decrescente de quantidade e, para quantidades iguais, por ordem alfabética dos códigos.
     * @returns
     **/   
