@@ -2,7 +2,7 @@ import java.util.Comparator;
 /**
 * 
 **/
-public class DecrescenteComparator implements Comparator<Pair<Cliente,Integer>>
+public class DecrescenteComparatorCliente implements Comparator<Pair<Cliente,Integer>>
 {
    public int compare(Pair<Cliente,Integer> p1, Pair<Cliente,Integer> p2)
    {

@@ -2,9 +2,9 @@ import java.util.Comparator;
 /**
 * 
 **/
-public class ProdutosDiferentesComparator implements Comparator<Pair<Cliente,Integer>>
+public class DecrescenteComparatorProduto implements Comparator<Pair<Produto,Integer>>
 {
-   public int compare(Pair<Cliente,Integer> p1, Pair<Cliente,Integer> p2)
+   public int compare(Pair<Produto,Integer> p1, Pair<Produto,Integer> p2)
    {
         double x1 = p1.getSnd();
         double x2 =  p2.getSnd();

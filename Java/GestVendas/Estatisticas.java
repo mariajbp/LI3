@@ -91,9 +91,11 @@ public class Estatisticas implements IEstatisticas
     {
         StringBuilder s = new StringBuilder();
         s.append("Nome do ficheiro ").append(nome).append("\n");
-        s.append("Vendas Lidas: ").append(num_VendasLidas).append(". Vendas Validas: ").append(num_VendasValidas).append("\n");
-        s.append("Numero Total de Produtos: ").append(num_Produtos).append(". Produtos Comprados: ").append(num_totalProdutosComprados).append("\n");
+        s.append("Vendas Lidas: ").append(num_VendasLidas).append(". Vendas Validas: ").append(num_VendasValidas).append(". Vendas não Validas: ").append(num_VendasLidas - num_VendasValidas).append("\n");
+        s.append("Numero Total de Produtos: ").append(num_Produtos).append(". Produtos comprados: ").append(num_totalProdutosComprados).append("\n");
+        s.append("Produtos que nunca foram comprados: ").append(num_Produtos - num_totalProdutosComprados).append("\n");
         s.append("Numero Total de Clientes: ").append(num_Clientes).append(". Clientes que realizaram compras: ").append(num_ClientesCompraram).append("\n");
+        s.append("Clientes que nunca realizaram compras: ").append(num_Clientes - num_ClientesCompraram).append("\n");
         s.append("Numero de Compras com 0 de faturacao: ").append(compras_0).append("\n");
         s.append("Faturaçao Total: ").append(faturacao).append("\n");
 

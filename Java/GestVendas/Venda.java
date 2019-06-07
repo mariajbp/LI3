@@ -186,13 +186,13 @@ public class Venda implements Serializable
     public String toString()
     {
         StringBuilder sb = new StringBuilder();  
-        sb.append("Produto: " ).append(p);  
-        sb.append("Cliente: " ).append(cl); 
-        sb.append("Preço: " ).append(preco); 
-        sb.append("Unidades: " ).append(unidades); 
-        sb.append("Tipo: " ).append(np); 
-        sb.append("Mês: " ).append(mes); 
-        sb.append("Filial: " ).append(filial); 
+        sb.append("Produto: " ).append(p).append("\n");  
+        sb.append("Cliente: " ).append(cl).append("\n"); 
+        sb.append("Preço: " ).append(preco).append("\n"); 
+        sb.append("Unidades: " ).append(unidades).append("\n"); 
+        sb.append("Tipo: " ).append(np).append("\n"); 
+        sb.append("Mês: " ).append(mes).append("\n"); 
+        sb.append("Filial: " ).append(filial).append("\n"); 
         return sb.toString();
     }
 }

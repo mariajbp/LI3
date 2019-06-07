@@ -43,14 +43,16 @@ public class Pair<X extends Comparable<X>,Y extends Comparable<Y>> implements Co
     public Y getSnd(){return snd;}
     public void setSnd(Y snd){this.snd = snd;}
     
-    public boolean isEmpty(){
+    public boolean isEmpty()
+    {
         if(this.fst == null || this.snd == null)
             return true;
         else 
             return false;
     }
     
-    public int compareTo(Pair<X,Y> p){
+    public int compareTo(Pair<X,Y> p)
+    {
         int r = snd.compareTo(p.getSnd());
         return (r == 0) ? fst.compareTo(p.getFst()) : r;
     }

@@ -1,5 +1,5 @@
 #BlueJ class context
-comment0.target=DecrescenteComparator
+comment0.target=DecrescenteComparatorProduto
 comment0.text=\r\n\ \r\n
 comment1.params=p1\ p2
 comment1.target=int\ compare(Pair,\ Pair)

@@ -460,7 +460,70 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * decrescente de quantidade e, para quantidades iguais, por ordem alfabética dos códigos.
     * @returns
     **/   
-    //public ? prodsMaisComprados(){} + comparator 
+    public List<Pair<Produto,Integer>> prodsMaisComprados(Cliente c, int filial)
+    {
+        int i = 0;
+        List<Pair<Produto,Integer>> list = new ArrayList<>();
+        List<Pair<Produto,Integer>> cp;
+        Set<Pair<Produto,Integer>> cpOrder;
+        
+        if(filial == 1)
+        {
+            cp = f1.numCompradoProds(c); 
+            cpOrder = new TreeSet<>(new DecrescenteComparatorProduto());
+            
+            for(Pair<Produto,Integer> p: cp){cpOrder.add(p);}
+            
+            Iterator<Pair<Produto,Integer>> it = cpOrder.iterator();
+            while(it.hasNext() && i < 5)
+            {
+                Pair<Produto,Integer> pair = it.next();
+                list.add(pair);
+                i++;
+            }          
+            Collections.sort(list, new DecrescenteComparatorProduto());
+            return list;
+        } 
+        
+        if(filial == 2)
+        {
+            cp = f2.numCompradoProds(c); 
+            cpOrder = new TreeSet<>(new DecrescenteComparatorProduto());
+            
+            for(Pair<Produto,Integer> p: cp){cpOrder.add(p);}
+            
+            Iterator<Pair<Produto,Integer>> it = cpOrder.iterator();
+            while(it.hasNext() && i < 5)
+            {
+                Pair<Produto,Integer> pair = it.next();
+                list.add(pair);
+                i++;
+            }          
+            Collections.sort(list, new DecrescenteComparatorProduto());
+            return list;
+        }
+        
+        if(filial == 3)
+        {
+            cp = f3.numCompradoProds(c); 
+            cpOrder = new TreeSet<>(new DecrescenteComparatorProduto());
+            
+            for(Pair<Produto,Integer> p: cp){cpOrder.add(p);}
+            
+            Iterator<Pair<Produto,Integer>> it = cpOrder.iterator();
+            while(it.hasNext() && i < 5)
+            {
+                Pair<Produto,Integer> pair = it.next();
+                list.add(pair);
+                i++;
+            }          
+            Collections.sort(list, new DecrescenteComparatorProduto());
+            return list;
+        }
+        
+        return list;
+    } 
+    
     
     
     /**** QUERY6 ****/
@@ -652,7 +715,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         {
             cl = f1.getClientesProdutosDistintos();
             
-            clOrder = new TreeSet<>(new ProdutosDiferentesComparator());
+            clOrder = new TreeSet<>(new DecrescenteComparatorCliente());
             
             for(Pair<Cliente, Integer> p: cl){clOrder.add(p);}
             
@@ -664,7 +727,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                 i++;
             }         
             
-            Collections.sort(list, new DecrescenteComparator());
+            Collections.sort(list, new DecrescenteComparatorCliente());
             return list;
         } 
         else
@@ -673,7 +736,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
             {
                 cl = f2.getClientesProdutosDistintos();
                 
-                clOrder = new TreeSet<>(new ProdutosDiferentesComparator());
+                clOrder = new TreeSet<>(new DecrescenteComparatorCliente());
                 
                 
                 for(Pair<Cliente, Integer> p: cl){clOrder.add(p);}
@@ -686,7 +749,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                     i++;
                 }   
                 
-                Collections.sort(list, new DecrescenteComparator());
+                Collections.sort(list, new DecrescenteComparatorCliente());
                 return list;
             }
             else
@@ -695,7 +758,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                 {
                     cl = f3.getClientesProdutosDistintos();
                     
-                    clOrder = new TreeSet<>(new ProdutosDiferentesComparator());
+                    clOrder = new TreeSet<>(new DecrescenteComparatorCliente());
                     
                     for(Pair<Cliente, Integer> p: cl){clOrder.add(p);}
                     
@@ -707,7 +770,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                         i++;
                     }    
                     
-                    Collections.sort(list, new DecrescenteComparator());
+                    Collections.sort(list, new DecrescenteComparatorCliente());
                     return list;
                 } 
             }
@@ -716,7 +779,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     }
     
     
-    /**** QUERY9****/
+    /**** QUERY 9****/
     /**
     * Método que dado o código de um produto que deve existir, determinar o conjunto dos X clientes que mais o compraram e, para cada um, 
     * qual o valor gasto (ordenação cf. 5).
@@ -741,7 +804,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                 l.add(pair);
                 i++;
             }
-            Collections.sort(l, new DecrescenteComparator());
+            Collections.sort(l, new DecrescenteComparatorCliente());
             return l;
         }
         else
@@ -758,7 +821,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                     l.add(pair);
                     i++;
                 }
-                Collections.sort(l, new DecrescenteComparator());
+                Collections.sort(l, new DecrescenteComparatorCliente());
                 return l;
             
             }
@@ -776,7 +839,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
                         l.add(pair);
                         i++;
                     }
-                    Collections.sort(l, new DecrescenteComparator());
+                    Collections.sort(l, new DecrescenteComparatorCliente());
                     return l;
                 }
                    
@@ -821,7 +884,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
             }
             else
             {
-                if(filial == 1)
+                if(filial == 3)
                 {
                     Set<Cliente> sc = f3.getClientes(p);
                     Iterator<Cliente> it = sc.iterator();
