@@ -466,7 +466,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         List<Pair<Produto,Integer>> list = new ArrayList<>();
         Map<Produto,Integer> cp = new HashMap<>();
         Set<Pair<Produto,Integer>> cpOrder;
-        
+          
             f1.numCompradoProds(c, cp); 
             f2.numCompradoProds(c, cp);
             f3.numCompradoProds(c, cp);
@@ -521,7 +521,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         {
                Pair<Produto, Integer> pair = it.next();
                list.add(pair.getFst());
-               i++;
+                i++;
          }
         
         return list;
@@ -630,18 +630,21 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     **/
     public List<Pair<Cliente,Integer>> clientesMaisCompraram(int x, int filial)
     {
-        int total = 0;
         int i = 0;
         List<Pair<Cliente, Integer>> list = new ArrayList<>();
-        List<Pair<Cliente, Integer>> cl;
+        Map<Cliente, Set<Produto>> cl = new HashMap<>();
         Set<Pair<Cliente, Integer>> clOrder;
-        if(filial == 1)
-        {
-            cl = f1.getClientesProdutosDistintos();
+
+            f1.getClientesProdutosDistintos(cl);
+            f2.getClientesProdutosDistintos(cl);
+            f3.getClientesProdutosDistintos(cl);
             
             clOrder = new TreeSet<>(new DecrescenteComparatorCliente());
             
-            for(Pair<Cliente, Integer> p: cl){clOrder.add(p);}
+            for(Map.Entry<Cliente, Set<Produto>> p: cl.entrySet()){
+                Pair<Cliente, Integer> pair = new Pair<>(p.getKey(), p.getValue().size());
+                clOrder.add(pair);
+            }
             
             Iterator<Pair<Cliente, Integer>> it = clOrder.iterator();
             while(it.hasNext() && i < x)
@@ -653,53 +656,6 @@ public class GestVendasModel implements Serializable, IGestVendasModel
             
             Collections.sort(list, new DecrescenteComparatorCliente());
             return list;
-        } 
-        else
-        {
-            if(filial == 2)
-            {
-                cl = f2.getClientesProdutosDistintos();
-                
-                clOrder = new TreeSet<>(new DecrescenteComparatorCliente());
-                
-                
-                for(Pair<Cliente, Integer> p: cl){clOrder.add(p);}
-                
-                Iterator<Pair<Cliente, Integer>> it = clOrder.iterator();
-                while(it.hasNext() && i < x)
-                {
-                    Pair<Cliente, Integer> pair = it.next();
-                    list.add(pair);
-                    i++;
-                }   
-                
-                Collections.sort(list, new DecrescenteComparatorCliente());
-                return list;
-            }
-            else
-            {
-                if(filial == 3)
-                {
-                    cl = f3.getClientesProdutosDistintos();
-                    
-                    clOrder = new TreeSet<>(new DecrescenteComparatorCliente());
-                    
-                    for(Pair<Cliente, Integer> p: cl){clOrder.add(p);}
-                    
-                    Iterator<Pair<Cliente, Integer>> it = clOrder.iterator();
-                    while(it.hasNext() && i < x)
-                    {
-                        Pair<Cliente, Integer> pair = it.next();
-                        list.add(pair);
-                        i++;
-                    }    
-                    
-                    Collections.sort(list, new DecrescenteComparatorCliente());
-                    return list;
-                } 
-            }
-        }
-        return list;
     }
     
     
@@ -711,121 +667,41 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     * @returns
     **/ 
     
-    public List<Pair<Cliente, Integer>> xClientesMaisCompraram(Produto p, int x, int filial)
+    public List<Pair<Cliente, Integer>> xClientesMaisCompraram(Produto p, int x)
     {
+        List<Pair<Cliente, Integer>> tmp = new ArrayList<>();
         List<Pair<Cliente, Integer>> l = new ArrayList<>();
         Pair<Cliente, Integer> pair;
-        int i = 0;
-        if(filial == 1)
+        Set<Cliente> sc = new TreeSet<>();
+       
+        f1.getClientes(p, sc);
+        f2.getClientes(p, sc);
+        f3.getClientes(p, sc);
+        out.println(sc);
+        Iterator<Cliente> it = sc.iterator();
+        while(it.hasNext())
         {
-            Set<Cliente> sc = f1.getClientes(p);
-            Iterator<Cliente> it = sc.iterator();
-            while(it.hasNext() && i < x)
-            {
                 Cliente c = it.next();
                 int snd = f1.clienteUnidadesAnual(c).getSnd(); 
+                snd += f2.clienteUnidadesAnual(c).getSnd(); 
+                snd += f3.clienteUnidadesAnual(c).getSnd(); 
                 pair = new Pair(c, snd);
-                l.add(pair);
-                i++;
-            }
-            Collections.sort(l, new DecrescenteComparatorCliente());
-            return l;
+                tmp.add(pair);
         }
-        else
+        
+        Collections.sort(tmp, new DecrescenteComparatorCliente());
+        for(int i = 0; i < x; i ++)
         {
-            if(filial == 2)
-            {
-                Set<Cliente> sc = f2.getClientes(p);
-                Iterator<Cliente> it = sc.iterator();
-                while(it.hasNext() && i < x)
-                {
-                    Cliente c = it.next();
-                    int snd = f2.clienteUnidadesAnual(c).getSnd(); 
-                    pair = new Pair(c, snd);
-                    l.add(pair);
-                    i++;
-                }
-                Collections.sort(l, new DecrescenteComparatorCliente());
-                return l;
-            
-            }
-            else
-            {
-                if(filial == 3)
-                {
-                    Set<Cliente> sc = f3.getClientes(p);
-                    Iterator<Cliente> it = sc.iterator();
-                    while(it.hasNext() && i < x)
-                    {
-                        Cliente c = it.next();
-                        int snd = f3.clienteUnidadesAnual(c).getSnd(); 
-                        pair = new Pair(c, snd);
-                        l.add(pair);
-                        i++;
-                    }
-                    Collections.sort(l, new DecrescenteComparatorCliente());
-                    return l;
-                }
-                   
-            }
+            Cliente c = tmp.get(i).getFst();
+            double fst = f1.clienteGastoAnual(c).getSnd();
+            fst += f2.clienteGastoAnual(c).getSnd();
+            fst += f3.clienteGastoAnual(c).getSnd();
+            pair = new Pair(c, fst);
+            l.add(pair);
         }
         return l;
     }
 
-    public List<Pair<Cliente, Double>> xClientes_valorGasto(Produto p, int x, int filial)
-    {
-        List<Pair<Cliente, Double>> l = new ArrayList<>();
-        Pair<Cliente, Double> pair;
-        if(filial == 1)
-        {
-            Set<Cliente> sc = f1.getClientes(p);
-            Iterator<Cliente> it = sc.iterator();
-            while(it.hasNext())
-            {
-                Cliente c = it.next();
-                double fst = f1.clienteGastoAnual(c).getSnd();
-                pair = new Pair(c, fst);
-                l.add(pair);
-            }
-            return l;
-        }
-        else
-        {
-            if(filial == 2)
-            {
-                Set<Cliente> sc = f2.getClientes(p);
-                Iterator<Cliente> it = sc.iterator();
-                while(it.hasNext())
-                {
-                    Cliente c = it.next();
-                    double fst = f2.clienteGastoAnual(c).getSnd();
-                    
-                    pair = new Pair(c, fst);
-                    l.add(pair);
-                }
-                return l;
-            
-            }
-            else
-            {
-                if(filial == 3)
-                {
-                    Set<Cliente> sc = f3.getClientes(p);
-                    Iterator<Cliente> it = sc.iterator();
-                    while(it.hasNext())
-                    {
-                        Cliente c = it.next();
-                        double fst = f3.clienteGastoAnual(c).getSnd();
-                        pair = new Pair(c, fst);
-                        l.add(pair);
-                    }
-                    return l;
-                }
-                   
-            }
-        }
-        return l;
-    }
 
     
     /**** QUERY10 ****/

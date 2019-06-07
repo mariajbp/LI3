@@ -256,7 +256,7 @@ public class GestVendasView implements Serializable, IGestVendasView
       out.println("Insira o número de clientes que quer determinar: \n");  
    }
    
-   public void query9_Output()
+   public void query9_Output() 
    {
        out.println("*******************************************************************************");
        out.println("Clientes" +"\t"+"\t"+ "Valor gasto no produto");
@@ -265,12 +265,12 @@ public class GestVendasView implements Serializable, IGestVendasView
        out.println("*******************************************************************************");
    }
    
-   public void query9_Output(List<Pair<Cliente, Integer>> uni, List<Pair<Cliente, Double>> gasto)
+   public void query9_Output(List<Pair<Cliente, Integer>> gasto)
    {
        out.println("*******************************************************************************");
        out.println("Clientes" +"\t"+"\t"+ "Valor gasto no produto");
        out.println("*******************************************************************************");
-       out.println("uni " + uni.toString() + "\ngasto "+ gasto.toString());
+       out.println("uni " +  "\ngasto "+ gasto.toString());
        out.println("*******************************************************************************");
        
     }

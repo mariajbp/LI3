@@ -86,9 +86,9 @@ public interface IFilial extends Serializable
     
     public Set<Produto> comprasDistintasClientes(Cliente c);
 
-    public List<Pair<Cliente, Integer>> getClientesProdutosDistintos();
+    public void getClientesProdutosDistintos(Map<Cliente, Set<Produto>> m);
 
-    public Set<Cliente> getClientes(Produto p);
+    public void getClientes(Produto p, Set<Cliente> s);
     public Pair<Cliente,Double> clienteGastoAnual(Cliente c);
     public Pair<Cliente,Integer> clienteUnidadesAnual(Cliente c);
     public void numCompradoProds(Cliente c, Map<Produto, Integer> s);

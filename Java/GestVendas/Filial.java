@@ -156,24 +156,37 @@ public class Filial implements Serializable, IFilial
     * Método que preenche preenche uma lista de pares com as informações de um cliente e número de unidades compradas anualmente (query 6)
     * @returns lista de clientes com o seu total faturado anualmente
     **/ 
-    public List<Pair<Cliente, Integer>> getClientesProdutosDistintos()
-    {
-        List<Pair<Cliente, Integer>> s = new ArrayList<>();
-        Set<Produto> prd = new TreeSet<>();
-        
+    public void getClientesProdutosDistintos(Map<Cliente, Set<Produto>> m)
+    {   
+        Set<Produto> p1 = new TreeSet<>();
         for(Map.Entry<Cliente, List<RegistoCliente>> e : regCl.entrySet())
         {
-            Pair<Cliente, Integer> p = new Pair<>();
             for(RegistoCliente rc : e.getValue())
-            { 
-                rc.ProdutosDistintos(prd);
-            }
+            {   
+                Set<Produto> p = new TreeSet<>();
+                p = rc.getProd().keySet();
+                Iterator it = p.iterator();
+                while(it.hasNext())
+                {
+                    Produto prd = (Produto) it.next();
+                    p1.add(prd.clone());
+                }
+            }   
             
-            p.setFst(e.getKey());
-            p.setSnd(prd.size());
-            s.add(p); 
+            if(m.containsKey(e.getKey()))
+            {
+               Set<Produto> tmp = m.get(e.getKey());
+               Iterator i = p1.iterator();
+               while(i.hasNext())
+               {
+                   Produto prd2 = (Produto) i.next();
+                   tmp.add(prd2);
+               }
+               m.put(e.getKey(), tmp); 
+            }
+            else
+                m.put(e.getKey(), p1);
         }
-        return s;
     }
     
     //Preenche uma lista de pares( clientes, total faturado anual)---> query 6
@@ -528,7 +541,6 @@ public class Filial implements Serializable, IFilial
     **/
     public Set<Produto> comprasDistintasClientes(Cliente c) //query 8
     {
-        Set<Produto> tmp = new TreeSet<>(); 
         Set<Produto> set = new TreeSet<>();
         if(regCl.containsKey(c))
         {
@@ -537,8 +549,12 @@ public class Filial implements Serializable, IFilial
             while(it.hasNext())
             {
                RegistoCliente reg = it.next(); 
-               tmp = (reg.getProd().keySet()); 
-               set.addAll(tmp);
+               Iterator i = reg.getProd().keySet().iterator();
+               while(i.hasNext())
+               {
+                   Produto p = (Produto) i.next();
+                   set.add(p.clone()); 
+               }
             }
         }
         return set;
@@ -548,10 +564,9 @@ public class Filial implements Serializable, IFilial
     /**
     * ?????????
     **/
-    public Set<Cliente> getClientes(Produto p) //clientes que comprar um prod num ano
+    public void getClientes(Produto p, Set<Cliente> s) //clientes que comprar um prod num ano
 
     { 
-        Set<Cliente> s = new TreeSet<>();
         if(regProd.containsKey(p))
         {
             List<RegistoProduto> rp = regProd.get(p);
@@ -559,10 +574,14 @@ public class Filial implements Serializable, IFilial
             while(it.hasNext())
             {
                 RegistoProduto r = it.next();
-                s.addAll(r.getRegisto()); 
+                Iterator i = r.getRegisto().iterator();
+                while(i.hasNext())
+                {
+                    Cliente c = (Cliente) i.next();
+                    s.add(c.clone()); 
+                }
             }
         }
-        return s;
     }
     
     /**

@@ -358,11 +358,9 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         Produto p = new Produto(s);
         view.query9_Inputx();
         int x = input.nextInt();
-        crono.start();
+        crono.start(); 
         
-        view.query9_Output(model.xClientesMaisCompraram(p, x, 1), model.xClientes_valorGasto(p, x, 1));
-        view.query9_Output(model.xClientesMaisCompraram(p, x, 2), model.xClientes_valorGasto(p, x, 2));
-        view.query9_Output(model.xClientesMaisCompraram(p, x, 3), model.xClientes_valorGasto(p, x, 3));
+        view.query9_Output(model.xClientesMaisCompraram(p, x));
         double t = crono.stop(); 
         view.time(t);
     } 
