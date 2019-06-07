@@ -341,7 +341,7 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         Scanner input = new Scanner(System.in);
         int x = input.nextInt();
         crono.start();
-        view.query8_Output(model.clientesMaisCompraram(x, 1), model.clientesMaisCompraram(x, 2), model.clientesMaisCompraram(x, 3));
+        view.query8_Output(model.clientesMaisCompraram(x));
         double t = crono.stop(); 
         view.time(t); 
     } 

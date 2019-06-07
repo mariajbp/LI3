@@ -234,13 +234,13 @@ public class GestVendasView implements Serializable, IGestVendasView
    }
     
    
-   public void query8_Output( List<Pair<Cliente,Integer>> c1,  List<Pair<Cliente,Integer>> c2,  List<Pair<Cliente,Integer>> c3)
+   public void query8_Output( List<Pair<Cliente,Integer>> c1)
    {
        Pair<Cliente,Integer> p1 = new Pair();
        out.println("*******************************************************************************");
-       out.println("Clientes" +"\t"+"\t"+ "Quantidade comprada");
+       out.println("Clientes" +"\t"+"\t"+ "Produtos Distintos");
        out.println("*******************************************************************************");
-       out.println(c1.toString() + "\n" + c2.toString() + "\n" + c3.toString());
+       out.println(c1.toString() + "\n");
        out.println("*******************************************************************************");
    }
    
