@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class Estatisticas implements IEstatisticas
+public class Estatisticas implements IEstatisticas, Serializable
 {
     /** Nome do ficheiro **/
     private String nome;

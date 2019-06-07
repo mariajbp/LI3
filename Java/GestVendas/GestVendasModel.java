@@ -38,7 +38,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     
     /** Instancia da interface Estatisticas **/
     private IEstatisticas e;
-
+    
     /** 
     * Construtor vazio que cria uma instância GestVendasModel
     **/

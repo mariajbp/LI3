@@ -1,13 +1,6 @@
 import java.io.Serializable;
-
-
-import java.util.List;
 import java.util.Arrays;
-import java.util.Iterator;
-import java.util.stream.Collectors;
-import java.util.Set;
 
-import java.lang.System;
 /**
 * Classe Faturação que contém estruturas com dados de uma faturação
 **/

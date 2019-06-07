@@ -5,8 +5,9 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 import static java.lang.System.out;
 import java.util.Iterator;
-import java.awt.event.KeyEvent;
 import java.util.Map; 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 /**
 * Classe que 
@@ -15,7 +16,8 @@ import java.util.Map;
 public class GestVendasView implements Serializable, IGestVendasView  
 {
    private Menu menu;
- 
+   private static DecimalFormat df = new DecimalFormat("#.##");
+   
    public void init()
    { 
         out.println("   ******   ********  ******  ******** **          **********  **    ** ********     ***     ******  ");
@@ -68,34 +70,32 @@ public class GestVendasView implements Serializable, IGestVendasView
        int index = 0;
        int pos = 0;
        out.println("****************************** Página " + pag + " ***************************************** \n");
-       if(pag == 1)
-       {
-           Iterator<Produto> it = p.iterator();
-           pos = index;
-           while(it.hasNext() && pos < index + 15)
-           {
-               Produto pd = p.get(index);
-               pd = it.next();
-               out.println(pd.toString());
-               pos ++;
-           }
-           index += 15;
-       }
        
-       out.println("\n1 - Próxima página" + "\t"+ "2 - Página anterior" + "\t"+ "0 - Sair\n");
+       Iterator<Produto> it = p.iterator();
+       pos = index;
+       while(it.hasNext() && pos < index + 15)
+       {
+          Produto pd = p.get(index);
+          pd = it.next();
+          out.println(pd.toString());
+          pos ++;
+       }
+       index += 15;
+      
+       out.println("\n1 - Próxima página" + "\t"+ "2 - Página anterior" + "\t"+ "0 - Sair\n"); 
        Scanner input = new Scanner(System.in);
        int in = input.nextInt();
+       
        while(in != 0)
        {
            if(in == 1)
            {
-               pag++;
-               Iterator<Produto> it = p.iterator();
-               pos = index;
-               while(it.hasNext() && pos < index + 15)
+               pag++;  
+               Iterator<Produto> its = p.iterator();
+               while(its.hasNext() && pos < (index + 15))
                {
-                   Produto pd = p.get(index);
-                   pd = it.next();
+                   Produto pd = p.get(pos);
+                   pd = its.next();
                    out.println(pd.toString());
                    pos ++; 
                }
@@ -104,16 +104,16 @@ public class GestVendasView implements Serializable, IGestVendasView
            else if (in == 2)
            {
                pag--;
-               Iterator<Produto> it = p.iterator();
+               Iterator<Produto> itb = p.iterator();
                pos = index - 30;
-               while(it.hasNext() && pos < index - 15)
+               while(itb.hasNext() && pos < (index - 15))
                {
-                   Produto pd = p.get(index);
-                   pd = it.next();
+                   Produto pd = p.get(pos);
+                   pd = itb.next();
                    pd.toString();
                    pos ++;
                }
-               index += 15;
+                index += 15;
            }
        }
        out.println("Próxima página - 1 \n" + "Página anterior - 2 \n" + "Sair - 0 \n");
@@ -136,7 +136,7 @@ public class GestVendasView implements Serializable, IGestVendasView
        out.println("Filial 1" +"\t"+"\t"+ "Filial 2" +"\t"+"\t"+ "Filial 3" +"\t"+"\t" + "Total");
        out.println("*******************************************************************************");
        out.println("Vendas: "+ p1.getFst() + "\t"+ "\t"+"Vendas: "+ p2.getFst() +"\t"+ "\t" +"Vendas: "+ p3.getFst() +"\t"+ "\t" + tp + "\n");
-       out.println("Clientes: " + p1.getSnd() +"\t"+ "\t"+ "Clientes: " + p2.getSnd() +"\t"+ "\t"+"Clientes: " + p3.getSnd() +"\t"+ "\t" + tc);
+       out.println("Clientes: " + p1.getSnd() +"\t"+ "\t"+ "Clientes: " + p2.getSnd() +"\t"+ "\t"+"Clientes: " + p3.getSnd() +"\t"+ "\t" + tc); 
        out.println("*******************************************************************************");
    }
     
@@ -156,7 +156,7 @@ public class GestVendasView implements Serializable, IGestVendasView
     
    public void query3_Output(int c, double t, int p, int mes)
    {
-       out.println( mes + "\t"+"\t"+ c + "\t"+"\t" + p + "\t"+ "\t" + t);
+       out.println( mes + "\t"+"\t"+ c + "\t"+"\t" + p + "\t"+ "\t" + df.format(t));
        out.println("*******************************************************************************");
    }
    
@@ -168,7 +168,7 @@ public class GestVendasView implements Serializable, IGestVendasView
    
    public void query4_Output(int i, Pair<Integer, Integer> p, double t)
    {
-       out.println(i  +"\t" +"\t" +  p.getFst() +"\t" +"\t"+p.getSnd() +"\t" +"\t" +t);
+       out.println(i  +"\t" +"\t" +  p.getFst() +"\t" +"\t"+p.getSnd() +"\t" +"\t" + df.format(t));
        out.println("*******************************************************************************");
     }
     
@@ -261,7 +261,7 @@ public class GestVendasView implements Serializable, IGestVendasView
        out.println("*******************************************************************************");
        out.println("Clientes" +"\t"+"\t"+ "Valor gasto no produto");
        out.println("*******************************************************************************");
-       // 
+       //  
        out.println("*******************************************************************************");
    }
    
@@ -270,7 +270,11 @@ public class GestVendasView implements Serializable, IGestVendasView
        out.println("*******************************************************************************");
        out.println("Clientes" +"\t"+"\t"+ "Valor gasto no produto");
        out.println("*******************************************************************************");
+<<<<<<< HEAD
        out.println("uni " +  "\ngasto "+ gasto.toString());
+=======
+       out.println("uni " + uni.toString() + "\ngasto "+ df.format(gasto.toString()));
+>>>>>>> d00feca6728bbdcf63ed6842a63a55fa40cd01d8
        out.println("*******************************************************************************");
        
     }
@@ -283,21 +287,21 @@ public class GestVendasView implements Serializable, IGestVendasView
        out.println("*******************************************************************************");
        for(Map.Entry<Produto, List<Double>> e : c1.entrySet())
        {
-           out.println("\t"+"\t"+ e.getKey().toString() + e.getValue() );
+           out.println("\t"+"\t"+ e.getKey().toString() + df.format(e.getValue()) );
        }
        out.println("*******************************************************************************");
        out.println("Filial 2");
        out.println("*******************************************************************************");
        for(Map.Entry<Produto, List<Double>> e : c2.entrySet())
        {
-           out.println("\t"+"\t"+ e.getKey().toString() + e.getValue() );
+           out.println("\t"+"\t"+ e.getKey().toString() + df.format(e.getValue()) );
        }
        out.println("*******************************************************************************");
        out.println("Filial 3");
        out.println("*******************************************************************************");
        for(Map.Entry<Produto, List<Double>> e : c3.entrySet())
        {
-           out.println("\t"+"\t"+ e.getKey().toString() + e.getValue() );
+           out.println("\t"+"\t"+ e.getKey().toString() + df.format(e.getValue()) );
        }
    }
    
