@@ -307,15 +307,9 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         crono.start(); 
         
         List<Produto> pt = model.prodsMaisVendidos(x);
-        /*List<Pair<Produto,Integer>> l1 = model.cldistintos(p1, 1);
-        List<Pair<Produto,Integer>> l2 = model.cldistintos(p2, 2);
-        List<Pair<Produto,Integer>> l3 = model.cldistintos(p3, 3);*/
         List<Pair<Produto,Integer>> l = model.cldistintos(pt);
-        //view.query6_Output_Dados(l1, l2, l3);   
+        view.query6_Output_Dados(l);
         
-        
-        out.println(pt);
-        out.println(l);
         double t = crono.stop(); 
         view.time(t);
     } 
@@ -359,7 +353,6 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         view.query9_Inputx();
         int x = input.nextInt();
         crono.start(); 
-        
         view.query9_Output(model.xClientesMaisCompraram(p, x));
         double t = crono.stop(); 
         view.time(t);
