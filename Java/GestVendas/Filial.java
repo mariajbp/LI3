@@ -530,7 +530,7 @@ public class Filial implements Serializable, IFilial
                {
                    Cliente c = (Cliente) i.next();
                    s.add(c);
-                }
+               }
            }
         }
     }

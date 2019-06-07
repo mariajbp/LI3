@@ -784,7 +784,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
             }
             else
             {
-                if(filial == 1)
+                if(filial == 3)
                 {
                     Set<Cliente> sc = f3.getClientes(p);
                     Iterator<Cliente> it = sc.iterator();
