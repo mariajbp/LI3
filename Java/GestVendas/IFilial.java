@@ -20,27 +20,32 @@ public interface IFilial extends Serializable
     **/
     public int getClientesDistintos(Produto p, int mes);
     
+    /**
+    * Método que preenche um set com clientes distintos de um certo mes
+    **/
     public void getClientesDistintosMes(int mes, Set<Cliente> cl);
     
     /**
     * Método que preenche um Set de Produtos
-    * @param Set a preencher
     **/ 
     public void getProdutos(Set<Produto> p);
     
-    
+    /**
+    * Método que calcula as unidades vendidas mensalmente de um produto
+    **/
     public int getUnidadesMes(Produto p, int mes) throws ProdutoInvalidoException;
     
 
     /**
     * Método que preenche um Set de Clientes
-    * @param Set a preencher
     **/ 
     public void getClientes(Set<Cliente> c);
 
 
 
-    
+    /**
+    * Método que calcula a faturação de um produto num determinado mês
+    **/
     public double getFtrMensal(Produto p, int mes);
     
     /**
@@ -57,11 +62,15 @@ public interface IFilial extends Serializable
     
     public List<Pair<Cliente, Double>> getClientesFaturacao();
     
-    
+    /**
+    * Método que calcula o numero de compras totais e o total gasto por um cliente num mês
+    **/
     public Pair<Integer,Double> comprasTotais(Cliente c, int mes);
     
     
-    
+    /**
+    * Método que calcula o número de clientes que efetuaram compras na filial, num determinado mês
+    **/
     public int getClientesDistintosTotal(int mes);
 
 
