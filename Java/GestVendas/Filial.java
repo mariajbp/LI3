@@ -104,8 +104,8 @@ public class Filial implements Serializable, IFilial
     
     
     /**
-    * Método que preenche um Set de produtos (query 1)
-    * @param Set a preencher
+    * Método que preenche um conjunto de produtos 
+    * @param   Conjunto a preencher
     **/ 
     public void getProdutos(Set<Produto> p)
     {
@@ -120,8 +120,8 @@ public class Filial implements Serializable, IFilial
     }
     
     /**
-    * Método que preenche um Set de Clientes
-    * @param Set a preencher
+    * Método que preenche um conjunto de Clientes
+    * @param  Conjunto a preencher
     **/ 
     public void getClientes(Set<Cliente> c)
     {
@@ -136,8 +136,8 @@ public class Filial implements Serializable, IFilial
     }
     
     /**
-    * Método que preenche uma lista de clientes com o seu total faturado anualmente (query 7)
-    * @returns lista de clientes com o seu total faturado anualmente
+    * Método que preenche uma lista de clientes e o seu total faturado anualmente
+    * @returns  Lista de clientes e o seu total faturado anualmente
     **/ 
     public List<Pair<Cliente, Double>> getClientesFaturacao()
     {
@@ -158,8 +158,6 @@ public class Filial implements Serializable, IFilial
         return s;
     }
     
-    
-
     /**
     * Método que calcula as unidades vendidas mensalmente de um produto
     * @param   Produto em questão
@@ -204,7 +202,7 @@ public class Filial implements Serializable, IFilial
     
     /**
     * Método que calcula o número de clientes que efetuaram compras na filial, num determinado mês (query 2)
-    * @param   Mês das compras
+    * @param   Mês em questão
     * @param   Total de clientes que efetuaram compras
     **/
     public int getClientesDistintosTotal(int mes)
@@ -220,9 +218,9 @@ public class Filial implements Serializable, IFilial
     }
      
     /**
-    * Método que preenche um set com clientes distintos de um certo mes
-    * @param   Mês das compras
-    * @param   Set de clientes
+    * Método que preenche um conjunto com clientes distintos de um certo mes
+    * @param   Mês em questão
+    * @param   Conjunto de clientes
     **/
     public void getClientesDistintosMes(int mes, Set<Cliente> cl)
     {
@@ -237,7 +235,7 @@ public class Filial implements Serializable, IFilial
 
     /**
     * Método que calcula o total de vendas mensal
-    * @param   Mês das compras
+    * @param   Mês em questão
     * @param   Total de vendas
     **/
     public int totalVendas(int mes) throws InputInvalidoException
@@ -258,8 +256,8 @@ public class Filial implements Serializable, IFilial
     * @param   Produto comprado
     * @param   Cliente que efetuou a compra
     * @param   Mês da compra
-    * @param
-    * @param
+    * @param   Total faturado
+    * @param   Unidades compradas
     **/
     public void updateRegProd(Produto p, Cliente c, int mes, double f, int uni)
     {
@@ -291,7 +289,7 @@ public class Filial implements Serializable, IFilial
     * @param   Produto comprado
     * @param   Cliente que efetuou a compra
     * @param   Número de unidades adquiridas
-    * @param   ???
+    * @param   Total gasto
     * @param   Mês da compra
     **/
     public void updateRegCl(Cliente c, Produto p, int uni, double t, int mes)    
@@ -361,10 +359,10 @@ public class Filial implements Serializable, IFilial
     
       
     /**
-    * Método que dado um Cliente preenche um conjunto que contém todos os produtos distintos comprados nesse mês
-    * @param Conjunto de Produtos
-    * @param Mês
-    * @param Cliente
+    * Método que dado um cliente preenche um conjunto que contém produtos distintos comprados nesse mês
+    * @param   Conjunto de Produtos
+    * @param   Mês
+    * @param   Cliente
     **/
     public void ProdutosDistintos(Set<Produto> s, int mes, Cliente c) throws ClienteInvalidoException
     {
@@ -376,7 +374,7 @@ public class Filial implements Serializable, IFilial
 
     /**
     * Método que preenche um Map de pares com as informações de um Produto e as unidades vendidas anualmente 
-    * @param Map que associa a um Produto as unidades vendidas anuais
+    * @param    Map que associa a um Produto as unidades vendidas anuais
     **/
     public void getProdUnidades(Map<Produto, Integer> s)
     {
@@ -403,7 +401,7 @@ public class Filial implements Serializable, IFilial
     
     /**
     * Método que preenche um Map com as informações de um cliente e todos os Produtos comprados anualmente por este
-    * @param Map que associa a um Cliente um conjunto de Produtos comprados
+    * @param    Map que associa a um Cliente um conjunto de Produtos comprados
     **/ 
     public void getClientesProdutosDistintos(Map<Cliente, Set<Produto>> m)
     {   
@@ -440,9 +438,9 @@ public class Filial implements Serializable, IFilial
     }
     
     /**
-    * Preenche um Set com todos os Clientes que compraram um Produto
-    * @param Produto comprado
-    * @param Conjunto de clientes 
+    * Preenche um conjunto com todos os clientes que compraram um produto
+    * @param    Produto comprado
+    * @param    Conjunto de clientes 
     **/
     public void getClientes(Produto p, Set<Cliente> s) throws ProdutoInvalidoException
     { 
@@ -548,7 +546,7 @@ public class Filial implements Serializable, IFilial
         pfinal.setFst(c);
         pfinal.setSnd(total);
         return pfinal; 
-    } 
+     } 
     
     
     /**
