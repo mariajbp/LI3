@@ -364,7 +364,7 @@ public class GestVendasView implements Serializable, IGestVendasView
    /**
    * Método que imprime as estatisticas
    **/
-   public void printStats(Estatisticas e)
+   public void printStats(IEstatisticas e)
    {
       out.println(e.toString());
    }

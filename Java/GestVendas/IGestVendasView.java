@@ -132,6 +132,11 @@ public interface IGestVendasView extends Serializable
      public void query10_Output(Map<Produto, List<Double>> c1, Map<Produto, List<Double>> c2, Map<Produto, List<Double>> c3);
      
      /**
+     * Método que imprime as estatisticas
+     **/
+     public void printStats(IEstatisticas e);
+
+     /**
      * Método que imprime o tempo que o programa demourou a correr, em segundos
      **/
      public void time(double t);

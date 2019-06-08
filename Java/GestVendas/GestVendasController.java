@@ -192,7 +192,7 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
            switch(op)
            {
                default:
-                  view.printStats(model.getEstatisticas);
+                  view.printStats(model.getEstatisticas());
                   break;
            } 
        }

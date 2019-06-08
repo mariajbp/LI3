@@ -20,6 +20,12 @@ public interface IGestVendasModel extends Serializable
     public void outroFicheiro(int op) throws IOException;
     
     /**** Estatisticas ****/
+
+    /**
+    * Metodo que devolve as Estatisticas
+    **/
+    public IEstatisticas getEstatisticas();
+    
     
     /**** QUERY 1 ****/
     public List<Produto> prodsNuncaComprados();
