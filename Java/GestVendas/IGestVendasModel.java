@@ -48,7 +48,7 @@ public interface IGestVendasModel extends Serializable
     
     /**** QUERY 6 ****/
     public List<Produto> prodsMaisVendidos(int x) throws InputInvalidoException;
-    public List<Pair<Produto,Integer>> cldistintos(List<Produto> lp);
+    public List<Pair<Produto,Integer>> cldistintos(List<Produto> lp) throws ProdutoInvalidoException;
     
     /**** QUERY 7 ****/
     public List<Cliente> maioresCompradores(int filial); 

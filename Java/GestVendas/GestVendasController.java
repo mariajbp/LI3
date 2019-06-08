@@ -346,6 +346,7 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
             view.time(t);
         }catch(InputInvalidoException e){System.out.println(e.getMessage());}
          catch(InputMismatchException e){System.out.println("Input Inválido!");}
+         catch(ProdutoInvalidoException e){System.out.println("Produto Inválido");}
     } 
     
     /**

@@ -20,7 +20,7 @@ public class Filial implements Serializable, IFilial
     /** Registo mensal de cada cliente **/
     private Map<Cliente, List<RegistoCliente>> regCl;
     
-    /** 
+    /**  
     * Construtor vazio que cria uma instância Filial
     **/
     public Filial()
@@ -158,68 +158,7 @@ public class Filial implements Serializable, IFilial
         return s;
     }
     
-    /**
-    * Método que preenche um Map de pares com as informações de um cliente e número de unidades compradas anualmente (query 6)
-    **/ 
-    public void getClientesProdutosDistintos(Map<Cliente, Set<Produto>> m)
-    {   
-        
-        for(Map.Entry<Cliente, List<RegistoCliente>> e : regCl.entrySet())
-        {
-            Set<Produto> p1 = new TreeSet<>();
-            for(RegistoCliente rc : e.getValue())
-            {   
-                Set<Produto> p = new TreeSet<>();
-                p = rc.getProd().keySet();
-                Iterator it = p.iterator();
-                while(it.hasNext())
-                {
-                    Produto prd = (Produto) it.next();
-                    p1.add(prd.clone());
-                }
-            }   
-            
-            if(m.containsKey(e.getKey()))
-            {
-               Set<Produto> tmp = m.get(e.getKey());
-               Iterator i = p1.iterator();
-               while(i.hasNext())
-               {
-                   Produto prd2 = (Produto) i.next();
-                   tmp.add(prd2);
-               }
-               m.put(e.getKey(), tmp); 
-            }
-            else
-                m.put(e.getKey(), p1);
-        }
-    }
     
-    /**
-    * Método que preenche um Map de pares com as informações de um Produto e as unidades vendidas anualmente (query 6)
-    **/
-    public void getProdUnidades(Map<Produto, Integer> s)
-    {
-        for(Map.Entry<Produto, List<RegistoProduto>> e : regProd.entrySet())
-        {
-            Pair<Produto, Integer> p = new Pair<>();
-            int unidades = 0;
-            for(RegistoProduto rp : e.getValue())
-            { 
-                unidades += rp.getUnidades();
-            }
-            
-            if(s.containsKey(e.getKey()))
-            {
-                int uniOld = s.get(e.getKey());
-                s.put(e.getKey(), uniOld + unidades); 
-            }
-            else
-            {
-                s.put(e.getKey(), unidades);
-            }
-        }
-    }
 
     /**
     * Método que calcula as unidades vendidas mensalmente de um produto
@@ -420,22 +359,12 @@ public class Filial implements Serializable, IFilial
        return pair;
     }
     
-    /**
-    * Método que calcula o numero de produtos distintos adquiridos por um cliente em determinado mês
-    * @param     Cliente em questão
-    * @param     Mês a calcular
-    * @returns   Número de produtos distintos adquiridos   
-    **/
-    public int ProdutosDistintos(Cliente c, int mes)
-    {
-        return this.regCl.get(c).get(mes-1).produtosDistintos(); 
-    }
       
     /**
-    * ?????????
-    * @param
-    * @param
-    * @param
+    * Método que dado um Cliente preenche um conjunto que contém todos os produtos distintos comprados nesse mês
+    * @param Conjunto de Produtos
+    * @param Mês
+    * @param Cliente
     **/
     public void ProdutosDistintos(Set<Produto> s, int mes, Cliente c) throws ClienteInvalidoException
     {
@@ -446,60 +375,74 @@ public class Filial implements Serializable, IFilial
     }
 
     /**
-    * ?????????
-    * @param 
-    * @param 
+    * Método que preenche um Map de pares com as informações de um Produto e as unidades vendidas anualmente 
+    * @param Map que associa a um Produto as unidades vendidas anuais
     **/
-    public void clDistintos(Produto p, Set<Cliente> s) // query 6
-    {   
-        if(regProd.containsKey(p))
-        {
-           List<RegistoProduto> lrp = regProd.get(p); 
-           Iterator<RegistoProduto> it = lrp.iterator();
-           while(it.hasNext())
-           {
-               RegistoProduto rp = it.next();
-               Iterator i = rp.getRegisto().iterator();
-               while(i.hasNext())
-               {
-                   Cliente c = (Cliente) i.next();
-                   s.add(c);
-               }
-           }
-        }
-    }
-    
-    /**
-    * ?????????
-    * @param    Cliente em questão
-    * @returns
-    **/
-    public Set<Produto> comprasDistintasClientes(Cliente c) //query 8
+    public void getProdUnidades(Map<Produto, Integer> s)
     {
-        Set<Produto> set = new TreeSet<>();
-        if(regCl.containsKey(c))
+        for(Map.Entry<Produto, List<RegistoProduto>> e : regProd.entrySet())
         {
-            List<RegistoCliente> rc = regCl.get(c);
-            Iterator<RegistoCliente> it = rc.iterator();
-            while(it.hasNext())
+            Pair<Produto, Integer> p = new Pair<>();
+            int unidades = 0;
+            for(RegistoProduto rp : e.getValue())
+            { 
+                unidades += rp.getUnidades();
+            }
+            
+            if(s.containsKey(e.getKey()))
             {
-               RegistoCliente reg = it.next(); 
-               Iterator i = reg.getProd().keySet().iterator();
-               while(i.hasNext())
-               {
-                   Produto p = (Produto) i.next();
-                   set.add(p.clone()); 
-               }
+                int uniOld = s.get(e.getKey());
+                s.put(e.getKey(), uniOld + unidades); 
+            }
+            else
+            {
+                s.put(e.getKey(), unidades);
             }
         }
-        return set;
     }
-
     
     /**
-    * ??
-    * @param
-    * @param
+    * Método que preenche um Map com as informações de um cliente e todos os Produtos comprados anualmente por este
+    * @param Map que associa a um Cliente um conjunto de Produtos comprados
+    **/ 
+    public void getClientesProdutosDistintos(Map<Cliente, Set<Produto>> m)
+    {   
+        
+        for(Map.Entry<Cliente, List<RegistoCliente>> e : regCl.entrySet())
+        {
+            Set<Produto> p1 = new TreeSet<>();
+            for(RegistoCliente rc : e.getValue())
+            {   
+                Set<Produto> p = new TreeSet<>();
+                p = rc.getProd().keySet();
+                Iterator it = p.iterator();
+                while(it.hasNext())
+                {
+                    Produto prd = (Produto) it.next();
+                    p1.add(prd.clone());
+                }
+            }   
+            
+            if(m.containsKey(e.getKey()))
+            {
+               Set<Produto> tmp = m.get(e.getKey());
+               Iterator i = p1.iterator();
+               while(i.hasNext())
+               {
+                   Produto prd2 = (Produto) i.next();
+                   tmp.add(prd2);
+               }
+               m.put(e.getKey(), tmp); 
+            }
+            else
+                m.put(e.getKey(), p1);
+        }
+    }
+    
+    /**
+    * Preenche um Set com todos os Clientes que compraram um Produto
+    * @param Produto comprado
+    * @param Conjunto de clientes 
     **/
     public void getClientes(Produto p, Set<Cliente> s) throws ProdutoInvalidoException
     { 
@@ -527,7 +470,7 @@ public class Filial implements Serializable, IFilial
     * @param     Cliente em questão 
     * @returns   Gasto anual de um cliente
     **/
-    public Pair<Cliente,Double> clienteGastoAnual(Cliente c) //gasto anual de um cliente
+    public Pair<Cliente,Double> clienteGastoAnual(Cliente c)
     {
         double total = 0;
         List<Pair<Cliente,Double>> l = new ArrayList();
@@ -607,7 +550,7 @@ public class Filial implements Serializable, IFilial
         return pfinal; 
     } 
     
-     //query 5 dá p par produtos e unidades anuais de um cliente
+    
     /**
     * Método que preenche um Map com as informações associadas a um Cliente sobre os Produtos que comprou e o número de unidades 
     * @param   Cliente
@@ -644,7 +587,7 @@ public class Filial implements Serializable, IFilial
       }
 
      /**
-     * Método que dado um produto, retorna  lista com o seu total faturado por mês (query 10)
+     * Método que dado um produto, retorna  lista com o seu total faturado por mês 
      * @param   Produto a determinar
      * @param   Lista com o total faturado por mês
      **/

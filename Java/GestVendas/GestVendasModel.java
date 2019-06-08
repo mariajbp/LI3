@@ -583,29 +583,32 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         } 
     }
     
-    public List<Pair<Produto,Integer>> cldistintos(List<Produto> lp)
+    public List<Pair<Produto,Integer>> cldistintos(List<Produto> lp) throws ProdutoInvalidoException
     {
-        int total = 0;
-        Produto prod = new Produto();
-        List<Pair<Produto,Integer>> l = new ArrayList<>();
-        
-        
-        Iterator<Produto> it = lp.iterator();
-        while(it.hasNext())
+        try
         {
-            Set<Cliente> s = new TreeSet<>();
-            Pair<Produto,Integer> pair = new Pair<>();
-            prod = it.next();
-            f1.clDistintos(prod, s);
-            f2.clDistintos(prod, s);
-            f3.clDistintos(prod, s);
-            total = s.size();
-            pair.setFst(prod);
-            pair.setSnd(total);
-            l.add(pair);
-         }
-        Collections.sort(l, new DecrescenteComparatorProduto()); 
-        return l;
+            int total = 0;
+            Produto prod = new Produto();
+            List<Pair<Produto,Integer>> l = new ArrayList<>();
+            
+            
+            Iterator<Produto> it = lp.iterator();
+            while(it.hasNext())
+            {
+                Set<Cliente> s = new TreeSet<>();
+                Pair<Produto,Integer> pair = new Pair<>();
+                prod = it.next();
+                f1.getClientes(prod, s);
+                f2.getClientes(prod, s);
+                f3.getClientes(prod, s);
+                total = s.size();
+                pair.setFst(prod);
+                pair.setSnd(total);
+                l.add(pair);
+             }
+            Collections.sort(l, new DecrescenteComparatorProduto()); 
+            return l;
+        }catch(ProdutoInvalidoException e){throw new ProdutoInvalidoException("O Produto não existe na nossa base de dados");}
     }
      
     /**** QUERY7 ****/
