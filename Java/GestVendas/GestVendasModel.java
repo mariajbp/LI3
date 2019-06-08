@@ -228,7 +228,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
        {
            if(validaProduto(part[0]) && cprod.containsProduto(part[0]))
            {
-               if(Double.parseDouble(part[1]) > 0 && Double.parseDouble(part[1]) < 999)
+               if(Double.parseDouble(part[1]) >= 0 && Double.parseDouble(part[1]) < 999)
                {
                    if(Integer.parseInt(part[2]) > 0 && Integer.parseInt(part[2]) < 200)
                    {
