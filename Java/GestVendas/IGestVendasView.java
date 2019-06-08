@@ -127,9 +127,9 @@ public interface IGestVendasView extends Serializable
      public void query9_Output(List<Pair<Cliente, Integer>> gasto);
      
      /**
-     * Método que imprime  mês a mês, e para cada mês filial a filial, a facturação total com cada produto
+     * Método que imprime  mês a mês, para uma filial, a facturação total com cada produto
      **/
-     public void query10_Output(Map<Produto, List<Double>> c1, Map<Produto, List<Double>> c2, Map<Produto, List<Double>> c3);
+     public void query10_Output(Map<Produto, List<Double>> c1, int f);
      
      /**
      * Método que imprime as estatisticas

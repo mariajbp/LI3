@@ -159,7 +159,7 @@ public class Filial implements Serializable, IFilial
     }
     
     /**
-    * Método que preenche preenche uma lista de pares com as informações de um cliente e número de unidades compradas anualmente (query 6)
+    * Método que preenche um Map de pares com as informações de um cliente e número de unidades compradas anualmente (query 6)
     **/ 
     public void getClientesProdutosDistintos(Map<Cliente, Set<Produto>> m)
     {   
@@ -196,7 +196,7 @@ public class Filial implements Serializable, IFilial
     }
     
     /**
-    * Método que preenche preenche uma lista de pares com as informações de um cliente e total faturado anualmente (query 6)
+    * Método que preenche um Map de pares com as informações de um Produto e as unidades vendidas anualmente (query 6)
     **/
     public void getProdUnidades(Map<Produto, Integer> s)
     {
@@ -394,28 +394,6 @@ public class Filial implements Serializable, IFilial
         updateRegCl(v.getCliente(), v.getProduto(), v.getUnidades(), v.getPreco() * v.getUnidades(), v.getMes());
     }
     
-    /**
-    * Método que 
-    * @returns   
-    **/
-    public HashMap<Cliente, Integer> comprasAnuais()
-    {
-        int total = 0;
-        HashMap<Cliente, Integer> l = new HashMap<>();
-        List<RegistoCliente> rc = new ArrayList<>();  
-        for(Map.Entry<Cliente, List<RegistoCliente>> e : this.regCl.entrySet())
-        {
-               rc = e.getValue();
-               Iterator<RegistoCliente> it = rc.iterator();
-               while(it.hasNext())
-               {
-                    RegistoCliente reg = it.next(); 
-                    total += reg.getTotal();
-               }
-               l.put(e.getKey(), total);
-        }
-        return l; 
-    }
     
     /**
     * Método que calcula o numero de compras totais e o total gasto por um cliente num mês
@@ -439,34 +417,6 @@ public class Filial implements Serializable, IFilial
         }
        pair.setFst(vezes);
        pair.setSnd(total); 
-       return pair;
-    }
-    
-    /**
-    * Método que calcula o número de compras totais e o toptal gasto num mês
-    * @param    Cliente em questão
-    * @returns  Número de compras totais e o toptal gasto num mês
-    **/
-    public Pair<Integer,Double> comprasTotaisAnual(Cliente c) 
-    {
-       Pair<Integer,Double> pair = new Pair(); 
-       int vezes = 0;
-       double total = 0;
-      
-       if(regCl.containsKey(c))
-       {
-         List<RegistoCliente> lrc = regCl.get(c);
-         Iterator<RegistoCliente> it = lrc.iterator();
-         while(it.hasNext())
-         {
-             RegistoCliente rc = it.next();
-             vezes += rc.getVezes();
-             total += rc.getTotal();
-          }
-        }
-       
-       pair.setFst(vezes);
-       pair.setSnd(total);
        return pair;
     }
     
@@ -658,11 +608,10 @@ public class Filial implements Serializable, IFilial
     } 
     
      //query 5 dá p par produtos e unidades anuais de um cliente
-     /**
-    * ????
-    * @param   
-    * @param
-    * @param
+    /**
+    * Método que preenche um Map com as informações associadas a um Cliente sobre os Produtos que comprou e o número de unidades 
+    * @param   Cliente
+    * @param   Map que associa a cada produto as unidades compradas
     **/
      public void numCompradoProds(Cliente c, Map<Produto, Integer> s) throws ClienteInvalidoException
      {  

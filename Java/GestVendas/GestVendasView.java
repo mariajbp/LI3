@@ -334,30 +334,16 @@ public class GestVendasView implements Serializable, IGestVendasView
    }
     
    /**
-   * Método que imprime  mês a mês, e para cada mês filial a filial, a facturação total com cada produto
+   * Método que imprime  mês a mês, para uma filial, a facturação total com cada produto
    **/
-   public void query10_Output(Map<Produto, List<Double>> c1, Map<Produto, List<Double>> c2, Map<Produto, List<Double>> c3)
+   public void query10_Output(Map<Produto, List<Double>> c1, int f) 
    {
        out.println("*******************************************************************************");
-       out.println("Filial 1");
+       out.println("Filial " + f);
        out.println("*******************************************************************************");
        for(Map.Entry<Produto, List<Double>> e : c1.entrySet())
        {
-           out.println("\t"+"\t"+ e.getKey().toString() + df.format(e.getValue()) );
-       }
-       out.println("*******************************************************************************");
-       out.println("Filial 2");
-       out.println("*******************************************************************************");
-       for(Map.Entry<Produto, List<Double>> e : c2.entrySet())
-       {
-           out.println("\t"+"\t"+ e.getKey().toString() + df.format(e.getValue()) );
-       }
-       out.println("*******************************************************************************");
-       out.println("Filial 3");
-       out.println("*******************************************************************************");
-       for(Map.Entry<Produto, List<Double>> e : c3.entrySet())
-       {
-           out.println("\t"+"\t"+ e.getKey().toString() + df.format(e.getValue()) );
+           out.println("\t"+"\t"+ e.getKey().toString() + e.getValue() );
        }
    }
     

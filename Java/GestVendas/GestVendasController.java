@@ -170,7 +170,7 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
                        break;
                case 9: query9();
                        break;
-               case 10: query10();
+               case 10:query10_menu();
                        break;
            } 
        }
@@ -191,15 +191,35 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
            op = view.printMenu();
            switch(op)
            {
-               default:
-                  view.printStats(model.getEstatisticas());
-                  break;
-           } 
+               default: view.printStats(model.getEstatisticas());
+                        break;
+           }    
        }
        while(op != 0);
    }
    
-   
+   public void query10_menu()
+   {
+       String s[] = {"Filial 1", "Filial 2", "Filial 3"};
+       
+       int op = 0;
+       do
+       {
+           view.setMenu(s);
+           op = view.printMenu();
+           switch(op)
+           {
+               case 1: query10(1);
+                       break;
+               case 2: query10(2);
+                       break;
+               case 3: query10(3);
+                       break;
+           } 
+       }
+       while(op != 0);
+    }
+    
    /** 
    * Query 1: Lista ordenada alfabeticamente com os códigos dos produtos nunca comprados e o seu respectivo total
    **/ 
@@ -384,16 +404,13 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
     /**
     * Query 10:  Determinar mês a mês, e para cada mês filial a filial, a facturação total com cada produto.
     **/
-    public void query10()
+    public void query10(int filial)
     {
         crono.start(); 
-        Map<Produto, List<Double>> c1 = model.ftrTotal(1);
-        Map<Produto, List<Double>> c2 = model.ftrTotal(2);
-        Map<Produto, List<Double>> c3 = model.ftrTotal(3); 
-        view.query10_Output(c1,c2,c3);
+        Map<Produto, List<Double>> c = model.ftrTotal(filial);
+        view.query10_Output(c, filial);
         double t = crono.stop(); 
         view.time(t);
-        
     } 
     
 }
