@@ -1,10 +1,12 @@
 #BlueJ class context
 comment0.target=ICatClientes
-comment0.text=\n\ \n
+comment0.text=\r\n\ \r\n
 comment1.params=c
 comment1.target=void\ addCliente(Cliente)
 comment2.params=codigo
 comment2.target=boolean\ containsCliente(java.lang.String)
 comment3.params=
 comment3.target=java.util.Set\ getCatalogo()
-numComments=4
+comment4.params=
+comment4.target=int\ CatalogoSize()
+numComments=5

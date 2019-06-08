@@ -12,7 +12,7 @@ public interface IGestVendasModel extends Serializable
     /**
     * Método que carrega o ficheiro de dados default da aplicação
     **/
-    public void carregamentoDefault(); 
+    public void carregamentoDefault() throws InputInvalidoException;
     
     /**
     * Método que carrega outro ficheiro dado pelo utilizador
@@ -20,6 +20,14 @@ public interface IGestVendasModel extends Serializable
     public void outroFicheiro(int op) throws IOException;
     
     /**** Estatisticas ****/
+
+    public void statsMF() throws InputInvalidoException;
+    
+    /**
+    * Metodo que devolve as Estatisticas
+    **/
+    public IEstatisticas getEstatisticas();
+    
     
     /**** QUERY 1 ****/
     public List<Produto> prodsNuncaComprados();

@@ -6,12 +6,9 @@ import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Iterator;
-import java.awt.event.KeyEvent; 
 import java.util.Map; 
 import java.util.Set;
 import java.util.Collection;
-
-
 
 /**
 * 
@@ -58,7 +55,7 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
                case 2: outroFicheiro();
                        break;
                case 3: loadStatus();
-                       break;     
+                       break;      
            } 
        }
        while(op != 0);
@@ -69,8 +66,11 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
    **/
    public void carregamentoDefault()
    {
-       model.carregamentoDefault(); 
-       queryORestatisticasMenu();
+       try
+       {
+           model.carregamentoDefault(); 
+           queryORestatisticasMenu();
+        }catch(InputInvalidoException e){System.out.println(e.getMessage());}
    }
    
    /**
@@ -182,7 +182,7 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
    **/
    public void estatisticasMenu()
    {
-       String s[] = {"Ultimo ficheiro de vendas lido", "Número total de compras por mês", "Faturação total por mês", "Número distinto de clientes que fizeram compras em cada mês"};
+       String s[] = {"Ver as estatisticas do ultimo ficheiro lido"};
        
        int op = 0;
        do
@@ -191,15 +191,9 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
            op = view.printMenu();
            switch(op)
            {
-               case 1: ultimoFichLido();
-                       break;
-               case 2: stat1();
-                       break;
-               case 3: stat2();
-                       break;
-               case 4: stat3();
-                       break;
-           } 
+               default: view.printStats(model.getEstatisticas());
+                        break;
+           }    
        }
        while(op != 0);
    }
@@ -418,49 +412,5 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
         double t = crono.stop(); 
         view.time(t);
     } 
-    
-    /**
-    * 
-    **/
-    public void ultimoFichLido()
-    {
-        crono.start();
-        //..
-        double t = crono.stop(); 
-        view.time(t);
-    }
-    
-    /**
-    * 
-    **/
-    public void stat1()
-    {
-        crono.start();
-        //...
-        double t = crono.stop(); 
-        view.time(t);
-    }
-    
-    /**
-    * 
-    **/
-    public void stat2()
-    {
-        crono.start();
-        //..
-        double t = crono.stop(); 
-        view.time(t);
-    }
-    
-    /**
-    * 
-    **/
-    public void stat3()
-    {
-        crono.start();
-        //...
-        double t = crono.stop(); 
-        view.time(t);
-    }
     
 }

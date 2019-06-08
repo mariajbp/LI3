@@ -101,4 +101,9 @@ public class CatalogoClientes implements ICatClientes, Serializable
        Cliente c = new Cliente(codigo);
        return catalogo.contains(c);
    }   
+   
+   public int CatalogoSize()
+   {
+       return this.catalogo.size();
+    }
 }
