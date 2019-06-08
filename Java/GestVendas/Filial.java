@@ -274,7 +274,7 @@ public class Filial implements Serializable, IFilial
         RegistoCliente rc = new RegistoCliente();
         for(Map.Entry<Cliente, List<RegistoCliente>> e : regCl.entrySet())
         {
-            if(!e.getValue().get(mes).equals(rc))   //se não for um registo vazio
+            if(!e.getValue().get(mes - 1).equals(rc))   //se não for um registo vazio
                 cl++;
         }
         return cl;
@@ -290,7 +290,7 @@ public class Filial implements Serializable, IFilial
         RegistoCliente rc = new RegistoCliente();
         for(Map.Entry<Cliente, List<RegistoCliente>> e : regCl.entrySet())
         {
-            if(!e.getValue().get(mes).equals(rc))   //se não for um registo vazio
+            if(!e.getValue().get(mes - 1).equals(rc))   //se não for um registo vazio
                 cl.add(e.getKey());
         }
     } 

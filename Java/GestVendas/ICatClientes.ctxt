@@ -7,4 +7,6 @@ comment2.params=codigo
 comment2.target=boolean\ containsCliente(java.lang.String)
 comment3.params=
 comment3.target=java.util.Set\ getCatalogo()
-numComments=4
+comment4.params=
+comment4.target=int\ CatalogoSize()
+numComments=5

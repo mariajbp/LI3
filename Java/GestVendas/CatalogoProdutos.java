@@ -101,4 +101,9 @@ public class CatalogoProdutos implements ICatProdutos, Serializable
        Produto p = new Produto(codigo);
        return catalogo.contains(p);
    }
+   
+   public int CatalogoSize()
+   {
+       return this.catalogo.size();
+    }
 }

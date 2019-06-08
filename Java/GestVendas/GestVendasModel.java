@@ -47,7 +47,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     /**
     * Método que carrega o ficheiro de dados default da aplicação
     **/
-    public void carregamentoDefault()
+    public void carregamentoDefault() throws InputInvalidoException
     {
         try
         { 
@@ -58,6 +58,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
             estatisticaCliente();
             statsMF();
         } catch (IOException e) {e.printStackTrace();}
+          catch(InputInvalidoException e){throw new InputInvalidoException("Input Inválido! Estatísticas falharam a carregar");}
     }
     
     /**
@@ -208,6 +209,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
            e.setVendasLidas(vLidas);
            e.setCompras_0(c0);
            e.setFaturacao(ftr.getFtrTotal());
+           e.setNome(fileName);
       }catch (IOException e) {e.printStackTrace();} finally {br.close();} 
       out.println("Vendas Carregadas");
     }
@@ -254,7 +256,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     **/
     public int estatisticaProduto()
     {
-        Set<Produto> todosProdutos = cprod.getCatalogo();
+        int todosProdutos = cprod.CatalogoSize();
         Set<Produto> p = new TreeSet();
     
         f1.getProdutos(p);
@@ -264,7 +266,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
         e.setTotalProdutosComprados(p.size());
         // assign do nr de produtos comprados
     
-        return (todosProdutos.size() - p.size());
+        return (todosProdutos - p.size());
         // return do nr de produtos nao comprados
     }
 
@@ -274,7 +276,7 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     **/  
     public int estatisticaCliente()
     {
-        Set<Cliente> todosClientes = ccl.getCatalogo();
+        int todosClientes = ccl.CatalogoSize();
         Set<Cliente> c = new TreeSet();
     
         f1.getClientes(c);
@@ -283,41 +285,44 @@ public class GestVendasModel implements Serializable, IGestVendasModel
     
         e.setClientesCompraram(c.size());
     
-        return (todosClientes.size() - c.size());
+        return (todosClientes - c.size());
     }
    
    /**
     * Metodo para interação da Classe Estatistica com a classe Filial
     **/
-    public void statsMF()
+    public void statsMF() throws InputInvalidoException 
     {
-        int[] c = new int[12];
-        for(int m = 0; m < 12; m++)
+        try
         {
-            c[m] += f1.totalVendas(m);
-            c[m] += f2.totalVendas(m);
-            c[m] += f3.totalVendas(m);
-        }
-        e.setCompras(c);
-        
-        double[][] fMF = new double[12][3];
-        for(int m = 0; m < 12; m++)
-        {
-            for(int f = 0; f < 3; f++)
+            int[] c = new int[12];
+            for(int m = 0; m < 12; m++)
             {
-                fMF[m][f] = ftr.getFtrMensal(m,f);
+                c[m] += f1.totalVendas(m +1);
+                c[m] += f2.totalVendas(m +1);
+                c[m] += f3.totalVendas(m +1);
             }
-        }
-        e.setftrMF(fMF);
-        
-        int[][] cMF = new int[12][3];
-        for(int m = 0; m < 12; m++)
-        {
-            cMF[m][0] = f1.getClientesDistintosTotal(m);
-            cMF[m][1] = f2.getClientesDistintosTotal(m);
-            cMF[m][2] = f3.getClientesDistintosTotal(m);
-        }
-        e.setClientesMF(cMF);
+            e.setCompras(c);
+            
+            double[][] fMF = new double[12][3];
+            for(int m = 0; m < 12; m++)
+            {
+                for(int f = 0; f < 3; f++)
+                {
+                    fMF[m][f] = ftr.getFtrMensal(m +1,f);
+                }
+            }
+            e.setftrMF(fMF);
+            
+            int[][] cMF = new int[12][3];
+            for(int m = 0; m < 12; m++)
+            {
+                cMF[m][0] = f1.getClientesDistintosTotal(m +1);
+                cMF[m][1] = f2.getClientesDistintosTotal(m +1);
+                cMF[m][2] = f3.getClientesDistintosTotal(m +1);
+            }
+            e.setClientesMF(cMF);
+        }catch(InputInvalidoException e){throw new InputInvalidoException("Input Inválido");}
     }
     
     public IEstatisticas getEstatisticas(){return e;}

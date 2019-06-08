@@ -6,12 +6,9 @@ import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Iterator;
-import java.awt.event.KeyEvent; 
 import java.util.Map; 
 import java.util.Set;
 import java.util.Collection;
-
-
 
 /**
 * 
@@ -58,7 +55,7 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
                case 2: outroFicheiro();
                        break;
                case 3: loadStatus();
-                       break;     
+                       break;      
            } 
        }
        while(op != 0);
@@ -69,8 +66,11 @@ public class GestVendasController  implements Serializable, IGestVendasControlle
    **/
    public void carregamentoDefault()
    {
-       model.carregamentoDefault(); 
-       queryORestatisticasMenu();
+       try
+       {
+           model.carregamentoDefault(); 
+           queryORestatisticasMenu();
+        }catch(InputInvalidoException e){System.out.println(e.getMessage());}
    }
    
    /**
