@@ -129,7 +129,6 @@ public class Estatisticas implements IEstatisticas, Serializable
         s.append("Clientes que nunca realizaram compras: ").append(num_Clientes - num_ClientesCompraram).append("\n");
         s.append("Numero de Compras com 0 de faturacao: ").append(compras_0).append("\n");
         s.append("Faturaçao Total: ").append(faturacao).append("\n");
-        s.append("Faturaçao Total: ").append(faturacao).append("\n");
         s.append("\n");
         s.append("Número de Compras em Fevereiro: ").append(compras[1]).append("\n");
         s.append("Número de Compras em Março: ").append(compras[2]).append("\n");
